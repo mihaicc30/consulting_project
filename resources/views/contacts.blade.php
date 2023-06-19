@@ -6,12 +6,12 @@
     $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))">
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight dark:text-gray-100 text-gray-800 ">
-            {{ __('Dashboard') }}
+            {{ __('Contacts') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto ">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <x-jet-welcome />
             </div>
