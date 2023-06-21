@@ -147,6 +147,22 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('plans') }}" :active="request()->routeIs('plans')">
+                    {{ __('Plans') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('packages') }}" :active="request()->routeIs('packages')">
+                    {{ __('Packages') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('contacts') }}" :active="request()->routeIs('contacts')">
+                    {{ __('Contacts') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('subscribe') }}" :active="request()->routeIs('subscribe')">
+                    {{ __('Subscribe') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('topup') }}" :active="request()->routeIs('topup')">
+                    {{ __('Topup') }}
+                </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
