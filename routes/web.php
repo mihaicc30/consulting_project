@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlansController;
+use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\TopupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +23,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('dashboard');
 
-Route::get('/contacts', function () {
-    return view('contacts');
-})->middleware(['auth'])->name('contacts');
+Route::get('/packages', [PackagesController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('packages');
 
-require __DIR__.'/auth.php';
+Route::get('/plans', [PlansController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('plans');
+
+// Route::resource('plans', PlansController::class)
+//     ->middleware(['auth']);
+
+Route::get('/contacts', [ContactsController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('contacts');
+
+Route::get('/subscribe', [SubscribeController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('subscribe');
+
+Route::get('/topup', [TopupController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('topup');
+
+require __DIR__ . '/auth.php';
