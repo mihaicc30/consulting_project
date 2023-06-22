@@ -2366,6 +2366,9 @@ select {
   left: 0%;
 }
 
+.logo {
+  height: 3rem;
+}
 .gridLayout {
   grid-template-columns: 140px 1fr;
 }
@@ -2373,13 +2376,24 @@ select {
   .gridLayout {
       grid-template-columns: 50px 1fr;
   }
+  .logo {
+    height: 1rem;
+    margin: 12px;
+  }
 }
 
 .RNM {
-  top: 20%;
+  top: 10%;
   width: 100svw;
 }
 
 .NL > a {
   color: rgb(131, 130, 130);
+}
+
+:root{
+  --c1: #fec703;
+  --c2: #f08409;
+  --c3: #e33627;
+  --c4: #1457E6;
 }

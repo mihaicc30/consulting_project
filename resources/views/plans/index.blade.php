@@ -11,11 +11,16 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
-                <p>Plans page</p>
-                <p>{{$plans}}</p>
-            </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
+            <p>Plans page</p>
+            @if (count($plans) > 0)
+                @foreach ($plans as $plan)
+                    <p>{{$plan->name}} <span class="plan-price">{{$plan->price}}</span></p>
+                @endforeach
+            @else
+                <p>No plans available.</p>
+            @endif
         </div>
     </div>
 </x-app-layout>

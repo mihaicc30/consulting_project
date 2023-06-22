@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlansController;
-use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\FilesController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscribeController;
@@ -23,31 +23,38 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
+Route::prefix('portal')->group(function () {
+
+    Route::get('/', [DashboardController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
 
-Route::get('/packages', [PackagesController::class, 'index'])
+    Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth'])
-    ->name('packages');
+    ->name('dashboard');
 
-Route::get('/plans', [PlansController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('plans');
+    Route::get('/files', [FilesController::class, 'index'])
+        ->middleware(['auth'])
+        ->name('files');
 
-// Route::resource('plans', PlansController::class)
-//     ->middleware(['auth']);
+    Route::get('/plans', [PlansController::class, 'index'])
+        ->middleware(['auth'])
+        ->name('plans');
 
-Route::get('/contacts', [ContactsController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('contacts');
+    // Route::resource('plans', PlansController::class)
+    //     ->middleware(['auth']);
 
-Route::get('/subscribe', [SubscribeController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('subscribe');
+    Route::get('/contacts', [ContactsController::class, 'index'])
+        ->middleware(['auth'])
+        ->name('contacts');
 
-Route::get('/topup', [TopupController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('topup');
+    Route::get('/subscribe', [SubscribeController::class, 'index'])
+        ->middleware(['auth'])
+        ->name('subscribe');
+
+    Route::get('/topup', [TopupController::class, 'index'])
+        ->middleware(['auth'])
+        ->name('topup');
+});
 
 require __DIR__ . '/auth.php';

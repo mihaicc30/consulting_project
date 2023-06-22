@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ContactsController extends Controller
 {
     public function index() {
-        $contacts = "contacts List form in contactsController";
+        $contacts = [];
         return view("contacts.index", ['contacts' => $contacts]);
     }
 }
