@@ -16,6 +16,11 @@ module.exports = {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
             },
+            backgroundImage: {
+                'footer-texture': "url('/9.jpg')",
+                'whyus-texture': "url('/8.jpg')",
+                'hero-texture': "url('/herovideo.mp4')",
+              }
         },
     },
 

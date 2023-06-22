@@ -13,12 +13,12 @@
 </head>
 
 <body class="antialiased">
-    <div class="relative flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 py-4 ">
+    <div class="relative flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
     
         @if (Route::has('login'))
-        <div class="flex justify-between items-center top-0 right-0 px-6 py-4">
+        <div class="flex max-[330px]:flex-col max-[330px]:gap-4 justify-between items-center top-0 right-0 px-6 py-4">
             <div>
-                <svg class="block h-12 w-auto grow mt-2 sm:h-8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
+                <svg class="block h-12 w-auto grow mt-2 max-sm:h-8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
                     <style type="text/css">
                         .st0{fill:#E53323;}
                         .st1{fill:url(#SVGID_1_);}
@@ -62,16 +62,15 @@
                     </g>
                 </svg>
             </div>
-            <div>
-            @auth
-            <a href="{{ url('/portal/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-            @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 border-2 p-2">Log in</a>
-            <a href="{{ route('register') }}"
-                class="ml-4 text-sm text-gray-700 dark:text-gray-500 border-2 p-2">Register</a>
-   
-            @endauth
-            
+            <div class="flex flex-nowrap">
+                @auth
+                <a href="{{ url('/portal/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}" class="text-gray-700 font-[600] dark:text-gray-500 p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Log in</a>
+                <a href="{{ route('register') }}"
+                    class="ml-4 text-gray-700 font-[600] dark:text-gray-500 p-2 border-2 whitespace-nowrap rounded">Register</a>
+    
+                @endauth
             </div>
         </div>
         @endif
