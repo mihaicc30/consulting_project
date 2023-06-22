@@ -5192,6 +5192,13 @@ __webpack_require__.r(__webpack_exports__);
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
+var number_format = function number_format(price) {
+  var formattedPrice = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP"
+  }).format(parseFloat(price));
+  return formattedPrice;
+};
 
 /***/ }),
 
