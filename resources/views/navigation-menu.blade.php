@@ -1,3 +1,6 @@
+@if (Auth::guest())
+
+@else
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-gray-800 flex flex-col h-[100vh] fixed">
     <!-- Primary Navigation Menu -->
     <div class="flex flex-col h-[100vh]">
@@ -281,3 +284,4 @@
         </div>
     </div>
 </nav>
+@endif

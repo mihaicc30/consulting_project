@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+
+use App\Http\Controllers\ShowcaseAboutController;
+use App\Http\Controllers\ShowcasePlansController;
+use App\Http\Controllers\ShowcaseContactController;
+use App\Http\Controllers\ShowcaseServicesController;
+
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\ContactsController;
@@ -19,9 +25,23 @@ use App\Http\Controllers\TopupController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// FOR NON AUTH USERS - START
 Route::get('/', [WelcomeController::class, 'index'])
-->name('dashboard');
+->name('welcome');
+
+Route::get('/services', [WelcomeController::class, 'index'])
+->name('services');
+
+
+Route::get('/plans', [WelcomeController::class, 'index'])
+->name('plans');
+
+Route::get('/contact', [WelcomeController::class, 'index'])
+->name('contact');
+
+Route::get('/about', [WelcomeController::class, 'index'])
+->name('about');
+// FOR NON AUTH USERS - END
 
 Route::prefix('portal')->group(function () {
 

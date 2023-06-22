@@ -64,7 +64,7 @@
             </div>
             <div class="flex flex-nowrap">
                 @auth
-                <a href="{{ url('/portal/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                <a href="{{ url('/portal/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Enter Customer Portal</a>
                 @else
                 <a href="{{ route('login') }}" class="text-gray-700 font-[600] dark:text-gray-500 p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Log in</a>
                 <a href="{{ route('register') }}"
@@ -75,16 +75,21 @@
         </div>
         @endif
 
-        @if (Route::has('login'))
-            @auth
-                <p>hi auth person</p>
-                <!-- should build redirrect -->
-            @else
-                    
-                @component('welcome.not-auth-welcome-page')
-                @endcomponent
-                
-            @endauth
+        @if (request()->is('/'))
+            @component('welcome.home')
+            @endcomponent
+        @elseif (request()->is('services'))
+            @component('welcome.services')
+            @endcomponent
+        @elseif (request()->is('plans'))
+            @component('welcome.plans')
+            @endcomponent
+        @elseif (request()->is('contact'))
+            @component('welcome.contact')
+            @endcomponent
+        @elseif (request()->is('about'))
+            @component('welcome.about')
+            @endcomponent
         @endif
         
     </div>
