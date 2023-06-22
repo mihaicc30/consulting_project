@@ -4,8 +4,9 @@
   <div class="overlay relative flex flex-col pb-4">
 
     <!-- Mobile Navbar START -->
-    <div class="sm:hidden flex justify-end fixed right-0 z-30 w-[100vw]" x-data="{ isActive: false }">
-      <button class="sm:hidden max-sm:flex relative justify-end mt-6 bg-[#ffffffc4] p-4" @click="isActive = !isActive" :class="{ 'active': isActive }">
+    <div x-data="{ isActive: false }" class="sm:hidden flex justify-end fixed right-0 z-30" >
+      <button class="sm:hidden max-sm:flex relative justify-end mt-6 bg-[#ffffffc4] p-4" 
+      @click="isActive = !isActive" :class="{ 'active': isActive }">
         <svg width="40px" height="40px" viewBox="-3.2 -3.2 38.40 38.40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -13,7 +14,7 @@
             <defs>
               <linearGradient x1="50%" y1="0%" x2="50%" y2="99.0447173%" id="linearGradient-1">
                 <stop stop-color="#ff7300" offset="0%"> </stop>
-                <stop stop-color="#FFC44D" offset="100%"> </stop>
+                <stop stop-color="#e64100" offset="100%"> </stop>
               </linearGradient>
             </defs>
             <g id="icons" stroke-width="0.00032" fill="none" fill-rule="evenodd">
@@ -26,7 +27,7 @@
           </g>
         </svg>
       </button>
-      <div class="grid grid-cols-2 justify-items-center gap-4 absolute top-[100%] p-4 left-0 right-0 bg-[#ffebde]" x-show="isActive">
+      <div class="grid grid-cols-2 justify-items-center gap-4 absolute top-[100%] p-4 right-0 bg-[#ffebde] w-[100vw]" x-show="isActive">
         <a @click="isActive = !isActive" href="/" class="col-span-2 h-16 w-[87vw] text-center flex items-center justify-center text-xl font-bold shadow-xl border-b-2 border-b-[--c2] hover:bg-[--c2] transition rounded">Home</a>
         <a @click="isActive = !isActive" href="/services" class="h-16 w-[40vw] text-center flex items-center justify-center text-xl font-bold shadow-xl border-b-2 border-b-[--c2] hover:bg-[--c2] transition rounded">Services</a>
         <a @click="isActive = !isActive" href="/plans" class="active h-16 w-[40vw] text-center flex items-center justify-center text-xl font-bold shadow-xl border-b-2 border-b-[--c2] hover:bg-[--c2] transition rounded">Plans</a>
@@ -72,25 +73,239 @@
 <!-- Plans START -->
 <div x-data="{ isPersonal: true, isMonthly: true }">
     <div>
-        <button @click="isPersonal = !isPersonal" :class="{ 'border-b-2 border-b-[--c2]': isPersonal }">Personal</button>
-        <button @click="isPersonal = !isPersonal" :class="{ 'border-b-2 border-b-[--c2]': !isPersonal }">Business</button>
+        <button @click="isPersonal = !isPersonal" :class="{ 'border-b-2 border-b-[--c2]': isPersonal }" class="p-2 m-2 font-bold">Personal</button>
+        <button @click="isPersonal = !isPersonal" :class="{ 'border-b-2 border-b-[--c2]': !isPersonal }" class="p-2 m-2 font-bold">Business</button>
     </div>
-    <div x-show="isPersonal" class="flex flex-col">
-        <div class="flex flex-col text-center">
-            <p class="text-3xl font-bold">Designed for personal usage</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit praesentium nam culpa tenetur nobis iste ea perspiciatis blanditiis tempora atque!</p>
 
-            <p>You have the option of montly of yearly billing</p>
-            <div class="my-2 flex justify-center">
-                <span :class="{ 'bg-[--c2] text-white': isMonthly }" class=" p-2 m-2">Monthly</span>
-                <button @click="isMonthly = !isMonthly">X</button>
-                <span :class="{ 'bg-[--c2] text-white': !isMonthly }" class=" p-2 m-2">Yearly</span>
+    <!-- Pricing Plan Toggle - START -->
+    <div class="flex flex-col items-center justify-center">
+        <p class="text-3xl font-bold">Designed for <span x-text="isPersonal? 'personal' : 'business'"></span> usage</p>
+        <p class="max-w-[500px] text-center text-xs my-4">Choose the plan that suits your needs best</p>
+
+        <p>You have the option of montly of yearly billing</p>
+        <div class="my-2 flex justify-center items-center">
+            <span :class="{ 'bg-[--c2] text-white rounded transition': isMonthly }" class=" p-2 m-2 font-bold">Monthly</span>
+            <label class="switch">
+                <input type="checkbox" @change="isMonthly = !isMonthly" >
+                <span class="slider"></span>
+            </label>
+            <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly</span>
+        </div>
+    </div>
+    <!-- Pricing Plan Toggle - END -->
+    
+    <!-- Personal - START -->
+    <div x-show="isPersonal" class="flex flex-col overflow-x-scroll">
+        <div class="flex flex-col text-center flex-nowrap ">
+           
+            <!-- Personal Billing Cards - START -->
+            
+            <div class="flex flex-nowrap gap-8 m-4 min-w-[860px]">
+                <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
+                    <p class="text-xl font-bold">Top-up</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">As Needed</p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                    <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 10MB</p>
+                    <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Single File</p>
+                    <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Normal Delivery</p>
+                    </div>
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+
+                </div>
+                <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap popular">
+                    <p class="text-xl font-bold">Starter</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">
+                        <span class="text-base">£</span>
+                        <template x-if="isMonthly">
+                           <span x-text="10.99"></span>/month
+                        </template>
+                        <template x-if="!isMonthly">
+                           <span x-text="10.99 * 12"></span>/year
+                        </template>
+                    </p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Top-up Package</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 50MB</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Up To Two Files</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Normal Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Register Delivery</p>
+                    </div>
+                    
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+                </div>
+                <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap ">
+                    <p class="text-xl font-bold">Basic</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">
+                        <span class="text-base">£</span>
+                        <template x-if="isMonthly">
+                           <span x-text="12.49"></span>/month
+                        </template>
+                        <template x-if="!isMonthly">
+                           <span x-text="12.49 * 12"></span>/year
+                        </template>
+                    </p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Starter Package</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 100MB</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Up To Three Files</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Fast Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Register Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Special Delivery</p>
+                    </div>  
+                    
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+                </div>
+                <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
+                    <p class="text-xl font-bold">Premium</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">
+                        <span class="text-base">£</span>
+                        <template x-if="isMonthly">
+                           <span x-text="15.99"></span>/month
+                        </template>
+                        <template x-if="!isMonthly">
+                           <span x-text="15.99 * 12"></span>/year
+                        </template>
+                    </p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Basic Package</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 200MB</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Up To Five Files</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Fast Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Secure Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Register Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Special Delivery</p>
+                    </div>  
+                    
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+                </div>
             </div>
+            <!-- Personal Billing Cards - END -->
         </div>
         
     </div>
-    <div x-show="!isPersonal">B</div>
+    <!-- Personal - END -->
 
+    <!-- Bussiness - START -->
+    <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll">
+        <div class="flex flex-col text-center">
+            <!-- Bussiness Billing Cards - START -->
+            
+            <div class="flex flex-nowrap gap-8 m-4">
+                <div class="flex flex-col shadow-xl p-4 z-10 relative w-[160px] flex-nowrap">
+                    <p class="text-xl font-bold">Top-up</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">As Needed</p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                    <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 10MB</p>
+                    <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Single File</p>
+                    <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Normal Delivery</p>
+                    </div>
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+
+                </div>
+                <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap popular">
+                    <p class="text-xl font-bold">Starter</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">
+                        <span class="text-base">£</span>
+                        <template x-if="isMonthly">
+                           <span x-text="12.99"></span>/month
+                        </template>
+                        <template x-if="!isMonthly">
+                           <span x-text="12.99 * 12"></span>/year
+                        </template>
+                    </p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Top-up Package</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 50MB</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Up To Two Files</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Normal Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Register Delivery</p>
+                    </div>
+                    
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+                </div>
+                <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap ">
+                    <p class="text-xl font-bold">Basic</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">
+                        <span class="text-base">£</span>
+                        <template x-if="isMonthly">
+                           <span x-text="14.49"></span>/month
+                        </template>
+                        <template x-if="!isMonthly">
+                           <span x-text="14.49 * 12"></span>/year
+                        </template>
+                    </p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Starter Package</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 100MB</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Up To Three Files</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Fast Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Register Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Special Delivery</p>
+                    </div>  
+                    
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+                </div>
+                <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
+                    <p class="text-xl font-bold">Premium</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+                    <p class="border-b-2 my-4"></p>
+                    <p class="text-3xl font-bold">
+                        <span class="text-base">£</span>
+                        <template x-if="isMonthly">
+                           <span x-text="18.99"></span>/month
+                        </template>
+                        <template x-if="!isMonthly">
+                           <span x-text="18.99 * 12"></span>/year
+                        </template>
+                    </p>
+                    <p class="border-b-2 my-4"></p>
+                    <div class="flex flex-col items-start  grow">
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Basic Package</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Max Size 200MB</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Up To Five Files</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Fast Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Secure Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Register Delivery</p>
+                        <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle><path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path></g></svg> Special Delivery</p>
+                    </div>  
+                    
+                    <p class="border-b-2 my-4"></p>
+                    <button class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</button>
+                </div>
+            </div>
+            <!-- Bussiness Billing Cards - END -->
+        </div>
+        
+    </div>
+    <!-- Bussiness - END -->
 </div>
 <!-- Plans END -->
 

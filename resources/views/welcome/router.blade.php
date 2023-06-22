@@ -64,9 +64,9 @@
             </div>
             <div class="flex flex-nowrap">
                 @auth
-                <a href="{{ url('/portal/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Enter Customer Portal</a>
+                <a href="{{ url('/portal/dashboard') }}" class="text-sm text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Enter Customer Portal</a>
                 @else
-                <a href="{{ route('login') }}" class="text-gray-700 font-[600] dark:text-gray-500 p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Log in</a>
+                <a href="{{ route('login') }}" class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Log in</a>
                 <a href="{{ route('register') }}"
                     class="ml-4 text-gray-700 font-[600] dark:text-gray-500 p-2 border-2 whitespace-nowrap rounded">Register</a>
     
