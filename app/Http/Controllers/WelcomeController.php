@@ -8,6 +8,6 @@ class WelcomeController extends Controller
 {
     public function index() {
         $welcome = "welcome form in welcomeController";
-        return view("welcome.index", ['welcome' => $welcome]);
+        return view("welcome.router", ['welcome' => $welcome]);
     }
 }
