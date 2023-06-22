@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\ContactsController;
@@ -19,9 +20,8 @@ use App\Http\Controllers\TopupController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])
+->name('dashboard');
 
 Route::prefix('portal')->group(function () {
 
