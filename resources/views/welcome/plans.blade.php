@@ -65,6 +65,13 @@
       </ul>
     </div>
     <!-- Navbar END -->
+    
+    <!-- Heading - START -->
+    <div class="my-8 text-center">
+        <h1 class="font-bold text-3xl">Plans</h1>
+        <p>sLorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, praesentium.</p>
+    </div>
+    <!-- Heading - END -->
   </div>
 </div>
 <!-- Hero END -->
