@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TopupController extends Controller
+class AuthTopupController extends Controller
 {
     public function index() {
         $topup = "topup List form in topupController";

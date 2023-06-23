@@ -1,3 +1,6 @@
+@extends ('layout')
+
+@section ('content')
 <!-- Hero START -->
 <div class="relative flex flex-col h-1/2 bg-[url('/herovideo.mp4')]">
   <video src="herovideo.mp4" class="video absolute" loop muted autoplay></video>
@@ -596,3 +599,4 @@
   </div>
 </div>
 <!-- Footer END -->
+@endsection

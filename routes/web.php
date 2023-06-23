@@ -1,19 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WelcomeController;
 
-use App\Http\Controllers\ShowcaseAboutController;
-use App\Http\Controllers\ShowcasePlansController;
-use App\Http\Controllers\ShowcaseContactController;
-use App\Http\Controllers\ShowcaseServicesController;
 
-use App\Http\Controllers\PlansController;
-use App\Http\Controllers\FilesController;
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SubscribeController;
-use App\Http\Controllers\TopupController;
+use App\Http\Controllers\UnauthHomeController;
+use App\Http\Controllers\UnauthServicesController;
+use App\Http\Controllers\UnauthPlansController;
+use App\Http\Controllers\UnauthContactController;
+use App\Http\Controllers\UnauthAboutController;
+
+use App\Http\Controllers\AuthPlansController;
+use App\Http\Controllers\AuthFilesController;
+use App\Http\Controllers\AuthContactsController;
+use App\Http\Controllers\AuthDashboardController;
+use App\Http\Controllers\AuthSubscribeController;
+use App\Http\Controllers\AuthTopupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,53 +27,52 @@ use App\Http\Controllers\TopupController;
 |
 */
 // FOR NON AUTH USERS - START
-Route::get('/', [WelcomeController::class, 'index'])
+Route::get('/', [UnauthHomeController::class, 'index'])
 ->name('welcome');
 
-Route::get('/services', [WelcomeController::class, 'index'])
+Route::get('/services', [UnauthServicesController::class, 'index'])
 ->name('services');
 
-
-Route::get('/plans', [WelcomeController::class, 'index'])
+Route::get('/plans', [UnauthPlansController::class, 'index'])
 ->name('plans');
 
-Route::get('/contact', [WelcomeController::class, 'index'])
+Route::get('/contact', [UnauthContactController::class, 'index'])
 ->name('contact');
 
-Route::get('/about', [WelcomeController::class, 'index'])
+Route::get('/about', [UnauthAboutController::class, 'index'])
 ->name('about');
 // FOR NON AUTH USERS - END
 
 Route::prefix('portal')->group(function () {
 
-    Route::get('/', [DashboardController::class, 'index'])
+    Route::get('/', [AuthDashboardController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])
+    Route::get('/dashboard', [AuthDashboardController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
 
-    Route::get('/files', [FilesController::class, 'index'])
+    Route::get('/files', [AuthFilesController::class, 'index'])
         ->middleware(['auth'])
         ->name('files');
 
-    Route::get('/plans', [PlansController::class, 'index'])
+    Route::get('/plans', [AuthPlansController::class, 'index'])
         ->middleware(['auth'])
         ->name('plans');
 
     // Route::resource('plans', PlansController::class)
     //     ->middleware(['auth']);
 
-    Route::get('/contacts', [ContactsController::class, 'index'])
+    Route::get('/contacts', [AuthContactsController::class, 'index'])
         ->middleware(['auth'])
         ->name('contacts');
 
-    Route::get('/subscribe', [SubscribeController::class, 'index'])
+    Route::get('/subscribe', [AuthSubscribeController::class, 'index'])
         ->middleware(['auth'])
         ->name('subscribe');
 
-    Route::get('/topup', [TopupController::class, 'index'])
+    Route::get('/topup', [AuthTopupController::class, 'index'])
         ->middleware(['auth'])
         ->name('topup');
 });
