@@ -203,11 +203,11 @@
 
     <!-- Bussiness - START -->
     <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll">
-        <div class="flex flex-col text-center">
+      <div class="flex flex-col text-center flex-nowrap ">
             <!-- Bussiness Billing Cards - START -->
             
-            <div class="flex flex-nowrap gap-8 m-4">
-                <div class="flex flex-col shadow-xl p-4 z-10 relative w-[160px] flex-nowrap">
+            <div class="flex flex-nowrap gap-8 m-4 min-w-[860px]">
+              <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
                     <p class="text-xl font-bold">Top-up</p>
                     <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
                     <p class="border-b-2 my-4"></p>
