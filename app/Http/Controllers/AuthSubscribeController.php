@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SubscribeController extends Controller
+class AuthSubscribeController extends Controller
 {
     public function index() {
         $subscribe = "subscribe List form in subscribeController";

@@ -1,3 +1,6 @@
+@extends ('layout')
+
+@section ('content')
 <!-- Hero START -->
 <div class="relative flex flex-col h-1/2 bg-[url('/herovideo.mp4')]">
     <video
@@ -111,7 +114,7 @@
 
 <!-- Services START -->
 <div class="flex flex-col text-center mt-12">
-    <h1 class="text-xl font-bold underline decoration-[--c2]">-What Do We Offer-</h1>
+    <h1 class="text-xl font-bold underline decoration-[--c2] bg-[#ff1]">-What Do We Offer-</h1>
     
     <p class="text-xs">Services</p>
     
@@ -652,3 +655,5 @@
     </div>
 </div>
 <!-- Footer END -->
+
+@endsection
