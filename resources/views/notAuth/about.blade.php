@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="basis-1/3">
-            <img src="6.png" alt="">
+            <img src="storage/6.png" alt="">
         </div>
     </div>
     
