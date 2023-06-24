@@ -57,9 +57,9 @@
             <!-- Plan Card - START-->
             <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
               <p class="text-xl font-bold">Top-up</p>
-              <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+              <p class="text-xs">Unsure? <br>Pay only for what you use.</p>
               <p class="border-b-2 my-4"></p>
-              <p class="text-3xl font-bold">Pay As You Go</p>
+              <p class="text-xl font-bold">Pay As You Go</p>
               <p class="border-b-2 my-4"></p>
               <div class="flex flex-col items-start flex-nowrap grow text-start">
                 <p class="inline-flex whitespace-nowrap"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color whitespace-nowrap flex-nowrap">
@@ -147,9 +147,9 @@
             <!-- Plan Card - START-->
             <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
               <p class="text-xl font-bold">Top-up</p>
-              <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
+              <p class="text-xs">Unsure? <br>Pay only for what you use.</p>
               <p class="border-b-2 my-4"></p>
-              <p class="text-3xl font-bold">Pay As You Go</p>
+              <p class="text-xl font-bold">Pay As You Go</p>
               <p class="border-b-2 my-4"></p>
               <div class="flex flex-col items-start flex-nowrap grow text-start">
                 <p class="inline-flex whitespace-nowrap"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color whitespace-nowrap flex-nowrap">
