@@ -20,9 +20,9 @@
 
 
 @if(Str::contains(url()->current(), 'portal'))
-<body class="min-h-screen antialiased grid grid-cols-[100px,1fr]"   x-data="{ isActive: true }">
+<body class="antialiased grid grid-cols-[100px,1fr]"   x-data="{ isActive: true }">
 @else
-<body class="min-h-screen antialiased grid grid-cols-1"   x-data="{ isActive: true }">
+<body class="antialiased grid grid-cols-1"   x-data="{ isActive: true }">
 @endif
 
     @if (Route::has('login'))

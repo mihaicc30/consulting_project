@@ -12,8 +12,6 @@
       <p>Easily accessible customer service is crucial in today's 24-hour</p>
     </div>
     <!-- Heading - END -->
-
-
   </div>
 </div>
 <!-- Hero END -->
