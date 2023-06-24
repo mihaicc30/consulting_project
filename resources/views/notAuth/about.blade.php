@@ -20,19 +20,34 @@
 <div class="flex flex-col text-center mt-12">
     <h1 class="text-xl font-bold underline decoration-[--c2]">-Who are we-</h1>
     <p class="text-xs">Origins</p>
+    
+    <p class="col-span-2 my-8">We are proud of our history, but most of all, we are proud of our satisfied customers. Every day we raise the position of our customers sites higher and higher.</p>
+            
     <div class="flex max-md:flex-col max-md:items-center max-md:text-center gap-2 m-auto justify-center py-2">
         <div class="flex flex-col justify-center basis-1/2 gap-4">
             <div class="grid grid-cols-[100px,1fr] items-center">
                 <svg width="64px" height="64px" viewBox="-302.16 -302.16 1863.32 1863.32" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ff6600" stroke="#ff6600" stroke-width="0.01259"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M393.644285 971.514095l472.373142 0 0 52.485905-472.373142 0 0-52.485905Z" fill="#4d2900"></path><path d="M524.859047 652.399795h209.943618v345.357253h-209.943618z" fill="#f08000"></path><path d="M708.559713 678.642747V970.989236h-157.457714V678.642747h157.457714m52.485905-52.485904H498.616094V1023.475141h262.429524V626.156843z" fill="#4d2900"></path><path d="M26.242952 26.242952l1207.175808 0 0 734.802666-1207.175808 0 0-734.802666Z" fill="#FDCA89"></path><path d="M1207.175807 52.485905v682.31676H52.485905V52.485905h1154.689902m0-52.485905H52.485905a52.485905 52.485905 0 0 0-52.485905 52.485905v682.31676a52.485905 52.485905 0 0 0 52.485905 52.485905h1154.689902a52.485905 52.485905 0 0 0 52.485905-52.485905V52.485905a52.485905 52.485905 0 0 0-52.485905-52.485905z" fill="#4d2900"></path><path d="M52.485905 763.669913a26.242952 26.242952 0 0 1-26.242953-26.242952v-100.510508h1207.175808v100.248078a26.242952 26.242952 0 0 1-26.242953 26.242952z" fill="#f08000"></path><path d="M1207.175807 663.159405v74.267556H52.485905v-74.267556h1154.689902m52.485905-52.485904H0v126.49103a52.485905 52.485905 0 0 0 52.485905 52.485905h1154.689902a52.485905 52.485905 0 0 0 52.485905-52.485905v-126.49103z" fill="#4d2900"></path></g></svg>
-                <p class="text-xs text-start">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit iste maiores possimus nemo eveniet esse impedit praesentium, soluta reprehenderit quidem.</p>
+                <div class="flex flex-col text-start">
+                    <p class="text-lg font-bold">Maximum Security</p>
+                    <p class="text-xs text-start">Our robust encryption protocols and private network ensure that your data remains confidential and protected throughout the entire transmission process. You can trust us to deliver your files securely and without compromise.</p>
+
+                </div>
             </div>
             <div class="grid grid-cols-[100px,1fr] items-center">
                 <svg width="64px" height="64px" viewBox="-302.16 -302.16 1863.32 1863.32" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ff6600" stroke="#ff6600" stroke-width="0.01259"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M393.644285 971.514095l472.373142 0 0 52.485905-472.373142 0 0-52.485905Z" fill="#4d2900"></path><path d="M524.859047 652.399795h209.943618v345.357253h-209.943618z" fill="#f08000"></path><path d="M708.559713 678.642747V970.989236h-157.457714V678.642747h157.457714m52.485905-52.485904H498.616094V1023.475141h262.429524V626.156843z" fill="#4d2900"></path><path d="M26.242952 26.242952l1207.175808 0 0 734.802666-1207.175808 0 0-734.802666Z" fill="#FDCA89"></path><path d="M1207.175807 52.485905v682.31676H52.485905V52.485905h1154.689902m0-52.485905H52.485905a52.485905 52.485905 0 0 0-52.485905 52.485905v682.31676a52.485905 52.485905 0 0 0 52.485905 52.485905h1154.689902a52.485905 52.485905 0 0 0 52.485905-52.485905V52.485905a52.485905 52.485905 0 0 0-52.485905-52.485905z" fill="#4d2900"></path><path d="M52.485905 763.669913a26.242952 26.242952 0 0 1-26.242953-26.242952v-100.510508h1207.175808v100.248078a26.242952 26.242952 0 0 1-26.242953 26.242952z" fill="#f08000"></path><path d="M1207.175807 663.159405v74.267556H52.485905v-74.267556h1154.689902m52.485905-52.485904H0v126.49103a52.485905 52.485905 0 0 0 52.485905 52.485905h1154.689902a52.485905 52.485905 0 0 0 52.485905-52.485905v-126.49103z" fill="#4d2900"></path></g></svg>
-                <p class="text-xs text-start">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit iste maiores possimus nemo eveniet esse impedit praesentium, soluta reprehenderit quidem.</p>
+                <div class="flex flex-col text-start">
+                    <p class="text-lg font-bold">Dedicated Team</p>
+                    <p class="text-xs text-start">Our experts are highly trained and experienced in handling all aspects of file transmission, ensuring that your packages are sent promptly and efficiently. We are here to support you every step of the way.</p>
+
+                </div>
             </div>
             <div class="grid grid-cols-[100px,1fr] items-center">
                 <svg width="64px" height="64px" viewBox="-302.16 -302.16 1863.32 1863.32" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ff6600" stroke="#ff6600" stroke-width="0.01259"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M393.644285 971.514095l472.373142 0 0 52.485905-472.373142 0 0-52.485905Z" fill="#4d2900"></path><path d="M524.859047 652.399795h209.943618v345.357253h-209.943618z" fill="#f08000"></path><path d="M708.559713 678.642747V970.989236h-157.457714V678.642747h157.457714m52.485905-52.485904H498.616094V1023.475141h262.429524V626.156843z" fill="#4d2900"></path><path d="M26.242952 26.242952l1207.175808 0 0 734.802666-1207.175808 0 0-734.802666Z" fill="#FDCA89"></path><path d="M1207.175807 52.485905v682.31676H52.485905V52.485905h1154.689902m0-52.485905H52.485905a52.485905 52.485905 0 0 0-52.485905 52.485905v682.31676a52.485905 52.485905 0 0 0 52.485905 52.485905h1154.689902a52.485905 52.485905 0 0 0 52.485905-52.485905V52.485905a52.485905 52.485905 0 0 0-52.485905-52.485905z" fill="#4d2900"></path><path d="M52.485905 763.669913a26.242952 26.242952 0 0 1-26.242953-26.242952v-100.510508h1207.175808v100.248078a26.242952 26.242952 0 0 1-26.242953 26.242952z" fill="#f08000"></path><path d="M1207.175807 663.159405v74.267556H52.485905v-74.267556h1154.689902m52.485905-52.485904H0v126.49103a52.485905 52.485905 0 0 0 52.485905 52.485905h1154.689902a52.485905 52.485905 0 0 0 52.485905-52.485905v-126.49103z" fill="#4d2900"></path></g></svg>
-                <p class="text-xs text-start">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit iste maiores possimus nemo eveniet esse impedit praesentium, soluta reprehenderit quidem.</p>
+                <div class="flex flex-col text-start">
+                    <p class="text-lg font-bold">24/7 Support</p>
+                    <p class="text-xs text-start">We understand that timely assistance is crucial when it comes to file delivery. That's why our support team is available round the clock, 24/7, to address any concerns or queries you may have.</p>
+
+                </div>
             </div>
         </div>
         <div class="basis-1/3">
