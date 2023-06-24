@@ -9,6 +9,6 @@ class PlansController extends Controller
 {
     public function index() {
         $plans = Plans::get();
-        return view("isauth.plans", ['plans' => $plans]);
+        return view("notauth.plans", ['plans' => $plans]);
     }
 }
