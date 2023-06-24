@@ -21,7 +21,6 @@
   <!-- Plans - START -->
   <div class="flex flex-col py-6">
 
-
     <!-- Plans START -->
     <div x-data="{ isPersonal: true, isMonthly: true }">
       <div>
