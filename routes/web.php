@@ -18,6 +18,7 @@ use App\Http\Controllers\notAuth\PlansController ;
 use App\Http\Controllers\notAuth\ContactController ;
 use App\Http\Controllers\notAuth\AboutController ;
 
+use App\Http\Controllers\notAuth\SubscribeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,8 @@ Route::get('/services', [ServicesController::class, 'index']);
 Route::get('/plans', [PlansController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
+
+Route::post('/', [SubscribeController::class, 'index']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -13,12 +13,12 @@
         </h1>
         <p>Dedicated resources with full access and easy scaling.</p>
         <div>
-          <button class="p-2 border-2 bg-[--c2] rounded mr-2">
+          <a class="p-2 border-2 bg-[--c2] rounded mr-2" href="/plans">
             Get Started
-          </button>
-          <button class="p-2 border-2 bg-white rounded text-black">
+          </a>
+          <a class="p-2 border-2 bg-white rounded text-black" href="/contact">
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
       <div class="basis-1/3">

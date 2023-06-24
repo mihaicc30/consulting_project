@@ -53,10 +53,10 @@
        <span class="z-20 relative">Profile</span>
      </a>
      <form action="{{ route('logout') }}" method="POST" class="p-2 relative navButton font-[600] border-b-2">
-  @csrf
-  <span class="absolute bg-white inset-0 z-10 rounded"></span>
-  <button type="submit" class="z-20 relative">Logout</button>
-</form>
+        @csrf
+        <span class="absolute bg-white inset-0 z-10 rounded"></span>
+        <button type="submit" class="z-20 relative">Logout</button>
+      </form>
    </ul>
  </div>
  <!-- Navbar END -->
