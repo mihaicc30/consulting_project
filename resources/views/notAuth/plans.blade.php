@@ -49,6 +49,7 @@
             <!-- Personal Billing Cards - START -->
             
             <div class="flex flex-nowrap gap-8 m-4 min-w-[860px]">
+
                 <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
                     <p class="text-xl font-bold">Top-up</p>
                     <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>
@@ -64,6 +65,7 @@
                     @include('components.subscribeTemplate')
 
                 </div>
+                
                 <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap popular">
                     <p class="text-xl font-bold">Starter</p>
                     <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, id.</p>

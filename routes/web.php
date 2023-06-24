@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
-// use App\Http\Controllers\isAuth\AuthDashboardController;
-// use App\Http\Controllers\isAuth\AuthServicesController;
-// use App\Http\Controllers\isAuth\AuthPlansController;
-// use App\Http\Controllers\isAuth\AuthContactController;
-// use App\Http\Controllers\isAuth\AuthAboutController;
+use App\Http\Controllers\isAuth\isAuthDashboardController;
+use App\Http\Controllers\isAuth\isAuthFilesController;
+use App\Http\Controllers\isAuth\isAuthPlansController;
+use App\Http\Controllers\isAuth\isAuthContactController;
+use App\Http\Controllers\isAuth\isAuthTopupController;
 
 use App\Http\Controllers\notAuth\HomeController ;
 use App\Http\Controllers\notAuth\ServicesController ;
@@ -44,31 +44,23 @@ Route::post('/', [SubscribeController::class, 'index']);
 
 
 Route::middleware('auth')->prefix('portal')->group(function () {
-    Route::get('/',function (Request $request) {
-        return view('isauth.dashboard');
-    });
-    Route::get('/dashboard',function (Request $request) {
-        return view('isauth.dashboard');
-    });
-    Route::get('/files',function (Request $request) {
-        return view('isauth.files');
-    });
-    Route::get('/plans',function (Request $request) {
-        return view('isauth.plans');
-    });
-    Route::get('/contact',function (Request $request) {
-        return view('isauth.contact');
-    });
-    Route::get('/topup',function (Request $request) {
-        return view('isauth.topup');
-    });
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
-});
+    Route::get('/',[isAuthDashboardController::class,'get']);
+    Route::get('/dashboard',[isAuthDashboardController::class,'get']);
 
-Route::middleware('auth')->prefix('portal')->group(function () {
+    Route::get('/files',[isAuthFilesController::class,'get']);
+
+    Route::get('/plans',[isAuthPlansController::class,'get']);
+
+    Route::get('/contact',[isAuthContactController::class,'get']);
+
+    Route::get('/topup',[isAuthTopupController::class,'get']);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
+    
 
 require __DIR__.'/auth.php';

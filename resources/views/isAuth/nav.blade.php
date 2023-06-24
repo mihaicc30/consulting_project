@@ -40,7 +40,7 @@
      </a>
      <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/contact">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Contact</span>
+       <span class="z-20 relative">Contacts</span>
      </a>
      <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/topup">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>

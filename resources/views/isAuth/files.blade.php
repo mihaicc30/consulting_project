@@ -21,10 +21,9 @@
 
   <!-- Files - START -->
   <div class="flex flex-col py-6">
-    <p class="my-[50vh]">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, id.</p>
-    <p class="my-[50vh]">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, id.</p>
-    <p class="my-[50vh]">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, id.</p>
-    
+    @foreach ($transfers as $transfer)
+    <p>{{$transfer}}</p>
+    @endforeach
   </div>
   <!-- Files - END -->
 
