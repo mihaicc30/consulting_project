@@ -351,7 +351,7 @@
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
         <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 3 ? isActive = null : isActive = 3">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, eius?
+            What payment methods does EZEPOST accept?
             </h3>
             <span class="accordion-icon">
               <svg class="transition" :class="{'rotate-[90deg]': isActive === 3}" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
@@ -359,7 +359,7 @@
         </div>
         <div class="accordion-content transition" x-show="isActive === 3">
             <p title="Answer" class="transition p-2 my-2 text-start">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, qui.
+            EZEPOST accepts payments in multiple currencies, including USD, GBP, and EUR. We provide a convenient and secure payment experience, allowing you to complete transactions using various payment methods such as credit cards, debit cards, and online payment gateways. Whether you prefer to pay with your preferred currency or using a specific payment card, EZEPOST offers flexibility to accommodate your payment needs.
             </p>
         </div>
     </div>
@@ -368,7 +368,7 @@
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
         <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 4 ? isActive = null : isActive = 4">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, eius?
+            Is my payment information secure when making transactions with EZEPOST?
             </h3>
             <span class="accordion-icon">
               <svg class="transition" :class="{'rotate-[90deg]': isActive === 4}" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
@@ -376,7 +376,7 @@
         </div>
         <div class="accordion-content transition" x-show="isActive === 4">
             <p title="Answer" class="transition p-2 my-2 text-start">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, qui.
+            Yes, EZEPOST prioritizes the security of your payment information. We implement industry-standard security measures to protect your sensitive data during payment transactions. 
             </p>
         </div>
     </div>
@@ -385,7 +385,7 @@
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
         <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 5 ? isActive = null : isActive = 5">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, eius?
+            How does EZEPOST ensure the secure delivery of packets sent through its network?
             </h3>
             <span class="accordion-icon">
               <svg class="transition" :class="{'rotate-[90deg]': isActive === 5}" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
@@ -393,7 +393,7 @@
         </div>
         <div class="accordion-content transition" x-show="isActive === 5">
             <p title="Answer" class="transition p-2 my-2 text-start">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, qui.
+            EZEPOST ensures the secure delivery of packets by utilizing its private network infrastructure. When you send a packet through EZEPOST, it travels exclusively within our secure network, which is protected by advanced encryption protocols. This means that your packet is not exposed to the public internet, reducing the risk of interception or unauthorized access. 
             </p>
         </div>
     </div>
@@ -402,7 +402,7 @@
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
         <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 6 ? isActive = null : isActive = 6">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, eius?
+            Can I control the delivery time of my packets when using EZEPOST?
             </h3>
             <span class="accordion-icon">
               <svg class="transition" :class="{'rotate-[90deg]': isActive === 6}" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
@@ -410,7 +410,7 @@
         </div>
         <div class="accordion-content transition" x-show="isActive === 6">
             <p title="Answer" class="transition p-2 my-2 text-start">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, qui.
+            Yes, with EZEPOST, you have control over the delivery time of your packets. We understand the importance of timely delivery, and we provide you with options to customize the delivery schedule based on your requirements. 
             </p>
         </div>
     </div>
@@ -419,7 +419,7 @@
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
         <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 7 ? isActive = null : isActive = 7">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, eius?
+            What kind of support can I expect from EZEPOST's customer service staff?
             </h3>
             <span class="accordion-icon">
               <svg class="transition" :class="{'rotate-[90deg]': isActive === 7}" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
@@ -427,7 +427,7 @@
         </div>
         <div class="accordion-content transition" x-show="isActive === 7">
             <p title="Answer" class="transition p-2 my-2 text-start">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, qui.
+            EZEPOST takes pride in its dedicated customer service staff who are available to assist you with any inquiries or concerns. Our support team is well-trained and knowledgeable about our services and processes. Whether you need assistance with account setup, troubleshooting, or general questions about EZEPOST, our support staff will provide prompt and helpful responses.
             </p>
         </div>
     </div>
