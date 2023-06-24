@@ -71,7 +71,7 @@
         </div>
         <p>Your Trusted Partner for Effortless Shipping and Maximum Security.</p>
 
-        <p class="inline-flex items-center"><svg width="34px" height="34px" viewBox="0 0 1024.00 1024.00" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+        <p class="inline-flex trasition duration-300 hover:scale-[0.96] items-center"><svg width="34px" height="34px" viewBox="0 0 1024.00 1024.00" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
@@ -84,7 +84,7 @@
               <path d="M460.8 166.4h102.4v25.6h-102.4z" fill="#231C1C"></path>
             </g>
           </svg> +44 12345 123 123</p>
-        <p class="inline-flex items-center"><svg width="34px" height="34px" version="1.1" id="_x35_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-112.64 -112.64 737.28 737.28" xml:space="preserve" width="64px" height="64px" fill="#000000">
+        <p class="inline-flex trasition duration-300 hover:scale-[0.96] items-center"><svg width="34px" height="34px" version="1.1" id="_x35_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-112.64 -112.64 737.28 737.28" xml:space="preserve" width="64px" height="64px" fill="#000000">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
@@ -118,7 +118,7 @@
               </g>
             </g>
           </svg> someEmail@email.email</p>
-        <p class="inline-flex items-center"><svg width="34px" height="34px" viewBox="-6.72 -6.72 45.44 45.44" enable-background="new 0 0 32 32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+        <p class="inline-flex trasition duration-300 hover:scale-[0.96] items-center"><svg width="34px" height="34px" viewBox="-6.72 -6.72 45.44 45.44" enable-background="new 0 0 32 32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
@@ -225,7 +225,7 @@
 
       <div class="flex flex-col p-2">
         <p class="font-bold">Portal</p>
-        <a href="/portal" class="inline-flex">
+        <a href="/portal" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -237,7 +237,7 @@
               </g>
             </svg>
           </span> Customer</a>
-        <a href="/portal" class="inline-flex">
+        <a href="/portal" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -249,7 +249,7 @@
               </g>
             </svg>
           </span> Business</a>
-        <a href="/portal/profile" class="inline-flex">
+        <a href="/portal/profile" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -264,7 +264,7 @@
 
 
         <p class="font-bold mt-2">Account</p>
-        <a href="/plans" class="inline-flex">
+        <a href="/plans" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -276,7 +276,7 @@
               </g>
             </svg>
           </span> Plans</a>
-        <a href="/services" class="inline-flex">
+        <a href="/services" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -288,7 +288,7 @@
               </g>
             </svg>
           </span> Services</a>
-        <a href="/portal/topup" class="inline-flex">
+        <a href="/portal/topup" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -303,7 +303,7 @@
       </div>
       <div class="flex flex-col p-2">
         <p class="font-bold">Support</p>
-        <a href="/blog" class="inline-flex">
+        <a href="/blog" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -315,7 +315,7 @@
               </g>
             </svg>
           </span> Blog</a>
-        <a href="/contact" class="inline-flex">
+        <a href="/contact" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -327,7 +327,7 @@
               </g>
             </svg>
           </span> Contact</a>
-        <a href="/reportabuse" class="inline-flex">
+        <a href="/reportabuse" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -339,7 +339,7 @@
               </g>
             </svg>
           </span> Report Abuse</a>
-        <a href="/affiliate" class="inline-flex">
+        <a href="/affiliate" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -351,7 +351,7 @@
               </g>
             </svg>
           </span> Affiliate</a>
-        <a href="/refunds" class="inline-flex">
+        <a href="/refunds" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -363,7 +363,7 @@
               </g>
             </svg>
           </span> Refunds</a>
-        <a href="/payments" class="inline-flex">
+        <a href="/payments" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -380,14 +380,17 @@
       <div class="flex flex-col p-2">
         <p class="font-bold">Newsletter</p>
         
-        <form action="/" method="POST" class="relative navButton font-[600] border-b-2 pb-2 mb-2">
+        <form action="/" method="POST" class="relative navButton font-[600] border-b-2 pb-2 mb-2" x-data="{ email: '' }">
           @csrf
-          <input type="email" class="rounded p-2 w-[100%] text-black" placeholder="Your Email" require/>
-          <button type="submit" class="absolute right-0 bg-[--c2] p-[9px] rounded">X</button>
+          <input type="email" name="email" class="rounded p-2 w-[100%] text-black" placeholder="Your Email" required x-model="email">
+          <button type="submit" class="absolute right-0 bg-[--c2] p-[9px] rounded" x-show="email.trim() !== ''">
+            
+          </button>
         </form>
 
 
-        <a href="/termsofservice" class="inline-flex">
+
+        <a href="/termsofservice" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -399,7 +402,7 @@
               </g>
             </svg>
           </span> Terms of Service</a>
-        <a href="/privacypolicy" class="inline-flex">
+        <a href="/privacypolicy" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
@@ -411,7 +414,7 @@
               </g>
             </svg>
           </span> Privacy Policy</a>
-        <a href="/legal" class="inline-flex">
+        <a href="/legal" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.384"></g>
