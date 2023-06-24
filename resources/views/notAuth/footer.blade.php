@@ -384,7 +384,7 @@
           @csrf
           <input type="email" name="email" class="rounded p-2 w-[100%] text-black" placeholder="Your Email" required x-model="email">
           <button type="submit" class="absolute right-0 bg-[--c2] p-[9px] rounded" x-show="email.trim() !== ''">
-            
+          x
           </button>
         </form>
 
