@@ -23,7 +23,7 @@
   <p class="text-xl text-center">Get In Touch With Us</p>
   <p class="text-sm text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptates!</p>
   <div class="flex flex-wrap justify-center gap-4">
-    <div class="min-w-[146px] text-center shadow-xl p-4 rounded">
+    <div onclick="alert('to implement')" class="transition hover:scale-[0.94] min-w-[146px] text-center shadow-xl p-4 rounded">
       <svg version="1.0" class="mx-auto" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="-9.6 -9.6 83.20 83.20" enable-background="new 0 0 64 64" xml:space="preserve" fill="#ff7300" stroke="#ff7300" stroke-width="2.496">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -45,7 +45,7 @@
       <p class="text-xl font-bold">Main Branch</p>
       <p class="text-sm">Birmingham, UK</p>
     </div>
-    <div class="min-w-[146px] text-center shadow-xl p-4 rounded">
+    <div class="transition hover:scale-[0.98] min-w-[146px] text-center shadow-xl p-4 rounded">
       <svg width="64px" height="64px" class="mx-auto" viewBox="0 0 1024.00 1024.00" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -62,7 +62,7 @@
       <p class="text-xl font-bold">Phone</p>
       <p class="text-sm">+44 12345 123 123</p>
     </div>
-    <div class="min-w-[146px] text-center shadow-xl p-4 rounded">
+    <div class="transition hover:scale-[0.98] min-w-[146px] text-center shadow-xl p-4 rounded">
       <svg width="64px" height="64px" class="mx-auto" version="1.1" id="_x35_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-112.64 -112.64 737.28 737.28" xml:space="preserve" fill="#000000">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -100,7 +100,7 @@
       <p class="text-xl font-bold">Email</p>
       <p class="text-sm">someemail@email.email</p>
     </div>
-    <div class="min-w-[146px] text-center shadow-xl p-4 rounded">
+    <div class="transition hover:scale-[0.98] min-w-[146px] text-center shadow-xl p-4 rounded">
       <svg width="64px" height="64px" class="mx-auto" viewBox="-5.28 -5.28 34.56 34.56" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff6600" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="miter">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -123,16 +123,16 @@
     <form class="flex flex-col sm:w-4/5 max-sm:w-[100%] max-w-[998px] mx-auto p-4">
     @csrf
     <div class="grid grid-cols-2 max-sm:grid-cols-1">
-            <input class="shadow-xl p-4 m-2" type="text" placeholder="Name*" name="name" required>
-            <input class="shadow-xl p-4 m-2" type="text" placeholder="Email*" name="email" required>
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Name*" name="name" required>
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Email*" name="email" required>
         </div>
 
         <div class="grid grid-cols-2 max-sm:grid-cols-1">
-            <input class="shadow-xl p-4 m-2" type="text" placeholder="Phone"  name="phone">
-            <input class="shadow-xl p-4 m-2" type="text" placeholder="Subject"  name="subject">
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Phone"  name="phone">
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Subject"  name="subject">
         </div>
 
-        <textarea class="shadow-xl p-4 m-2" name="" id="" cols="30" rows="10" name="message" placeholder="Your Message*" required></textarea>
+        <textarea class="shadow-xl p-4 m-2 border-none" name="" id="" cols="30" rows="10" name="message" placeholder="Your Message*" required></textarea>
 
         <button class="text-white font-[600] p-2 whitespace-nowrap rounded bg-[--c2] m-2 shadow-xl active:shadow-inner active:shadow-black">Send Message</button>
     </form>

@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="basis-1/3">
-        <img src="/storage/2.png" alt="" />
+        <img src="storage/2.png" alt="" />
       </div>
     </div>
   </div>

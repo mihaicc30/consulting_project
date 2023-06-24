@@ -105,7 +105,7 @@
                 <p class="font-bold">Email Us : email@emai.email</p>
             </div>
             <div class="basis-1/3">
-                <img src="3.png" class="m-auto" />
+                <img src="storage/3.png" class="m-auto" />
             </div>
         </div>
     </div>
