@@ -1,20 +1,22 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-use App\Http\Controllers\UnauthHomeController;
-use App\Http\Controllers\UnauthServicesController;
-use App\Http\Controllers\UnauthPlansController;
-use App\Http\Controllers\UnauthContactController;
-use App\Http\Controllers\UnauthAboutController;
 
-use App\Http\Controllers\AuthPlansController;
-use App\Http\Controllers\AuthFilesController;
-use App\Http\Controllers\AuthContactsController;
-use App\Http\Controllers\AuthDashboardController;
-use App\Http\Controllers\AuthSubscribeController;
-use App\Http\Controllers\AuthTopupController;
+// use App\Http\Controllers\isAuth\AuthDashboardController;
+// use App\Http\Controllers\isAuth\AuthServicesController;
+// use App\Http\Controllers\isAuth\AuthPlansController;
+// use App\Http\Controllers\isAuth\AuthContactController;
+// use App\Http\Controllers\isAuth\AuthAboutController;
+
+use App\Http\Controllers\notAuth\HomeController ;
+use App\Http\Controllers\notAuth\ServicesController ;
+use App\Http\Controllers\notAuth\PlansController ;
+use App\Http\Controllers\notAuth\ContactController ;
+use App\Http\Controllers\notAuth\AboutController ;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,59 +24,48 @@ use App\Http\Controllers\AuthTopupController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
-// FOR NON AUTH USERS - START
-Route::get('/', [UnauthHomeController::class, 'index'])
-->name('welcome');
 
-Route::get('/services', [UnauthServicesController::class, 'index'])
-->name('services');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/services', [ServicesController::class, 'index']);
+Route::get('/plans', [PlansController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
 
-Route::get('/plans', [UnauthPlansController::class, 'index'])
-->name('plans');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/contact', [UnauthContactController::class, 'index'])
-->name('contact');
 
-Route::get('/about', [UnauthAboutController::class, 'index'])
-->name('about');
-// FOR NON AUTH USERS - END
-
-Route::prefix('portal')->group(function () {
-
-    Route::get('/', [AuthDashboardController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('dashboard');
-
-    Route::get('/dashboard', [AuthDashboardController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('dashboard');
-
-    Route::get('/files', [AuthFilesController::class, 'index'])
-        ->middleware(['auth'])
-        ->name('files');
-
-    Route::get('/plans', [AuthPlansController::class, 'index'])
-        ->middleware(['auth'])
-        ->name('plans');
-
-    // Route::resource('plans', PlansController::class)
-    //     ->middleware(['auth']);
-
-    Route::get('/contacts', [AuthContactsController::class, 'index'])
-        ->middleware(['auth'])
-        ->name('contacts');
-
-    Route::get('/subscribe', [AuthSubscribeController::class, 'index'])
-        ->middleware(['auth'])
-        ->name('subscribe');
-
-    Route::get('/topup', [AuthTopupController::class, 'index'])
-        ->middleware(['auth'])
-        ->name('topup');
+Route::middleware('auth')->prefix('portal')->group(function () {
+    Route::get('/',function (Request $request) {
+        return view('isauth.dashboard');
+    });
+    Route::get('/dashboard',function (Request $request) {
+        return view('isauth.dashboard');
+    });
+    Route::get('/files',function (Request $request) {
+        return view('isauth.files');
+    });
+    Route::get('/plans',function (Request $request) {
+        return view('isauth.plans');
+    });
+    Route::get('/contact',function (Request $request) {
+        return view('isauth.contact');
+    });
+    Route::get('/topup',function (Request $request) {
+        return view('isauth.topup');
+    });
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
 
-require __DIR__ . '/auth.php';
+Route::middleware('auth')->prefix('portal')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
