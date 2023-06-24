@@ -315,24 +315,24 @@
   <div class="grid grid-cols-1 transition mt-8" x-data="{ isActive: null }">
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 1 ? isActive = null : isActive = 1">
+        <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 1 ? isActive = null : isActive = 1">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, qui!
+            Can I trust the expertise of EZEPOST's staff in handling complex file transfers?
             </h3>
             <span class="accordion-icon">
-              <svg width="24px" :class="{'rotate-[90deg]': isActive === 1}" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
+              <svg class="transition" width="24px" :class="{'rotate-[90deg]': isActive === 1}" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
             </span>
         </div>
         <div class="accordion-content transition" x-show="isActive === 1">
         <p title="Answer" class="transition p-2 my-2 text-start">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate facere pariatur libero ipsam beatae quasi eius, rem saepe ab exercitationem.
+        Absolutely! The staff at EZEPOST is highly skilled and experienced in handling various types of file transfers, including complex scenarios. We understand the importance of securely sending files through our private network and ensuring they reach their intended recipients efficiently.
         </p>
         </div>
     </div>
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 2 ? isActive = null : isActive = 2">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 2 ? isActive = null : isActive = 2">
             <h3 title="Question" class="text-xl font-bold p-2">
               How does EZEPOST ensure secure and timely delivery of file packages?
             </h3>
@@ -349,7 +349,7 @@
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 3 ? isActive = null : isActive = 3">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 3 ? isActive = null : isActive = 3">
             <h3 title="Question" class="text-xl font-bold p-2">
             What payment methods does EZEPOST accept?
             </h3>
@@ -366,7 +366,7 @@
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 4 ? isActive = null : isActive = 4">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 4 ? isActive = null : isActive = 4">
             <h3 title="Question" class="text-xl font-bold p-2">
             Is my payment information secure when making transactions with EZEPOST?
             </h3>
@@ -383,7 +383,7 @@
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 5 ? isActive = null : isActive = 5">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 5 ? isActive = null : isActive = 5">
             <h3 title="Question" class="text-xl font-bold p-2">
             How does EZEPOST ensure the secure delivery of packets sent through its network?
             </h3>
@@ -400,7 +400,7 @@
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 6 ? isActive = null : isActive = 6">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 6 ? isActive = null : isActive = 6">
             <h3 title="Question" class="text-xl font-bold p-2">
             Can I control the delivery time of my packets when using EZEPOST?
             </h3>
@@ -417,7 +417,7 @@
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 7 ? isActive = null : isActive = 7">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 7 ? isActive = null : isActive = 7">
             <h3 title="Question" class="text-xl font-bold p-2">
             What kind of support can I expect from EZEPOST's customer service staff?
             </h3>
@@ -434,9 +434,9 @@
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 8 ? isActive = null : isActive = 8">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 8 ? isActive = null : isActive = 8">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, eius?
+            How can I reach EZEPOST's support staff for assistance?
             </h3>
             <span class="accordion-icon">
               <svg class="transition" :class="{'rotate-[90deg]': isActive === 8}" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
@@ -444,16 +444,16 @@
         </div>
         <div class="accordion-content transition" x-show="isActive === 8">
             <p title="Answer" class="transition p-2 my-2 text-start">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, qui.
+            EZEPOST provides multiple channels for you to reach our support staff. You can contact our support team via email, phone, or through our online chat feature on the EZEPOST website. Our support staff operates during business hours and strives to respond to your inquiries in a timely manner.
             </p>
         </div>
     </div>
     <!-- AC EN -->
     <!-- AC ST -->
     <div class="accordion-item w-[90%] max-w-[800px] min-w-[250px] transition mx-auto my-1 py-2 shadow-xl" >
-        <div class="accordion-header cursor-pointer flex justify-between transition" @click="isActive === 9 ? isActive = null : isActive = 9">
+        <div class="accordion-header cursor-pointer flex justify-between transition  text-start" @click="isActive === 9 ? isActive = null : isActive = 9">
             <h3 title="Question" class="text-xl font-bold p-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, eius?
+            Are the staff members at EZEPOST trained to handle sensitive and confidential information?
             </h3>
             <span class="accordion-icon">
               <svg class="transition" :class="{'rotate-[90deg]': isActive === 9}" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8L11 13.5858L9.70711 12.2929C9.31658 11.9024 8.68342 11.9024 8.29289 12.2929C7.90237 12.6834 7.90237 13.3166 8.29289 13.7071L11.2059 16.6201C11.2209 16.6351 11.2363 16.6497 11.252 16.6637C11.4352 16.87 11.7024 17 12 17C12.2976 17 12.5648 16.87 12.748 16.6637C12.7637 16.6497 12.7791 16.6351 12.7941 16.6201L15.7071 13.7071C16.0976 13.3166 16.0976 12.6834 15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929L13 13.5858L13 8Z" fill="#ffae00"></path> </g></svg>
@@ -461,7 +461,7 @@
         </div>
         <div class="accordion-content transition" x-show="isActive === 9">
             <p title="Answer" class="transition p-2 my-2 text-start">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, qui.
+            Yes, at EZEPOST, we prioritize the security and confidentiality of your information. Our staff members undergo rigorous training to handle sensitive data with the utmost care and professionalism. We have strict protocols and security measures in place to safeguard your files and personal information. 
             </p>
         </div>
     </div>
