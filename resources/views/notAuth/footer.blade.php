@@ -380,15 +380,15 @@
       <div class="flex flex-col p-2">
         <p class="font-bold">Newsletter</p>
         
-        <form action="/" method="POST" class="relative navButton font-[600] border-b-2 pb-2 mb-2" x-data="{ email: '' }">
+        <form action="/" method="POST" class="relative flex justify-between navButton font-[600]mb-2" x-data="{ email: '' }">
           @csrf
-          <input type="email" name="email" class="rounded p-2 w-[100%] text-black" placeholder="Your Email" required x-model="email">
-          <button type="submit" class="absolute right-0 bg-[--c2] p-[9px] rounded" x-show="email.trim() !== ''">
-          x
+          <input type="email" name="email" class="rounded-l p-2 w-[100%] text-black" placeholder="Your Email" required x-model="email">
+          <button type="submit" class="bg-[#f08409] rounded-r h-100 w-10" x-show="email.trim() !== ''">
+            <svg class="h-100 w-100" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f08409da" stroke-width="1.248"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M8.29289 4.29289C8.68342 3.90237 9.31658 3.90237 9.70711 4.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L9.70711 19.7071C9.31658 20.0976 8.68342 20.0976 8.29289 19.7071C7.90237 19.3166 7.90237 18.6834 8.29289 18.2929L14.5858 12L8.29289 5.70711C7.90237 5.31658 7.90237 4.68342 8.29289 4.29289Z" fill="#ffffff"></path> </g></svg>
           </button>
         </form>
 
-
+              <span class="border-b-2 my-4"></span>
 
         <a href="/termsofservice" class="inline-flex trasition duration-300 hover:scale-[0.96]">
           <span><svg width="24px" height="24px" viewBox="-4.8 -4.8 57.60 57.60" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
