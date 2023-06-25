@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\ContactMessage;
@@ -37,10 +36,10 @@ class ContactFormController extends Controller
 
         // Check if validation fails
         if ($validator->fails()) {
-                // Redirect back with validation errors
+            // Redirect back with validation errors
             return redirect()->back()->withErrors($validator->errors())->withInput();
-         }
-    
+        }
+
 
         // Store the form data in the database
         $message = new ContactMessage;
