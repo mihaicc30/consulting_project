@@ -10,7 +10,7 @@
     <!-- Heading - START -->
     <div class="my-8 text-center">
         <h1 class="font-bold text-3xl">Plans</h1>
-        <p>sLorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, praesentium.</p>
+        <p>Let us help you to drive the success of your business.</p>
     </div>
     <!-- Heading - END -->
   </div>

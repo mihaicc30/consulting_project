@@ -19,7 +19,7 @@
 <!-- Contact Info - START -->
 <div class="flex flex-col py-6">
   <p class="text-xl text-center">Get In Touch With Us</p>
-  <p class="text-sm text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptates!</p>
+  <p class="text-sm text-center">We work with a select network of leading developers, which means you get the solution best suited to your business, not ours. If you want to talk our details are below.</p>
   <div class="flex flex-wrap justify-center gap-4">
     <div onclick="alert('to implement')" class="transition hover:scale-[0.94] min-w-[146px] text-center shadow-xl p-4 rounded">
       <svg version="1.0" class="mx-auto" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="-9.6 -9.6 83.20 83.20" enable-background="new 0 0 64 64" xml:space="preserve" fill="#ff7300" stroke="#ff7300" stroke-width="2.496">

@@ -1,14 +1,33 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@extends ('layout')
+
+
+@section('content')
+  <!-- Hero START -->
+  <div class="relative flex flex-col h-100 overflow-hidden">
+  <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
+  <div class="overlay relative flex flex-col">
+      <!-- Heading - START -->
+      <div class="my-8 text-center">
+        <h1 class="font-bold text-3xl">Forgot Password</h1>
+      </div>
+      <!-- Heading - END -->
     </div>
+  </div>
+  <!-- Hero END -->
+  
+  
+  <!-- Forgot PW - START -->
+  <div class="flex flex-col py-6">
+    
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('password.email') }}">
+    <form method="POST" action="{{ route('password.email') }}" class="flex flex-col sm:w-4/5 max-sm:w-[100%] max-w-[998px] mx-auto p-4">
         @csrf
-
+        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+    </div>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -22,4 +41,7 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+
+  <!-- Forgot PW - END -->
+
+@endsection

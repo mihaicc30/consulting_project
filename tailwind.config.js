@@ -14,6 +14,22 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            animation: {
+				infiniteLoop: "infiniteLoop .8s infinite",
+				infiniteLoop2: "infiniteLoop2 .8s infinite",
+            },
+            keyframes: {
+				infiniteLoop: {
+					"0%": { transform: "translateX(-100%) scale(.4)" },
+					"50%": { transform: "scale(1.6)" },
+					"100%": { transform: "translateX(100%) scale(.4)" },
+				},
+				infiniteLoop2: {
+					"0%": { transform: "translateX(100%) scale(.4) rotateY(180deg)" },
+					"50%": { transform: "scale(1.6)  rotateY(180deg)" },
+					"100%": { transform: "translateX(-100%) scale(.4)  rotateY(180deg)" },
+				},
+            },
         },
     },
 
