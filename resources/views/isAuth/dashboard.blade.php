@@ -245,9 +245,30 @@
       <!--  -->
       <div class="flex flex-wrap justify-evenly pb-2">
         <!-- Contact Card - START-->
-        <div class="flex flex-col basis-1/3">
-          <span class="mx-auto">@include('components.usersvg')</span>
-          <p class="text-sm text-center line-clamp-1" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        <div class="flex flex-col basis-1/3 max-w-[200px]">
+            <span class="mx-auto relative">
+              @include('components.usersvg')
+              <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank3b')</span>
+            </span>
+           
+          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+          <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
+         
+          <div class="flex flex-nowrap items-center justify-center gap-4">
+            <button>@include('components.sendfilesvg')</button>
+            <button>@include('components.emailsvg')</button>
+            <button>@include('components.deleteusersvg')</button>
+          </div>
+        </div>
+        <!-- Contact Card - END-->
+        <!-- Contact Card - START-->
+        <div class="flex flex-col basis-1/3 max-w-[200px]">
+          
+            <span class="mx-auto relative">
+              @include('components.usersvg')
+              <span class="absolute top-0 right-0" title="Business Starter">@include('components.rank1b')</span>
+            </span>
+          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
           <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
           <div class="flex flex-nowrap items-center justify-center gap-4">
             <button>@include('components.sendfilesvg')</button>
@@ -257,21 +278,13 @@
         </div>
         <!-- Contact Card - END-->
         <!-- Contact Card - START-->
-        <div class="flex flex-col basis-1/3">
-          <span class="mx-auto">@include('components.usersvg')</span>
-          <p class="text-sm text-center line-clamp-1" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-          <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
-          <div class="flex flex-nowrap items-center justify-center gap-4">
-            <button>@include('components.sendfilesvg')</button>
-            <button>@include('components.emailsvg')</button>
-            <button>@include('components.deleteusersvg')</button>
-          </div>
-        </div>
-        <!-- Contact Card - END-->
-        <!-- Contact Card - START-->
-        <div class="flex flex-col basis-1/3">
-          <span class="mx-auto">@include('components.usersvg')</span>
-          <p class="text-sm text-center line-clamp-1" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        <div class="flex flex-col basis-1/3 max-w-[200px]">
+          
+            <span class="mx-auto relative">
+              @include('components.usersvg')
+              <span class="absolute top-0 right-0"  title="Personal Premium">@include('components.rank3')</span>
+            </span>
+          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
           <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
           <div class="flex flex-nowrap items-center justify-center gap-4">
             <button>@include('components.sendfilesvg')</button>
@@ -292,7 +305,7 @@
       <!-- if token  -->
      <div class="flex flex-col items-center justify-center">
         @include('components.token')
-        <p  class="text-center">Top-Up</p>
+        <p  class="text-center font-bold">Top-Up</p>
         <div class="flex justify-evenly flex-col w-[100%] items-center">
          <p class="text-center">Tokens Left: <span>5</span></p> 
          <p class="text-center">Tokens Used: <span>100</span></p> 
@@ -313,7 +326,7 @@
       <!-- if "proper" plan -->
       <div class="flex flex-col items-center justify-center">
         @include('components.rank3')
-        <p  class="text-center">Personal Premium</p>
+        <p  class="text-center font-bold">Personal Premium</p>
         <div class="flex justify-evenly flex-col w-[100%] items-center">
          <p class="text-center">Start Period <span>25/06/2023</span></p> 
          <p class="text-center">End Period: <span>25/07/23</span></p> 
