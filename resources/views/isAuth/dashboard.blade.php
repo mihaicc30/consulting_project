@@ -246,7 +246,28 @@
       <div class="flex flex-wrap justify-evenly pb-2">
         <!-- Contact Card - START-->
         <div class="flex flex-col basis-1/3 max-w-[200px]">
-          <span class="mx-auto">@include('components.usersvg')</span>
+            <span class="mx-auto relative">
+              @include('components.usersvg')
+              <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank3b')</span>
+            </span>
+           
+          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+          <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
+         
+          <div class="flex flex-nowrap items-center justify-center gap-4">
+            <button>@include('components.sendfilesvg')</button>
+            <button>@include('components.emailsvg')</button>
+            <button>@include('components.deleteusersvg')</button>
+          </div>
+        </div>
+        <!-- Contact Card - END-->
+        <!-- Contact Card - START-->
+        <div class="flex flex-col basis-1/3 max-w-[200px]">
+          
+            <span class="mx-auto relative">
+              @include('components.usersvg')
+              <span class="absolute top-0 right-0" title="Business Starter">@include('components.rank1b')</span>
+            </span>
           <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
           <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
           <div class="flex flex-nowrap items-center justify-center gap-4">
@@ -258,19 +279,11 @@
         <!-- Contact Card - END-->
         <!-- Contact Card - START-->
         <div class="flex flex-col basis-1/3 max-w-[200px]">
-          <span class="mx-auto">@include('components.usersvg')</span>
-          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-          <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
-          <div class="flex flex-nowrap items-center justify-center gap-4">
-            <button>@include('components.sendfilesvg')</button>
-            <button>@include('components.emailsvg')</button>
-            <button>@include('components.deleteusersvg')</button>
-          </div>
-        </div>
-        <!-- Contact Card - END-->
-        <!-- Contact Card - START-->
-        <div class="flex flex-col basis-1/3 max-w-[200px]">
-          <span class="mx-auto">@include('components.usersvg')</span>
+          
+            <span class="mx-auto relative">
+              @include('components.usersvg')
+              <span class="absolute top-0 right-0"  title="Personal Premium">@include('components.rank3')</span>
+            </span>
           <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
           <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
           <div class="flex flex-nowrap items-center justify-center gap-4">
