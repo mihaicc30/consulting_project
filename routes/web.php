@@ -11,14 +11,15 @@ use App\Http\Controllers\isAuth\isAuthPlansController;
 use App\Http\Controllers\isAuth\isAuthContactController;
 use App\Http\Controllers\isAuth\isAuthTopupController;
 
-use App\Http\Controllers\notAuth\HomeController ;
-use App\Http\Controllers\notAuth\ServicesController ;
-use App\Http\Controllers\notAuth\PlansController ;
-use App\Http\Controllers\notAuth\ContactController ;
-use App\Http\Controllers\notAuth\AboutController ;
+use App\Http\Controllers\notAuth\HomeController;
+use App\Http\Controllers\notAuth\ServicesController;
+use App\Http\Controllers\notAuth\PlansController;
+use App\Http\Controllers\notAuth\ContactController;
+use App\Http\Controllers\notAuth\AboutController;
 use App\Http\Controllers\notAuth\SubscribeController;
 
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\NewsletterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +39,7 @@ Route::get('/about', [AboutController::class, 'index']);
 
 Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
+Route::post('/newsletter-form', [NewsletterController::class, 'submit'])->name('newsletter-form');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -45,16 +47,16 @@ Route::post('/process-form', [ContactFormController::class, 'processForm']);
 
 
 Route::middleware('auth')->prefix('portal')->group(function () {
-    Route::get('/',[isAuthDashboardController::class,'get']);
-    Route::get('/dashboard',[isAuthDashboardController::class,'get']);
+    Route::get('/', [isAuthDashboardController::class, 'get']);
+    Route::get('/dashboard', [isAuthDashboardController::class, 'get']);
 
-    Route::get('/files',[isAuthFilesController::class,'get']);
+    Route::get('/files', [isAuthFilesController::class, 'get']);
 
-    Route::get('/plans',[isAuthPlansController::class,'get']);
+    Route::get('/plans', [isAuthPlansController::class, 'get']);
 
-    Route::get('/contact',[isAuthContactController::class,'get']);
+    Route::get('/contact', [isAuthContactController::class, 'get']);
 
-    Route::get('/topup',[isAuthTopupController::class,'get']);
+    Route::get('/topup', [isAuthTopupController::class, 'get']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -62,7 +64,7 @@ Route::middleware('auth')->prefix('portal')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
-    
 
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
