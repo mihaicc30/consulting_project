@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-
 use App\Http\Controllers\isAuth\isAuthDashboardController;
 use App\Http\Controllers\isAuth\isAuthFilesController;
 use App\Http\Controllers\isAuth\isAuthPlansController;
@@ -17,8 +16,9 @@ use App\Http\Controllers\notAuth\ServicesController ;
 use App\Http\Controllers\notAuth\PlansController ;
 use App\Http\Controllers\notAuth\ContactController ;
 use App\Http\Controllers\notAuth\AboutController ;
-
 use App\Http\Controllers\notAuth\SubscribeController;
+
+use App\Http\Controllers\ContactFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +37,7 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
 
 Route::post('/', [SubscribeController::class, 'index']);
+Route::post('/process-form', [ContactFormController::class, 'processForm']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -62,5 +63,6 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
     
+
 
 require __DIR__.'/auth.php';

@@ -118,21 +118,40 @@
 
 <!-- Contact Form - START -->
 <div class="flex flex-col py-6 shadow-xl p-4">
-    <form class="flex flex-col sm:w-4/5 max-sm:w-[100%] max-w-[998px] mx-auto p-4">
+    @if(session('success'))
+<div class="text-green-500 text-lg italic flex justify-center items-center">
+         {{ session('success') }}
+    </div>
+    @endif
+    <form class="flex flex-col sm:w-4/5 max-sm:w-[100%] max-w-[998px] mx-auto p-4" action="/process-form" method="POST">
     @csrf
     <div class="grid grid-cols-2 max-sm:grid-cols-1">
-            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Name*" name="name" required>
-            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Email*" name="email" required>
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Name*" name="name" value="{{ old('name') }}">
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Email*" name="email" value="{{ old('email') }}">
         </div>
+      @error('email')
+      <div class="text-red-500 text-lg italic">{{ $message }}</div>
+      @enderror
+      @error('name')
+          <div class="text-red-500 text-lg italic">{{ $message }}</div>
+      @enderror
 
         <div class="grid grid-cols-2 max-sm:grid-cols-1">
-            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Phone"  name="phone">
-            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Subject"  name="subject">
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Phone*"  name="phone" pattern="[0-9]{11}" value="{{ old('phone') }}">
+            <input class="shadow-xl p-4 m-2 border-none" type="text" placeholder="Subject*"  name="subject" value="{{ old('subject') }}">
         </div>
+      @error('phone')
+          <div class="text-red-500 text-lg italic">{{ $message }}</div>
+      @enderror
+      @error('subject')
+          <div class="text-red-500 text-lg italic">{{ $message }}</div>
+      @enderror
 
-        <textarea class="shadow-xl p-4 m-2 border-none" name="" id="" cols="30" rows="10" name="message" placeholder="Your Message*" required></textarea>
-
-        <button class="text-white font-[600] p-2 whitespace-nowrap rounded bg-[--c2] m-2 shadow-xl active:shadow-inner active:shadow-black">Send Message</button>
+      <textarea class="shadow-xl p-4 m-2 border-none" name="messageContent" cols="30" rows="10" placeholder="Your Message*">{{ old('messageContent', '') }}</textarea>
+       @error('messageContent')
+            <div class="text-red-500 text-lg italic">{{ $message }}</div>
+        @enderror
+        <button type="submit" class="text-white font-[600] p-2 whitespace-nowrap rounded bg-[--c2] m-2 shadow-xl active:shadow-inner active:shadow-black">Send Message</button>
     </form>
 </div>
 <!-- Contact Form - END -->
