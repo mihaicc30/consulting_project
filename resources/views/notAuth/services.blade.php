@@ -10,7 +10,7 @@
     <!-- Heading - START -->
     <div class="my-8 text-center">
       <h1 class="font-bold text-3xl">Services</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, est!</p>
+      <p>We meet your business needs and deliver the level of support you require at the best value possible.</p>
     </div>
     <!-- Heading - END -->
   </div>
