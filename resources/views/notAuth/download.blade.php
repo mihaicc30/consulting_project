@@ -19,7 +19,7 @@
 
 <p class="mt-8 mb-4 text-xl text-center">Download the app for your platform below</p>
 <div class="flex gap-4 justify-center items-center mb-8">
-  <button onclick="alert('Download Android App - Under Maintenance')" type="button">
+  <button onclick="alert('Download Android App - Under Maintenance')" type="button" class="hover:scale-[0.92] transition duration-500">
     <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="50" width="50" version="1.1" id="Layer_1" viewBox="0 0 511.999 511.999" xml:space="preserve">
       <g>
         <path style="fill:#32BBFF;" d="M382.369,175.623C322.891,142.356,227.427,88.937,79.355,6.028   C69.372-0.565,57.886-1.429,47.962,1.93l254.05,254.05L382.369,175.623z"></path>
@@ -33,12 +33,12 @@
       <path style="fill:#FFAA00;" d="M470.108,287.294c12.191-6.822,18.342-19.124,18.342-31.314H294.303l83.204,83.205  C446.624,300.379,470.108,287.294,470.108,287.294z"></path>
     </svg>
   </button>
-  <button onclick="alert('Download IOS App - Under Maintenance')" type="button">
+  <button onclick="alert('Download IOS App - Under Maintenance')" type="button" class="hover:scale-[0.92] transition duration-500">
     <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" fill="#000000" width="50" height="50" viewBox="0 0 20 20">
       <path d="M17.564 13.862c-.413.916-.612 1.325-1.144 2.135-.742 1.13-1.79 2.538-3.087 2.55-1.152.01-1.448-.75-3.013-.741-1.564.008-1.89.755-3.043.744-1.297-.012-2.29-1.283-3.033-2.414-2.077-3.16-2.294-6.87-1.013-8.843.91-1.401 2.347-2.221 3.697-2.221 1.375 0 2.24.754 3.376.754 1.103 0 1.775-.756 3.365-.756 1.2 0 2.474.655 3.381 1.785-2.972 1.629-2.49 5.873.514 7.007zM12.463 3.808c.577-.742 1.016-1.788.857-2.858-.944.065-2.047.665-2.692 1.448-.584.71-1.067 1.763-.88 2.787 1.03.031 2.096-.584 2.715-1.377z" />
     </svg>
   </button>
-  <button onclick="alert('Download Windows App - Under Maintenance')" type="button">
+  <button onclick="alert('Download Windows App - Under Maintenance')" type="button" class="hover:scale-[0.92] transition duration-500">
     <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" height="50" width="50" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Icons" viewBox="0 0 32 32" xml:space="preserve">
       <style type="text/css">
         .st0 {

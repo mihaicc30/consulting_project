@@ -20,6 +20,8 @@ use App\Http\Controllers\notAuth\AboutController;
 use App\Http\Controllers\notAuth\SubscribeController;
 use App\Http\Controllers\notAuth\DownloadController;
 
+use App\Http\Controllers\PWResetController;
+
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\NewsletterController;
 /*
@@ -44,6 +46,9 @@ Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
 Route::post('/newsletter-form', [NewsletterController::class, 'submit'])->name('newsletter-form');
 
+
+Route::get('/password-reset', [PWResetController::class, 'email']);
+Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -68,6 +73,7 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
+
 });
 
 
