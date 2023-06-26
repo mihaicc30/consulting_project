@@ -60,7 +60,6 @@
       
       <div class="flex flex-col col-span-2 mt-2">
         <a class="relative flex justify-center items-center" href="/portal/files">
-          <span class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">0</span>
           <svg height="24px" width="24px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.00512">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -74,6 +73,7 @@
               <path style="fill:#FFF3DB;" d="M155.826,267.13c-9.228,0-16.696-7.467-16.696-16.696c0-47.022,28.011-89.283,71.381-107.641 c8.446-3.587,18.294,0.326,21.88,8.836c3.62,8.51-0.358,18.294-8.836,21.88c-31.012,13.142-51.033,43.337-51.033,76.925 C172.522,259.663,165.054,267.13,155.826,267.13z"></path>
             </g>
           </svg>
+          <span class="px-1 py-1 rounded-xl text-black text-sm">0</span>
         </a>
         <p class="text-xs text-center text-ellipsis overflow-hidden">
           {{ Auth::user()->name }}
