@@ -68,6 +68,8 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
 
-
+Route::fallback(function () {
+    return view('page404');
+});
 
 require __DIR__ . '/auth.php';
