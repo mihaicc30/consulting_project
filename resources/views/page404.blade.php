@@ -37,24 +37,5 @@
     <!-- Heading - END -->
   </div>
 </div>
-<!-- 
-
-    <div class="relative w-[100svw] h-[100svh] inset-0 bg-[--c2] overflow-hidden flex justify-center items-center">
-        <img src="storage/10.jpg" class="absolute inset-0 h-screen w-screen opacity-50 animate-growNshrink">
-
-        <div class="flex flex-col justify-center items-center">
-            <p>Under Maintenance</p>
-            <p>EZEPOST is under maintenance and will be back soon. Subscribe to get notified.</p>
-            <div class="grid grid-cols-4">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <form>
-                <input type="text" name="email" required>
-            </form>
-        </div>
-    </div> -->
 </body>
 </html>

@@ -68,6 +68,11 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
 
+
+Route::get('/maintenance', function () {
+    return view('maintenance');
+});
+
 Route::fallback(function () {
     return view('page404');
 });
