@@ -10,6 +10,7 @@ use App\Http\Controllers\isAuth\isAuthFilesController;
 use App\Http\Controllers\isAuth\isAuthPlansController;
 use App\Http\Controllers\isAuth\isAuthContactController;
 use App\Http\Controllers\isAuth\isAuthTopupController;
+use App\Http\Controllers\isAuth\isAuthNotificationsController;
 
 use App\Http\Controllers\notAuth\HomeController;
 use App\Http\Controllers\notAuth\ServicesController;
@@ -58,6 +59,8 @@ Route::middleware('auth')->prefix('portal')->group(function () {
 
     Route::get('/topup', [isAuthTopupController::class, 'get']);
 
+    Route::get('/notifications', [isAuthNotificationsController::class, 'get']);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -65,6 +68,8 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
 
-
+Route::fallback(function () {
+    return view('page404');
+});
 
 require __DIR__ . '/auth.php';

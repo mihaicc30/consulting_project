@@ -27,7 +27,7 @@
    <ul class="z-20 flex flex-col pb-2 mt-[3.5rem] min-h-[86vh] fixed w-[100px]" x-show="isActive" :class="{ 'hidden': !isActive }">
      <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/dashboard">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Home</span>
+       <span class="z-20 relative">Dashboard</span>
      </a>
      <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/files">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
@@ -45,6 +45,10 @@
      <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/topup">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Top-Up</span>
+     </a>
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/notifications">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Notifications</span>
      </a>
 
      
