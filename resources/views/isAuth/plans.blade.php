@@ -95,7 +95,7 @@
             @if (Str::startsWith($plan->name, 'Personal'))
             <!-- Plan Card - START-->
             <div class="flex flex-col shadow-xl p-4 z-10 relative min-w-[160px] flex-nowrap">
-              <p class="text-xl font-bold">
+              <p class="text-xl font-bold whitespace-nowrap">
                 {{ $plan['name'] }}
               </p>
               <p class="text-xs">
