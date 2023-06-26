@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+use App\Http\Controllers\isAdmin\AdminController;
+
 use App\Http\Controllers\isAuth\isAuthDashboardController;
 use App\Http\Controllers\isAuth\isAuthFilesController;
 use App\Http\Controllers\isAuth\isAuthPlansController;
@@ -55,8 +57,30 @@ Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
 
 
 Route::middleware('auth')->prefix('portal')->group(function () {
-    Route::get('/', [isAuthDashboardController::class, 'get']);
-    Route::get('/dashboard', [isAuthDashboardController::class, 'get']);
+
+    Route::get('/', function () {
+        $controlString = auth()->user()->controlstring;
+        $charAtIndex19 = substr($controlString, 19, 1);
+        if (strpos($charAtIndex19, '1') !== false) {
+            $adminController = new AdminController();
+            return $adminController->get();
+        } else {
+            $isAuthDashboardController = new isAuthDashboardController();
+            return $isAuthDashboardController->get();
+        }
+    });
+
+    Route::get('/dashboard', function () {
+        $controlString = auth()->user()->controlstring;
+        $charAtIndex19 = substr($controlString, 19, 1);
+        if (strpos($charAtIndex19, '1') !== false) {
+            $adminController = new AdminController();
+            return $adminController->get();
+        } else {
+            $isAuthDashboardController = new isAuthDashboardController();
+            return $isAuthDashboardController->get();
+        }
+    });
 
     Route::get('/files', [isAuthFilesController::class, 'get']);
 

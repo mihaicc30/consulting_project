@@ -69,12 +69,8 @@
     // Set the end of maintenance datetime
 
     //model
-    var startDatetime = new Date("2023-07-26T18:37:30Z");
-    var endDatetime = new Date("2023-08-26T18:37:30Z");
-
-    //actual
-    // var startDatetime = new Date("{{ $startDatetime }}");
-    // var endDatetime = new Date("{{ $endDatetime }}");
+    var startDatetime = new Date("2023-06-26T18:37:30Z");
+    var endDatetime = new Date("2023-06-28T18:37:00Z");
 
     var countdownInterval
     if (new Date() >= startDatetime) {
