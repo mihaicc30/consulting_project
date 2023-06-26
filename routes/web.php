@@ -18,6 +18,7 @@ use App\Http\Controllers\notAuth\PlansController;
 use App\Http\Controllers\notAuth\ContactController;
 use App\Http\Controllers\notAuth\AboutController;
 use App\Http\Controllers\notAuth\SubscribeController;
+use App\Http\Controllers\notAuth\DownloadController;
 
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\NewsletterController;
@@ -37,6 +38,7 @@ Route::get('/services', [ServicesController::class, 'index']);
 Route::get('/plans', [PlansController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
+Route::get('/download', [DownloadController::class, 'index']);
 
 Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
