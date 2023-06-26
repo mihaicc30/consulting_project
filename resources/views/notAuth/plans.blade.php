@@ -65,7 +65,7 @@
               <p class="border-b-2 my-4"></p>
               <p class="text-3xl font-bold">
                 @if($plan['price'] == 0)
-                    Pay As You Go
+                    <span class="text-lg">Pay As You Go</span>
                 @else
                     <span class="text-base">£</span>
                     <template x-if="isMonthly">
@@ -122,7 +122,7 @@
               <p class="border-b-2 my-4"></p>
               <p class="text-3xl font-bold">
                 @if($plan['price'] == 0)
-                    Pay As You Go
+                    <span class="text-lg">Pay As You Go</span>
                 @else
                     <span class="text-base">£</span>
                     <template x-if="isMonthly">

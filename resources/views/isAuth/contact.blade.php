@@ -57,7 +57,7 @@
     
       <div class="flex flex-nowrap items-center justify-center gap-4">
         <button title="Send File">@include('components.sendfilesvg')</button>
-        <button title="Send Email">@include('components.emailsvg')</button>
+        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
         <button title="Delete Contact">@include('components.deleteusersvg')</button>
       </div>
     </div>
@@ -74,7 +74,7 @@
     
       <div class="flex flex-nowrap items-center justify-center gap-4">
         <button title="Send File">@include('components.sendfilesvg')</button>
-        <button title="Send Email">@include('components.emailsvg')</button>
+        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
         <button title="Delete Contact">@include('components.deleteusersvg')</button>
       </div>
     </div>
@@ -91,7 +91,7 @@
     
       <div class="flex flex-nowrap items-center justify-center gap-4">
         <button title="Send File">@include('components.sendfilesvg')</button>
-        <button title="Send Email">@include('components.emailsvg')</button>
+        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
         <button title="Delete Contact">@include('components.deleteusersvg')</button>
       </div>
     </div>
@@ -108,7 +108,7 @@
     
       <div class="flex flex-nowrap items-center justify-center gap-4">
         <button title="Send File">@include('components.sendfilesvg')</button>
-        <button title="Send Email">@include('components.emailsvg')</button>
+        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
         <button title="Delete Contact">@include('components.deleteusersvg')</button>
       </div>
     </div>
@@ -125,7 +125,7 @@
     
       <div class="flex flex-nowrap items-center justify-center gap-4">
         <button title="Send File">@include('components.sendfilesvg')</button>
-        <button title="Send Email">@include('components.emailsvg')</button>
+        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
         <button title="Delete Contact">@include('components.deleteusersvg')</button>
       </div>
     </div>
@@ -142,7 +142,7 @@
     
       <div class="flex flex-nowrap items-center justify-center gap-4">
         <button title="Send File">@include('components.sendfilesvg')</button>
-        <button title="Send Email">@include('components.emailsvg')</button>
+        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
         <button title="Delete Contact">@include('components.deleteusersvg')</button>
       </div>
     </div>
