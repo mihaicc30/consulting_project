@@ -30,19 +30,19 @@
             <p class="text-sm">EZEPOST is under maintenance and will be back soon. Subscribe to get notified.</p>
             <div class="grid grid-cols-4 max-[900px]:grid-cols-1 gap-2 m-4">
                 <div title="Days" class="p-4 max-[900px]:p-1 text-xl font-bold border-2 flex flex-col">
-                    <span>0</span>
+                    <span id="days">0</span>
                     <span>Days</span>
                 </div>
                 <div title="Hours" class="p-4 max-[900px]:p-1 text-xl font-bold border-2 flex flex-col">
-                    <span>0</span>
+                    <span id="hours">0</span>
                     <span>Hours</span>
                 </div>
                 <div title="Minutes" class="p-4 max-[900px]:p-1 text-xl font-bold border-2 flex flex-col">
-                    <span>0</span>
+                    <span id="minutes">0</span>
                     <span>Minutes</span>
                 </div>
                 <div title="Seconds" class="p-4 max-[900px]:p-1 text-xl font-bold border-2 flex flex-col">
-                    <span>0</span>
+                    <span id="seconds">0</span>
                     <span>Seconds</span>
                 </div>
             </div>
@@ -64,6 +64,49 @@
     </div>
   </div>
 </div>
+
+<script>
+    // Set the end of maintenance datetime
+
+    //model
+    var startDatetime = new Date("2023-06-26T18:37:30Z");
+    var endDatetime = new Date("2023-06-28T18:37:00Z");
+
+    var countdownInterval
+    if (new Date() >= startDatetime) {
+        // Update the countdown every second
+        countdownInterval = setInterval(updateCountdown, 1000);
+    } else {
+        window.location.href = '/';
+    }
+
+    function updateCountdown() {
+        // Get the current datetime
+        var currentDatetime = new Date();
+
+        // Calculate the remaining time in seconds
+        var remainingTime = Math.floor((endDatetime - currentDatetime) / 1000);
+
+        // Exit the countdown if the endDatetime has passed
+        if (remainingTime < 0) {
+            clearInterval(countdownInterval);
+            window.location.href = '/';
+            return;
+        } 
+
+        // Calculate the remaining days, hours, minutes, and seconds
+        var days = Math.floor(remainingTime / (60 * 60 * 24));
+        var hours = Math.floor((remainingTime % (60 * 60 * 24)) / (60 * 60));
+        var minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+        var seconds = Math.floor(remainingTime % 60);
+
+        // Update the countdown elements with the remaining time
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }
+</script>
 
 </body>
 </html>

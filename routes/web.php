@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+use App\Http\Controllers\isAdmin\AdminController;
+
 use App\Http\Controllers\isAuth\isAuthDashboardController;
 use App\Http\Controllers\isAuth\isAuthFilesController;
 use App\Http\Controllers\isAuth\isAuthPlansController;
@@ -18,6 +20,9 @@ use App\Http\Controllers\notAuth\PlansController;
 use App\Http\Controllers\notAuth\ContactController;
 use App\Http\Controllers\notAuth\AboutController;
 use App\Http\Controllers\notAuth\SubscribeController;
+use App\Http\Controllers\notAuth\DownloadController;
+
+use App\Http\Controllers\PWResetController;
 
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\NewsletterController;
@@ -37,19 +42,45 @@ Route::get('/services', [ServicesController::class, 'index']);
 Route::get('/plans', [PlansController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
+Route::get('/download', [DownloadController::class, 'index']);
 
 Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
 Route::post('/newsletter-form', [NewsletterController::class, 'submit'])->name('newsletter-form');
 
+
+Route::get('/password-reset', [PWResetController::class, 'email']);
+Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->prefix('portal')->group(function () {
-    Route::get('/', [isAuthDashboardController::class, 'get']);
-    Route::get('/dashboard', [isAuthDashboardController::class, 'get']);
+
+    Route::get('/', function () {
+        $controlString = auth()->user()->controlstring;
+        $charAtIndex19 = substr($controlString, 19, 1);
+        if (strpos($charAtIndex19, '1') !== false) {
+            $adminController = new AdminController();
+            return $adminController->get();
+        } else {
+            $isAuthDashboardController = new isAuthDashboardController();
+            return $isAuthDashboardController->get();
+        }
+    });
+
+    Route::get('/dashboard', function () {
+        $controlString = auth()->user()->controlstring;
+        $charAtIndex19 = substr($controlString, 19, 1);
+        if (strpos($charAtIndex19, '1') !== false) {
+            $adminController = new AdminController();
+            return $adminController->get();
+        } else {
+            $isAuthDashboardController = new isAuthDashboardController();
+            return $isAuthDashboardController->get();
+        }
+    });
 
     Route::get('/files', [isAuthFilesController::class, 'get']);
 
@@ -66,6 +97,12 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
+
+});
+
+
+Route::get('/maintenance', function () {
+    return view('maintenance');
 });
 
 Route::fallback(function () {

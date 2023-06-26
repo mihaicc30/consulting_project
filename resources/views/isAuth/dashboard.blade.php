@@ -16,7 +16,7 @@
     </div>
   </div>
   <!-- Hero END -->
-
+<p> {{ Auth::user() }}</p>
   <!-- Dashboard - START -->
   <div class="grid grid-cols-5 max-[1500px]:grid-cols-4 max-[1100px]:grid-cols-3 max-[800px]:grid-cols-2 grid-rows-auto py-6 gap-2">
 
