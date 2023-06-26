@@ -45,7 +45,7 @@
 
 
   <!-- Top-Up IF USER HAS **NOT** A PLAN - START -->
-  <div class="flex flex-wrap py-6 justify-evenly items-center gap-4">
+  <div class="flex flex-wrap py-6 justify-evenly items-center gap-4 shadow-xl m-2">
     <form class="flex flex-col items-start justify-start gap-2"  x-data="{ amount: '' }">
       @csrf
       <p class="text-xl mx-auto">Insert amount</p>
