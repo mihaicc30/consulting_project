@@ -11,7 +11,6 @@
       <!-- Heading - START -->
       <div class="my-8 text-center">
         <h1 class="font-bold text-3xl">Plans</h1>
-        <p>Upgrade your plan to unlock premium features and enjoy enhanced benefits.</p>
 
       </div>
       <!-- Heading - END -->

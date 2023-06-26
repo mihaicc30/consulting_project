@@ -12,7 +12,6 @@
       <!-- Heading - START -->
       <div class="my-8 text-center">
         <h1 class="font-bold text-3xl">Top-Up</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, doloribus.</p>
       </div>
       <!-- Heading - END -->
     </div>

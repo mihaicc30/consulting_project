@@ -18,7 +18,6 @@
   <!-- Scripts -->
   <script type="module" src="/js/app.js"></script>
   <script type="module" src="/js/bootstrap.js"></script>
-  <script type="application/javascript" src="/js/script.js"></script>
 </head>
 
 
