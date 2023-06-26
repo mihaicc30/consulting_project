@@ -53,7 +53,7 @@
                     <span
                         class="absolute bg-white inset-0 z-10 rounded"
                     ></span>
-                    <span class="z-20 relative">Plans</span>
+                    <span class="z-20 relative">Pricing</span>
                 </a>
                 <a class="p-2 relative navButton font-[600]" href="/contact">
                     <span
@@ -66,6 +66,12 @@
                         class="absolute bg-white inset-0 z-10 rounded"
                     ></span>
                     <span class="z-20 relative">About</span>
+                </a>
+                <a class="p-2 relative navButton font-[600]" href="/download">
+                    <span
+                        class="absolute bg-white inset-0 z-10 rounded"
+                    ></span>
+                    <span class="z-20 relative">Download</span>
                 </a>
             </ul>
         </div>

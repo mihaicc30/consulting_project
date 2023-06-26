@@ -66,15 +66,15 @@
               <p class="border-b-2 my-4"></p>
               <p class="text-3xl font-bold">
                 @if($plan['price'] == 0)
-                    <span class="text-lg">Pay As You Go</span>
+                <span class="text-lg">Pay As You Go</span>
                 @else
-                    <span class="text-base">£</span>
-                    <template x-if="isMonthly">
-                        <span x-text="{{ $plan['price'] }}"></span>/month
-                    </template>
-                    <template x-if="!isMonthly">
-                        <span x-text="{{ $plan['price'] }} * 12"></span>/year
-                    </template>
+                <span class="text-base">£</span>
+                <template x-if="isMonthly">
+                  <span x-text="{{ $plan['price'] }}"></span>/month
+                </template>
+                <template x-if="!isMonthly">
+                  <span x-text="{{ $plan['price'] }} * 12"></span>/year
+                </template>
                 @endif
               </p>
               <p class="border-b-2 my-4"></p>
@@ -123,29 +123,31 @@
               <p class="border-b-2 my-4"></p>
               <p class="text-3xl font-bold">
                 @if($plan['price'] == 0)
-                    <span class="text-lg">Pay As You Go</span>
+                <span class="text-lg">Pay As You Go</span>
                 @else
-                    <span class="text-base">£</span>
-                    <template x-if="isMonthly">
-                        <span x-text="{{ $plan['price'] }}"></span>/month
-                    </template>
-                    <template x-if="!isMonthly">
-                        <span x-text="{{ $plan['price'] }} * 12"></span>/year
-                    </template>
+                <span class="text-base">£</span>
+                <template x-if="isMonthly">
+                  <span x-text="{{ $plan['price'] }}"></span>/month
+                </template>
+                <template x-if="!isMonthly">
+                  <span x-text="{{ $plan['price'] }} * 12"></span>/year
+                </template>
                 @endif
               </p>
               <p class="border-b-2 my-4"></p>
               <div class="flex flex-col items-start  text-start grow">
                 @foreach (json_decode($plan['options']) as $option)
-                <p class="inline-flex"><svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
+                <p class="inline-flex">
+                  <svg class="grow" fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
                       <circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle>
                       <path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #e64100;"></path>
                     </g>
-                  </svg><span>
-                    {{ $option }}</span></p>
+                  </svg>
+                  <span>{{ $option }}</span>
+                </p>
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
