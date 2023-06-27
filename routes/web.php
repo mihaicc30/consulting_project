@@ -46,7 +46,7 @@ Route::get('/download', [DownloadController::class, 'index']);
 
 Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
-Route::post('/newsletter-form', [NewsletterController::class, 'submit'])->name('newsletter-form');
+Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->name('newsletter-form');
 
 
 Route::get('/password-reset', [PWResetController::class, 'email']);
@@ -93,7 +93,6 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
-
 });
 
 // Going to leave it here so the UI/UX guys can request this page at any time 😇
