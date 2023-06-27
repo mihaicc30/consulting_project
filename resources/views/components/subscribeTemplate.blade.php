@@ -1,4 +1,4 @@
-@if(auth()->check())
+@auth
     @php
         $controlString = substr(Auth::user()->controlstring, 1, 2);
         $isPersonalStarter = $controlString === '00' && $plan.' '.$type === 'Personal Starter Personal';
