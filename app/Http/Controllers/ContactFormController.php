@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactFormRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-
 use App\Models\ContactMessage;
 
 class ContactFormController extends Controller
@@ -15,7 +14,7 @@ class ContactFormController extends Controller
     //     return view('contact-form');
     // }
 
-    public function processForm(Request $request)
+    public function processForm(ContactFormRequest $request)
     {
 
         // Retrieve and sanitize form data
@@ -24,22 +23,6 @@ class ContactFormController extends Controller
         $phone = htmlspecialchars($request->input('phone'));
         $subject = htmlspecialchars($request->input('subject'));
         $messageContent = htmlspecialchars($request->input('messageContent'));
-
-        // Validate the form input
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-            'subject' => 'required',
-            'messageContent' => 'required',
-        ]);
-
-        // Check if validation fails
-        if ($validator->fails()) {
-            // Redirect back with validation errors
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
 
         // Store the form data in the database
         $message = new ContactMessage;
