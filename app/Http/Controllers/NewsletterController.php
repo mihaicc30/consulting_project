@@ -2,33 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
-
+use App\Http\Requests\NewsletterSubscriptionRequest;
 use App\Models\Newsletter;
+use Illuminate\Database\QueryException;
 
 class NewsletterController extends Controller
 {
-    public function submit(Request $request)
+    public function subscribe(NewsletterSubscriptionRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-        ]);
-
-        // Check if validation fails
-        if ($validator->fails()) {
-            return response()->json(['error' => 'Invalid email'], 400);
-        }
-
         $email = $request->input('email');
 
-        // Save the email to the database
-        $newsletter = new Newsletter;
-        $newsletter->email = $email;
-        $newsletter->save();
+        try {
+            // Save the email to the database
+            $newsletter = new Newsletter;
+            $newsletter->email = $email;
 
-        // Return a success JSON response
-        return response()->json(['success' => 'Email saved'], 200);
+
+            // Handle validation errors
+            if (!$newsletter->save()) {
+                return redirect()->back()->withErrors(['error' => 'Invalid email. Please provide a valid email address.']);
+            }
+
+            // Return a success JSON response or redirect back with success message
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => 'You are now subscribed to our newsletter.',
+                ], 200);
+            } else {
+                // Redirect back with success message
+                return redirect()->back()->with('success', 'You are now subscribed to our newsletter.');
+            }
+        } catch (QueryException $e) {
+            // Handle database-related exceptions
+            if ($request->ajax()) {
+                return response()->json(['error' => 'Your are already subscribed.'], 500);
+            } else {
+                return redirect()->back()->withErrors(['error' => 'Your are already subscribed.']);
+            }
+        }
     }
 }

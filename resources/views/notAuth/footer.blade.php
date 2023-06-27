@@ -380,7 +380,7 @@
       <div class="flex flex-col p-2">
         <p class="font-bold">Newsletter</p>
 
-        <form onsubmit="submitForm(event)" action="{{ route('newsletter-form') }}" id="newsletterForm" name="newsletterForm" method="POST" class="relative flex justify-between navButton font-[600] mb-2" x-data="{ email: '' }">
+        <form novalidate onsubmit="submitForm(event)" action="{{ route('newsletter-form') }}" id="newsletterForm" name="newsletterForm" method="POST" class="relative flex justify-between navButton font-[600] mb-2" x-data="{ email: '' }">
           @csrf
           <input type="email" name="email" class="rounded-l p-2 w-[100%] text-black" placeholder="Your Email" required x-model="email">
           <button type="submit" class="bg-[#f08409] rounded-r h-100 w-10" x-show="email.trim() !== ''">
@@ -393,6 +393,21 @@
             </svg>
           </button>
         </form>
+
+   @if(session('success'))
+      <script>
+        alert('You are now subscribed to our newsletter.');
+    </script>
+      @endif
+@if($errors->any())
+    @foreach($errors->all() as $error)
+        <script>
+            alert("{{ $error }}");
+        </script>
+    @endforeach
+@endif
+
+
 
         <span class="border-b-2 my-4"></span>
 
@@ -516,7 +531,7 @@
     </div>
   </div>
 </div>
-
+{{-- 
 <script>
   function submitForm(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -553,6 +568,6 @@
         alert('You are already subscribed!')
       });
   }
-</script>
+</script> --}}
 
 <!-- Footer END -->
