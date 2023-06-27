@@ -298,7 +298,7 @@
     </div>
     <!-- Widget END -->
 
-
+    @if(substr(Auth::user()->controlstring, 2, 1) === '0')
     <!-- Widget Start current plan / if tokens also show 2nd widget with how many tokens-->
     <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
       <p class="text-center my-2">Subscription</p>
@@ -307,16 +307,16 @@
         @include('components.token')
         <p  class="text-center font-bold">Top-Up</p>
         <div class="flex justify-evenly flex-col w-[100%] items-center">
-         <p class="text-center">Tokens Left: <span>5</span></p> 
+        <p class="text-center">Tokens Left: <span>{{ substr(Auth::user()->controlstring, 7, 2) }}</span></p>
+
+
         </div>
      </div>
       <!-- if "proper" plan -->
 
     </div>
     <!-- Widget END -->
-
-    <!--'@@@@@@@@@@@@@@@@@@ show one or the other depending on subscription plan !@@@@@@@@@@@@@@@@@@@@@@@ -->
-
+    @else
     <!-- Widget Start current plan / if tokens also show 2nd widget with how many tokens-->
     <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
       <p class="text-center my-2">Subscription</p>
@@ -333,6 +333,7 @@
      </div>
     </div>
     <!-- Widget END -->
+    @endif
 
   </div>
   <!-- Dashboard - END -->
