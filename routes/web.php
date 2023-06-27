@@ -83,13 +83,9 @@ Route::middleware('auth')->prefix('portal')->group(function () {
     });
 
     Route::get('/files', [isAuthFilesController::class, 'get']);
-
     Route::get('/plans', [isAuthPlansController::class, 'get']);
-
     Route::get('/contact', [isAuthContactController::class, 'get']);
-
     Route::get('/topup', [isAuthTopupController::class, 'get']);
-
     Route::get('/notifications', [isAuthNotificationsController::class, 'get']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -100,13 +96,9 @@ Route::middleware('auth')->prefix('portal')->group(function () {
 
 });
 
-
+// Going to leave it here so the UI/UX guys can request this page at any time 😇
 Route::get('/maintenance', function () {
     return view('maintenance');
-});
-
-Route::fallback(function () {
-    return view('page404');
 });
 
 require __DIR__ . '/auth.php';
