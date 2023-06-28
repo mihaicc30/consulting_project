@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vepost_tracking', function (Blueprint $table) {
+        Schema::create('ezepost_tracking', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('UID');
+            $table->unsignedBigInteger('UID')->nullable();
             $table->string('mpID');
             $table->string('sender_username')->nullable();
             $table->string('sender_vepost_addr')->nullable();
@@ -65,6 +65,7 @@ return new class extends Migration
             $table->dateTime('r_ltime_delete')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
+            $table->index('UID');
         });
     }
     /**
@@ -72,6 +73,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vepost_tracking');
+        Schema::dropIfExists('ezepost_tracking');
     }
 };
