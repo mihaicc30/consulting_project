@@ -46,7 +46,6 @@
       <!-- Pricing Plan Toggle - END -->
 
 
-
       <!-- Personal - START -->
       <div x-show="isPersonal" class="flex flex-col overflow-x-scroll">
         <div class="flex flex-col text-center flex-nowrap ">
@@ -91,7 +90,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              @include('components.subscribeTemplate')
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'] ] )
             </div>
             <!-- Plan Card - END-->
             @endif
@@ -148,7 +147,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              @include('components.subscribeTemplate')
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'] ] )
             </div>
             <!-- Plan Card - END-->
             @endif
