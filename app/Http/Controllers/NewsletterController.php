@@ -20,7 +20,7 @@ class NewsletterController extends Controller
 
             // Handle validation errors
             if (!$newsletter->save()) {
-                return redirect()->back()->withErrors(['error' => 'Invalid email. Please provide a valid email address.']);
+                return redirect()->back()->withErrors(['newsletter_error' => 'Invalid email. Please provide a valid email address.']);
             }
 
             // Return a success JSON response or redirect back with success message
@@ -30,14 +30,14 @@ class NewsletterController extends Controller
                 ], 200);
             } else {
                 // Redirect back with success message
-                return redirect()->back()->with('success', 'You are now subscribed to our newsletter.');
+                return redirect()->back()->with('newsletter_success', 'You are now subscribed to our newsletter.');
             }
         } catch (QueryException $e) {
             // Handle database-related exceptions
             if ($request->ajax()) {
-                return response()->json(['error' => 'Your are already subscribed.'], 500);
+                return response()->json(['newsletter_error' => 'Your are already subscribed.'], 500);
             } else {
-                return redirect()->back()->withErrors(['error' => 'Your are already subscribed.']);
+                return redirect()->back()->withErrors(['newsletter_error' => 'Your are already subscribed.']);
             }
         }
     }
