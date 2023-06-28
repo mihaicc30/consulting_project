@@ -24,8 +24,8 @@
 <div class="flex p-2 m-1 shadow-xl max-[400px]:flex-col items-center">
   <div class="flex flex-col">
       <span class="mx-auto relative scale-[0.6]">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank3b')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank')</span>
       </span>
   </div>
   <!-- Notif. Msg. -->
@@ -45,8 +45,8 @@
 <div class="flex p-2 m-1 shadow-xl max-[400px]:flex-col items-center">
   <div class="flex flex-col">
       <span class="mx-auto relative scale-[0.6]">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank2')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank')</span>
       </span>
   </div>
   <!-- Notif. Msg. -->
@@ -66,8 +66,8 @@
 <div class="flex p-2 m-1 shadow-xl max-[400px]:flex-col items-center">
   <div class="flex flex-col">
       <span class="mx-auto relative scale-[0.6]">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank1b')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank')</span>
       </span>
   </div>
   <!-- Notif. Msg. -->

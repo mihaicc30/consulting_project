@@ -5,7 +5,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-use App\Http\Controllers\isAdmin\AdminController;
+use App\Http\Controllers\isAdmin\AdminDashboardController;
+use App\Http\Controllers\isAdmin\AdminServerController;
+use App\Http\Controllers\isAdmin\AdminFilesController;
+use App\Http\Controllers\isAdmin\AdminMessagesController;
+use App\Http\Controllers\isAdmin\AdminNotificationsController;
+use App\Http\Controllers\isAdmin\AdminPlansController;
+use App\Http\Controllers\isAdmin\AdminUsersController;
 
 use App\Http\Controllers\isAuth\isAuthDashboardController;
 use App\Http\Controllers\isAuth\isAuthFilesController;
@@ -48,15 +54,10 @@ Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
 Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->name('newsletter-form');
 
-
 Route::get('/password-reset', [PWResetController::class, 'email']);
 Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
-// middleware('notadmin')->
-Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(function () {
+Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(function () {  
 
     Route::get('/',[isAuthDashboardController::class, 'get']);
     Route::get('/dashboard',[isAuthDashboardController::class, 'get']);
@@ -74,11 +75,16 @@ Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(funct
 });
 
 
-
 Route::middleware('auth')->middleware('admin')->prefix('admin')->group(function () {
 
-    Route::get('/',[AdminController::class, 'get']);
-    Route::get('/dashboard',[AdminController::class, 'get']);
+    Route::get('/',[AdminDashboardController::class, 'get']);
+    Route::get('/dashboard',[AdminDashboardController::class, 'get']);
+    Route::get('/server',[AdminServerController::class, 'get']);
+    Route::get('/files',[AdminFilesController::class, 'get']);
+    Route::get('/plans',[AdminPlansController::class, 'get']);
+    Route::get('/messages',[AdminMessagesController::class, 'get']);
+    Route::get('/users',[AdminUsersController::class, 'get']);
+    Route::get('/notifications',[AdminNotificationsController::class, 'get']);
    
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -90,7 +96,7 @@ Route::middleware('auth')->middleware('admin')->prefix('admin')->group(function 
 
 // Going to leave it here so the UI/UX guys can request this page at any time 😇
 Route::get('/maintenance', function () {
-    return view('maintenance');
+    return view('errors.503');
 });
 
 require __DIR__ . '/auth.php';

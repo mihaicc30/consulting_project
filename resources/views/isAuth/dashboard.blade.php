@@ -47,8 +47,8 @@
     
       <!-- if "proper" plan -->
       <div class="flex flex-col items-center justify-center">
-        @include('components.rank')
-        <p class="text-center font-bold h-[50px] w-[50px]">@include('components.rankname')</p>
+        @include('components.rank', ['cs' => '03'])
+        <p class="text-center font-bold">@include('components.rankname')</p>
         <div class="flex justify-evenly flex-col w-[100%] items-center">
          <p class="text-center">Start Period <span>25/06/2023</span></p> 
          <p class="text-center">End Period: <span>25/07/23</span></p> 
@@ -102,7 +102,7 @@
     
     <!-- Widget Start file transmision report   sent/received/failed-->
     <div class="widget col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Recent Trans</p>
+      <p class="text-center my-2">Transmisions</p>
       <!--  -->
       <div class="flex flex-nowrap justify-evenly pb-2">
         <!-- Contact Card - START-->
@@ -288,7 +288,7 @@
         <div class="flex flex-col basis-1/3 max-w-[200px]">
             <span class="mx-auto relative">
               @include('components.usersvg')
-              <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank13')</span>
+              <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank', ['cs' => '03'])</span>
             </span>
            
           <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
@@ -306,7 +306,7 @@
           
             <span class="mx-auto relative">
               @include('components.usersvg')
-              <span class="absolute top-0 right-0" title="Business Starter">@include('components.rank13')</span>
+              <span class="absolute top-0 right-0" title="Business Starter">@include('components.rank', ['cs' => '01'])</span>
             </span>
           <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
           <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
@@ -322,7 +322,7 @@
           
             <span class="mx-auto relative">
               @include('components.usersvg')
-              <span class="absolute top-0 right-0"  title="Personal Premium">@include('components.rank13')</span>
+              <span class="absolute top-0 right-0"  title="Personal Premium">@include('components.rank', ['cs' => '12'])</span>
             </span>
           <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
           <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>

@@ -89,7 +89,16 @@
     </div>
   </div>
 <span :class="{ 'hidden': !isActive }"></span>
+@php
+  $controlString = auth()->user()->controlstring;
+  $char19 = strlen($controlString) > 18 ? substr($controlString, 19, 1) : '';
+@endphp
+<!--  -->
+@if ($char19 === '1')
+  @include('isadmin.nav')
+@elseif ($char19 === '0')
   @include('isauth.nav')
+@endif
   <!-- content to be inserted -->
 
   <main class="bg-gray-100 dark:bg-gray-800" :class="{ 'col-span-2': !isActive }">
