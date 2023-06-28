@@ -92,7 +92,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              @include('components.subscribeTemplate')
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'] ] )
             </div>
             <!-- Plan Card - END-->
             @endif
@@ -151,7 +151,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              @include('components.subscribeTemplate')
+              @include('components.subscribeTemplate', ['rank' => $plan['name'], 'type' => $plan['type'] ] )
             </div>
             <!-- Plan Card - END-->
             @endif

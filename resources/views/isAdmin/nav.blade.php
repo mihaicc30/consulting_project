@@ -29,27 +29,32 @@
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Dashboard</span>
      </a>
-     <!-- <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/files">
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/transmisions">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Transmisions</span>
+     </a>
+
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/files">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Files</span>
      </a>
 
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/users">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Users</span>
+     </a>
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/messages">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Messages</span>
+     </a>
      <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/plans">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Plans</span>
      </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/contact">
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/server">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Contacts</span>
+       <span class="z-20 relative">Server</span>
      </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/topup">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Top-Up</span>
-     </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/notifications">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Notifications</span>
-     </a> -->
 
      
      <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/profile">
