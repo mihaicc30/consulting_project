@@ -55,38 +55,31 @@ Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+// middleware('notadmin')->
+Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(function () {
 
-Route::middleware('auth')->prefix('portal')->group(function () {
-
-    Route::get('/', function () {
-        $controlString = auth()->user()->controlstring;
-        $charAtIndex19 = substr($controlString, 19, 1);
-        if (strpos($charAtIndex19, '1') !== false) {
-            $adminController = new AdminController();
-            return $adminController->get();
-        } else {
-            $isAuthDashboardController = new isAuthDashboardController();
-            return $isAuthDashboardController->get();
-        }
-    });
-
-    Route::get('/dashboard', function () {
-        $controlString = auth()->user()->controlstring;
-        $charAtIndex19 = substr($controlString, 19, 1);
-        if (strpos($charAtIndex19, '1') !== false) {
-            $adminController = new AdminController();
-            return $adminController->get();
-        } else {
-            $isAuthDashboardController = new isAuthDashboardController();
-            return $isAuthDashboardController->get();
-        }
-    });
-
+    Route::get('/',[isAuthDashboardController::class, 'get']);
+    Route::get('/dashboard',[isAuthDashboardController::class, 'get']);
     Route::get('/files', [isAuthFilesController::class, 'get']);
     Route::get('/plans', [isAuthPlansController::class, 'get']);
     Route::get('/contact', [isAuthContactController::class, 'get']);
     Route::get('/topup', [isAuthTopupController::class, 'get']);
     Route::get('/notifications', [isAuthNotificationsController::class, 'get']);
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
+});
+
+
+
+Route::middleware('auth')->middleware('admin')->prefix('admin')->group(function () {
+
+    Route::get('/',[AdminController::class, 'get']);
+    Route::get('/dashboard',[AdminController::class, 'get']);
+   
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
