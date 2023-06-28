@@ -394,18 +394,22 @@
           </button>
         </form>
 
-   @if(session('success'))
+   @if(session('newsletter_success'))
       <script>
-        alert('You are now subscribed to our newsletter.');
+         alert('{{ session('newsletter_success') }}');
     </script>
       @endif
-@if($errors->any())
-    @foreach($errors->all() as $error)
-        <script>
-            alert("{{ $error }}");
-        </script>
-    @endforeach
-@endif
+    @if ($errors->has('newsletter_error'))
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->get('newsletter_error') as $error)
+                <script>
+                    alert("{{ $error }}");
+                </script>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 
 
