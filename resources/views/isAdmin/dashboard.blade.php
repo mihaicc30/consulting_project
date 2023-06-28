@@ -16,33 +16,89 @@
     </div>
   </div>
   <!-- Hero END -->
+
   <!-- Dashboard - START -->
-  <div class="grid grid-cols-5 max-[1500px]:grid-cols-4 max-[1100px]:grid-cols-3 max-[800px]:grid-cols-2 grid-rows-auto py-6 gap-2">
+  <div class="grid grid-cols-4 max-[1100px]:grid-cols-3 max-[800px]:grid-cols-2 grid-rows-auto py-6 gap-2">
 
     <!-- Widget Start transfers in progres  up/down-->
-    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Active Transmisions</p>
+    <div class="widget grid col-span-1 max-[500px]:col-span-2 border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
+      <span class="col-span-2 mx-auto mt-2">@include('components.usersvg')</span>
+      <p class="text-center col-span-2 font-bold">500 Total users</p>
+      <p class="text-center my-2 col-span-2 border-b-2"></p>
       <!--  -->
-      <div class="flex flex-nowrap justify-evenly">
-        <div class="flex flex-col p-1 items-center">
-          <p class="text-center text-sm font-bold">Reciving</p>
-          <div class="flex flex-nowrap overflow-hidden w-[50px] h-[50px]" :class="{ 'grayscale': !isReciving }">
-            <svg class="" :class="{ 'animate-infiniteLoop': isReciving }" width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 5.70711C13.0976 5.31658 13.0976 4.68342 12.7071 4.29289C12.3166 3.90237 11.6834 3.90237 11.2929 4.29289L4.29289 11.2929C4.10536 11.4804 4 11.7348 4 12C4 12.2652 4.10536 12.5196 4.29289 12.7071L11.2929 19.7071C11.6834 20.0976 12.3166 20.0976 12.7071 19.7071C13.0976 19.3166 13.0976 18.6834 12.7071 18.2929L6.41421 12L12.7071 5.70711ZM19.7071 5.70711C20.0976 5.31658 20.0976 4.68342 19.7071 4.29289C19.3166 3.90237 18.6834 3.90237 18.2929 4.29289L11.2929 11.2929C11.1054 11.4804 11 11.7348 11 12C11 12.2652 11.1054 12.5196 11.2929 12.7071L18.2929 19.7071C18.6834 20.0976 19.3166 20.0976 19.7071 19.7071C20.0976 19.3166 20.0976 18.6834 19.7071 18.2929L13.4142 12L19.7071 5.70711Z" fill="#FFC44D"></path>
-              </g>
-            </svg>
+      <div class="grid col-span-1 justify-center">
+        <div class="grid ">
+          <p class="font-bold text-center">Personal</p>
+          <div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '00'])</span>
+              <span class="text-xs">Topup</span>
+            </div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '01'])</span>
+              <span class="text-xs">Starter</span>
+
+            </div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '02'])</span>
+              <span class="text-xs">Basic</span>
+            </div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '03'])</span>
+              <span class="text-xs">Premium</span>
+            </div>
           </div>
-          <p class="text-xs text-center pb-2" x-show="isReciving">In Progress...</p>
-          <p class="text-xs text-center" x-show="!isReciving">No active<br>transmisions.</p>
         </div>
-        <!--  -->
-        <div class="flex flex-col p-1 items-center">
-          <p class="text-center text-sm font-bold">Sending</p>
-          <div class="flex flex-nowrap overflow-hidden w-[50px] h-[50px]" :class="{ 'grayscale': !isSending }">
-            <svg class="animate-infiniteLoop" :class="{ 'animate-infiniteLoop': isSending }" width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      </div>
+      <div class="grid col-span-1 justify-center">
+        <div class="grid ">
+          <p class="font-bold text-center">Business</p>
+          <div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '10'])</span>
+              <span class="text-xs">Topup</span>
+            </div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '11'])</span>
+              <span class="text-xs">Starter</span>
+
+            </div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '12'])</span>
+              <span class="text-xs">Basic</span>
+
+            </div>
+            <div>
+              <span class="font-bold">100</span>
+              <span class="text-center font-bold h-[20px] w-[20px] inline-block">@include('components.rank', ['cs' => '13'])</span>
+              <span class="text-xs">Premium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+    <!-- Widget END -->
+
+    <!-- Widget Start transfers in progres  up/down-->
+    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{isSending: true}">
+      <p class="text-center my-2">File Transfer Server</p>
+      <!--  -->
+      <div class="flex flex-nowrap justify-center grow">
+        <div class="flex flex-col p-1 items-center justify-center">
+          <p class="text-center text-sm font-bold">Activity</p>
+          <div class="flex flex-nowrap overflow-hidden w-[90px] h-[90px]" :class="{ 'grayscale': !isSending }">
+            <svg class="animate-infiniteLoop" :class="{ 'animate-infiniteLoop': isSending }" style="height:100%; width:100%;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
@@ -50,63 +106,29 @@
               </g>
             </svg>
           </div>
-          <p class="text-xs text-center pb-2" x-show="isSending">In Progress...</p>
-          <p class="text-xs text-center" x-show="!isSending">No active<br>transmisions.</p>
+          <p class="text-xs text-center pb-2" x-show="isSending">Server is running...</p>
+          <p class="text-xs text-center" x-show="!isSending">Server is<br>on standby.</p>
         </div>
       </div>
       <!--  -->
     </div>
     <!-- Widget END -->
 
-    
-    <!-- Widget Start file transmision report   sent/received/failed-->
+    <!-- Widget Start last 3 transfers -->
     <div class="widget col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Recent Trans</p>
-      <!--  -->
-      <div class="flex flex-nowrap justify-evenly pb-2">
-        <!-- Contact Card - START-->
-        <div class="flex flex-col">
-          <span class="mx-auto">@include('components.dlstatus1')</span>
-          <p class="text-sm text-center line-clamp-1 font-bold">Succes</p>
-          <p class="text-xl text-center line-clamp-1">261</p>
-        </div>
-        <!-- Contact Card - END-->
-        <!-- Contact Card - START-->
-        <div class="flex flex-col">
-          <span class="mx-auto">@include('components.dlstatus2')</span>
-          <p class="text-sm text-center line-clamp-1 font-bold">In Progress</p>
-          <p class="text-xl text-center line-clamp-1">4</p>
-        </div>
-        <!-- Contact Card - END-->
-        <!-- Contact Card - START-->
-        <div class="flex flex-col">
-          <span class="mx-auto">@include('components.dlstatus3')</span>
-          <p class="text-sm text-center line-clamp-1 font-bold">Failed</p>
-          <p class="text-xl text-center line-clamp-1">41</p>
-         
-        </div>
-        <!-- Contact Card - END-->
-      </div>
-      <!--  -->
-    </div>
-    <!-- Widget END -->
-
-
-    <!-- Widget Start last 3 transfers to/from user-->
-    <div class="widget col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Recent Transmisions</p>
+      <p class="text-center my-2">Most Recent Transmisions</p>
       <!--  -->
       <div class="flex flex-nowrap justify-evenly text-xs">
         <!-- Last 3 Transmisions - START -->
-        <div class="w-[100%] px-2" x-data="{ isActive: null }">
+        <div class="w-[100%] px-2 flex flex-col" x-data="{ isActive: null }">
 
           <!-- Transmision 1 -->
           <div class="accordion-item w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2">
             <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 1 ? isActive = null : isActive = 1">
-              <div class="flex flex-nowrap justify-evenly w-[100%] max-[500px]:flex-col">
-                <span>
-                  {{ Auth::user()->email }}</span>
-                <span class="animate-infiniteLoop"> >>> </span> <!-- if reciving ">>" else "<<" -->
+              <div class="flex w-[100%] gap-1 whitespace-nowrap flex-wrap">
+                <span title="Status Failed">🔴</span>
+                <span>email.sender@email.com</span>
+                <span title="action"> tried to download a package from </span>
                 <span>email.receiver@email.com</span>
               </div>
               <span class="accordion-icon">
@@ -121,26 +143,39 @@
               </span>
             </div>
             <div class="accordion-content transition" x-show="isActive === 1">
+              <div>
+                <p>Status: <span class="text-red-400">Failed!</span></p>
+              </div>
               <div class="relative flex flex-col flex-nowrap p-2 border-2">
                 <!-- loop over files. MAX 5 FILES! -->
                 <span class="absolute top-[-7px] left-[15px] text-[1.6rem] rotate-90">📎</span>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit.jpg</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit amet..png</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem, ipsum dolor.rar</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit.zip</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p></div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit.jpg</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit amet..png</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem, ipsum dolor.rar</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit.zip</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
+                </div>
               </div>
             </div>
           </div>
           <!-- Transmision 1 -->
-          
+
           <!-- Transmision 2 -->
           <div class="accordion-item w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2">
             <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 2 ? isActive = null : isActive = 2">
-              <div class="flex flex-nowrap justify-evenly w-[100%] max-[500px]:flex-col">
-                <span>
-                  {{ Auth::user()->email }}</span>
-                <span class="animate-infiniteLoop"> >>> </span> <!-- if reciving animate-infiniteLoop else animate-infiniteLoop2 -->
+              <div class="flex w-[100%] gap-1 whitespace-nowrap flex-wrap">
+                <span title="Status Success">🟢</span>
+                <span>email.sender@email.com</span>
+                <span title="action"> has sent a package to </span>
                 <span>email.receiver@email.com</span>
               </div>
               <span class="accordion-icon">
@@ -155,28 +190,40 @@
               </span>
             </div>
             <div class="accordion-content transition" x-show="isActive === 2">
+              <div>
+                <p>Status: Success!</p>
+              </div>
               <div class="relative flex flex-col flex-nowrap p-2 border-2">
                 <!-- loop over files. MAX 5 FILES! -->
                 <span class="absolute top-[-7px] left-[15px] text-[1.6rem] rotate-90">📎</span>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit.jpg</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit amet..png</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem, ipsum dolor.rar</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit.zip</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p></div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit.jpg</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit amet..png</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem, ipsum dolor.rar</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit.zip</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
+                </div>
               </div>
             </div>
           </div>
           <!-- Transmision 2 -->
-          
+
           <!-- Transmision 3 -->
           <div class="accordion-item w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2">
             <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 3 ? isActive = null : isActive = 3">
-              <div class="flex flex-nowrap justify-evenly w-[100%] max-[500px]:flex-col">
-                <span> {{ Auth::user()->email }}</span>
-
-                <span class="animate-infiniteLoop2"> >>> </span>
-
+              <div class="flex w-[100%] gap-1 whitespace-nowrap flex-wrap">
+                <span title="Status In Progress">🟡</span>
                 <span>email.sender@email.com</span>
+                <span title="action"> has started downloading a package from </span>
+                <span>email.receiver@email.com</span>
               </div>
               <span class="accordion-icon">
                 <svg class="transition" width="24px" :class="{'rotate-[90deg]': isActive === 3}" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,19 +237,32 @@
               </span>
             </div>
             <div class="accordion-content transition" x-show="isActive === 3">
+              <div>
+                <p>Status: In Progress</p>
+              </div>
               <div class="relative flex flex-col flex-nowrap p-2 border-2">
                 <!-- loop over files. MAX 5 FILES! -->
                 <span class="absolute top-[-7px] left-[15px] text-[1.6rem] rotate-90">📎</span>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit.jpg</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit amet..png</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem, ipsum dolor.rar</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit.zip</p></div>
-                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p></div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit.jpg</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit amet..png</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem, ipsum dolor.rar</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit.zip</p>
+                </div>
+                <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
+                </div>
               </div>
             </div>
           </div>
           <!-- Transmision 3 -->
-
+          <a href="/portal/transmisions" class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2] text-center">Check Full Activity</a>
 
         </div>
         <!-- Last 3 Transmisions - END -->
@@ -211,130 +271,117 @@
     </div>
     <!-- Widget END -->
 
-    
-    <!-- Widget Start total sent/received-->
-    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg">
-      <p class="text-center my-2">Files</p>
+    <!-- Widget Start last 3 transfers -->
+    <div class="widget grid col-span-2 border-2 border-[#e6e6e6] rounded-lg">
+      <p class="text-center my-2 mx-auto col-span-2">Recently Added Files</p>
+      <p class="text-center col-span-2 mx-auto font-bold">1500 Total Files</p>
+      <p class="text-center my-2 col-span-2 border-b-2"></p>
       <!--  -->
-      <div class="flex flex-nowrap justify-evenly">
-        <div class="flex flex-col p-1 items-center">
-          <p class="text-center text-sm font-bold">Received</p>
-          <div class="flex flex-nowrap overflow-hidden">
-            @include('components.receivedfile')
+      <div class="grid col-span-2 justify-center">
+        <div class="relative flex flex-col flex-nowrap p-2">
+          <!-- loop over files. MAX 5 FILES! -->
+          <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M11 3.01254C10.9983 2.46026 11.4446 2.01114 11.9969 2.00941C12.5492 2.00768 12.9983 2.45399 13 3.00627L11 3.01254Z" fill="#FFC44D"></path>
+                  <path d="M14.3158 10.2951L13.0269 11.592L13 3.00627L11 3.01254L11.0269 11.5983L9.73003 10.3095C9.33828 9.92018 8.7051 9.92214 8.3158 10.3139C7.9265 10.7056 7.92849 11.3388 8.32024 11.7281L8.32275 11.7306L8.32374 11.7316L12.039 15.4236L15.7206 11.7187L15.7262 11.7131L15.727 11.7123L15.7278 11.7115L15.7337 11.7056L15.7344 11.7049L14.3158 10.2951Z" fill="#FFC44D"></path>
+                  <path d="M15.7344 11.7049C16.1237 11.3131 16.1217 10.6799 15.73 10.2906C15.3382 9.90134 14.705 9.90335 14.3158 10.2951L15.7344 11.7049Z" fill="#FFC44D"></path>
+                  <path d="M4 12C4 10.8954 4.89543 10 6 10C6.55228 10 7 9.55228 7 9C7 8.44771 6.55228 8 6 8C3.79086 8 2 9.79086 2 12V18C2 20.2091 3.79086 22 6 22H17C19.7614 22 22 19.7614 22 17V12C22 9.79086 20.2091 8 18 8C17.4477 8 17 8.44771 17 9C17 9.55228 17.4477 10 18 10C19.1046 10 20 10.8954 20 12V17C20 18.6569 18.6569 20 17 20H6C4.89543 20 4 19.1046 4 18V12Z" fill="#FFC44D"></path>
+                </g>
+              </svg></span>
+            <p>Lorem ipsum dolor sit.jpg</p>
           </div>
-          <p class="text-xl font-bold text-center pb-2">234</p>
-        </div>
-        <!--  -->
-        <div class="flex flex-col p-1 items-center">
-          <p class="text-center text-sm font-bold">Sent</p>
-          <div class="flex flex-nowrap overflow-hidden">
-            @include('components.sentfile')
+          <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M11 3.01254C10.9983 2.46026 11.4446 2.01114 11.9969 2.00941C12.5492 2.00768 12.9983 2.45399 13 3.00627L11 3.01254Z" fill="#FFC44D"></path>
+                  <path d="M14.3158 10.2951L13.0269 11.592L13 3.00627L11 3.01254L11.0269 11.5983L9.73003 10.3095C9.33828 9.92018 8.7051 9.92214 8.3158 10.3139C7.9265 10.7056 7.92849 11.3388 8.32024 11.7281L8.32275 11.7306L8.32374 11.7316L12.039 15.4236L15.7206 11.7187L15.7262 11.7131L15.727 11.7123L15.7278 11.7115L15.7337 11.7056L15.7344 11.7049L14.3158 10.2951Z" fill="#FFC44D"></path>
+                  <path d="M15.7344 11.7049C16.1237 11.3131 16.1217 10.6799 15.73 10.2906C15.3382 9.90134 14.705 9.90335 14.3158 10.2951L15.7344 11.7049Z" fill="#FFC44D"></path>
+                  <path d="M4 12C4 10.8954 4.89543 10 6 10C6.55228 10 7 9.55228 7 9C7 8.44771 6.55228 8 6 8C3.79086 8 2 9.79086 2 12V18C2 20.2091 3.79086 22 6 22H17C19.7614 22 22 19.7614 22 17V12C22 9.79086 20.2091 8 18 8C17.4477 8 17 8.44771 17 9C17 9.55228 17.4477 10 18 10C19.1046 10 20 10.8954 20 12V17C20 18.6569 18.6569 20 17 20H6C4.89543 20 4 19.1046 4 18V12Z" fill="#FFC44D"></path>
+                </g>
+              </svg></span>
+            <p>Lorem ipsum dolor sit amet..png</p>
           </div>
-          <p class="text-xl font-bold text-center pb-2">45</p>
+          <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M11 3.01254C10.9983 2.46026 11.4446 2.01114 11.9969 2.00941C12.5492 2.00768 12.9983 2.45399 13 3.00627L11 3.01254Z" fill="#FFC44D"></path>
+                  <path d="M14.3158 10.2951L13.0269 11.592L13 3.00627L11 3.01254L11.0269 11.5983L9.73003 10.3095C9.33828 9.92018 8.7051 9.92214 8.3158 10.3139C7.9265 10.7056 7.92849 11.3388 8.32024 11.7281L8.32275 11.7306L8.32374 11.7316L12.039 15.4236L15.7206 11.7187L15.7262 11.7131L15.727 11.7123L15.7278 11.7115L15.7337 11.7056L15.7344 11.7049L14.3158 10.2951Z" fill="#FFC44D"></path>
+                  <path d="M15.7344 11.7049C16.1237 11.3131 16.1217 10.6799 15.73 10.2906C15.3382 9.90134 14.705 9.90335 14.3158 10.2951L15.7344 11.7049Z" fill="#FFC44D"></path>
+                  <path d="M4 12C4 10.8954 4.89543 10 6 10C6.55228 10 7 9.55228 7 9C7 8.44771 6.55228 8 6 8C3.79086 8 2 9.79086 2 12V18C2 20.2091 3.79086 22 6 22H17C19.7614 22 22 19.7614 22 17V12C22 9.79086 20.2091 8 18 8C17.4477 8 17 8.44771 17 9C17 9.55228 17.4477 10 18 10C19.1046 10 20 10.8954 20 12V17C20 18.6569 18.6569 20 17 20H6C4.89543 20 4 19.1046 4 18V12Z" fill="#FFC44D"></path>
+                </g>
+              </svg></span>
+            <p>Lorem, ipsum dolor.rar</p>
+          </div>
+          <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M11 3.01254C10.9983 2.46026 11.4446 2.01114 11.9969 2.00941C12.5492 2.00768 12.9983 2.45399 13 3.00627L11 3.01254Z" fill="#FFC44D"></path>
+                  <path d="M14.3158 10.2951L13.0269 11.592L13 3.00627L11 3.01254L11.0269 11.5983L9.73003 10.3095C9.33828 9.92018 8.7051 9.92214 8.3158 10.3139C7.9265 10.7056 7.92849 11.3388 8.32024 11.7281L8.32275 11.7306L8.32374 11.7316L12.039 15.4236L15.7206 11.7187L15.7262 11.7131L15.727 11.7123L15.7278 11.7115L15.7337 11.7056L15.7344 11.7049L14.3158 10.2951Z" fill="#FFC44D"></path>
+                  <path d="M15.7344 11.7049C16.1237 11.3131 16.1217 10.6799 15.73 10.2906C15.3382 9.90134 14.705 9.90335 14.3158 10.2951L15.7344 11.7049Z" fill="#FFC44D"></path>
+                  <path d="M4 12C4 10.8954 4.89543 10 6 10C6.55228 10 7 9.55228 7 9C7 8.44771 6.55228 8 6 8C3.79086 8 2 9.79086 2 12V18C2 20.2091 3.79086 22 6 22H17C19.7614 22 22 19.7614 22 17V12C22 9.79086 20.2091 8 18 8C17.4477 8 17 8.44771 17 9C17 9.55228 17.4477 10 18 10C19.1046 10 20 10.8954 20 12V17C20 18.6569 18.6569 20 17 20H6C4.89543 20 4 19.1046 4 18V12Z" fill="#FFC44D"></path>
+                </g>
+              </svg></span>
+            <p>Lorem ipsum dolor sit.zip</p>
+          </div>
+          <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M11 3.01254C10.9983 2.46026 11.4446 2.01114 11.9969 2.00941C12.5492 2.00768 12.9983 2.45399 13 3.00627L11 3.01254Z" fill="#FFC44D"></path>
+                  <path d="M14.3158 10.2951L13.0269 11.592L13 3.00627L11 3.01254L11.0269 11.5983L9.73003 10.3095C9.33828 9.92018 8.7051 9.92214 8.3158 10.3139C7.9265 10.7056 7.92849 11.3388 8.32024 11.7281L8.32275 11.7306L8.32374 11.7316L12.039 15.4236L15.7206 11.7187L15.7262 11.7131L15.727 11.7123L15.7278 11.7115L15.7337 11.7056L15.7344 11.7049L14.3158 10.2951Z" fill="#FFC44D"></path>
+                  <path d="M15.7344 11.7049C16.1237 11.3131 16.1217 10.6799 15.73 10.2906C15.3382 9.90134 14.705 9.90335 14.3158 10.2951L15.7344 11.7049Z" fill="#FFC44D"></path>
+                  <path d="M4 12C4 10.8954 4.89543 10 6 10C6.55228 10 7 9.55228 7 9C7 8.44771 6.55228 8 6 8C3.79086 8 2 9.79086 2 12V18C2 20.2091 3.79086 22 6 22H17C19.7614 22 22 19.7614 22 17V12C22 9.79086 20.2091 8 18 8C17.4477 8 17 8.44771 17 9C17 9.55228 17.4477 10 18 10C19.1046 10 20 10.8954 20 12V17C20 18.6569 18.6569 20 17 20H6C4.89543 20 4 19.1046 4 18V12Z" fill="#FFC44D"></path>
+                </g>
+              </svg></span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
+          </div>
         </div>
       </div>
-      <!--  -->
     </div>
-    <!-- Widget END -->
+    <!-- Widget Start last 3 transfers -->
 
-
-    <!-- Widget Start last 3 added contacts-->
-    <div class="widget col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Recent Contacts</p>
+    <!-- Widget Start last 3 transfers -->
+    <div class="widget grid col-span-2 border-2 border-[#e6e6e6] rounded-lg">
+      <p class="text-center my-2 mx-auto col-span-2">Recent Messages</p>
+      <p class="text-center col-span-2 mx-auto font-bold border-b-2"><span title="Unread" class="font-bold text-xl">5</span>/<span class="text-xs" title="Read">100</span> Messages</p>
       <!--  -->
-      <div class="flex flex-wrap justify-evenly pb-2">
-        <!-- Contact Card - START-->
-        <div class="flex flex-col basis-1/3 max-w-[200px]">
-            <span class="mx-auto relative">
-              @include('components.usersvg')
-              <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank3b')</span>
-            </span>
-           
-          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-          <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
-         
-          <div class="flex flex-nowrap items-center justify-center gap-4">
-            <button>@include('components.sendfilesvg')</button>
-            <button>@include('components.emailsvg')</button>
-            <button>@include('components.deleteusersvg')</button>
+      <div class="grid col-span-2 justify-center">
+        <div class="relative flex flex-col flex-nowrap p-2 text-xs gap-4">
+          <!-- loop over last 3 messages! -->
+          <div class="grid grid-cols-[1fr_3fr] gap-2">
+            <div class="flex flex-col border-r-2 pr-2">
+              <p title="Email" class="line-clamp-1">someemail@email.some</p>
+              <p title="Date" class="line-clamp-1">{{ date('Y-m-d H:i:s') }}</p>
+            </div>
+            <p title="Message" class="line-clamp-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste ad harum culpa praesentium ab asperiores deleniti dignissimos ducimus ex ea?</p>
+          </div>
+          <div class="grid grid-cols-[1fr_3fr] gap-2">
+            <div class="flex flex-col border-r-2 pr-2">
+              <p title="Email" class="line-clamp-1">someemail@email.some</p>
+              <p title="Date" class="line-clamp-1">{{ date('Y-m-d H:i:s') }}</p>
+            </div>
+            <p title="Message" class="line-clamp-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste ad harum culpa praesentium ab asperiores deleniti dignissimos ducimus ex ea?</p>
+          </div>
+          <div class="grid grid-cols-[1fr_3fr] gap-2">
+            <div class="flex flex-col border-r-2 pr-2">
+              <p title="Email" class="line-clamp-1">someemail@email.some</p>
+              <p title="Date" class="line-clamp-1">{{ date('Y-m-d H:i:s') }}</p>
+            </div>
+            <p title="Message" class="line-clamp-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste ad harum culpa praesentium ab asperiores deleniti dignissimos ducimus ex ea?</p>
           </div>
         </div>
-        <!-- Contact Card - END-->
-        <!-- Contact Card - START-->
-        <div class="flex flex-col basis-1/3 max-w-[200px]">
-          
-            <span class="mx-auto relative">
-              @include('components.usersvg')
-              <span class="absolute top-0 right-0" title="Business Starter">@include('components.rank1b')</span>
-            </span>
-          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-          <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
-          <div class="flex flex-nowrap items-center justify-center gap-4">
-            <button>@include('components.sendfilesvg')</button>
-            <button>@include('components.emailsvg')</button>
-            <button>@include('components.deleteusersvg')</button>
-          </div>
-        </div>
-        <!-- Contact Card - END-->
-        <!-- Contact Card - START-->
-        <div class="flex flex-col basis-1/3 max-w-[200px]">
-          
-            <span class="mx-auto relative">
-              @include('components.usersvg')
-              <span class="absolute top-0 right-0"  title="Personal Premium">@include('components.rank3')</span>
-            </span>
-          <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-          <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
-          <div class="flex flex-nowrap items-center justify-center gap-4">
-            <button>@include('components.sendfilesvg')</button>
-            <button>@include('components.emailsvg')</button>
-            <button>@include('components.deleteusersvg')</button>
-          </div>
-        </div>
-        <!-- Contact Card - END-->
       </div>
-      <!--  -->
     </div>
-    <!-- Widget END -->
-
-
-    <!-- Widget Start current plan / if tokens also show 2nd widget with how many tokens-->
-    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Subscription</p>
-      <!-- if token  -->
-     <div class="flex flex-col items-center justify-center">
-        @include('components.token')
-        <p  class="text-center font-bold">Top-Up</p>
-        <div class="flex justify-evenly flex-col w-[100%] items-center">
-         <p class="text-center">Tokens Left: <span>5</span></p> 
-        </div>
-     </div>
-      <!-- if "proper" plan -->
-
-    </div>
-    <!-- Widget END -->
-
-    <!--'@@@@@@@@@@@@@@@@@@ show one or the other depending on subscription plan !@@@@@@@@@@@@@@@@@@@@@@@ -->
-
-    <!-- Widget Start current plan / if tokens also show 2nd widget with how many tokens-->
-    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Subscription</p>
-      <!-- if token  -->
-    
-      <!-- if "proper" plan -->
-      <div class="flex flex-col items-center justify-center">
-        @include('components.rank3')
-        <p  class="text-center font-bold">Personal Premium</p>
-        <div class="flex justify-evenly flex-col w-[100%] items-center">
-         <p class="text-center">Start Period <span>25/06/2023</span></p> 
-         <p class="text-center">End Period: <span>25/07/23</span></p> 
-        </div>
-     </div>
-    </div>
-    <!-- Widget END -->
+    <!-- Widget Start last 3 transfers -->
 
   </div>
   <!-- Dashboard - END -->
 
 
-  @endsection
+  <div>
+    @endsection

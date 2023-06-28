@@ -72,7 +72,8 @@
     var startDatetime = new Date("2023-06-26T18:37:30Z");
     var endDatetime = new Date("2023-06-28T18:37:00Z");
 
-    var countdownInterval
+    var countdownInterval;
+    
     if (new Date() >= startDatetime) {
         // Update the countdown every second
         countdownInterval = setInterval(updateCountdown, 1000);
