@@ -47,8 +47,8 @@
     <!-- Contact Card - START -->
     <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
       <span class="mx-auto relative">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank3b')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
       </span>
       
       <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
@@ -64,8 +64,8 @@
     <!-- Contact Card - START -->
     <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
       <span class="mx-auto relative">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank3')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
       </span>
       
       <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
@@ -81,8 +81,8 @@
     <!-- Contact Card - START -->
     <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
       <span class="mx-auto relative">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank2')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
       </span>
       
       <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
@@ -98,8 +98,8 @@
     <!-- Contact Card - START -->
     <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
       <span class="mx-auto relative">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank1')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
       </span>
       
       <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
@@ -115,8 +115,8 @@
     <!-- Contact Card - START -->
     <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
       <span class="mx-auto relative">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank1b')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
       </span>
       
       <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
@@ -132,8 +132,8 @@
     <!-- Contact Card - START -->
     <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
       <span class="mx-auto relative">
-        @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank2b')</span>
+        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
       </span>
       
       <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>

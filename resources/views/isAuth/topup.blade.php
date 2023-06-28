@@ -26,7 +26,7 @@
     <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded transition-all duration-500">
       <span class="mx-auto relative">
         @include('components.usersvg')
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank3b')</span>
+        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank')</span>
       </span>
       <p class="text-xs text-center line-clamp-1 font-bold" title="{{ Auth::user()->name }}">{{ Auth::user()->name }}</p>
       <p class="text-xs text-center line-clamp-1" title="{{ Auth::user()->email }}">{{ Auth::user()->email }}</p>

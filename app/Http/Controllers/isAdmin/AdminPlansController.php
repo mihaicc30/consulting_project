@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class TransmisionsController extends Controller
+class AdminPlansController extends Controller
 {
     public function get() {
-        return view("isadmin.transmisions");
+        return view("isadmin.plans");
     }
 }
