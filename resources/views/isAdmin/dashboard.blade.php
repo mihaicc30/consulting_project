@@ -20,9 +20,50 @@
   <!-- Dashboard - START -->
   <div class="grid grid-cols-4 max-[1100px]:grid-cols-3 max-[800px]:grid-cols-2 grid-rows-auto py-6 gap-2">
 
-    <!-- Widget Start transfers in progres  up/down-->
+    <!-- Widget Start file transfer server status - START-->
+    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{isOnline: true}">
+      <p class="text-center my-2">Server Status</p>
+      <!--  -->
+      <div class="flex flex-nowrap flex-col justify-center grow">
+        <div class="flex flex-col p-1 items-center justify-center">
+          <p class="text-center text-sm font-bold" x-show="isOnline">Online</p>
+          <p class="text-center text-sm font-bold" x-show="!isOnline">Offline</p>
+          <p class="text-[3rem] text-center pb-2" x-show="isOnline">🟢</p>
+          <p class="text-[3rem] text-center" x-show="!isOnline">🔴</p>
+        </div>
+        
+      </div>
+      <!--  -->
+    </div>
+    <!-- Widget Start file transfer server status - END-->
+
+    <!-- Widget Start file transfer server idle or not - START-->
+    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{isSending: true}">
+      <p class="text-center my-2">File Transfer Server</p>
+      <!--  -->
+      <div class="flex flex-nowrap justify-center grow">
+        <div class="flex flex-col p-1 items-center justify-center">
+          <p class="text-center text-sm font-bold">Activity</p>
+          <div class="flex flex-nowrap overflow-hidden w-[90px] h-[90px]" :class="{ 'grayscale': !isSending }">
+            <svg class="animate-infiniteLoop" :class="{ 'animate-infiniteLoop': isSending }" style="height:100%; width:100%;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.70711 4.29289C5.31658 3.90237 4.68342 3.90237 4.29289 4.29289C3.90237 4.68342 3.90237 5.31658 4.29289 5.70711L10.5858 12L4.29289 18.2929C3.90237 18.6834 3.90237 19.3166 4.29289 19.7071C4.68342 20.0976 5.31658 20.0976 5.70711 19.7071L12.7071 12.7071C13.0976 12.3166 13.0976 11.6834 12.7071 11.2929L5.70711 4.29289ZM12.7071 4.29289C12.3166 3.90237 11.6834 3.90237 11.2929 4.29289C10.9024 4.68342 10.9024 5.31658 11.2929 5.70711L17.5858 12L11.2929 18.2929C10.9024 18.6834 10.9024 19.3166 11.2929 19.7071C11.6834 20.0976 12.3166 20.0976 12.7071 19.7071L19.7071 12.7071C20.0976 12.3166 20.0976 11.6834 19.7071 11.2929L12.7071 4.29289Z" fill="#FFC44D"></path>
+              </g>
+            </svg>
+          </div>
+          <p class="text-xs text-center pb-2" x-show="isSending">Server is running...</p>
+          <p class="text-xs text-center" x-show="!isSending">Server is<br>on standby.</p>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+    <!-- Widget Start file transfer server idle or not - END-->
+
+    <!-- Widget Start stats about users - START-->
     <div class="widget grid col-span-1 max-[500px]:col-span-2 border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <span class="col-span-2 mx-auto mt-2">@include('components.usersvg')</span>
+      <span class="col-span-2 mx-auto mt-2 h-[50px] w-[50px] block">@include('components.usersvg')</span>
       <p class="text-center col-span-2 font-bold">500 Total users</p>
       <p class="text-center my-2 col-span-2 border-b-2"></p>
       <!--  -->
@@ -88,35 +129,63 @@
 
 
     </div>
-    <!-- Widget END -->
+    <!-- Widget Start stats about users - END-->
 
-    <!-- Widget Start transfers in progres  up/down-->
-    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{isSending: true}">
-      <p class="text-center my-2">File Transfer Server</p>
+    <!-- Widget Start recent registred users - START-->
+    <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
+      <p class="text-center my-2">Newest Users</p>
       <!--  -->
-      <div class="flex flex-nowrap justify-center grow">
-        <div class="flex flex-col p-1 items-center justify-center">
-          <p class="text-center text-sm font-bold">Activity</p>
-          <div class="flex flex-nowrap overflow-hidden w-[90px] h-[90px]" :class="{ 'grayscale': !isSending }">
-            <svg class="animate-infiniteLoop" :class="{ 'animate-infiniteLoop': isSending }" style="height:100%; width:100%;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.70711 4.29289C5.31658 3.90237 4.68342 3.90237 4.29289 4.29289C3.90237 4.68342 3.90237 5.31658 4.29289 5.70711L10.5858 12L4.29289 18.2929C3.90237 18.6834 3.90237 19.3166 4.29289 19.7071C4.68342 20.0976 5.31658 20.0976 5.70711 19.7071L12.7071 12.7071C13.0976 12.3166 13.0976 11.6834 12.7071 11.2929L5.70711 4.29289ZM12.7071 4.29289C12.3166 3.90237 11.6834 3.90237 11.2929 4.29289C10.9024 4.68342 10.9024 5.31658 11.2929 5.70711L17.5858 12L11.2929 18.2929C10.9024 18.6834 10.9024 19.3166 11.2929 19.7071C11.6834 20.0976 12.3166 20.0976 12.7071 19.7071L19.7071 12.7071C20.0976 12.3166 20.0976 11.6834 19.7071 11.2929L12.7071 4.29289Z" fill="#FFC44D"></path>
-              </g>
-            </svg>
-          </div>
-          <p class="text-xs text-center pb-2" x-show="isSending">Server is running...</p>
-          <p class="text-xs text-center" x-show="!isSending">Server is<br>on standby.</p>
+      <div class="flex flex-col justify-center items-center pb-2 gap-4">
+        <!-- Contact Card - START-->
+        <div class="flex flex-nowrap basis-1/3 max-w-[200px]">
+            <span class="mx-auto relative">
+              <span class="h-[50px] w-[50px] block">@include('components.usersvg')</span>
+              <span class="absolute top-0 right-0 h-[20px] w-[20px]" title="Business Premium">@include('components.rank', ['cs' => '12'])</span>
+            </span>
+           <div>
+             <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+             <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
+           </div>
+         
         </div>
+        <!-- Contact Card - END-->
+       
+        <!-- Contact Card - START-->
+        <div class="flex flex-nowrap basis-1/3 max-w-[200px]">
+            <span class="mx-auto relative">
+              <span class="h-[50px] w-[50px] block">@include('components.usersvg')</span>
+              <span class="absolute top-0 right-0 h-[20px] w-[20px]" title="Business Premium">@include('components.rank', ['cs' => '01'])</span>
+            </span>
+           <div>
+             <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+             <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
+           </div>
+         
+        </div>
+        <!-- Contact Card - END-->
+       
+        <!-- Contact Card - START-->
+        <div class="flex flex-nowrap basis-1/3 max-w-[200px]">
+            <span class="mx-auto relative">
+              <span class="h-[50px] w-[50px] block">@include('components.usersvg')</span>
+              <span class="absolute top-0 right-0 h-[20px] w-[20px]" title="Business Premium">@include('components.rank', ['cs' => '03'])</span>
+            </span>
+           <div>
+             <p class="text-sm text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+             <p class="text-xs text-center line-clamp-1" title="User Email">User Email</p>
+           </div>
+         
+        </div>
+        <!-- Contact Card - END-->
+       
       </div>
       <!--  -->
     </div>
-    <!-- Widget END -->
+        <!-- Widget Start recent registred users - END-->
 
-    <!-- Widget Start last 3 transfers -->
+    <!-- Widget Start last 3 notifications  - START-->
     <div class="widget col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
-      <p class="text-center my-2">Most Recent Transmisions</p>
+      <p class="text-center my-2">Notifications</p>
       <!--  -->
       <div class="flex flex-nowrap justify-evenly text-xs">
         <!-- Last 3 Transmisions - START -->
@@ -269,9 +338,9 @@
       </div>
       <!--  -->
     </div>
-    <!-- Widget END -->
+    <!-- Widget Start last 3 notifications  - END-->
 
-    <!-- Widget Start last 3 transfers -->
+    <!-- Widget Start last 3 files added to the server  - START-->
     <div class="widget grid col-span-2 border-2 border-[#e6e6e6] rounded-lg">
       <p class="text-center my-2 mx-auto col-span-2">Recently Added Files</p>
       <p class="text-center col-span-2 mx-auto font-bold">1500 Total Files</p>
@@ -343,9 +412,9 @@
         </div>
       </div>
     </div>
-    <!-- Widget Start last 3 transfers -->
+    <!-- Widget Start last 3 files added to the server  - END-->
 
-    <!-- Widget Start last 3 transfers -->
+    <!-- Widget Start last 3 contact messages  - START-->
     <div class="widget grid col-span-2 border-2 border-[#e6e6e6] rounded-lg">
       <p class="text-center my-2 mx-auto col-span-2">Recent Messages</p>
       <p class="text-center col-span-2 mx-auto font-bold border-b-2"><span title="Unread" class="font-bold text-xl">5</span>/<span class="text-xs" title="Read">100</span> Messages</p>
@@ -377,7 +446,7 @@
         </div>
       </div>
     </div>
-    <!-- Widget Start last 3 transfers -->
+    <!-- Widget Start last 3 contact messages  - END-->
 
   </div>
   <!-- Dashboard - END -->

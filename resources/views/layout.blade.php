@@ -21,11 +21,21 @@
 </head>
 
 
-@if(Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin'))
-<body class="antialiased grid grid-cols-[100px,1fr]  overflow-x-hidden" x-data="{ isActive: true }">
-@else
-<body class="antialiased grid grid-cols-1  overflow-x-hidden" x-data="{ isActive: true }">
-@endif
+<body class="antialiased grid grid-cols-{{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? '[100px,1fr]' : '1' }}  overflow-x-hidden" x-data="{ isActive: true }">
+<!--  -->
+@php
+  $currentUrl = url()->current();
+  $isPortalOrAdmin = Str::contains($currentUrl, 'portal') || Str::contains($currentUrl, 'admin');
+@endphp
+<!--  -->
+@auth
+  @php
+    $controlString = auth()->user()->controlstring;
+    $char19 = strlen($controlString) > 18 ? substr($controlString, 19, 1) : '';
+    $portalUrl = (Auth::user()->isAdmin() ? '/admin/dashboard' : '/portal/dashboard');
+  @endphp
+@endauth
+<!--  -->
 
     @if (Route::has('login'))
 
@@ -96,74 +106,56 @@
           </g>
         </svg>
         <div class="flex flex-nowrap">
-          @auth
-          @if(Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin'))
-          <!--  -->
-          @else
-          <!-- show portal button -->
-          <a href="{{ url('/portal/dashboard') }}" class="text-sm text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Enter Customer Portal</a>
 
-          @endif
+          @if (Auth::check())
+            @unless ($isPortalOrAdmin)
+              <!-- show portal button -->
+              <a href="{{ url($portalUrl) }}" class="text-sm text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">
+                {{ Auth::user()->isAdmin() ? 'Enter Admin Portal' : 'Enter Customer Portal' }}
+              </a>
+            @endunless
+          
           @else
           <a href="{{ route('login') }}" class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Log in</a>
           <a href="{{ route('register') }}" class="ml-4 text-gray-700 font-[600] dark:text-gray-500 p-2 border-2 whitespace-nowrap rounded">Register</a>
 
-          @endauth
+          @endif
         </div>
       </div>
       @endif
 
-
-      @auth
       <!-- auth nav -->
-      @if(Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin'))
-
-      @php
-      $controlString = auth()->user()->controlstring;
-      $char19 = strlen($controlString) > 18 ? substr($controlString, 19, 1) : '';
-      @endphp
-      @if($char19 === '1')
-      @include('isadmin.nav')
-      @endif
-
-      @if($char19 === '0')
-      @include('isauth.nav')
-      @endif
-
-      @else
-      @include('notauth.nav')
-      @endif
-
-      @else
-      <!-- unauthauth nav -->
-      @include('notauth.nav')
+      @auth
+        @if ($isPortalOrAdmin)
+          @if ($char19 === '1')
+            @include('isadmin.nav')
+          @elseif ($char19 === '0')
+            @include('isauth.nav')
+          @endif
+        @else
+          @include('notauth.nav')
+        @endif
+      @else  <!-- else not auth -->
+        @unless ($isPortalOrAdmin)
+          <!-- unauthauth nav -->
+          @include('notauth.nav')
+        @endunless
       @endauth
 
       <!-- content to be inserted -->
       @yield('content')
 
-      @auth
-      <!--  -->
-      @if(Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin'))
-      <!--  -->
+      @if (Auth::check())
+        @unless ($isPortalOrAdmin)
+          @include('notauth.footer')
+        @endunless
       @else
-      @include('notauth.footer')
-      @endif
-      @else
-      <!-- unauthauth footer -->
-
-      @include('notauth.footer')
+        @include('notauth.footer')
       @endauth
 
-      @if(Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin'))
-      <div class="col-span-2 ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
-        @else
-        <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
-          @endif
-          Laravel v
-          {{ Illuminate\Foundation\Application::VERSION }} (PHP v
-          {{ PHP_VERSION }})
-        </div>
+<div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 @if($isPortalOrAdmin) col-span-2 @endif">
+  Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+</div>
 
   </body>
 

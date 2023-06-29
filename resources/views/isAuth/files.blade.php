@@ -27,7 +27,7 @@
         <div class="w-[100%] px-2 flex justify-evenly">
 
           <!-- Tab 1 -->
-          <div class="accordion-item w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2" :class="{ 'border-b-2 grayscale': isActive !== 1 }">
+          <div class="accordion-item w-[90%] max-w-[800px] min-w-[140px] transition mx-auto my-1 py-2" :class="{ 'border-b-2 grayscale': isActive !== 1 }">
             <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 1 ? '' : isActive = 1">
               <div class="flex flex-nowrap justify-evenly w-[100%] flex-col">
                 <span class="mx-auto">@include('components.receivedfile')</span>
@@ -38,7 +38,7 @@
           <!-- Tab 1 -->
 
           <!-- Tab 2 -->
-          <div class="accordion-item w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2 border-l-2 border-r-2" :class="{ 'border-b-2 grayscale': isActive !== 2 }">
+          <div class="accordion-item w-[90%] max-w-[800px] min-w-[140px] transition mx-auto my-1 py-2 border-l-2 border-r-2" :class="{ 'border-b-2 grayscale': isActive !== 2 }">
             <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 2 ? '' : isActive = 2">
               <div class="flex flex-nowrap justify-evenly w-[100%] flex-col">
                 <span class="mx-auto">@include('components.sentfile')</span>

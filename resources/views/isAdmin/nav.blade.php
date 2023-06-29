@@ -25,39 +25,39 @@
 
 
    <ul class="z-20 flex flex-col pb-2 mt-[3.5rem] min-h-[86vh] fixed w-[100px]" x-show="isActive" :class="{ 'hidden': !isActive }">
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/dashboard">
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/dashboard">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Dashboard</span>
      </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/transmisions">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Transmisions</span>
-     </a>
-
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/files">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Files</span>
-     </a>
-
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/users">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Users</span>
-     </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/messages">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Messages</span>
-     </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/plans">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Plans</span>
-     </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/server">
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/server">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Server</span>
      </a>
 
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/files">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Files</span>
+     </a>
+
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/plans">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Plans</span>
+     </a>
+
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/messages">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Messages</span>
+     </a>
      
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/portal/profile">
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/users">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Users</span>
+     </a>
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/notifications">
+       <span class="absolute bg-white inset-0 z-10 rounded"></span>
+       <span class="z-20 relative">Notifications</span>
+     </a>
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/profile">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Profile</span>
      </a>

@@ -1,6 +1,8 @@
 @auth
     @php
-        $controlString = substr(Auth::user()->controlstring, 1, 2);
+        $controlString = auth()->user()->controlstring;
+        $controlString = strlen($controlString) > 18 ? substr($controlString, 1, 2) : '';
+        
         $isPersonalStarter = $controlString === '00' && $plan.' '.$type === 'Personal Starter Personal';
         $isPersonalBasic = $controlString === '01' && $plan.' '.$type === 'Personal Basic Personal';
         $isPersonalPremium = $controlString === '02' && $plan.' '.$type === 'Personal Premium Personal';

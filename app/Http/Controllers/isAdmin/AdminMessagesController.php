@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class PlansController extends Controller
+class AdminMessagesController extends Controller
 {
     public function get() {
-        return view("isadmin.plans");
+        return view("isadmin.messages");
     }
 }

@@ -18,6 +18,7 @@ export default {
 				infiniteLoop: "infiniteLoop .8s infinite",
 				infiniteLoop2: "infiniteLoop2 .8s infinite",
 				growNshrink: "growNshrink 5s infinite",
+				fadeIN: "fadeIN .5s forwards",
             },
             keyframes: {
 				infiniteLoop: {
@@ -34,6 +35,10 @@ export default {
 					"0%": { transform: "scale(1.08)" },
 					"50%": { transform: "scale(1.1)" },
 					"100%": { transform: "scale(1.08)" },
+				},
+				fadeIN: {
+					"0%": { transform: "translateY(30%)", opacity: 0 },
+					"100%": { transform: "translateY(0%)", opacity: 1 },
 				},
             },
         },
