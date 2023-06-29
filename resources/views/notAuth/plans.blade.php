@@ -66,15 +66,15 @@
               <p class="text-3xl font-bold">
                 @if($plan['price'] == 0)
                     <span class="text-lg">Pay As You Go</span>
-                @else
-                    <span class="text-base">£</span>
-                    <template x-if="isMonthly">
-                        <span x-text="{{ $plan['price'] }}"></span>/month
-                    </template>
-                    <template x-if="!isMonthly">
-                        <span x-text="{{ $plan['price'] }} * 12"></span>/year
-                    </template>
-                @endif
+               @else
+                  <span class="text-base">£</span>
+                  <template x-if="isMonthly">
+                      <span x-text="parseFloat({{ $plan['price'] }}).toFixed(2)"></span>/month
+                  </template>
+                  <template x-if="!isMonthly">
+                      <span x-text="(parseFloat({{ $plan['price'] }}) * 12).toFixed(2)"></span>/year
+                  </template>
+              @endif
               </p>
               <p class="border-b-2 my-4"></p>
               <div class="flex flex-col items-start  text-start grow">
