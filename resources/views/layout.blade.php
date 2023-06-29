@@ -108,14 +108,12 @@
         <div class="flex flex-nowrap">
 
           @if (Auth::check())
-            @if ($isPortalOrAdmin)
-                <!--  -->
-            @else
-          <!-- show portal button -->
-          <a href="{{ url($portalUrl) }}" class="text-sm text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">
-            {{ Auth::user()->isAdmin() ? 'Enter Admin Portal' : 'Enter Customer Portal' }}
-          </a>
-          @endif
+            @unless ($isPortalOrAdmin)
+              <!-- show portal button -->
+              <a href="{{ url($portalUrl) }}" class="text-sm text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">
+                {{ Auth::user()->isAdmin() ? 'Enter Admin Portal' : 'Enter Customer Portal' }}
+              </a>
+            @endunless
           
           @else
           <a href="{{ route('login') }}" class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Log in</a>
