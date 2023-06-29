@@ -18,9 +18,79 @@
   <!-- Hero END -->
 
   <!-- Dashboard - START -->
-  <div class="grid grid-cols-4 max-[1100px]:grid-cols-3 max-[800px]:grid-cols-2 grid-rows-auto py-6 gap-2">
+  <div class="grid grid-cols-1 py-6 gap-2">
 
+    <!-- Notifications Container - START -->
+    <div class="flex flex-col gap-2">
 
+      <!-- Notifications Card - START -->
+      <div class="flex p-2 m-1 shadow-xl max-[400px]:flex-col items-center">
+        <div class="flex flex-col">
+          <span class="mx-auto relative scale-[0.6]">
+            <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+            <span class="absolute top-0 right-0" title="Business Premium">@include('components.rank')</span>
+          </span>
+        </div>
+        <!-- Notif. Msg. -->
+        <p class="grow">Some User Name has sent you some files.</p>
+        <!-- Notif. Actions -->
+        <div class="flex flex-col flex-wrap justify-center items-center">
+          <span class="text-xs">
+            {{ date('Y-m-d H:i:s') }}</span>
+          <div class="flex flex-wrap">
+            <button class="text-xs text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Toggle Read/Unread</button>
+            <button class="text-xs text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c3]">Delete</button>
+          </div>
+        </div>
+      </div>
+      <!-- Notifications Card - END -->
+
+      <!-- Notifications Card - START -->
+      <div class="flex p-2 m-1 shadow-xl max-[400px]:flex-col items-center">
+        <div class="flex flex-col">
+          <span class="mx-auto relative scale-[0.6]">
+            <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+            <span class="absolute top-0 right-0" title="Business Premium">@include('components.rank')</span>
+          </span>
+        </div>
+        <!-- Notif. Msg. -->
+        <p class="grow">Some User Name has received your files.</p>
+        <!-- Notif. Actions -->
+        <div class="flex flex-col flex-wrap justify-center items-center">
+          <span class="text-xs">
+            {{ date('Y-m-d H:i:s') }}</span>
+          <div class="flex flex-wrap">
+            <button class="text-xs text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Toggle Read/Unread</button>
+            <button class="text-xs text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c3]">Delete</button>
+          </div>
+        </div>
+      </div>
+      <!-- Notifications Card - END -->
+
+      <!-- Notifications Card - START -->
+      <div class="flex p-2 m-1 shadow-xl max-[400px]:flex-col items-center">
+        <div class="flex flex-col">
+          <span class="mx-auto relative scale-[0.6]">
+            <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+            <span class="absolute top-0 right-0" title="Business Premium">@include('components.rank')</span>
+          </span>
+        </div>
+        <!-- Notif. Msg. -->
+        <p class="grow">Some User Name has downloading your files.</p>
+        <!-- Notif. Actions -->
+        <div class="flex flex-col flex-wrap justify-center items-center">
+          <span class="text-xs">
+            {{ date('Y-m-d H:i:s') }}</span>
+          <div class="flex flex-wrap">
+            <button class="text-xs text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Toggle Read/Unread</button>
+            <button class="text-xs text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c3]">Delete</button>
+          </div>
+        </div>
+      </div>
+      <!-- Notifications Card - END -->
+
+    </div>
+    <!-- Notifications Container - END -->
   </div>
   <!-- Dashboard - END -->
 
