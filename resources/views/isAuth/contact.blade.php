@@ -4,7 +4,6 @@
 @section('content')
 <span :class="{ 'hidden': !isActive }"></span>
 <div  :class="{ 'col-span-2': !isActive }">
-  
   <!-- Hero START -->
 <div class="relative flex flex-col h-100 overflow-hidden">
   <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
@@ -17,7 +16,8 @@
     </div>
   </div>
   <!-- Hero END -->
-
+  
+  
   <!-- Contact - START -->
   <!-- Contact Search - START -->
   <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-4 p-2">
@@ -47,108 +47,27 @@
   
   <!-- List Of Contacts - START -->
   <div class="flex flex-wrap justify-center py-2 px-2 transition-all">
+    @foreach(json_decode(Auth()->user()->contacts) as $contact)
     <!-- Contact Card - START -->
-    <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
-      <span class="mx-auto relative">
-        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
-      </span>
+    <form class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
+        @csrf
+        <span class="mx-auto relative">
+            <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
+        </span>
       
-      <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
-      <p class="text-xs text-center line-clamp-1" title="User Email">UserEmail@email.user</p>
+        <p class="text-xs text-center line-clamp-1 font-bold" title="{{ $contact->name }}" name="name">{{ $contact->name }}</p>
+        <p class="text-xs text-center line-clamp-1" title="{{ $contact->email }}" name="email">{{ $contact->email }}</p>
     
-      <div class="flex flex-nowrap items-center justify-center gap-4">
-        <button title="Send File">@include('components.sendfilesvg')</button>
-        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
-        <button title="Delete Contact">@include('components.deleteusersvg')</button>
-      </div>
-    </div>
+        <div class="flex flex-nowrap items-center justify-center gap-4">
+            <button formmethod="get" formaction="/portal/files?{{ $contact->email }}?send" title="Send File">@include('components.sendfilesvg')</button>
+            <a title="Send Email" href="mailto:{{ $contact->email }}?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
+            <button formmethod="post" formaction="/portal/contact/{{ $contact->email }}/delete" title="Delete Contact">@include('components.deleteusersvg')</button>
+        </div>
+    </form>
     <!-- Contact Card - END -->
-    <!-- Contact Card - START -->
-    <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
-      <span class="mx-auto relative">
-        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
-      </span>
-      
-      <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
-      <p class="text-xs text-center line-clamp-1" title="User Email">UserEmail@email.user</p>
+    @endforeach
+
     
-      <div class="flex flex-nowrap items-center justify-center gap-4">
-        <button title="Send File">@include('components.sendfilesvg')</button>
-        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
-        <button title="Delete Contact">@include('components.deleteusersvg')</button>
-      </div>
-    </div>
-    <!-- Contact Card - END -->
-    <!-- Contact Card - START -->
-    <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
-      <span class="mx-auto relative">
-        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
-      </span>
-      
-      <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
-      <p class="text-xs text-center line-clamp-1" title="User Email">UserEmail@email.user</p>
-    
-      <div class="flex flex-nowrap items-center justify-center gap-4">
-        <button title="Send File">@include('components.sendfilesvg')</button>
-        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
-        <button title="Delete Contact">@include('components.deleteusersvg')</button>
-      </div>
-    </div>
-    <!-- Contact Card - END -->
-    <!-- Contact Card - START -->
-    <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
-      <span class="mx-auto relative">
-        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
-      </span>
-      
-      <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
-      <p class="text-xs text-center line-clamp-1" title="User Email">UserEmail@email.user</p>
-    
-      <div class="flex flex-nowrap items-center justify-center gap-4">
-        <button title="Send File">@include('components.sendfilesvg')</button>
-        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
-        <button title="Delete Contact">@include('components.deleteusersvg')</button>
-      </div>
-    </div>
-    <!-- Contact Card - END -->
-    <!-- Contact Card - START -->
-    <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
-      <span class="mx-auto relative">
-        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
-      </span>
-      
-      <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
-      <p class="text-xs text-center line-clamp-1" title="User Email">UserEmail@email.user</p>
-    
-      <div class="flex flex-nowrap items-center justify-center gap-4">
-        <button title="Send File">@include('components.sendfilesvg')</button>
-        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
-        <button title="Delete Contact">@include('components.deleteusersvg')</button>
-      </div>
-    </div>
-    <!-- Contact Card - END -->
-    <!-- Contact Card - START -->
-    <div class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
-      <span class="mx-auto relative">
-        <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
-        <span class="absolute top-0 right-0"  title="Business Premium">@include('components.rank',['cs' => '01'])</span>
-      </span>
-      
-      <p class="text-xs text-center line-clamp-1 font-bold" title="User Name aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa">Some User Name</p>
-      <p class="text-xs text-center line-clamp-1" title="User Email">UserEmail@email.user</p>
-    
-      <div class="flex flex-nowrap items-center justify-center gap-4">
-        <button title="Send File">@include('components.sendfilesvg')</button>
-        <a title="Send Email" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
-        <button title="Delete Contact">@include('components.deleteusersvg')</button>
-      </div>
-    </div>
-    <!-- Contact Card - END -->
   </div>
   <!-- List Of Contacts - END -->
   <!-- Contact - END -->
