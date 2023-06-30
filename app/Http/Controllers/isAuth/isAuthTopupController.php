@@ -11,6 +11,11 @@ class isAuthTopupController extends Controller
 {
     public function get()
     {
+        // in case user refreshes the page after successfull topup
+        $balance = session('balance');
+        $status = session('status');
+        $message = session('message');
+        
         // Retrieve the email of the authenticated user
         $email = Auth::user()->email;
         // Retrieve the user's balance
@@ -18,12 +23,16 @@ class isAuthTopupController extends Controller
         
         $balance = $user ? $user->balance : null;
 
-        return view("isauth.topup", ['balance' => $balance]);
+        return view('isauth.topup', [
+            'balance' => $balance,
+            'status' => $status,
+            'message' => $message
+        ]);
     }
 
     public function post(Request $request)
     {
-        
+       
         // Retrieve the email of the authenticated user
         $email = Auth::user()->email;
         // Retrieve the user's record
@@ -46,7 +55,7 @@ class isAuthTopupController extends Controller
             $user->save();
             // Redirect the user to a success page or perform any other desired action
             
-            return view('isauth.topup', ['balance' => $user->balance, 'status' => 'success', 'message' => '✅ Success! £'.$amount.' has been added to your account!']);
+            return redirect()->route('isauth.topup')->with(['balance' => $user->balance, 'status' => 'success', 'message' => '✅ Success! £' . $amount . ' has been added to your account!']);
         } else {
             // User not found, handle the error appropriately
             return view('isauth.topup', ['balance' => $user->balance, 'status' => 'fail', 'message' => '❌ User not found. !?']);

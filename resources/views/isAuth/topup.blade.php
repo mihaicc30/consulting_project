@@ -18,8 +18,7 @@
   </div>
   <!-- Hero END -->
 
-
-  @if($status)
+  @if(isset($status))
     @if($status === "success")
     <div class="flex justify-between p-4 my-2 bg-[#51ee5170] animate-fadeIN">
       <p>{{$message}}</p>
@@ -31,7 +30,6 @@
       <button onclick="this.parentElement.remove()">@include('components.closebutton')</button>
     </div>
     @endif
-
   @endif
 
   @if(substr(Auth::user()->controlstring, 2, 1) !== '0')

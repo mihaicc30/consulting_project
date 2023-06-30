@@ -66,7 +66,7 @@ Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(funct
     Route::get('/contact', [isAuthContactController::class, 'get']);
 
     
-    Route::get('/topup', [isAuthTopupController::class, 'get']);
+    Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isauth.topup');
     Route::post('/topup', [isAuthTopupController::class, 'post']);
 
 
