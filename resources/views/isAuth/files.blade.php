@@ -19,7 +19,7 @@
   <!-- Hero END -->
 
   <!-- Files - START -->
-  <div class="flex flex-col py-6 border-2 border-[#e6e6e6] rounded-lg" x-data="{ isActive: 1 }">
+  <div class="flex flex-col py-6 border-2 border-[#e6e6e6] rounded-lg" x-data="{ isActive: 2 }">
 
     <div class="widget col-span-2 flex flex-col ">
       <!--  -->
@@ -27,26 +27,39 @@
         <div class="w-[100%] px-2 flex justify-evenly">
 
           <!-- Tab 1 -->
-          <div class="accordion-item w-[90%] max-w-[800px] min-w-[140px] transition mx-auto my-1 py-2" :class="{ 'border-b-2 grayscale': isActive !== 1 }">
-            <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 1 ? '' : isActive = 1">
-              <div class="flex flex-nowrap justify-evenly w-[100%] flex-col">
-                <span class="mx-auto">@include('components.receivedfile')</span>
+          <div class="accordion-item flex w-[60%] max-w-[800px] min-w-[100px] transition justify-center mx-auto my-1 py-2" :class="{ 'border-b-2 grayscale': isActive !== 1 }">
+            <div class="accordion-header w-[60%] cursor-pointer flex justify-center items-center transition text-start" @click="isActive === 1 ? '' : isActive = 1">
+              <div class="flex flex-nowrap justify-evenly w-[60%] flex-col">
+                <span class="mx-auto w-[100%] max-w-[125px] max-h-[125px]">@include('components.receivedfile')</span>
                 <p class="text-sm text-center line-clamp-1 font-bold">Received</p>
               </div>
             </div>
           </div>
           <!-- Tab 1 -->
 
+          
           <!-- Tab 2 -->
-          <div class="accordion-item w-[90%] max-w-[800px] min-w-[140px] transition mx-auto my-1 py-2 border-l-2 border-r-2" :class="{ 'border-b-2 grayscale': isActive !== 2 }">
-            <div class="accordion-header cursor-pointer flex justify-between transition text-start" @click="isActive === 2 ? '' : isActive = 2">
-              <div class="flex flex-nowrap justify-evenly w-[100%] flex-col">
-                <span class="mx-auto">@include('components.sentfile')</span>
-                <p class="text-sm text-center line-clamp-1 font-bold">Sent</p>
+          <div class="accordion-item flex w-[60%] max-w-[800px] min-w-[100px] transition justify-center mx-auto my-1 py-2 border-l-2 border-r-2" :class="{ 'border-b-2 grayscale': isActive !== 2 }">
+            <div class="accordion-header w-[60%] cursor-pointer flex justify-center items-center transition text-start" @click="isActive === 2 ? '' : isActive = 2">
+              <div class="flex flex-nowrap justify-evenly w-[60%] flex-col">
+                <span class="mx-auto w-[100%] max-w-[125px] max-h-[125px]">@include('components.sendfile')</span>
+                <p class="text-sm text-center line-clamp-1 font-bold">Send New</p>
               </div>
             </div>
           </div>
           <!-- Tab 2 -->
+
+
+          <!-- Tab 3 -->
+          <div class="accordion-item flex w-[60%] max-w-[800px] min-w-[100px] transition justify-center mx-auto my-1 py-2 border-l-2 border-r-2" :class="{ 'border-b-2 grayscale': isActive !== 3 }">
+            <div class="accordion-header w-[60%] cursor-pointer flex justify-center items-center transition text-start" @click="isActive === 3 ? '' : isActive = 3">
+              <div class="flex flex-nowrap justify-evenly w-[60%] flex-col">
+                <span class="mx-auto w-[100%] max-w-[125px] max-h-[125px]">@include('components.sentfile')</span>
+                <p class="text-sm text-center line-clamp-1 font-bold">Sent</p>
+              </div>
+            </div>
+          </div>
+          <!-- Tab 3 -->
 
         </div>
       </div>
@@ -194,8 +207,50 @@
       </div>
       <!-- Received Tab Content - END -->
 
+
+       <!-- Send New Tab Content - START -->
+      <div class="accordion-content transition grid grid-cols-1 justify-items-center" x-show="isActive === 2">
+        <script>
+          fetch("https://api.ipify.org?format=json").then(async(r)=>{document.getElementById("userip").value = (await r.json()).ip })
+        </script>
+        <form action="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4 p-2 max-w-[500px] w-[100%]" >
+          <!-- User Details -->
+          <div class="grid grid-cols-1 gap-1 w-[100%]">
+            <p class="border-b-2">Sender</p>
+            <input class="rounded text-sm" type="text" value="Loading..." id="userip" readonly placeholder="Ip Address">
+            <input class="rounded text-sm" type="text" value="{{ Auth::user()->name }}" id="useremail" placeholder="User Email">
+            <input class="rounded text-sm" type="text" value="{{ Auth::user()->email }}" id="userdisplayname" placeholder="User Name">
+          </div>
+
+          <!-- Receiver Details -->
+          <div class="grid grid-cols-1 gap-1 w-[100%]">
+            <p class="border-b-2">Receiver</p>
+            <input class="rounded text-sm" type="text" value="" id="useremail" placeholder="Receiver Email*">
+            <input class="rounded text-sm" type="text" value="" id="userdisplayname" placeholder="Receiver Name (optional)">
+          </div>
+
+          <div class="flex flex-nowrap border-b-2">
+            <p class="mr-[5px]">Files</p><span>0</span><span>/</span><span>5</span>
+          </div>
+
+          <div class="flex flex-wrap gap-4 p-2 max-w-[500px] w-[100%]">
+            <input type="file" name="file" id="file1" class="m-2 p-2 shadow-xl" />
+            <input type="file" name="file" id="file2" class="m-2 p-2 shadow-xl" />
+            <input type="file" name="file" id="file3" class="m-2 p-2 shadow-xl" />
+            <input type="file" name="file" id="file4" class="m-2 p-2 shadow-xl" />
+            <input type="file" name="file" id="file5" class="m-2 p-2 shadow-xl" />
+          </div>
+
+          <button class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Send</button>
+        </form>
+        
+
+      </div>
+       <!-- Send New Tab Content - END -->
+
+
       <!-- Sent Tab Content - START -->
-      <div class="accordion-content transition" x-show="isActive === 2">
+      <div class="accordion-content transition" x-show="isActive === 3">
         <div class="relative flex flex-col flex-nowrap p-2">
 
           <!-- Paginate top half - START -->

@@ -331,7 +331,7 @@
             </div>
           </div>
           <!-- Transmision 3 -->
-          <a href="/portal/transmisions" class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2] text-center">Check Full Activity</a>
+          <a href="/admin/notifications" class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2] text-center">Check Full Activity</a>
 
         </div>
         <!-- Last 3 Transmisions - END -->

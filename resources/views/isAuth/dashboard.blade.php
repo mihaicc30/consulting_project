@@ -260,7 +260,7 @@
       <div class="flex flex-nowrap justify-evenly">
         <div class="flex flex-col p-1 items-center">
           <p class="text-center text-sm font-bold">Received</p>
-          <div class="flex flex-nowrap overflow-hidden">
+          <div class="flex flex-nowrap overflow-hidden max-h-[100px] max-w-[100px]">
             @include('components.receivedfile')
           </div>
           <p class="text-xl font-bold text-center pb-2">234</p>
@@ -268,7 +268,7 @@
         <!--  -->
         <div class="flex flex-col p-1 items-center">
           <p class="text-center text-sm font-bold">Sent</p>
-          <div class="flex flex-nowrap overflow-hidden">
+          <div class="flex flex-nowrap overflow-hidden max-h-[100px] max-w-[100px]">
             @include('components.sentfile')
           </div>
           <p class="text-xl font-bold text-center pb-2">45</p>

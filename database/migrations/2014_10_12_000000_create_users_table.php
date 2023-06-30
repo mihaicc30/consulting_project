@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('controlstring', 20)->default('10010000000000000000');  // more clarification of the string in the 2023_06_24_191025_create_vepost_user_table.php
+            $table->string('controlstring', 20)->default('10000000000000000000');  // more clarification of the string in the 2023_06_24_191025_create_vepost_user_table.php
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -23,31 +23,6 @@ return new class extends Migration
         });
     }
 
-//  controll string
-// - account state - active 1 / locked 0
-// - user group - personal 0 / business 1
-// - user plan - topup 0 / starter 1 / basic 2 / premium 3
-// - number of users?  0 is 1-9 users / 1 is 10-19 users / 2 is 20-29 users / ... / 9 is 90-100 users / 
-// - allowed package size - 0 50mb / 1 100mb/ 2 150mb / 3 200mb /..... / 9 subscription (apparently unlimited)
-
-// now to assign the rest of them? for example
-
-// - desktop user - 0 allowed / 1 denied
-// - web user - 0 allowed / 1 denied
-// - token number ?   - reserve two digits - max 99
-// - token number ?   - reserve two digits - max 99
-// - 
-// -
-// -
-// -
-// -
-// -
-// -
-// -
-// -
-// -
-// - last number -  admin ? - 0 no - 1 yes
-// 
     /**
      * Reverse the migrations.
      */
