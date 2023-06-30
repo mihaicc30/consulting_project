@@ -63,12 +63,13 @@ Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(funct
     Route::get('/dashboard',[isAuthDashboardController::class, 'get']);
     Route::get('/files', [isAuthFilesController::class, 'get']);
     Route::get('/plans', [isAuthPlansController::class, 'get']);
-    Route::get('/contact', [isAuthContactController::class, 'get']);
 
-    
+    Route::get('/contact', [isAuthContactController::class, 'get']);
+    Route::post('/contact/{email}/delete', [isAuthContactController::class, 'delete']);
+
+
     Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isauth.topup');
     Route::post('/topup', [isAuthTopupController::class, 'post']);
-
 
     Route::get('/notifications', [isAuthNotificationsController::class, 'get']);
 

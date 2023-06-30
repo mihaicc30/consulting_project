@@ -20,7 +20,9 @@ class EzepostUser extends Model
         'status',
         'free_send_left',
     ];
-
+    protected $hidden = [
+        'password',
+    ];
     // Timestamps
     public $timestamps = true;
 
