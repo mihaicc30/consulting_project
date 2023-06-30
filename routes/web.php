@@ -69,7 +69,6 @@ Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(funct
     Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isauth.topup');
     Route::post('/topup', [isAuthTopupController::class, 'post']);
 
-
     Route::get('/notifications', [isAuthNotificationsController::class, 'get']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
