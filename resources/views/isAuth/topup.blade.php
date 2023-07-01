@@ -74,7 +74,17 @@
         <option value="eur">EUR</option>
         <option selected value="gbp">GBP</option>
       </select>
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-name="Top-up" data-description="Top-up Amount" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-label="Checkout" data-allow-remember-me="true" data-email="{{ Auth::user()->email }}"></script>
+      <script src="https://checkout.stripe.com/checkout.js"
+       class="stripe-button"
+        data-key="{{ env('STRIPE_KEY') }}"
+        data-name="Top-up"
+        data-description="Top-up Amount"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto"
+        data-label="Checkout"
+        data-allow-remember-me="true" 
+        data-email="{{ Auth::user()->email }}"
+        ></script>
 
     </form>
     <div class="flex flex-col items-center justify-center">

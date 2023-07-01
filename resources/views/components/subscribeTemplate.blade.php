@@ -22,7 +22,7 @@
     @else
         <form method="POST" action="/portal/plans">
             @csrf
-            <button class="bg-[--c2] p-2 rounded text-white font-bold" type="submit">Subscribe</button>
+            <button class="bg-[--c2] p-2 rounded text-white font-bold" type="submit">Upgrade</button>
         </form>
     @endif
 @else
