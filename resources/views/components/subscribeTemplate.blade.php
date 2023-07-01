@@ -1,16 +1,20 @@
+
 @auth
     @php
         $controlString = auth()->user()->controlstring;
         $controlString = strlen($controlString) > 18 ? substr($controlString, 1, 2) : '';
-        
-        $isPersonalStarter = $controlString === '00' && $plan.' '.$type === 'Personal Starter Personal';
-        $isPersonalBasic = $controlString === '01' && $plan.' '.$type === 'Personal Basic Personal';
-        $isPersonalPremium = $controlString === '02' && $plan.' '.$type === 'Personal Premium Personal';
-        $isTopUpPersonal = $controlString === '03' && $plan.' '.$type === 'Top-up Personal';
-        $isBusinessStarter = $controlString === '10' && $plan.' '.$type === 'Business Starter Business';
-        $isBusinessBasic = $controlString === '11' && $plan.' '.$type === 'Business Basic Business';
-        $isBusinessPremium = $controlString === '12' && $plan.' '.$type === 'Business Premium Business';
-        $isTopUpBusiness = $controlString === '13' && $plan.' '.$type === 'Top-up Business';
+
+        $isTopUpPersonal = $controlString === '00' && $plan === 'Personal Top-up';
+        $isTopUpBusiness = $controlString === '10' && $plan === 'Business Top-up';
+
+        $isPersonalStarter = $controlString === '01' && $plan === 'Personal Starter';
+        $isPersonalBasic = $controlString === '02' && $plan === 'Personal Basic';
+        $isPersonalPremium = $controlString === '03' && $plan === 'Personal Premium';
+
+        $isBusinessStarter = $controlString === '11' && $plan === 'Business Starter';
+        $isBusinessBasic = $controlString === '12' && $plan === 'Business Basic';
+        $isBusinessPremium = $controlString === '13' && $plan === 'Business Premium';
+
     @endphp
 
     @if($isPersonalStarter || $isPersonalBasic || $isPersonalPremium || $isTopUpPersonal || $isBusinessStarter || $isBusinessBasic || $isBusinessPremium || $isTopUpBusiness)
