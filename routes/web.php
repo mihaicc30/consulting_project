@@ -28,8 +28,6 @@ use App\Http\Controllers\notAuth\AboutController;
 use App\Http\Controllers\notAuth\SubscribeController;
 use App\Http\Controllers\notAuth\DownloadController;
 
-use App\Http\Controllers\PWResetController;
-
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\NewsletterController;
 /*
@@ -53,9 +51,6 @@ Route::get('/download', [DownloadController::class, 'index']);
 Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
 Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->name('newsletter-form');
-
-Route::get('/password-reset', [PWResetController::class, 'email']);
-Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
 
 Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {  
 
