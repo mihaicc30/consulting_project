@@ -77,7 +77,7 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
 });
 
 
-Route::middleware('auth')->middleware('admin')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('/',[AdminDashboardController::class, 'get']);
     Route::get('/dashboard',[AdminDashboardController::class, 'get']);

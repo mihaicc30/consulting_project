@@ -73,7 +73,7 @@
                   <span x-text="{{ $plan['price'] }}"></span>/month
                 </template>
                 <template x-if="!isMonthly">
-                  <span x-text="{{ $plan['price'] }} * 12"></span>/year
+                <span x-text="parseFloat({{ $plan['price'] }}).toFixed(2) * 12"></span>/year
                 </template>
                 @endif
               </p>
@@ -131,7 +131,7 @@
                   <span x-text="{{ $plan['price'] }}"></span>/month
                 </template>
                 <template x-if="!isMonthly">
-                  <span x-text="{{ $plan['price'] }} * 12"></span>/year
+                <span x-text="parseFloat({{ $plan['price'] }}).toFixed(2) * 12"></span>/year
                 </template>
                 @endif
               </p>
@@ -152,7 +152,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              @include('components.subscribeTemplate', ['rank' => $plan['name'], 'type' => $plan['type'] ] )
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'] ] )
             </div>
             <!-- Plan Card - END-->
             @endif
