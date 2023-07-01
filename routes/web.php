@@ -57,14 +57,15 @@ Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->nam
 Route::get('/password-reset', [PWResetController::class, 'email']);
 Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
 
-Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(function () {  
+Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {  
 
     Route::get('/',[isAuthDashboardController::class, 'get']);
     Route::get('/dashboard',[isAuthDashboardController::class, 'get']);
     Route::get('/files', [isAuthFilesController::class, 'get']);
     Route::get('/plans', [isAuthPlansController::class, 'get']);
 
-    Route::get('/contact', [isAuthContactController::class, 'get']);
+    Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
+    Route::post('/contact', [isAuthContactController::class, 'add']);
     Route::post('/contact/{email}/delete', [isAuthContactController::class, 'delete']);
 
 
