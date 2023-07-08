@@ -30,7 +30,7 @@
         @include('components.token')
         <p  class="text-center font-bold">Top-Up</p>
         <div class="flex justify-evenly flex-col w-[100%] items-center">
-        <p class="text-center">Tokens Left: <span>{{ substr(Auth::user()->controlstring, 7, 2) }}</span></p>
+        <p class="text-center">Balance: <span>{{ substr(Auth::user()->controlstring, 7, 2) }}</span></p>
 
 
         </div>
