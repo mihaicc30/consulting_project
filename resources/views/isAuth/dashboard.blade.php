@@ -3,7 +3,6 @@
 @section('content')
 <span :class="{ 'hidden': !isActive }"></span>
 <div :class="{ 'col-span-2': !isActive }">
-
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
     <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
@@ -20,7 +19,6 @@
   <!-- Dashboard - START -->
   <div class="grid grid-cols-5 max-[1500px]:grid-cols-4 max-[1100px]:grid-cols-3 max-[800px]:grid-cols-2 grid-rows-auto py-6 gap-2">
 
-  
   @if(substr(Auth::user()->controlstring, 2, 1) === '0')
     <!-- Widget Start current plan / if tokens also show 2nd widget with how many tokens-->
     <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReciving: false, isSending: true}">
@@ -31,7 +29,6 @@
         <p  class="text-center font-bold">Top-Up</p>
         <div class="flex justify-evenly flex-col w-[100%] items-center">
         <p class="text-center">Balance: <span>{{ substr(Auth::user()->controlstring, 7, 2) }}</span></p>
-
 
         </div>
      </div>
@@ -260,7 +257,7 @@
       <div class="flex flex-nowrap justify-evenly">
         <div class="flex flex-col p-1 items-center">
           <p class="text-center text-sm font-bold">Received</p>
-          <div class="flex flex-nowrap overflow-hidden">
+          <div class="flex flex-nowrap overflow-hidden max-h-[100px] max-w-[100px]">
             @include('components.receivedfile')
           </div>
           <p class="text-xl font-bold text-center pb-2">234</p>
@@ -268,7 +265,7 @@
         <!--  -->
         <div class="flex flex-col p-1 items-center">
           <p class="text-center text-sm font-bold">Sent</p>
-          <div class="flex flex-nowrap overflow-hidden">
+          <div class="flex flex-nowrap overflow-hidden max-h-[100px] max-w-[100px]">
             @include('components.sentfile')
           </div>
           <p class="text-xl font-bold text-center pb-2">45</p>

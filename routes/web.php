@@ -28,8 +28,6 @@ use App\Http\Controllers\notAuth\AboutController;
 use App\Http\Controllers\notAuth\SubscribeController;
 use App\Http\Controllers\notAuth\DownloadController;
 
-use App\Http\Controllers\PWResetController;
-
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\NewsletterController;
 /*
@@ -54,17 +52,21 @@ Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
 Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->name('newsletter-form');
 
-Route::get('/password-reset', [PWResetController::class, 'email']);
-Route::get('/password-reset/{id}', [PWResetController::class, 'index']);
-
-Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(function () {  
+Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {  
 
     Route::get('/',[isAuthDashboardController::class, 'get']);
     Route::get('/dashboard',[isAuthDashboardController::class, 'get']);
     Route::get('/files', [isAuthFilesController::class, 'get']);
     Route::get('/plans', [isAuthPlansController::class, 'get']);
-    Route::get('/contact', [isAuthContactController::class, 'get']);
-    Route::get('/topup', [isAuthTopupController::class, 'get']);
+
+    Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
+    Route::post('/contact', [isAuthContactController::class, 'add']);
+    Route::post('/contact/{email}/delete', [isAuthContactController::class, 'delete']);
+
+
+    Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isauth.topup');
+    Route::post('/topup', [isAuthTopupController::class, 'post']);
+
     Route::get('/notifications', [isAuthNotificationsController::class, 'get']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -75,7 +77,7 @@ Route::middleware('auth')->middleware('notadmin')->prefix('portal')->group(funct
 });
 
 
-Route::middleware('auth')->middleware('admin')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('/',[AdminDashboardController::class, 'get']);
     Route::get('/dashboard',[AdminDashboardController::class, 'get']);

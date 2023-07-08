@@ -108,7 +108,7 @@ $messages = [
   <div class="grid grid-cols-1 h-[80%] py-6 gap-2 overflow-y-scroll">
     <!-- Messages Header - START -->
       @foreach ($messages as $message)
-        <div onclick="setModal('{{ json_encode($message) }}')" @click="isModal = !isModal" class="grid grid-cols-[3fr_10fr_1fr] h-[50px] gap-4 bg-gradient-to-t from-gray-200 to-transparent scale-[.95] hover:scale-[.97] ease-in duration-300 shadow-md shadow-gray-900/30" >
+        <div onclick="setModal('{{ json_encode($message) }}')" @click="isModal = !isModal" class="grid grid-cols-[3fr_10fr_1fr] h-[50px] gap-4 hover:scale-[.97] p-2 m-1 shadow-xl transition" >
             <p class="text-start flex flex-col line-clamp-2 {{ $message['status'] === 'unread' ? 'font-bold' : '' }}">
               <span class="text-sm line-clamp-1">{{ $message['name'] }}</span>
               <span class="text-sm line-clamp-1">{{ $message['email'] }}</span>
