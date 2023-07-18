@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('displayname')->nullable();
             $table->string('controlstring', 20)->default('10000000000000000000');
-            $table->decimal('balance', 10, 2)->default(0.00);
-            $table->string('vepost_counter')->default('10');
+            $table->string('vepost_counter')->default('10'); // 
             $table->string('status')->default('0');
             $table->string('free_send_left')->nullable();
             $table->timestamps();

@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Http\Controllers\isAuth;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Models\Topup;
-use App\Models\EzepostUser;
+use App\Models\VepostUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
@@ -17,12 +19,12 @@ class isAuthTopupController extends Controller
         $balance = session('balance');
         $status = session('status');
         $message = session('message');
-        
+
         // Retrieve the email of the authenticated user
         $email = Auth::user()->email;
         // Retrieve the user's balance
-        $user = EzepostUser::where('username', $email)->first();
-        
+        $user = VepostUser::where('username', $email)->first();
+
         $balance = $user ? $user->balance : null;
 
         return view('isauth.topup', [
@@ -34,12 +36,12 @@ class isAuthTopupController extends Controller
 
     public function post(Request $request)
     {
-       
+
         // Retrieve the email of the authenticated user
         $email = Auth::user()->email;
         // Retrieve the user's record
-        $user = EzepostUser::where('username', $email)->first();
-        
+        $user = VepostUser::where('username', $email)->first();
+
         // Check if the user exists
         if ($user) {
             // Set your Stripe secret key
@@ -47,10 +49,10 @@ class isAuthTopupController extends Controller
             // Get the amount to top up from the form submission
             $amount = $request->input('amount');
             $currency = $request->input('currency');
-            
+
             // Perform validation on the amount if needed
             // ...
-            if($amount < 1){
+            if ($amount < 1) {
                 return view('isauth.topup', ['balance' => $user->balance, 'status' => 'fail', 'message' => '❌ Minimum payment not reached.']);
             }
 
@@ -61,21 +63,18 @@ class isAuthTopupController extends Controller
                 'description' => 'Top-up amount', // Change this to your desired description
             ]);
 
-             // Handle the response from Stripe
-           if ($charge->status === 'succeeded') {
+            // Handle the response from Stripe
+            if ($charge->status === 'succeeded') {
                 // Update the user's balance
                 $user->balance += $amount;
                 $user->save();
                 // Redirect the user to a success page or perform any other desired action
-                
+
                 return redirect()->route('isauth.topup')->with(['balance' => $user->balance, 'status' => 'success', 'message' => '✅ Success! £' . $amount . ' has been added to your account!']);
-                
             } else {
                 // Top-up failed, do something
                 return redirect()->back()->with('error', 'Top-up failed. Please try again.');
             }
-
-            
         } else {
             // User not found, handle the error appropriately
             return view('isauth.topup', ['balance' => $user->balance, 'status' => 'fail', 'message' => '❌ User not found. !?']);

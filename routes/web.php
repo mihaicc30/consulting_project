@@ -52,11 +52,11 @@ Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
 Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->name('newsletter-form');
 
-Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {  
+Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
 
-    Route::get('/',[isAuthDashboardController::class, 'get']);
-    Route::get('/dashboard',[isAuthDashboardController::class, 'get']);
-    Route::get('/files', [isAuthFilesController::class, 'get']);
+    Route::get('/', [isAuthDashboardController::class, 'get']);
+    Route::get('/dashboard', [isAuthDashboardController::class, 'get']);
+    Route::get('/files', [isAuthFilesController::class, 'get'])->name('files');
     Route::get('/plans', [isAuthPlansController::class, 'get']);
 
     Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
@@ -73,21 +73,23 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::delete('/delete-contact/{username}', [isAuthContactController::class, 'delete'])->name('delete.contact');
+
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
 
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
-    Route::get('/',[AdminDashboardController::class, 'get']);
-    Route::get('/dashboard',[AdminDashboardController::class, 'get']);
-    Route::get('/server',[AdminServerController::class, 'get']);
-    Route::get('/files',[AdminFilesController::class, 'get']);
-    Route::get('/plans',[AdminPlansController::class, 'get']);
-    Route::get('/messages',[AdminMessagesController::class, 'get']);
-    Route::get('/users',[AdminUsersController::class, 'get']);
-    Route::get('/notifications',[AdminNotificationsController::class, 'get']);
-   
+    Route::get('/', [AdminDashboardController::class, 'get']);
+    Route::get('/dashboard', [AdminDashboardController::class, 'get']);
+    Route::get('/server', [AdminServerController::class, 'get']);
+    Route::get('/files', [AdminFilesController::class, 'get']);
+    Route::get('/plans', [AdminPlansController::class, 'get']);
+    Route::get('/messages', [AdminMessagesController::class, 'get']);
+    Route::get('/users', [AdminUsersController::class, 'get']);
+    Route::get('/notifications', [AdminNotificationsController::class, 'get']);
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
