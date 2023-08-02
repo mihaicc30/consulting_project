@@ -57,4 +57,9 @@ class User extends Authenticatable
         'password' => 'hashed',
         'contacts' => 'array',
     ];
+
+    public function vepostUser()
+    {
+        return $this->hasOne(VepostUser::class, 'id', 'id');
+    }
 }

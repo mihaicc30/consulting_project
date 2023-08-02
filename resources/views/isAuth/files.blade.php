@@ -217,7 +217,7 @@
     <!-- User Details -->
     <div class="grid grid-cols-1 gap-1 w-[100%]">
       <p class="border-b-2">Sender</p>
-      <input class="rounded text-sm" type="text" value="Loading..." id="userip" readonly placeholder="Ip Address">
+      <input class="rounded text-sm" type="text" value="Loading..." name="userip" id="userip" readonly placeholder="Ip Address">
       <input class="rounded text-sm" type="text" value="{{ Auth::user()->name }}" id="useremail" placeholder="User Email">
       <input class="rounded text-sm" type="text" value="{{ Auth::user()->email }}" id="userdisplayname" placeholder="User Name">
     </div>
@@ -225,8 +225,8 @@
     <!-- Receiver Details -->
     <div class="grid grid-cols-1 gap-1 w-[100%]">
       <p class="border-b-2">Receiver</p>
-      <input class="rounded text-sm" type="text" value="{{ request()->query('email') ? request()->query('email') : '' }}" id="useremail" placeholder="Receiver Email*">
-      <input class="rounded text-sm" type="text" value="{{ request()->query('name') ? request()->query('name') : '' }}" id="userdisplayname" placeholder="Receiver Name (optional)">
+      <input class="rounded text-sm" type="text" value="{{ request()->query('email') ? request()->query('email') : '' }}" name="useremail" id="useremail" placeholder="Receiver Email*">
+      <input class="rounded text-sm" type="text" value="{{ request()->query('name') ? request()->query('name') : '' }}" name="userdisplayname" id="userdisplayname" placeholder="Receiver Name (optional)">
     </div>
 
     <div class="flex flex-nowrap border-b-2">
