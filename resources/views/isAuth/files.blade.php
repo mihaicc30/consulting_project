@@ -207,45 +207,54 @@
       <!-- Received Tab Content - END -->
 
 
-       <!-- Send New Tab Content - START -->
-      <div class="accordion-content transition grid grid-cols-1 justify-items-center" x-show="isActive === 2">
-        <script>
-          fetch("https://api.ipify.org?format=json").then(async(r)=>{document.getElementById("userip").value = (await r.json()).ip })
-        </script>
-        <form action="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4 p-2 max-w-[500px] w-[100%]" >
-          <!-- User Details -->
-          <div class="grid grid-cols-1 gap-1 w-[100%]">
-            <p class="border-b-2">Sender</p>
-            <input class="rounded text-sm" type="text" value="Loading..." id="userip" readonly placeholder="Ip Address">
-            <input class="rounded text-sm" type="text" value="{{ Auth::user()->name }}" id="useremail" placeholder="User Email">
-            <input class="rounded text-sm" type="text" value="{{ Auth::user()->email }}" id="userdisplayname" placeholder="User Name">
+      <!-- Send New Tab Content - START -->
+<div class="accordion-content transition grid grid-cols-1 justify-items-center" x-show="isActive === 2">
+  <script>
+    fetch("https://api.ipify.org?format=json").then(async(r)=>{document.getElementById("userip").value = (await r.json()).ip })
+  </script>
+  <form action="{{ route('uploadImage') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4 p-2 max-w-[500px] w-[100%]" >
+    @csrf
+    <!-- User Details -->
+    <div class="grid grid-cols-1 gap-1 w-[100%]">
+      <p class="border-b-2">Sender</p>
+      <input class="rounded text-sm" type="text" value="Loading..." id="userip" readonly placeholder="Ip Address">
+      <input class="rounded text-sm" type="text" value="{{ Auth::user()->name }}" id="useremail" placeholder="User Email">
+      <input class="rounded text-sm" type="text" value="{{ Auth::user()->email }}" id="userdisplayname" placeholder="User Name">
+    </div>
+
+    <!-- Receiver Details -->
+    <div class="grid grid-cols-1 gap-1 w-[100%]">
+      <p class="border-b-2">Receiver</p>
+      <input class="rounded text-sm" type="text" value="{{ request()->query('email') ? request()->query('email') : '' }}" id="useremail" placeholder="Receiver Email*">
+      <input class="rounded text-sm" type="text" value="{{ request()->query('name') ? request()->query('name') : '' }}" id="userdisplayname" placeholder="Receiver Name (optional)">
+    </div>
+
+    <div class="flex flex-nowrap border-b-2">
+      <p class="mr-[5px]">Files</p><span>0</span><span>/</span><span>5</span>
+    </div>
+
+    <div class="flex flex-wrap gap-4 p-2 max-w-[500px] w-[100%]">
+      <!-- Add the file input elements with unique names -->
+      <input type="file" name="file" id="file1" class="m-2 p-2 shadow-xl" />
           </div>
 
-          <!-- Receiver Details -->
-          <div class="grid grid-cols-1 gap-1 w-[100%]">
-            <p class="border-b-2">Receiver</p>
-            <input class="rounded text-sm" type="text" value="{{ request()->query('email') ? request()->query('email') : '' }}" id="useremail" placeholder="Receiver Email*">
-            <input class="rounded text-sm" type="text" value="{{ request()->query('name') ? request()->query('name') : '' }}" id="userdisplayname" placeholder="Receiver Name (optional)">
-          </div>
+    <button type="submit" class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Send</button>
+  </form>
 
-          <div class="flex flex-nowrap border-b-2">
-            <p class="mr-[5px]">Files</p><span>0</span><span>/</span><span>5</span>
-          </div>
+  @if(session('success'))
+    <div class="bg-green-500 text-white p-4 rounded">
+        {{ session('success') }}
+    </div>
+@endif
 
-          <div class="flex flex-wrap gap-4 p-2 max-w-[500px] w-[100%]">
-            <input type="file" name="file" id="file1" class="m-2 p-2 shadow-xl" />
-            <input type="file" name="file" id="file2" class="m-2 p-2 shadow-xl" />
-            <input type="file" name="file" id="file3" class="m-2 p-2 shadow-xl" />
-            <input type="file" name="file" id="file4" class="m-2 p-2 shadow-xl" />
-            <input type="file" name="file" id="file5" class="m-2 p-2 shadow-xl" />
-          </div>
+@if(session('error'))
+    <div class="bg-red-500 text-white p-4 rounded">
+        {{ session('error') }}
+    </div>
+@endif
+</div>
+<!-- Send New Tab Content - END -->
 
-          <button class="text-white font-[600] p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">Send</button>
-        </form>
-        
-
-      </div>
-       <!-- Send New Tab Content - END -->
 
 
       <!-- Sent Tab Content - START -->

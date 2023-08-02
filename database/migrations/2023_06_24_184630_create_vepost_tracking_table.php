@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('vepost_tracking', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('UID')->nullable();
-            $table->string('mpID');
+            $table->string('mpID')->default(false);
             $table->string('sender_username')->nullable();
             $table->string('sender_vepost_addr')->nullable();
             $table->string('sender_displayname')->nullable();

@@ -71,11 +71,6 @@ class VepostTracking extends Model
             ->get();
     }
 
-
-
-
-
-
     // Creating relationship between vepost_tracking and users
     // public function user()
     // {
