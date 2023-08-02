@@ -30,6 +30,7 @@ use App\Http\Controllers\notAuth\DownloadController;
 
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\NewsletterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,25 +80,25 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
 
+// Cut out until we focus on the admin area
+// Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-
-    Route::get('/', [AdminDashboardController::class, 'get']);
-    Route::get('/dashboard', [AdminDashboardController::class, 'get']);
-    Route::get('/server', [AdminServerController::class, 'get']);
-    Route::get('/files', [AdminFilesController::class, 'get']);
-    Route::get('/plans', [AdminPlansController::class, 'get']);
-    Route::get('/messages', [AdminMessagesController::class, 'get']);
-    Route::get('/users', [AdminUsersController::class, 'get']);
-    Route::get('/notifications', [AdminNotificationsController::class, 'get']);
+//     Route::get('/', [AdminDashboardController::class, 'get']);
+//     Route::get('/dashboard', [AdminDashboardController::class, 'get']);
+//     Route::get('/server', [AdminServerController::class, 'get']);
+//     Route::get('/files', [AdminFilesController::class, 'get']);
+//     Route::get('/plans', [AdminPlansController::class, 'get']);
+//     Route::get('/messages', [AdminMessagesController::class, 'get']);
+//     Route::get('/users', [AdminUsersController::class, 'get']);
+//     Route::get('/notifications', [AdminNotificationsController::class, 'get']);
 
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
-});
+//     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
+// });
 
 // Going to leave it here so the UI/UX guys can request this page at any time 😇
 Route::get('/maintenance', function () {

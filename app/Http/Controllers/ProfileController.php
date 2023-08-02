@@ -2,22 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\isAuth\VepostUserController;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\VepostUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
+        $vepostUserController = new VepostUserController();
+        $userProfile = $vepostUserController->editProfile();
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'userProfile' => $userProfile
         ]);
     }
 
@@ -26,13 +35,28 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $userProfile = VepostUser::where('id', $user->id)->first();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $data = $request->validated();
+
+        if ($userProfile) {
+            $userProfile->update([
+                'username' => $data['username'],
+            ]);
+        } else {
+            // If the VepostUser doesn't exist, create a new one
+            VepostUser::create([
+                'id' => $user->id,
+                'username' => $data['username'],
+            ]);
         }
 
-        $request->user()->save();
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
