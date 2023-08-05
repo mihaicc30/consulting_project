@@ -69,128 +69,41 @@
       <!-- Received Tab Content - START -->
       <div class="accordion-content transition" x-show="isActive === 1">
         <div class="relative flex flex-col flex-nowrap p-2">
-          <!-- Paginate top half - START -->
-          <div class="paginate flex justify-center items-center gap-4 mt-2">
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">1</a>
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">2</a>
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">3</a>
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">4</a>
-          </div>
-          <!-- Paginate top half - END -->
-
-
-          <!-- Transmisions Loop 5/page - START -->
-
-          <!-- Start of first data transmision -->
-          <div class="my-4 shadow-xl p-2">
-            <div class="flex flex-nowrap items-center w-[100%]">
-              <div class="flex justify-between  w-[100%] flex-wrap">
-                <div class="flex flex-wrap gap-4">
-                  <div>
-                    <p class="text-md">From: user@email.com</p>
-                    <p class="text-xs">IP: 123.123.123.123</p>
-                  </div>
-                </div>
-
-                <div>
-                  <p>
-                    {{ date('Y-m-d H:i:s') }}
-                  </p>
-                  <p>Status: <span>Success!</span></p>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative flex flex-wrap p-2 text-xs">
-              <!-- loop over files. MAX 5 FILES! -->
-              <span class="absolute top-[-10px] left-[15px] text-[1.6rem] rotate-90">📎</span>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.jpg</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet..png</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem, ipsum dolor.rar</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.zip</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
-              </div>
-            </div>
-          </div>
-          <!-- end of first data transmision -->
           
-          <!-- Start of second data transmision// example of failed transfer -->
-          <div class="my-4 shadow-xl p-2">
-            <div class="flex flex-nowrap items-center w-[100%]">
-              <div class="flex justify-between  w-[100%] flex-wrap">
-                <div class="flex flex-wrap gap-4">
-                  <div>
-                    <p class="text-md">From: user@email.com</p>
-                    <p class="text-xs">IP: 123.123.123.123</p>
+          <!-- Transmisions  - START -->
+          
+          <!-- Start of first data transmision -->
+          @foreach($getAllReceived as $file)
+              <div class="my-4 shadow-xl p-2">
+                  <div class="flex flex-nowrap items-center w-[100%]">
+                      <div class="flex justify-between  w-[100%] flex-wrap">
+                          <div class="flex flex-wrap gap-4">
+                              <div>
+                                  <p class="text-md">From: {{ $file->sender_vepost_addr }}</p>
+                                  <p class="text-xs">IP: {{ $file->sender_pub_ip }}</p>
+                              </div>
+                          </div>
+
+                          <div>
+                              <p>
+                                  {{ $file->created_at->format('Y-m-d H:i:s') }}
+                              </p>
+                              <p>Status: <span>{{$file->status}}</span></p>
+                          </div>
+                      </div>
                   </div>
-                </div>
 
-                <div>
-                  <p>
-                    {{ date('Y-m-d H:i:s') }}
-                  </p>
-                  <p>Status: <span class="text-[#fc1010]">Fail!</span></p>
-                </div>
-              </div>
-            </div>
-
-            <!-- do not loop over files -->
-          </div>
-          <!-- end of second data transmision -->
-
-          <!-- Start of thrid data transmision -->
-          <div class="my-4 shadow-xl p-2">
-            <div class="flex flex-nowrap items-center w-[100%]">
-              <div class="flex justify-between  w-[100%] flex-wrap">
-                <div class="flex flex-wrap gap-4">
-                  <div>
-                    <p class="text-md">From: user@email.com</p>
-                    <p class="text-xs">IP: 123.123.123.123</p>
+                  <div class="relative flex flex-wrap p-2 text-xs">
+                    <span class="absolute top-[-10px] left-[15px] text-[1.6rem] rotate-90">📎</span>
+                  <div class="flex flex-nowrap items-center">
+                      <span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                      <a href="{{ $file->presigned_url }}" target="_blank">
+                          <p>{{ $file->file_name }}</p>
+                      </a>
                   </div>
-                </div>
-
-                <div>
-                  <p>
-                    {{ date('Y-m-d H:i:s') }}
-                  </p>
-                  <p>Status: <span>Success!</span></p>
-                </div>
+                  </div>
               </div>
-            </div>
-
-            <div class="relative flex flex-wrap p-2 text-xs">
-              <!-- loop over files. MAX 5 FILES! -->
-              <span class="absolute top-[-10px] left-[15px] text-[1.6rem] rotate-90">📎</span>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.jpg</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet..png</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem, ipsum dolor.rar</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.zip</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
-              </div>
-            </div>
-          </div>
-          <!-- end of thrid data transmision -->
-
-          <!-- 3 more loops to put.. -->
-
+          @endforeach
 
           <!-- Transmisions Loop 5/page - END -->
 
@@ -261,128 +174,41 @@
       <div class="accordion-content transition" x-show="isActive === 3">
         <div class="relative flex flex-col flex-nowrap p-2">
 
-          <!-- Paginate top half - START -->
-          <div class="paginate flex justify-center items-center gap-4 mt-2">
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">1</a>
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">2</a>
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">3</a>
-            <a href="#" class="px-2 py-1 rounded-xl text-white text-sm bg-[--c2]">4</a>
-          </div>
-          <!-- Paginate top half - END -->
-
-
           <!-- Transmisions Loop 5/page - START -->
 
           <!-- Start of first data transmision -->
-          <div class="my-4 shadow-xl p-2">
-            <div class="flex flex-nowrap items-center w-[100%]">
-              <div class="flex justify-between  w-[100%] flex-wrap">
-                <div class="flex flex-wrap gap-4">
-                  <div>
-                    <p class="text-md">To: user@email.com</p>
-                    <p class="text-xs">IP: 123.123.123.123</p>
+ 
+          @foreach($getAllSent as $file)
+              <div class="my-4 shadow-xl p-2">
+                  <div class="flex flex-nowrap items-center w-[100%]">
+                      <div class="flex justify-between  w-[100%] flex-wrap">
+                          <div class="flex flex-wrap gap-4">
+                              <div>
+                                  <p class="text-md">To: {{ $file->receiver_vepost_addr }}</p>
+                                  <p class="text-xs">IP: {{ $file->receiver_pub_ip }}</p>
+                              </div>
+                          </div>
+
+                          <div>
+                              <p>
+                                  {{ $file->created_at->format('Y-m-d H:i:s') }}
+                              </p>
+                              <p>Status: <span>{{$file->status}}</span></p>
+                          </div>
+                      </div>
                   </div>
-                </div>
 
-                <div>
-                  <p>
-                    {{ date('Y-m-d H:i:s') }}
-                  </p>
-                  <p>Status: <span class="text-[#fc1010]">Fail!</span></p>
-                </div>
-              </div>
-            </div>
-
-            <!-- do not loop over files -->
-          </div>
-          <!-- end of first data transmision -->
-          
-          <!-- Start of second data transmision -->
-          <div class="my-4 shadow-xl p-2">
-            <div class="flex flex-nowrap items-center w-[100%]">
-              <div class="flex justify-between  w-[100%] flex-wrap">
-                <div class="flex flex-wrap gap-4">
-                  <div>
-                    <p class="text-md">To: user@email.com</p>
-                    <p class="text-xs">IP: 123.123.123.123</p>
+                  <div class="relative flex flex-wrap p-2 text-xs">
+                    <span class="absolute top-[-10px] left-[15px] text-[1.6rem] rotate-90">📎</span>
+                  <div class="flex flex-nowrap items-center">
+                      <span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
+                      <a href="{{ $file->presigned_url }}" target="_blank">
+                          <p>{{ $file->file_name }}</p>
+                      </a>
                   </div>
-                </div>
-
-                <div>
-                  <p>
-                    {{ date('Y-m-d H:i:s') }}
-                  </p>
-                  <p>Status: <span>Success!</span></p>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative flex flex-wrap p-2 text-xs">
-              <!-- loop over files. MAX 5 FILES! -->
-              <span class="absolute top-[-10px] left-[15px] text-[1.6rem] rotate-90">📎</span>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.jpg</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet..png</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem, ipsum dolor.rar</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.zip</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
-              </div>
-            </div>
-          </div>
-          <!-- end of second data transmision -->
-
-          <!-- Start of thrid data transmision -->
-          <div class="my-4 shadow-xl p-2">
-            <div class="flex flex-nowrap items-center w-[100%]">
-              <div class="flex justify-between  w-[100%] flex-wrap">
-                <div class="flex flex-wrap gap-4">
-                  <div>
-                    <p class="text-md">To: user@email.com</p>
-                    <p class="text-xs">IP: 123.123.123.123</p>
                   </div>
-                </div>
-
-                <div>
-                  <p>
-                    {{ date('Y-m-d H:i:s') }}
-                  </p>
-                  <p>Status: <span>Success!</span></p>
-                </div>
               </div>
-            </div>
-
-            <div class="relative flex flex-wrap p-2 text-xs">
-              <!-- loop over files. MAX 5 FILES! -->
-              <span class="absolute top-[-10px] left-[15px] text-[1.6rem] rotate-90">📎</span>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.jpg</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet..png</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem, ipsum dolor.rar</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit.zip</p>
-              </div>
-              <div class="flex flex-nowrap items-center"><span class="p-1 m-1 cursor-pointer transition active:shadow-[inset_0px_1px_2px_2px_black]">@include('components.dlsvg')</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.docx</p>
-              </div>
-            </div>
-          </div>
-          <!-- end of thrid data transmision -->
-
-          <!-- 3 more loops to put.. -->
-
+          @endforeach
 
           <!-- Transmisions Loop 5/page - END -->
 
