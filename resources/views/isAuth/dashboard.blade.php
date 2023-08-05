@@ -112,7 +112,7 @@
         <div class="flex flex-col">
           <span class="mx-auto">@include('components.dlstatus2')</span>
           <p class="text-sm text-center line-clamp-1 font-bold">In Progress</p>
-          <p class="text-xl text-center line-clamp-1">{{ $sendingCount + $inProgressCount }}</p>
+          <p class="text-xl text-center line-clamp-1">{{ $yourInProgressCount }}</p>
         </div>
         <!-- Contact Card - END-->
         <!-- Contact Card - START-->
@@ -135,6 +135,7 @@
       <div class="flex flex-nowrap justify-evenly text-xs">
         <!-- Last 3 Transmisions - START -->
         <div class="w-[100%] px-2" x-data="{ isActive: null }">
+        @if (!empty($getLastThreeFiles))
           @foreach ($getLastThreeFiles as $entry)
           <!-- Transmisions -->
           <div class="accordion-item cursor-pointer flex transition text-start justify-between w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2">
@@ -147,7 +148,7 @@
                 <p>{{ $entry->receiver_vepost_addr }} </p>
               </span>
             </div>
-            <a href="https://www.google.com/search?q=You+cannot+download+it+yet%2C+Mihaita+%3A)))&rlz=1C1JJTC_enGB1058GB1058&oq=You+cannot+download+it+yet%2C+Mihaita+%3A)))&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRhA0gEMNjAzNTg0MWowajE1qAIAsAIA&sourceid=chrome&ie=UTF-8" download target="_blank">
+            <a href="{{$entry->presigned_url}}" download target="_blank">
               <svg class="transition" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -159,6 +160,9 @@
             </a>
           </div>
           @endforeach
+          @else
+             <p class="text-center text-lg">No files found.</p>
+          @endif
         </div>
         <!-- Last Transmisions - END -->
       </div>
@@ -204,7 +208,9 @@
         @endif
       </div> <!-- End of centering div -->
 
+
       <div class="flex flex-wrap justify-evenly pb-2">
+      @if (!empty($sortedContacts))
         @foreach ($sortedContacts as $username => $contactData)
         <!-- Contact Card - START -->
         <div class="flex flex-col basis-1/3 max-w-[200px]">
@@ -229,6 +235,9 @@
         </div>
         <!-- Contact Card - END -->
         @endforeach
+        @else
+        <p class="text-center text-lg">You have no contacts yet.</p>
+        @endif
       </div>
     </div>
     <!-- Widget END -->

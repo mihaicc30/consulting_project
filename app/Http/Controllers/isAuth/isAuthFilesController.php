@@ -25,6 +25,22 @@ class isAuthFilesController extends Controller
         return view("isauth.files", ['transfers' => $transfers]);
     }
 
+    public function getAllFiles()
+    {
+        $user = auth()->user()->load('vepostUser');
+        $vepostUser = $user->vepostUser;
+        $getAllReceived = VepostTracking::where('receiver_vepost_addr', $vepostUser->vepost_addr)->get();
+        $getAllSent = VepostTracking::where('sender_vepost_addr', $vepostUser->vepost_addr)->get();
+
+
+        return view('isauth.files', [
+            'getAllSent' => $getAllSent,
+            'getAllReceived' => $getAllReceived
+        ]);
+    }
+
+
+
     public function uploadImage(Request $request)
     {
 
@@ -101,8 +117,16 @@ class isAuthFilesController extends Controller
                 'ACL' => 'public-read',
             ]);
 
-            // Save the S3 URL to the database
-            $fileUrl = $s3Client->getObjectUrl($bucket, $fileName);
+            // Get the file URL
+            $fileUrl = $s3Client->getObjectUrl($bucket, $objectKey);
+
+            // Generate the pre-signed URL with a 1-hour expiration time
+            $command = $s3Client->getCommand('GetObject', [
+                'Bucket' => $bucket,
+                'Key' => $objectKey,
+            ]);
+
+            $presignedUrl = $s3Client->createPresignedRequest($command, '+1 hour')->getUri()->__toString();
 
             // Retrieve the username of the sender
             /** @var User $user */
@@ -128,6 +152,7 @@ class isAuthFilesController extends Controller
             $vepostTracking->file_url = $fileUrl;
             $vepostTracking->time_send_start = new DateTime();
             $vepostTracking->sender_pub_ip = $request->input('userip');
+            $vepostTracking->presigned_url = $presignedUrl;
             $vepostTracking->save();
 
             // Redirect back with a success message

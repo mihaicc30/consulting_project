@@ -57,8 +57,8 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
 
     Route::get('/', [isAuthDashboardController::class, 'get']);
     Route::get('/dashboard', [isAuthDashboardController::class, 'get']);
-    Route::get('/files', [isAuthFilesController::class, 'get'])->name('files');
-    Route::post('/upload-image', [IsAuthFilesController::class, 'uploadImage'])->name('uploadImage');
+    Route::post('/upload-image', [isAuthFilesController::class, 'uploadImage'])->name('uploadImage');
+    Route::get('/files', [isAuthFilesController::class, 'getAllFiles'])->name('files');
     Route::get('/plans', [isAuthPlansController::class, 'get']);
 
     Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
