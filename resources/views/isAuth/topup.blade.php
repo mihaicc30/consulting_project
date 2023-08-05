@@ -84,7 +84,8 @@
         data-label="Checkout"
         data-allow-remember-me="true" 
         data-email="{{ Auth::user()->email }}"
-        ></script>
+        >
+        </script>
 
     </form>
     <div class="flex flex-col items-center justify-center">

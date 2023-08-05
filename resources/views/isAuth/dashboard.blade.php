@@ -216,7 +216,7 @@
         <div class="flex flex-col basis-1/3 max-w-[200px]">
           <span class="mx-auto relative">
             <span class="block h-[50px] w-[50px]">@include('components.usersvg')</span>
-            <span class="absolute top-0 right-0" title="Business Premium">@include('components.rank', ['cs' => '03'])</span>
+            <span class="absolute top-0 right-0 center" title="Business Premium">@include('components.rank', ['cs' => '03'])</span>
           </span>
           <p class="text-sm text-center line-clamp-1 font-bold" title="{{ $username }}">{{ $username }}</p>
           <p class="text-xs text-center line-clamp-1" title="{{ $contactData['email'] }}">{{ $contactData['email'] }}</p>
@@ -232,9 +232,9 @@
               <button formmethod="post" formaction="/portal/contact/{{$contactData['email']}}/delete" title="Delete Contact">@include('components.deleteusersvg')</button>
             </form>
           </div>
-        </div>
-        <!-- Contact Card - END -->
-        @endforeach
+            </div>
+            <!-- Contact Card - END -->
+          @endforeach
         @else
         <p class="text-center text-lg">You have no contacts yet.</p>
         @endif

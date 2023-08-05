@@ -76,7 +76,8 @@
 
   <!-- List Of Contacts - START -->
 <div class="flex flex-wrap justify-center py-2 px-2 transition-all">
-  @foreach($contacts as $name => $contact)
+@if (!empty($contacts))
+  @foreach(json_decode($contacts, true) as $name => $contact)
   <!-- Contact Card - START -->
   <form data-email="{{$contact['email']}}" data-name="{{$name}}" data-contact class="flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
     @csrf
@@ -101,6 +102,9 @@
   </form>
   <!-- Contact Card - END -->
   @endforeach
+  @else
+  <p>No contacts found</p>
+  @endif
 </div>
 
 </div>

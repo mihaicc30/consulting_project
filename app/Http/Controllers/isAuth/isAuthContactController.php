@@ -27,15 +27,20 @@ class isAuthContactController extends Controller
             return redirect()->route('isauth.contact')->with(['status' => 'fail', 'message' => 'Contact already exists.']);
         }
 
-        $newContact = [
-            'email' => $target_user->email,
-            'name' => $target_user->name,
-            'added' => now()->toIso8601String(),
-            // Add any other properties you want to include for the contact
-        ];
+        // $newContact = [
+        //     'email' => $target_user->email,
+        //     'name' => $target_user->name,
+        // ];
 
-        $contacts[] = $newContact;
-        $user->contacts = json_encode($contacts);
+        // $contacts[] = $newContact;
+        // $user->contacts = json_encode($contacts);
+
+        $email =  $target_user->email;
+        $name = $target_user->name;
+        $contacts[$name] = ['email' => $email];
+
+        $newContact = json_encode($contacts);
+        $user->contacts = $newContact;
         $user->save();
         return redirect()->route('isauth.contact')->with(['success' => 'Contact added successfully.']);
     }
@@ -59,17 +64,20 @@ class isAuthContactController extends Controller
             return redirect()->back()->with('error', 'Contact not found.');
         }
 
-        foreach ($contacts as $key => $contact) {
-            if ($contact['email'] === $email) {
-                unset($contacts[$key]);
+        $contactsArray = json_decode($contacts, true);
+
+        // Normalize the email for comparison
+        $email = strtolower(trim($email));
+
+        // Iterate through the contacts array
+        foreach ($contactsArray as $name => $contact) {
+            if (isset($contact['email']) && strtolower(trim($contact['email'])) === $email) {
+                unset($contactsArray[$name]);
                 break;
             }
         }
 
-        $index = array_search($email, array_column($contacts, 'email'));
-
-        unset($contacts[$index]);
-        $user->contacts = $contacts;
+        $user->contacts = json_encode($contactsArray);
         $user->save();
 
         if ($request->ajax()) {
