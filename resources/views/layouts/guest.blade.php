@@ -21,5 +21,5 @@
         {{ $slot }}
     </div>
 </body>
-
+  
 </html>

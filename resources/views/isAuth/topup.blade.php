@@ -1,6 +1,5 @@
 @extends ('layout')
 
-
 @section('content')
 <script src="https://js.stripe.com/v3/" async></script>
 
@@ -117,4 +116,6 @@
 
 
   </div>
+
+  
   @endsection

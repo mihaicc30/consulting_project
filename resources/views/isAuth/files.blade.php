@@ -19,7 +19,6 @@
   <!-- Hero END -->
   <!-- Files - START -->
   <div class="flex flex-col py-6 border-2 border-[#e6e6e6] rounded-lg" x-data="{ isActive: 2 }">
-
     <div class="widget col-span-2 flex flex-col ">
       <!--  -->
       <div class="flex flex-nowrap justify-evenly text-xs">
@@ -59,7 +58,7 @@
             </div>
           </div>
           <!-- Tab 3 -->
-
+  
         </div>
       </div>
     </div>

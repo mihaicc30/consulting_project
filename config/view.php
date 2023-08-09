@@ -16,7 +16,7 @@ return [
     'paths' => [
         resource_path('views'),
     ],
-
+    // Make a mihai function
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

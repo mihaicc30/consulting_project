@@ -37,7 +37,7 @@
         <p>You have the option of montly of yearly billing</p>
         <div class="my-2 flex justify-center items-center">
           <span :class="{ 'bg-[--c2] text-white rounded transition': isMonthly }" class=" p-2 m-2 font-bold">Monthly</span>
-          <label class="switch">
+          <label class="switch">  
             <input type="checkbox" @change="isMonthly = !isMonthly">
             <span class="slider"></span>
           </label>
@@ -99,7 +99,7 @@
                                   @endforeach
                               </div>
                               <p class="border-b-2 my-4"></p>
-                              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type']])
+                              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price']])
                           </div>
                           <!-- Plan Card - END-->
                       @endif
@@ -136,7 +136,7 @@
                                           <span x-text="(parseFloat({{ $plan['price'] }}).toFixed(2)) + ' / month'"></span>
                                       </template>
                                       <template x-if="!isMonthly">
-                                          <span x-text="(parseFloat({{ $plan['price'] }} * 0.9 * 12).toFixed(2)) + ' / year'"></span></template>
+                                          <span x-text="(parseFloat({{ $plan['price'] }} * 0.9 * 12).toFixed(2)) + ' / year'">  </span></template>
                 @endif
               </p>
               <p class="border-b-2 my-4"></p>
@@ -156,7 +156,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'] ] )
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] ] )
             </div>
             <!-- Plan Card - END-->
             @endif

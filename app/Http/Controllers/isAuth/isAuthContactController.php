@@ -27,14 +27,6 @@ class isAuthContactController extends Controller
             return redirect()->route('isauth.contact')->with(['status' => 'fail', 'message' => 'Contact already exists.']);
         }
 
-        // $newContact = [
-        //     'email' => $target_user->email,
-        //     'name' => $target_user->name,
-        // ];
-
-        // $contacts[] = $newContact;
-        // $user->contacts = json_encode($contacts);
-
         $email =  $target_user->email;
         $name = $target_user->name;
         $contacts[$name] = ['email' => $email];
