@@ -21,8 +21,10 @@ class PasswordController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
+        $passwordHash = Hash::make($request->password);
+
         $request->user()->update([
-            'password' => Hash::make($validated['password']),
+            'password' => $passwordHash,
         ]);
 
         $vepost_user = VepostUser::where('vepost_addr', $request->user()->email)->first();
@@ -30,7 +32,7 @@ class PasswordController extends Controller
         // Update password for the related VepostUser record
         if ($vepost_user) {
             $vepost_user->update([
-                'password' => Hash::make($validated['password']),
+                'password' => $passwordHash,
             ]);
         }
 

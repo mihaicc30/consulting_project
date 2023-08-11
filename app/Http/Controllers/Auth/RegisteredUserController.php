@@ -37,16 +37,18 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $passwordHash = Hash::make($request->password);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $passwordHash,
         ]);
 
         $vepost_user = VepostUser::create([
             'displayname' => $request->name,
             'vepost_addr' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $passwordHash,
         ]);
 
         event(new Registered($user));
