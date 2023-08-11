@@ -33,6 +33,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
+
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
@@ -41,14 +42,28 @@ class ProfileController extends Controller
         $data = $request->validated();
 
         if ($userProfile) {
+
             $userProfile->update([
+                'displayname' => $data['name'],
+                'email' => $data['email'],
                 'username' => $data['username'],
+            ]);
+
+            $user->update([
+                'name' => $data['name'],
+                'email' => $data['email'],
             ]);
         } else {
             // If the VepostUser doesn't exist, create a new one
             VepostUser::create([
-                'id' => $user->id,
                 'username' => $data['username'],
+                'vepost_addr' => $user['email'],
+                'displayname' => $user['name'],
+                'password' => $user['password'],
+                'controlstring' => $user['controlstring'],
+                'vepost_counter' => 0,
+                'status' => 0,
+                'free_send_left' => null
             ]);
         }
 

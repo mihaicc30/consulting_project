@@ -65,7 +65,6 @@ class isAuthFilesController extends Controller
             // Convert the size in a more readable fashion
             $humanReadable = $this->formatBytes($fileSize);
 
-            Log::info($file);
             // Compress the file using gzip and get the compressed file path and size
             $compressedFile = $this->compressFile($file);
             $compressedFilePath = $compressedFile['path'];

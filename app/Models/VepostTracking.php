@@ -97,7 +97,6 @@ class VepostTracking extends Model
             ->sortByDesc('created_at')
             ->take(3);
 
-        Log::info($email);
         return $lastThreeFiles;
     }
 

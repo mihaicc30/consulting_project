@@ -43,7 +43,7 @@ class isAuthDashboardController extends Controller
 
                 $balance = $user ? $user->balance : null;
 
-                if ($user) {
+                if ($user && Auth::user()->contacts) {
                         $contacts = Auth::user()->contacts;
                         $sortedContact = collect($contacts)->sortKeys();
                         $sortedContacts = $sortedContact->slice(-3)->all();
@@ -56,7 +56,6 @@ class isAuthDashboardController extends Controller
                         $sortedContacts = null;
                 }
 
-
                 return view("isauth.dashboard", [
                         'balance' => $balance,
                         'inProgressCount' => $inProgressCount,
@@ -65,7 +64,7 @@ class isAuthDashboardController extends Controller
                         'failedCount' => $failedCount,
                         'getAllReceived' => $getAllReceived,
                         'getAllSent' => $getAllSent,
-                        'sortedContacts' => $sortedContacts[0],
+                        'sortedContacts' => $sortedContacts === null ? $sortedContacts : $sortedContacts[0],
                         'getLastThreeFiles' => $getLastThreeFiles,
                         'yourInProgressCount' => $yourInProgressCount
                 ]);

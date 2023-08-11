@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\VepostUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,15 @@ class PasswordController extends Controller
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
+
+        $vepost_user = VepostUser::where('vepost_addr', $request->user()->email)->first();
+
+        // Update password for the related VepostUser record
+        if ($vepost_user) {
+            $vepost_user->update([
+                'password' => Hash::make($validated['password']),
+            ]);
+        }
 
         return back()->with('status', 'password-updated');
     }

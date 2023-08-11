@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+        event(new Registered($vepost_user));
 
         Auth::login($user);
 
