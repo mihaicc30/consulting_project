@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\isAuth\VepostUserController;
+use App\Http\Controllers\isAuth\ezepostUserController;
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\VepostUser;
+use App\Models\ezepostUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +21,8 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        $vepostUserController = new VepostUserController();
-        $userProfile = $vepostUserController->editProfile();
+        $ezepostUserController = new ezepostUserController();
+        $userProfile = $ezepostUserController->editProfile();
 
         return view('profile.edit', [
             'user' => $request->user(),
@@ -37,7 +37,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-        $userProfile = VepostUser::where('id', $user->id)->first();
+        $userProfile = ezepostUser::where('id', $user->id)->first();
 
         $data = $request->validated();
 
@@ -54,14 +54,14 @@ class ProfileController extends Controller
                 'email' => $data['email'],
             ]);
         } else {
-            // If the VepostUser doesn't exist, create a new one
-            VepostUser::create([
+            // If the ezepostUser doesn't exist, create a new one
+            ezepostUser::create([
                 'username' => $data['username'],
-                'vepost_addr' => $user['email'],
+                'ezepost_addr' => $user['email'],
                 'displayname' => $user['name'],
                 'password' => $user['password'],
                 'controlstring' => $user['controlstring'],
-                'vepost_counter' => 0,
+                'ezepost_counter' => 0,
                 'status' => 0,
                 'free_send_left' => null
             ]);

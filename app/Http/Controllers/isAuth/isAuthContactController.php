@@ -5,8 +5,6 @@ namespace App\Http\Controllers\isAuth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class isAuthContactController extends Controller
 {
@@ -34,6 +32,7 @@ class isAuthContactController extends Controller
         $newContact = json_encode($contacts);
         $user->contacts = $newContact;
         $user->save();
+
         return redirect()->route('isauth.contact')->with(['success' => 'Contact added successfully.']);
     }
 

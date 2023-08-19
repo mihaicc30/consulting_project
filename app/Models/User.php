@@ -33,6 +33,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'ezepost_addr',
         'controlstring',
         'contacts',
     ];
@@ -58,8 +59,8 @@ class User extends Authenticatable
         'contacts' => 'array',
     ];
 
-    public function vepostUser()
+    public function ezepostUser()
     {
-        return $this->hasOne(VepostUser::class, 'id', 'id');
+        return $this->hasOne(ezepostUser::class, 'id', 'id');
     }
 }

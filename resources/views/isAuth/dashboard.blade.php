@@ -141,11 +141,11 @@
           <div class="accordion-item cursor-pointer flex transition text-start justify-between w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2">
             <div class="flex flex-items-center flex-nowrap justify-evenly w-[100%] max-[500px]:flex-col">
               <span>
-                <p>{{ $entry->sender_vepost_addr }}</p>
+                <p>{{ $entry->sender_ezepost_addr }}</p>
               </span>
               <span class="animate-infiniteLoop"> >>> </span> <!-- if receiving ">>" else "<<" -->
               <span>
-                <p>{{ $entry->receiver_vepost_addr }} </p>
+                <p>{{ $entry->receiver_ezepost_addr }} </p>
               </span>
             </div>
             <a href="{{$entry->presigned_url}}" download target="_blank">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plans;
-use App\Models\VepostUser;
+use App\Models\ezepostUser;
 
 class isAuthPlansController extends Controller
 {
@@ -28,9 +28,9 @@ class isAuthPlansController extends Controller
         // Extract the "Plan Name" from the string
         $planName = $planData[1];
 
-        // Get the authenticated user and vepost_user
+        // Get the authenticated user and ezepost_user
         $user = auth()->user();
-        $vepost_user = VepostUser::where('vepost_addr', $user->email)->first();
+        $ezepost_user = ezepostUser::where('ezepost_addr', $user->email)->first();
 
         // Fetch the control string
         $controlString = $user->controlstring;
@@ -50,10 +50,10 @@ class isAuthPlansController extends Controller
         }
 
         // Update the user's controlstring with the updated value
-        $vepost_user->controlstring = $controlString;
+        $ezepost_user->controlstring = $controlString;
         $user->controlstring = $controlString;
 
-        $vepost_user->save();
+        $ezepost_user->save();
         $user->save();
 
         // Refetch the plans

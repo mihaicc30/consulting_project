@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('addons', function (Blueprint $table) {
+        Schema::create('schemas', function (Blueprint $table) {
             $table->id();
-            $table->string('addon')->nullable();
-            $table->string('label')->nullable();
-            $table->mediumText('description')->nullable();
-            $table->double('price')->nullable();
+            $table->string('step')->nullable();
+            $table->string('heading')->nullable();
+            $table->string('subheading')->nullable();
+            $table->string('component')->nullable();
+            $table->string('sideheading')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addons');
+        Schema::dropIfExists('schemas');
     }
 };

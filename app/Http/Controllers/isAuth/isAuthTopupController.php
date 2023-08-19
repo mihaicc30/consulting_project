@@ -5,7 +5,7 @@ namespace App\Http\Controllers\isAuth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Models\Topup;
-use App\Models\VepostUser;
+use App\Models\ezepostUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
@@ -23,7 +23,7 @@ class isAuthTopupController extends Controller
         // Retrieve the email of the authenticated user
         $email = Auth::user()->email;
         // Retrieve the user's balance
-        $user = VepostUser::where('username', $email)->first();
+        $user = ezepostUser::where('username', $email)->first();
 
         $balance = $user ? $user->balance : null;
 
@@ -40,7 +40,7 @@ class isAuthTopupController extends Controller
         // Retrieve the email of the authenticated user
         $email = Auth::user()->email;
         // Retrieve the user's record
-        $user = VepostUser::where('username', $email)->first();
+        $user = ezepostUser::where('username', $email)->first();
 
         // Check if the user exists
         if ($user) {

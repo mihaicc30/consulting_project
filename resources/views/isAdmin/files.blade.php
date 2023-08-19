@@ -21,7 +21,7 @@ $receipts = [
 'sender' => [
 'sender_username' => 'john_doe',
 'sender_displayname' => 'John Doe',
-'sender_vepost_addr' => 'john_doe@vepost.com',
+'sender_ezepost_addr' => 'john_doe@ezepost.com',
 'sender_pub_ip' => '123.456.789.123',
 'sender_pub_port' => 5000,
 'sender_prv_ip' => '192.168.1.10',
@@ -35,7 +35,7 @@ $receipts = [
 'receiver' => [
 'receiver_username' => 'jane_smith',
 'receiver_displayname' => 'Jane Smith',
-'receiver_vepost_addr' => 'jane_smith@vepost.com',
+'receiver_ezepost_addr' => 'jane_smith@ezepost.com',
 'receiver_pub_ip' => '987.654.321.789',
 'receiver_pub_port' => 6000,
 'receiver_prv_ip' => '192.168.1.20',
@@ -70,7 +70,7 @@ $receipts = [
 'sender' => [
 'sender_username' => 'alex_smith',
 'sender_displayname' => 'Alex Smith',
-'sender_vepost_addr' => 'alex_smith@vepost.com',
+'sender_ezepost_addr' => 'alex_smith@ezepost.com',
 'sender_pub_ip' => '789.123.456.789',
 'sender_pub_port' => 7000,
 'sender_prv_ip' => '192.168.1.30',
@@ -84,7 +84,7 @@ $receipts = [
 'receiver' => [
 'receiver_username' => 'mary_jones',
 'receiver_displayname' => 'Mary Jones',
-'receiver_vepost_addr' => 'mary_jones@vepost.com',
+'receiver_ezepost_addr' => 'mary_jones@ezepost.com',
 'receiver_pub_ip' => '321.654.987.123',
 'receiver_pub_port' => 8000,
 'receiver_prv_ip' => '192.168.1.40',
@@ -415,15 +415,15 @@ $receipts = [
               <div class="grid grid-cols-1">
                 <div>
                   <p>From:</p>
-                  <p class="text-xs line-clamp-1 font-bold" title="{{ $receipt['sender']['sender_vepost_addr'] }}">
-                    {{ $receipt['sender']['sender_vepost_addr'] }}
+                  <p class="text-xs line-clamp-1 font-bold" title="{{ $receipt['sender']['sender_ezepost_addr'] }}">
+                    {{ $receipt['sender']['sender_ezepost_addr'] }}
                   </p>
                   <p class="text-xs line-clamp-1" title="{{ $receipt['sender']['sender_displayname'] }}">
                     {{ $receipt['sender']['sender_displayname'] }}
                   </p>
                   <p>To:</p>
-                  <p class="text-xs line-clamp-1 font-bold" title="{{ $receipt['receiver']['receiver_vepost_addr'] }}">
-                    {{ $receipt['receiver']['receiver_vepost_addr'] }}
+                  <p class="text-xs line-clamp-1 font-bold" title="{{ $receipt['receiver']['receiver_ezepost_addr'] }}">
+                    {{ $receipt['receiver']['receiver_ezepost_addr'] }}
                   </p>
                   <p class="text-xs line-clamp-1" title="{{ $receipt['receiver']['receiver_displayname'] }}">
                     {{ $receipt['receiver']['receiver_displayname'] }}

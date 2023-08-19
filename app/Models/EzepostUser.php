@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VepostUser extends Model
+class EzepostUser extends Model
 {
     use HasFactory;
 
-    protected $table = 'vepost_user';
+    protected $table = 'ezepost_user';
 
     protected $fillable = [
         'username',
-        'vepost_addr',
+        'ezepost_addr',
         'password',
         'displayname',
         'controlstring',
         'balance',
-        'vepost_counter',
+        'ezepost_counter',
         'status',
         'free_send_left'
     ];
@@ -26,4 +26,9 @@ class VepostUser extends Model
     protected $hidden = [
         'password'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'ezepost_addr', 'ezepost_addr'); // ezepost_addr is the foreign key in ezepost_user table
+    }
 }

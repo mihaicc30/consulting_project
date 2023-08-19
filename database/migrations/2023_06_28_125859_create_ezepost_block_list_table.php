@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vepost_block_list', function (Blueprint $table) {
+        Schema::create('ezepost_block_list', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('vepost_tracking_uid');
+            $table->unsignedBigInteger('ezepost_tracking_uid');
 
             // Add foreign key constraint
-            $table->foreign('vepost_tracking_uid')
+            $table->foreign('ezepost_tracking_uid')
                 ->references('UID')
-                ->on('vepost_tracking')
+                ->on('ezepost_tracking')
                 ->onDelete('cascade');
 
             $table->timestamps();
@@ -30,11 +30,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('vepost_block_list', function (Blueprint $table) {
-            $table->dropForeign(['vepost_tracking_uid']);
-            $table->dropColumn('vepost_tracking_uid');
+        Schema::table('ezepost_block_list', function (Blueprint $table) {
+            $table->dropForeign(['ezepost_tracking_uid']);
+            $table->dropColumn('ezepost_tracking_uid');
         });
 
-        Schema::dropIfExists('vepost_block_list');
+        Schema::dropIfExists('ezepost_block_list');
     }
 };

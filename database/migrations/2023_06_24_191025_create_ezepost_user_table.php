@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vepost_user', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('username')->nullable(); // I've added the nullable;
-            $table->string('vepost_addr')->nullable(); // I've added the nullable
+        Schema::create('ezepost_user', function (Blueprint $table) {
+            $table->bigIncrements('id', 20);
+            $table->string('username')->unique()->nullable();
+            $table->uuid('ezepost_addr')->unique();
             $table->string('password');
             $table->string('displayname')->nullable();
             $table->string('controlstring', 20)->default('10000000000000000000');
-            $table->string('vepost_counter')->default('10'); // 
+            $table->string('balance')->default('0');
+            $table->string('ezepost_counter')->default('10'); // 
             $table->string('status')->default('0');
             $table->string('free_send_left')->nullable();
             $table->timestamps();
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vepost_user');
+        Schema::dropIfExists('ezepost_user');
     }
 };

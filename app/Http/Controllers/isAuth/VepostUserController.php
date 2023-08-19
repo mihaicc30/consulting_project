@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
-use App\Models\VepostUser;
+use App\Models\ezepostUser;
 
-class VepostUserController extends Controller
+class ezepostUserController extends Controller
 {
 
     public function editProfile()
@@ -14,7 +14,7 @@ class VepostUserController extends Controller
         $user = auth()->user();
 
         // Fetch the user profile for the current user
-        $userProfile = VepostUser::where('id', $user->id)->first();
+        $userProfile = ezepostUser::where('id', $user->id)->first();
 
         // Return the user profile data
         return $userProfile;

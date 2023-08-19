@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('ezepost_addr')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('controlstring', 20)->default('10000000000000000000');  // more clarification of the string in the 2023_06_24_191025_create_vepost_user_table.php
+            $table->string('controlstring', 20)->default('10000000000000000000');  // more clarification of the string in the 2023_06_24_191025_create_ezepost_user_table.php
             $table->json('contacts')->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

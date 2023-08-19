@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
-use App\Models\VepostTracking;
-use App\Models\VepostUser;
+use App\Models\ezepostTracking;
+use App\Models\ezepostUser;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class isAuthDashboardController extends Controller
 {
@@ -14,28 +13,28 @@ class isAuthDashboardController extends Controller
         {
                 // need to get multiple data like>
                 // - total transfers/ total sent/ total failed/ total received
-                // - user account string > vepost_user > controllingstring from where will have user group, account state, plan type, tokens
+                // - user account string > ezepost_user > controllingstring from where will have user group, account state, plan type, tokens
                 // Retrieve the email of the authenticated user
                 $email = Auth::user()->email;
 
                 // Retrieve the user's balance
-                $user = VepostUser::where('vepost_addr', $email)->first();
+                $user = ezepostUser::where('ezepost_addr', $email)->first();
 
                 // Retrieve active transmissions
-                $vepostTrackingData = VepostTracking::where('receiver_vepost_addr', $email)->first();
-                $inProgressCount = $vepostTrackingData ? $vepostTrackingData->getInProgressCount($email) : 0;
-                $getAllReceived = $vepostTrackingData ? $vepostTrackingData->getAllReceived($email) : 0;
+                $ezepostTrackingData = ezepostTracking::where('receiver_ezepost_addr', $email)->first();
+                $inProgressCount = $ezepostTrackingData ? $ezepostTrackingData->getInProgressCount($email) : 0;
+                $getAllReceived = $ezepostTrackingData ? $ezepostTrackingData->getAllReceived($email) : 0;
 
-                $vepostFiles = VepostTracking::where('sender_vepost_addr', $email)->first();
-                $getAllSent = $vepostFiles ? $vepostFiles->getAllSent($email) : 0;
-                $succesfulCount = $vepostFiles ? $vepostFiles->getSuccessful($email) : 0;
-                $failedCount = $vepostFiles ? $vepostFiles->getFailed($email) : 0;
-                $sendingCount = $vepostFiles ? $vepostFiles->getSendingCount($email) : 0;
-                $yourInProgressCount = $vepostFiles ? $vepostFiles->yourInProgressCount($email) : 0;
+                $ezepostFiles = ezepostTracking::where('sender_ezepost_addr', $email)->first();
+                $getAllSent = $ezepostFiles ? $ezepostFiles->getAllSent($email) : 0;
+                $succesfulCount = $ezepostFiles ? $ezepostFiles->getSuccessful($email) : 0;
+                $failedCount = $ezepostFiles ? $ezepostFiles->getFailed($email) : 0;
+                $sendingCount = $ezepostFiles ? $ezepostFiles->getSendingCount($email) : 0;
+                $yourInProgressCount = $ezepostFiles ? $ezepostFiles->yourInProgressCount($email) : 0;
 
-                $getLastThreeFiles = VepostTracking::where(function ($query) use ($email) {
-                        $query->where('sender_vepost_addr', $email)
-                                ->orWhere('receiver_vepost_addr', $email);
+                $getLastThreeFiles = ezepostTracking::where(function ($query) use ($email) {
+                        $query->where('sender_ezepost_addr', $email)
+                                ->orWhere('receiver_ezepost_addr', $email);
                 })
                         ->orderBy('created_at', 'desc')
                         ->take(3)

@@ -21,7 +21,7 @@
 </head>
 
 
-<body class="antialiased grid grid-cols-{{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? '[100px,1fr]' : '1' }}  overflow-x-hidden" x-data="{ isActive: true }">
+<body class="antialiased grid grid-cols-{{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? '[200px,1fr]' : '1' }}  overflow-x-hidden" x-data="{ isActive: true }">
 <!--  -->
 @php
   $currentUrl = url()->current();
