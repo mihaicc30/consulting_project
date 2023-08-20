@@ -94,7 +94,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -2 24 24" stroke-width="1.5" stroke="blue" class="w-5 h-5 ml-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
       </svg>
-      <a class="relative navButton font-[600] w-full" href="/portal/plans">
+      <a class="relative navButton font-[600] w-full" href="/portal/home-today">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="ml-2 z-20 relative">EZEBox</span>
       </a>
@@ -187,7 +187,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -2 24 24" stroke-width="1.5" stroke="blue" class="w-5 h-5 ml-6">
        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
       </svg>
-      <a class="relative navButton font-[600] w-full" href="/portal/plans">
+      <a class="relative navButton font-[600] w-full" href="/portal/history-home">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="ml-2 z-20 relative">EZEBox</span>
       </a>

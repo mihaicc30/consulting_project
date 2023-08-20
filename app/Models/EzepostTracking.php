@@ -47,6 +47,7 @@ class EzepostTracking extends Model
             ->where('status', 'Successful')
             ->count();
     }
+
     public function getViewed($ezepost_addr)
     {
         return $this->where('receiver_ezepost_addr', $ezepost_addr)

@@ -1,7 +1,7 @@
 <div>
 @livewireStyles
     <div class="mb-4">
-        <input type="text" wire:model.debounce.300ms="searchTerm" class="w-full p-2 border rounded" placeholder="Search..." />
+        <input type="text" wire:model.debounce.300ms="searchTerm" class="w-full p-2 mt-2 border rounded" placeholder="Search..." />
     </div>
         <div class="flex justify-center text-red-500 ">
             @if ($selectedCount === 5)

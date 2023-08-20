@@ -20,6 +20,8 @@ use App\Http\Controllers\isAuth\isAuthPlansController;
 use App\Http\Controllers\isAuth\isAuthContactController;
 use App\Http\Controllers\isAuth\isAuthTopupController;
 use App\Http\Controllers\isAuth\isAuthPdfController;
+use App\Http\Controllers\isAuth\isAuthHomeHistoryController;
+use App\Http\Controllers\isAuth\isAuthHomeTodayController;
 
 use App\Http\Controllers\notAuth\HomeController;
 use App\Http\Controllers\notAuth\ServicesController;
@@ -59,10 +61,12 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/', [isAuthDashboardController::class, 'get']);
     Route::get('/dashboard', [isAuthDashboardController::class, 'get']);
 
+    Route::get('/home-today', [isAuthHomeTodayController::class, 'getAllData'])->name('home-today');
     Route::get('/received', [isAuthFilesController::class, 'getReceived'])->name('received');
     Route::get('/viewed', [isAuthFilesController::class, 'getViewed'])->name('viewed');
     Route::get('/sent', [isAuthFilesController::class, 'getSent'])->name('sent');
 
+    Route::get('/history-home', [isAuthHomeHistoryController::class, 'getAllData'])->name('history-home');
     Route::get('/history-received', [isAuthFilesController::class, 'getHistoryReceived'])->name('history-received');
     Route::get('/history-viewed', [isAuthFilesController::class, 'getHistoryViewed'])->name('history-viewed');
     Route::get('/history-sent', [isAuthFilesController::class, 'getHistorySent'])->name('history-sent');

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
 use App\Models\EzepostTracking;
-use Illuminate\Support\Facades\Log;
 
 class isAuthFilesController extends Controller
 {

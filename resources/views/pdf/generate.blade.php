@@ -50,15 +50,14 @@
                         : "Not opened"
                 }}
                     </td>
-
+                </tr>
                     @endforeach
             </table>
             @else
             <tr>
                 <td>
                     {{ Str::limit($item->file_name, 40) }}
-                <td>
-
+                </td>
                 <td>{{ $item->file_size_original }}</td>
                 <td>{{ $item->time_send_start}}</td>
                 <td>{{ $item->time_recv_end }}</td>

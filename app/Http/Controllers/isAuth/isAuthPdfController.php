@@ -4,7 +4,6 @@ namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
 use Dompdf\Dompdf;
-use Dompdf\Options;
 use Illuminate\Http\Request;
 
 
