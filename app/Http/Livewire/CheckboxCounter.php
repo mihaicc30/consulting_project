@@ -3,17 +3,46 @@
 namespace App\Http\Livewire;
 
 use App\Models\EzepostTracking;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class CheckboxCounter extends Component
 {
     public $selectedCheckboxes = [];
     public $searchTerm = '';
+    public $currentSegment = '';
+
+    // Live wire component that fires when the the page is loaded
+    public function mount()
+    {
+        $this->getCurrentSegment();
+    }
+
+    public function getCurrentSegment()
+    {
+        // Get the current URL and extract the last segment
+
+        $url = request()->url();
+        $segments = explode('/', $url);
+        $this->currentSegment = end($segments);
+        return end($segments);
+    }
 
     public function render()
     {
+
+        // Determine the current route name
+        $route =  $this->currentSegment;
+        $routeParts = explode('/', $route);
+        $routeName = end($routeParts);
+
+        // Convert the route name to the corresponding method name
+        $methodName = str_replace('-', '', ucwords($routeName, '-'));
+        $methodName = 'get' . $methodName;
+
         $getData = EzepostTracking::where('receiver_ezepost_addr', auth()->user()->ezepost_addr)->first();
-        $getAllReceived = $getData ? $getData->getHistoryReceived(auth()->user()->ezepost_addr) : null;
+        $getAllReceived = $getData ? $getData->$methodName(auth()->user()->ezepost_addr) : null;
+
 
         if ($this->searchTerm) {
             $getAllReceived = $getAllReceived->filter(function ($item) {
@@ -32,12 +61,13 @@ class CheckboxCounter extends Component
 
     public function toggleCheckbox($itemId)
     {
+
+
         if (in_array($itemId, $this->selectedCheckboxes)) {
             $this->selectedCheckboxes = array_diff($this->selectedCheckboxes, [$itemId]);
         } else {
             $this->selectedCheckboxes[] = $itemId;
         }
-
         // Store the selected checkboxes in the session.
         session(['selectedCheckboxes' => $this->selectedCheckboxes]);
     }
@@ -62,8 +92,6 @@ class CheckboxCounter extends Component
 
     public function updatedSelectedCheckboxes()
     {
-        // This method is called when the selected checkboxes change.
-        // You can perform any necessary actions here to handle checkbox preservation.
 
         // Fetch the received items data again using the same logic as in the render method.
         $getData = EzepostTracking::where('receiver_ezepost_addr', auth()->user()->ezepost_addr)->first();

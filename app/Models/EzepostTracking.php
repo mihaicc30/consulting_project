@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
+
+use function PHPUnit\Framework\isEmpty;
 
 class EzepostTracking extends Model
 {
@@ -59,7 +62,7 @@ class EzepostTracking extends Model
     public function getAllReceived($ezepost_addr)
     {
         return $this->where('receiver_ezepost_addr', $ezepost_addr)
-            ->orderByDesc('created_at')->get(); // Developer should change to 'created_at' in production
+            ->orderByDesc('created_at')->get();
     }
 
     public function getHistoryReceived($ezepost_addr)
@@ -67,6 +70,13 @@ class EzepostTracking extends Model
         return $this->where('receiver_ezepost_addr', $ezepost_addr)
             ->whereDate('created_at', '!=', now()->format('Y-m-d')) // Exclude today's items
             ->orderByDesc('created_at')
+            ->get();
+    }
+    public function getHistoryViewed($ezepost_addr)
+    {
+        return $this->where('receiver_ezepost_addr', $ezepost_addr)
+            ->whereDate('created_at', '!=', now()->format('Y-m-d')) // Exclude today's items
+            ->where('time_post_opened', '!=', null)->orderByDesc('created_at')
             ->get();
     }
 

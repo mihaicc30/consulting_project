@@ -3,31 +3,31 @@
     <div class="mb-4">
         <input type="text" wire:model.debounce.300ms="searchTerm" class="w-full p-2 border rounded" placeholder="Search..." />
     </div>
-<div class="flex justify-center text-red-500 ">
-    @if ($selectedCount === 5)
-        You have reached the maximum number of receipts you can download at once.
-    @endif
-</div>
+        <div class="flex justify-center text-red-500 ">
+            @if ($selectedCount === 5)
+                You have reached the maximum number of receipts you can download at once.
+            @endif
+        </div>
      {{$this->hasExceededLimit()}}
     <div class="flex flex-col mt-4" id="receivedItems">
     @if (!$getAllReceived)
         <div> You did not receive any files yet.</div>
     @else 
 
-    @if($selectedCount > 1)
-            <form action="{{ route('pdf.template') }}" method="POST" target="_blank" class="self-center mb-2">
-                @csrf
-                @foreach ($getAllReceived as $item)
-                    @if (in_array($item['id'], $selectedCheckboxes))
-                        <input type="hidden" name="items[]" value="{{ json_encode($item) }}">
-                    @endif
-                @endforeach
-                <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
-                    <span>Generate receipt for selected files</span>
-                </button>
-            </form>
-    @endif
+            @if($selectedCount > 1)
+                    <form action="{{ route('pdf.template') }}" method="POST" target="_blank" class="self-center mb-2">
+                        @csrf
+                        @foreach ($getAllReceived as $item)
+                            @if (in_array($item['id'], $selectedCheckboxes))
+                                <input type="hidden" name="items[]" value="{{ json_encode($item) }}">
+                            @endif
+                        @endforeach
+                        <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+                            <span>Generate receipt for selected files</span>
+                        </button>
+                    </form>
+            @endif
         @foreach ($getAllReceived as $item)
             <div class="flex items-center justify-between border p-2 mb-2" wire:key="{{ $item['id'] }}">
                 <div class="w-10 text-center">

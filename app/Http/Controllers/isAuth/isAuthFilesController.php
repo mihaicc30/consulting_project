@@ -33,6 +33,13 @@ class isAuthFilesController extends Controller
 
     public function getHistoryViewed()
     {
+        $ezepost_addr = auth()->user()->ezepost_addr;
+        $receiver_ezepost_addr = EzepostTracking::where('receiver_ezepost_addr', $ezepost_addr)->first();
+        $getAllReceived = $receiver_ezepost_addr ? $receiver_ezepost_addr->getHistoryViewed($ezepost_addr) : 'No files received';
+
+        return (view('isauth.history-viewed', [
+            'getAllReceived' => $getAllReceived,
+        ]));
     }
 
     public function getHistorySent()

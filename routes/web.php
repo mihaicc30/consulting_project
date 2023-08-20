@@ -63,9 +63,9 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/viewed', [isAuthFilesController::class, 'getViewed'])->name('viewed');
     Route::get('/sent', [isAuthFilesController::class, 'getSent'])->name('sent');
 
-    Route::get('/historyReceived', [isAuthFilesController::class, 'getHistoryReceived'])->name('historyReceived');
-    Route::get('/history-viewed', [isAuthFilesController::class, 'getHistoryViewed'])->name('historyViewed');
-    Route::get('/history-sent', [isAuthFilesController::class, 'getHistorySent'])->name('historySent');
+    Route::get('/history-received', [isAuthFilesController::class, 'getHistoryReceived'])->name('history-received');
+    Route::get('/history-viewed', [isAuthFilesController::class, 'getHistoryViewed'])->name('history-viewed');
+    Route::get('/history-sent', [isAuthFilesController::class, 'getHistorySent'])->name('history-sent');
 
     Route::get('/pdf/view', [isAuthPdfController::class, 'view'])->name('pdf.view');
     Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdf.generate');

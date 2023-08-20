@@ -135,7 +135,7 @@
 
         </div>
         <div style="text-align: center; width: 100%; position: fixed; bottom: 0;">
-            {{ date('Y-m-d H:i:s') }}
+            PDF generated on {{ date('Y-m-d') }} at {{ date('H:i:s') }}
         </div>
 </body>
 
