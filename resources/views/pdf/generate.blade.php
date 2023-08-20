@@ -26,7 +26,6 @@
                 <div></div>
             </div>
             <hr class="mb-4">
-
             <table border="1" style="width: 100%; border-collapse: collapse;">
                 <tr>
                     <th style="background-color: #ECECEC;">FILENAME</th>
@@ -35,7 +34,6 @@
                     <th style="background-color: #ECECEC;">TIME RECEIVED</th>
                     <th style="background-color: #ECECEC;">TIME OPEN</th>
                 </tr>
-
                 @if(isset($items))
                 @foreach ($items as $item)
                 <tr>

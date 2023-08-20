@@ -47,22 +47,28 @@ class EzepostTracking extends Model
             ->where('status', 'Successful')
             ->count();
     }
-    public function getFailed($ezepost_addr)
-    {
-        return $this->where('sender_ezepost_addr', $ezepost_addr)
-            ->where('status', 'Failed')
-            ->count();
-    }
-    public function getAllSent($ezepost_addr)
-    {
-        return $this->where('sender_ezepost_addr', $ezepost_addr)
-            ->count();
-    }
-
-    public function getAllReceived($ezepost_addr)
+    public function getViewed($ezepost_addr)
     {
         return $this->where('receiver_ezepost_addr', $ezepost_addr)
-            ->orderByDesc('created_at')->get();
+            ->whereDate('created_at', '=', now()->format('Y-m-d')) // Exclude today's items
+            ->where('time_post_opened', '!=', null)->orderByDesc('created_at')
+            ->orderByDesc('created_at')
+            ->get();
+    }
+    public function getSent($ezepost_addr)
+    {
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
+            ->whereDate('created_at', '=', now()->format('Y-m-d')) // Exclude today's items
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    public function getReceived($ezepost_addr)
+    {
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
+            ->whereDate('created_at', '=', now()->format('Y-m-d')) // Exclude today's items
+            ->orderByDesc('created_at')
+            ->get();
     }
 
     public function getHistoryReceived($ezepost_addr)
@@ -77,6 +83,14 @@ class EzepostTracking extends Model
         return $this->where('receiver_ezepost_addr', $ezepost_addr)
             ->whereDate('created_at', '!=', now()->format('Y-m-d')) // Exclude today's items
             ->where('time_post_opened', '!=', null)->orderByDesc('created_at')
+            ->get();
+    }
+
+    public function getHistorySent($ezepost_addr)
+    {
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
+            ->whereDate('created_at', '!=', now()->format('Y-m-d')) // Exclude today's items
+            ->orderByDesc('created_at')
             ->get();
     }
 

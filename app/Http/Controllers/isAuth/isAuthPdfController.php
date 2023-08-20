@@ -30,22 +30,42 @@ class isAuthPdfController extends Controller
 
     public function generate(Request $request)
     {
-        $itemsData = $request->input('items');
-        $items = array_map('json_decode', $itemsData);
 
-        // Initialize Dompdf
+        $itemsData = $request->input('items') ?? $request->input('item');
 
-        $dompdf = new Dompdf();
+        if (gettype($itemsData) === 'string') {
+            $item = json_decode($itemsData); // Initialize an empty array if $itemsData is null
+            // Initialize Dompdf
+            $dompdf = new Dompdf();
 
-        // Load the view and render PDF content
-        $pdfView = view('pdf.generate', compact('items'))->render();
-        $dompdf->loadHtml($pdfView);
+            // Load the view and render PDF content
+            $pdfView = view('pdf.generate', compact('item'))->render();
 
-        // Render the PDF (optional: set paper size, orientation, etc.)
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
+            $dompdf->loadHtml($pdfView);
 
-        // Download the generated PDF
-        return $dompdf->stream('generated.pdf');
+            // Render the PDF (optional: set paper size, orientation, etc.)
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+
+            // Download the generated PDF
+            return $dompdf->stream('generated.pdf');
+        } else {
+            $items = array_map('json_decode', $itemsData);
+
+            // Initialize Dompdf
+            $dompdf = new Dompdf();
+
+            // Load the view and render PDF content
+            $pdfView = view('pdf.generate', compact('items'))->render();
+
+            $dompdf->loadHtml($pdfView);
+
+            // Render the PDF (optional: set paper size, orientation, etc.)
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+
+            // Download the generated PDF
+            return $dompdf->stream('generated.pdf');
+        }
     }
 }

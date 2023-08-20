@@ -68,8 +68,8 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/history-sent', [isAuthFilesController::class, 'getHistorySent'])->name('history-sent');
 
     Route::get('/pdf/view', [isAuthPdfController::class, 'view'])->name('pdf.view');
-    Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdf.generate');
     Route::post('/pdf/template', [isAuthPdfController::class, 'template'])->name('pdf.template');
+    Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdf.generate');
 
     Route::get('/plans', [isAuthPlansController::class, 'get']);
     Route::post('/plans/{plan}', [isAuthPlansController::class, 'update'])->name('plans.update');

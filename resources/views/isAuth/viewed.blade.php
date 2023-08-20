@@ -11,7 +11,7 @@
     <div class="overlay relative flex flex-col">
       <!-- Heading - START -->
       <div class="my-8 text-center">
-        <h1 class="font-bold text-3xl">Viewed files</h1>
+        <h1 class="font-bold text-3xl">Viewed files today</h1>
       </div>
       <!-- Heading - END -->
     </div>
