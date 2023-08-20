@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
-use App\Models\ezepostTracking;
-use App\Models\ezepostUser;
+use App\Models\EzepostTracking;
+use App\Models\EzepostUser;
 use Illuminate\Support\Facades\Auth;
 
 class isAuthDashboardController extends Controller
@@ -21,18 +21,18 @@ class isAuthDashboardController extends Controller
                 $user = ezepostUser::where('ezepost_addr', $email)->first();
 
                 // Retrieve active transmissions
-                $ezepostTrackingData = ezepostTracking::where('receiver_ezepost_addr', $email)->first();
+                $ezepostTrackingData = EzepostTracking::where('receiver_ezepost_addr', $email)->first();
                 $inProgressCount = $ezepostTrackingData ? $ezepostTrackingData->getInProgressCount($email) : 0;
                 $getAllReceived = $ezepostTrackingData ? $ezepostTrackingData->getAllReceived($email) : 0;
 
-                $ezepostFiles = ezepostTracking::where('sender_ezepost_addr', $email)->first();
+                $ezepostFiles = EzepostTracking::where('sender_ezepost_addr', $email)->first();
                 $getAllSent = $ezepostFiles ? $ezepostFiles->getAllSent($email) : 0;
                 $succesfulCount = $ezepostFiles ? $ezepostFiles->getSuccessful($email) : 0;
                 $failedCount = $ezepostFiles ? $ezepostFiles->getFailed($email) : 0;
                 $sendingCount = $ezepostFiles ? $ezepostFiles->getSendingCount($email) : 0;
                 $yourInProgressCount = $ezepostFiles ? $ezepostFiles->yourInProgressCount($email) : 0;
 
-                $getLastThreeFiles = ezepostTracking::where(function ($query) use ($email) {
+                $getLastThreeFiles = EzepostTracking::where(function ($query) use ($email) {
                         $query->where('sender_ezepost_addr', $email)
                                 ->orWhere('receiver_ezepost_addr', $email);
                 })

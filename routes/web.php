@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Live wire component
+use App\Http\Livewire\CheckboxCounter;
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\isAdmin\AdminDashboardController;
@@ -16,6 +19,7 @@ use App\Http\Controllers\isAuth\isAuthFilesController;
 use App\Http\Controllers\isAuth\isAuthPlansController;
 use App\Http\Controllers\isAuth\isAuthContactController;
 use App\Http\Controllers\isAuth\isAuthTopupController;
+use App\Http\Controllers\isAuth\isAuthPdfController;
 
 use App\Http\Controllers\notAuth\HomeController;
 use App\Http\Controllers\notAuth\ServicesController;
@@ -59,9 +63,13 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/viewed', [isAuthFilesController::class, 'getViewed'])->name('viewed');
     Route::get('/sent', [isAuthFilesController::class, 'getSent'])->name('sent');
 
-    Route::get('/history-received', [isAuthFilesController::class, 'getHistoryReceived'])->name('historyReceived');
+    Route::get('/historyReceived', [isAuthFilesController::class, 'getHistoryReceived'])->name('historyReceived');
     Route::get('/history-viewed', [isAuthFilesController::class, 'getHistoryViewed'])->name('historyViewed');
     Route::get('/history-sent', [isAuthFilesController::class, 'getHistorySent'])->name('historySent');
+
+    Route::get('/pdf/view', [isAuthPdfController::class, 'view'])->name('pdf.view');
+    Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdf.generate');
+    Route::post('/pdf/template', [isAuthPdfController::class, 'template'])->name('pdf.template');
 
     Route::get('/plans', [isAuthPlansController::class, 'get']);
     Route::post('/plans/{plan}', [isAuthPlansController::class, 'update'])->name('plans.update');
@@ -78,6 +86,8 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::delete('/delete-contact/{username}', [isAuthContactController::class, 'delete'])->name('delete.contact');
+
+    Route::get('/checkbox-counter', CheckboxCounter::class);
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 

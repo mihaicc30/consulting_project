@@ -13,80 +13,79 @@ class EzepostTracking extends Model
 
     protected $fillable = [
         'sender_ezepost_addr',
-        'receiver_ezepost_addr'
+        'receiver_ezepost_addr',
 
     ];
 
-    public function getInProgressCount($email)
+    public function getInProgressCount($ezepost_addr)
     {
-        return $this->where('receiver_ezepost_addr', $email)
+        return $this->where('receiver_ezepost_addr', $ezepost_addr)
             ->where('status', 'In progress')
             ->count();
     }
 
-    public function yourInProgressCount($email)
+    public function yourInProgressCount($ezepost_addr)
     {
-        return $this->where('sender_ezepost_addr', $email)
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
             ->where('status', 'In progress')
             ->count();
     }
 
-    public function getSendingCount($email)
+    public function getSendingCount($ezepost_addr)
     {
-        return $this->where('sender_ezepost_addr', $email)
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
             ->where('status', 'In progress')
             ->count();
     }
 
-    public function getSuccessful($email)
+    public function getSuccessful($ezepost_addr)
     {
-        return $this->where('sender_ezepost_addr', $email)
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
             ->where('status', 'Successful')
             ->count();
     }
-    public function getFailed($email)
+    public function getFailed($ezepost_addr)
     {
-        return $this->where('sender_ezepost_addr', $email)
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
             ->where('status', 'Failed')
             ->count();
     }
-    public function getAllSent($email)
+    public function getAllSent($ezepost_addr)
     {
-        return $this->where('sender_ezepost_addr', $email)
+        return $this->where('sender_ezepost_addr', $ezepost_addr)
             ->count();
     }
-    public function getAllReceived($email)
+
+    public function getAllReceived($ezepost_addr)
     {
-        return $this->where('receiver_ezepost_addr', $email)
+        return $this->where('receiver_ezepost_addr', $ezepost_addr)
+            ->orderByDesc('created_at')->get(); // Developer should change to 'created_at' in production
+    }
+
+    public function getHistoryReceived($ezepost_addr)
+    {
+        return $this->where('receiver_ezepost_addr', $ezepost_addr)
+            ->whereDate('created_at', '!=', now()->format('Y-m-d')) // Exclude today's items
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    public function getLastTransmisions($ezepost_addr)
+    {
+        return $this->where('receiver_ezepost_addr', $ezepost_addr)
             ->where('status', 'Successful')
             ->count();
     }
-    public function getLastTransmisions($email)
-    {
-        return $this->where('receiver_ezepost_addr', $email)
-            ->where('status', 'Successful')
-            ->count();
-    }
 
-    // public function getLastThreeFiles($email)
-    // {
-    //     return $this->where(function ($query) use ($email) {
-    //         $query->where('sender_ezepost_addr', $email)
-    //             ->orWhere('receiver_ezepost_addr', $email);
-    //     })->orderBy('created_at', 'desc')
-    //         ->take(3)
-    //         ->get();
-    // }
-
-    public function getLastThreeFiles($email)
+    public function getLastThreeFiles($ezepost_addr)
     {
 
-        $lastThreeSentFiles = $this->where('sender_ezepost_addr', $email)
+        $lastThreeSentFiles = $this->where('sender_ezepost_addr', $ezepost_addr)
             ->orderByDesc('created_at')
             ->take(3)
             ->get();
 
-        $lastThreeReceivedFiles = $this->where('receiver_ezepost_addr', $email)
+        $lastThreeReceivedFiles = $this->where('receiver_ezepost_addr', $ezepost_addr)
             ->orderByDesc('created_at')
             ->take(3)
             ->get();
@@ -98,10 +97,4 @@ class EzepostTracking extends Model
 
         return $lastThreeFiles;
     }
-
-    // Creating relationship between ezepost_tracking and users
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'sender_ezepost_addr', 'email');
-    // }
 }

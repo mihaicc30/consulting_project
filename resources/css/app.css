@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
     --c1: #fec703;
     --c2: #f08409da;

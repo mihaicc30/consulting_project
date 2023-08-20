@@ -78,7 +78,7 @@
                       <div class="flex justify-between  w-[100%] flex-wrap">
                           <div class="flex flex-wrap gap-4">
                               <div>
-                                  <p class="text-md">From: {{ $file->sender_ezepost_addr }}</p>
+                                  <p class="text-md">From: {{ $file->sender_vepost_addr }}</p>
                                   <p class="text-xs">IP: {{ $file->sender_pub_ip }}</p>
                               </div>
                           </div>
@@ -183,7 +183,7 @@
                       <div class="flex justify-between  w-[100%] flex-wrap">
                           <div class="flex flex-wrap gap-4">
                               <div>
-                                  <p class="text-md">To: {{ $file->receiver_ezepost_addr }}</p>
+                                  <p class="text-md">To: {{ $file->receiver_vepost_addr }}</p>
                                   <p class="text-xs">IP: {{ $file->receiver_pub_ip }}</p>
                               </div>
                           </div>

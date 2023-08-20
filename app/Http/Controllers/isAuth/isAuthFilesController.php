@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
+use App\Models\EzepostTracking;
+use Illuminate\Support\Facades\Log;
 
 class isAuthFilesController extends Controller
 {
     public function getReceived()
     {
-        $user = auth()->user();
-
-        return (view('isauth.received', [
-            'user' => $user,
-        ]));
     }
 
     public function getViewed()
@@ -25,6 +22,13 @@ class isAuthFilesController extends Controller
 
     public function getHistoryReceived()
     {
+        $ezepost_addr = auth()->user()->ezepost_addr;
+        $receiver_ezepost_addr = EzepostTracking::where('receiver_ezepost_addr', $ezepost_addr)->first();
+        $getAllReceived = $receiver_ezepost_addr ? $receiver_ezepost_addr->getAllReceived($ezepost_addr) : 'No files received';
+
+        return (view('isauth.history-received', [
+            'getAllReceived' => $getAllReceived,
+        ]));
     }
 
     public function getHistoryViewed()
