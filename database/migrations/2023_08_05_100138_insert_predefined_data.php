@@ -12,12 +12,65 @@ return new class extends Migration
     {
         DB::table('plans')
             ->insert([
-                ['id' => 1, 'type' => 'Personal', 'name' => 'Personal Starter', 'code' => 'PAG-00000', 'price' => '10.99', 'icon' => '/icon-arcade.svg', 'slug' => 'pay-as-you-go', 'stripe_plan' => '', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => '2023-06-14 13:18:06', 'updated_at' => '2023-06-14 13:18:06'],
-                ['id' => 2, 'type' => 'Personal', 'name' => 'Personal Basic', 'code' => 'PMB-00001', 'price' => '12.99', 'icon' => '/icon-arcade.svg', 'slug' => 'personal-basic', 'stripe_plan' => '', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => '2023-06-14 13:18:06', 'updated_at' => '2023-06-14 13:18:06'],
-                ['id' => 3, 'type' => 'Personal', 'name' => 'Personal Premium', 'code' => 'PMP-00002', 'price' => '15.90', 'icon' => '/icon-arcade.svg', 'slug' => 'personal-premium', 'stripe_plan' => '', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => '2023-06-14 13:18:06', 'updated_at' => '2023-06-14 13:18:06'],
-                ['id' => 4, 'type' => 'Business', 'name' => 'Business Starter', 'code' => 'BAG-00003', 'price' => '15.99', 'icon' => '/icon-arcade.svg', 'slug' => 'business-starter', 'stripe_plan' => '', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => '2023-06-14 13:18:06', 'updated_at' => '2023-06-14 13:18:06'],
-                ['id' => 5, 'type' => 'Business', 'name' => 'Business Basic', 'code' => 'BMB-00004', 'price' => '20.99', 'icon' => '/icon-arcade.svg', 'slug' => 'business-basic', 'stripe_plan' => '', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => '2023-06-14 13:18:06', 'updated_at' => '2023-06-14 13:18:06'],
-                ['id' => 6, 'type' => 'Business', 'name' => 'Business Premium', 'code' => 'BMP-00005', 'price' => '25.99', 'icon' => '/icon-arcade.svg', 'slug' => 'business-premium', 'stripe_plan' => '', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => '2023-06-14 13:18:06', 'updated_at' => '2023-06-14 13:18:06']
+                [
+                    'id' => 1,
+                    'type' => 'Top-up',
+                    'name' => 'Top-up',
+                    'code' => 'BMP-00006',
+                    'price' => '0.00',
+                    'currency' => '[["EUR","price_1NhuWYKqpzLBt7b11Eg61iRX"],["USD","price_1NhuWYKqpzLBt7b14ACULkpX"],["GBP", "price_1NhuWYKqpzLBt7b14pmIRqaa"]]',
+                    'icon' => '/icon-arcade.svg',
+                    'slug' => 'top-up',
+                    'stripe_plan' => '',
+                    'stripe_yearly_plan' => '',
+                    'message' => 'Best option for business use & for your next project.',
+                    'description' => 'Best option for business use & for your next project.',
+                    'options' => '["Max Size 10MB", "Single File Send", "Normal Delivery"]',
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ],
+                [
+                    'id' => 2,
+                    'type' => 'Personal',
+                    'name' => 'Personal Starter',
+                    'code' => 'PAG-00000',
+                    'price' => '10.99',
+                    'currency' => '{}',
+                    'icon' => '/icon-arcade.svg',
+                    'slug' => 'personal-starter',
+                    'stripe_plan' => 'price_1Nhs1KKqpzLBt7b1cmUykTXn',
+                    'stripe_yearly_plan' => 'price_1NhuHeKqpzLBt7b1O3een2sF',
+                    'description' => 'Best option for personal use & for your next project.',
+                    'message' => 'Best option for personal use & for your next project.',
+                    'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => new DateTime(),
+                    'updated_at' => new DateTime()
+                ],
+                [
+                    'id' => 3, 'type' => 'Personal', 'name' => 'Personal Basic', 'code' => 'PMB-00001', 'price' => '12.99', 'currency' => '{}',
+                    'icon' => '/icon-arcade.svg', 'slug' => 'personal-basic', 'stripe_plan' => 'price_1NhtG8KqpzLBt7b11TDe4cXI',
+                    'stripe_yearly_plan' => 'price_1NhuKoKqpzLBt7b1uhk3AjpR', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => new DateTime(), 'updated_at' => new DateTime()
+                ],
+                [
+                    'id' => 4, 'type' => 'Personal', 'name' => 'Personal Premium', 'code' => 'PMP-00002', 'price' => '15.90', 'currency' => '{}',
+                    'icon' => '/icon-arcade.svg', 'slug' => 'personal-premium', 'stripe_plan' => 'price_1NhtzNKqpzLBt7b1NHgfWevF',
+                    'stripe_yearly_plan' => 'price_1NhuL6KqpzLBt7b105TmnGwF', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => new DateTime(), 'updated_at' => new DateTime()
+                ],
+                [
+                    'id' => 5, 'type' => 'Business', 'name' => 'Business Starter', 'code' => 'BAG-00003', 'price' => '15.99', 'currency' => '{}',
+                    'icon' => '/icon-arcade.svg', 'slug' => 'business-starter', 'stripe_plan' => 'price_1Nhu17KqpzLBt7b1wwOSCJ2T',
+                    'stripe_yearly_plan' => 'price_1NhuMIKqpzLBt7b1pohT0tfL', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => new DateTime(), 'updated_at' => new DateTime()
+                ],
+                [
+                    'id' => 6, 'type' => 'Business', 'name' => 'Business Basic', 'code' => 'BMB-00004', 'price' => '20.99', 'currency' => '{}',
+                    'icon' => '/icon-arcade.svg', 'slug' => 'business-basic', 'stripe_plan' => 'price_1Nhu2hKqpzLBt7b1TSVQj29P',
+                    'stripe_yearly_plan' => 'price_1NhuLrKqpzLBt7b1QSpsNr6T', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => new DateTime(), 'updated_at' => new DateTime()
+                ],
+                [
+                    'id' => 7, 'type' => 'Business', 'name' => 'Business Premium', 'code' => 'BMP-00005', 'price' => '25.99', 'currency' => '{}',
+                    'icon' => '/icon-arcade.svg', 'slug' => 'business-premium', 'stripe_plan' => 'price_1Nhu0NKqpzLBt7b1pzFhCU2m',
+                    'stripe_yearly_plan' => 'price_1NhuMhKqpzLBt7b1pz19Jr3r', 'description' => 'Best option for personal use & for your next project.', 'message' => 'Best option for personal use & for your next project.', 'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => new DateTime(), 'updated_at' => new DateTime()
+                ]
+
             ]);
 
 

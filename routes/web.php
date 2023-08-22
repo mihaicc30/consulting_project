@@ -21,7 +21,7 @@ use App\Http\Controllers\isAuth\isAuthContactController;
 use App\Http\Controllers\isAuth\isAuthTopupController;
 use App\Http\Controllers\isAuth\isAuthPdfController;
 use App\Http\Controllers\isAuth\isAuthHomeHistoryController;
-use App\Http\Controllers\isAuth\isAuthHomeTodayController;
+use App\Http\Controllers\isAuth\isAuthCustomerPortalController;
 
 use App\Http\Controllers\notAuth\HomeController;
 use App\Http\Controllers\notAuth\ServicesController;
@@ -76,7 +76,8 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdf.generate');
 
     Route::get('/plans', [isAuthPlansController::class, 'get']);
-    Route::post('/plans/{plan}', [isAuthPlansController::class, 'update'])->name('plans.update');
+    Route::get('/plans/{plan}', [isAuthPlansController::class, 'show'])->name('plans.show');
+    Route::post('/plans/subscription', [isAuthPlansController::class, 'subscription'])->name('subscription.create');
 
     Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
     Route::post('/contact', [isAuthContactController::class, 'add']);
@@ -88,6 +89,8 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('customer-portal', [isAuthCustomerPortalController::class, 'get'])->name('customer-portal');
 
     Route::delete('/delete-contact/{username}', [isAuthContactController::class, 'delete'])->name('delete.contact');
 

@@ -18,7 +18,7 @@ class isAuthHomeHistoryController extends Controller
         $totalPackages = $viewedPackages + $sentPackages + $receivedPackages;
 
 
-        return view('isauth.home-today', [
+        return view('isauth.history-home', [
             'receivedPackages' => $receivedPackages,
             'sentPackages' => $sentPackages,
             'viewedPackages' => $viewedPackages,

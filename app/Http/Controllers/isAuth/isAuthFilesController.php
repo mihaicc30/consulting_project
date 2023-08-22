@@ -13,7 +13,7 @@ class isAuthFilesController extends Controller
         $receiver_ezepost_addr = EzepostTracking::where('receiver_ezepost_addr', $ezepost_addr)->first();
         $getAllReceived = $receiver_ezepost_addr ? $receiver_ezepost_addr->getReceived($ezepost_addr) : 'No files received';
 
-        return (view('isauth.history-received', [
+        return (view('isauth.received', [
             'getAllReceived' => $getAllReceived,
         ]));
     }
@@ -24,7 +24,7 @@ class isAuthFilesController extends Controller
         $receiver_ezepost_addr = EzepostTracking::where('receiver_ezepost_addr', $ezepost_addr)->first();
         $getAllReceived = $receiver_ezepost_addr ? $receiver_ezepost_addr->getViewed($ezepost_addr) : 'No files received';
 
-        return (view('isauth.history-received', [
+        return (view('isauth.viewed', [
             'getAllReceived' => $getAllReceived,
         ]));
     }
@@ -35,7 +35,7 @@ class isAuthFilesController extends Controller
         $receiver_ezepost_addr = EzepostTracking::where('receiver_ezepost_addr', $ezepost_addr)->first();
         $getAllReceived = $receiver_ezepost_addr ? $receiver_ezepost_addr->getSent($ezepost_addr) : 'No files received';
 
-        return (view('isauth.history-received', [
+        return (view('isauth.sent', [
             'getAllReceived' => $getAllReceived,
         ]));
     }

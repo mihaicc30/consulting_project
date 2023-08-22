@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('code')->nullable();
             $table->decimal('price', 8, 2)->nullable();
+            $table->json('currency')->nullable();
             $table->string('icon')->nullable();
             $table->string('slug')->nullable();
             $table->string('stripe_plan')->nullable();
+            $table->string('stripe_yearly_plan')->nullable();
             $table->string('description')->nullable();
             $table->string('message')->nullable();
             $table->json('options')->nullable();

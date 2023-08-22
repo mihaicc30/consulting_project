@@ -20,7 +20,6 @@
         </div>
     </div>
     <!-- Hero END -->
-
     <!-- Content START -->
     <div class="grid grid-cols-2 gap-2 mt-8 mx-4">
         <div class="grid grid-cols-2 bg-gray-200 rounded">

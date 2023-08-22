@@ -5,6 +5,8 @@ namespace App\Http\Controllers\isAuth;
 use App\Http\Controllers\Controller;
 use App\Models\Plans;
 use App\Models\ezepostUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class isAuthPlansController extends Controller
 {
@@ -16,11 +18,11 @@ class isAuthPlansController extends Controller
         return view("isauth.plans", ['plans' => $plans]);
     }
 
-    public function update()
+    public function update($plan)
     {
 
-        $plans = request('plan');
-        $type = request('type');
+        $plans = $plan->name;
+        $type = $plan->type;
 
         // Split the string
         $planData = explode(' ', $plans);
@@ -30,7 +32,7 @@ class isAuthPlansController extends Controller
 
         // Get the authenticated user and ezepost_user
         $user = auth()->user();
-        $ezepost_user = ezepostUser::where('ezepost_addr', $user->email)->first();
+        $ezepost_user = ezepostUser::where('ezepost_addr', $user->ezepost_addr)->first();
 
         // Fetch the control string
         $controlString = $user->controlstring;
@@ -48,7 +50,6 @@ class isAuthPlansController extends Controller
         } else {
             $controlString[2] = 0;
         }
-
         // Update the user's controlstring with the updated value
         $ezepost_user->controlstring = $controlString;
         $user->controlstring = $controlString;
@@ -60,5 +61,32 @@ class isAuthPlansController extends Controller
         $plans = Plans::get();
 
         return view("isauth.plans", ['plans' => $plans]);
+    }
+
+    public function show(Plans $plan, Request $request)
+    {
+        try {
+            $intent = auth()->user()->createSetupIntent();
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'Something went wrong, please try again later.');
+        }
+
+        return view('isauth.subscribe', compact('plan', 'intent'));
+    }
+
+
+    public function subscription(Request $request)
+    {
+
+        $plan = Plans::find($request->plan);
+
+        $plan_name = $plan->name;
+
+        $this->update($plan);
+
+        $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)->create($request->token);
+
+        return view('isauth.subscription-success', compact('plan_name'));
     }
 }

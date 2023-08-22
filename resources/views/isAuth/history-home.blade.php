@@ -43,7 +43,7 @@
             <div class="bg-gray-300 text-center rounded">
                 <h2 class="font-semibold text-3xl mt-4">Received Packages</h2>
                 <p class="mx-6">
-                    "Explore the files you've received and gain insights into your delivered content, ensuring your connections stay strong and your information is always up to date."
+                    Explore the files you've received and gain insights into your delivered content, ensuring your connections stay strong and your information is always up to date.
                 </p>
 
                 <div

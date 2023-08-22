@@ -29,8 +29,17 @@
         <button @click="isPersonal = !isPersonal" :class="{ 'border-b-2 border-b-[--c2]': !isPersonal }" class="p-2 m-2 font-bold">Business</button>
       </div>
 
+
       <!-- Pricing Plan Toggle - START -->
       <div class="flex flex-col items-center justify-center">
+          <!-- Error Message - START -->
+          @if(session('error'))
+              <div class="error-message font-bold text-3xl text-red-600 p-6">
+                  {{ session('error') }}
+              </div>
+          @endif
+
+      <!-- Error Message - END -->
         <p class="text-3xl font-bold">Designed for <span x-text="isPersonal? 'personal' : 'business'"></span> usage</p>
         <p class="max-w-[500px] text-center text-xs my-4">Choose the plan that suits your needs best</p>
 
@@ -46,10 +55,8 @@
       </div>
       <!-- Pricing Plan Toggle - END -->
 
-
-
       <!-- Personal - START -->
-      <div x-show="isPersonal" class="flex flex-col overflow-x-scroll">
+      <div x-show="isPersonal" class="flex flex-col overflow-x-scroll items-center">
           <div class="flex flex-col text-center flex-nowrap">
               <!-- Personal Billing Cards - START -->
               <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">
@@ -99,7 +106,12 @@
                                   @endforeach
                               </div>
                               <p class="border-b-2 my-4"></p>
-                              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price']])
+
+                            @php
+                              $slug = $plan['slug'];
+                            @endphp
+
+                            @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'] ] )
                           </div>
                           <!-- Plan Card - END-->
                       @endif
@@ -112,7 +124,7 @@
 
 
       <!-- Bussiness - START -->
-      <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll">
+      <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll items-center">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Bussiness Billing Cards - START -->
           <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">

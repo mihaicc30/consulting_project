@@ -50,7 +50,7 @@
       </p>
     </div>
     <!-- User Card -->
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 text-center align-center items-center">
       <p>Your current plan does <u>not</u> need to be topped up. Enjoy using our unlimited services!</p>
       <div class="flex flex-wrap items-baseline">
         <p>In need of assisstance?</p>
@@ -62,31 +62,7 @@
   @else
   <!-- Top-Up IF USER HAS **NOT** A PLAN - START -->
   <div class="flex flex-wrap py-6 justify-evenly items-center gap-4 shadow-xl m-2">
-    <form method="POST" class="flex flex-col items-start justify-start gap-2" x-data="{ amount: '' }">
-      @csrf
-
-      <p class="text-xl mx-auto">Insert amount</p>
-      <input id="amount" value="1" min="1" type="number" step="0.01" name="amount" class="rounded p-2 w-[100%] text-black text-center" placeholder="Amount" required x-model="amount">
-
-      <select class="rounded p-2 w-[100%] text-black text-center" name="currency" id="currency" required>
-        <option value="usd">USD</option>
-        <option value="eur">EUR</option>
-        <option selected value="gbp">GBP</option>
-      </select>
-      <script src="https://checkout.stripe.com/checkout.js"
-       class="stripe-button"
-        data-key="{{ env('STRIPE_KEY') }}"
-        data-name="Top-up"
-        data-description="Top-up Amount"
-        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-        data-locale="auto"
-        data-label="Checkout"
-        data-allow-remember-me="true" 
-        data-email="{{ Auth::user()->email }}"
-        >
-        </script>
-
-    </form>
+  
     <div class="flex flex-col items-center justify-center">
       @include('components.token')
       <p class="text-center font-bold">Top-Up</p>
@@ -94,7 +70,10 @@
         <p class="text-center">Balance: £<span>{{$balance}}</span></p>
       </div>
     </div>
-    <!-- Top-Up - END -->
+
+
+
+        <!-- Top-Up - END -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var amountInput = document.getElementById('amount');
@@ -111,11 +90,10 @@
 
       });
     </script>
+   {{-- Script to fetch all the countries in the world --}}
+  <script>
 
-    @endif
-
-
-  </div>
-
+ 
+@endif
   
-  @endsection
+@endsection
