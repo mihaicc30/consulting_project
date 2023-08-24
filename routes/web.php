@@ -52,6 +52,7 @@ Route::get('/plans', [PlansController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
 Route::get('/download', [DownloadController::class, 'index']);
+Route::post('/stripe-web-hook', [StripeController::class, 'listen']);
 
 Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
@@ -79,6 +80,8 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/plans', [isAuthPlansController::class, 'get']);
     Route::get('/plans/{plan}', [isAuthPlansController::class, 'show'])->name('plans.show');
     Route::post('/plans/subscription', [isAuthPlansController::class, 'subscription'])->name('subscription.create');
+
+    Route::get('/subscription/cancel', [isAuthPlansController::class, 'cancel'])->name('subscription.cancel');
 
     Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
     Route::post('/contact', [isAuthContactController::class, 'add']);

@@ -171,12 +171,12 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-            <template x-if="isMonthly">
-              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0' ] )
-            </template>  
-            <template x-if="!isMonthly">
-              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] * 0.9 * 12 , 'slug' => $plan['slug'], 'yearly' => '1' ] )
-            </template> 
+              <template x-if="isMonthly">
+                @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0'] )
+              </template>  
+              <template x-if="!isMonthly">
+                @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] * 0.9 * 12 , 'slug' => $plan['slug'], 'yearly' => '1'] )
+              </template> 
             </div>
             <!-- Plan Card - END-->
             @endif
@@ -185,7 +185,6 @@
           </div>
           <!-- Bussiness Billing Cards - END -->
         </div>
-
       </div>
       <!-- Bussiness - END -->
     </div>
@@ -193,6 +192,11 @@
 
   </div>
   <!-- Plans - END -->
+<div class="bg-gray-100 p-4 text-center">
+  <p class="text-gray-700 dark:text-gray-300">
+    <strong class="text-2xl text-red-500">Cancelation Policy</strong> <br><ul><li>You can cancel your subscription at any time. </li><li>You will still have access to your account until the end of your billing period. </li><li>The cancellation process can only be done from your <strong class="text-xl">Customer Portal.</strong></li></ul>  
+  </p>
+</div>
 
 </div>
 @endsection

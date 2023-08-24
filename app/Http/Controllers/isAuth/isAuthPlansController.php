@@ -16,14 +16,17 @@ class isAuthPlansController extends Controller
         // Getting the plans
         $plans = Plans::get();
         $yearly = '';
+
         return view("isauth.plans", ['plans' => $plans, 'yearly' => $yearly]);
     }
 
-    public function update($plan)
+
+    public function update($plan, $yearly)
     {
 
         $plans = $plan->name;
         $type = $plan->type;
+        $yearly = $yearly;
 
         // Split the string
         $planData = explode(' ', $plans);
@@ -51,6 +54,9 @@ class isAuthPlansController extends Controller
         } else {
             $controlString[2] = 0;
         }
+
+        $yearly === '0' ? $controlString[3] = 0 : $controlString[3] = 1;
+
         // Update the user's controlstring with the updated value
         $ezepost_user->controlstring = $controlString;
         $user->controlstring = $controlString;
@@ -69,27 +75,35 @@ class isAuthPlansController extends Controller
         try {
             $intent = auth()->user()->createSetupIntent();
             $price = $request->price;
+            $yearly = $request->yearly;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return back()->with('error', 'Something went wrong, please try again later.');
         }
-
-        return view('isauth.subscribe', compact('plan', 'intent', 'price',));
+        return view('isauth.subscribe', compact('plan', 'intent', 'price', 'yearly'));
     }
 
 
     public function subscription(Request $request)
     {
 
-
         $plan = Plans::find($request->plan);
-
+        $yearly = $request->yearly;
         $plan_name = $plan->name;
 
-        $this->update($plan);
+        $this->update($plan, $yearly);
 
         $subscription = $request->user()->newSubscription($request->plan, 'yearly' === '0' ? $plan->stripe_plan : $plan->stripe_yearly_plan)->create($request->token);
 
         return view('isauth.subscription-success', compact('plan_name'));
+    }
+
+    public function cancel()
+    {
+
+        // Getting the plans
+        $plans = Plans::get();
+        $yearly = '';
+        return view("isauth.subscription-cancel", ['plans' => $plans, 'yearly' => $yearly]);
     }
 }

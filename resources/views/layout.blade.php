@@ -22,20 +22,20 @@
 
 
 <body class="antialiased grid grid-cols-{{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? '[200px,1fr]' : '1' }}  overflow-x-hidden" x-data="{ isActive: true }">
-<!--  -->
-@php
-  $currentUrl = url()->current();
-  $isPortalOrAdmin = Str::contains($currentUrl, 'portal') || Str::contains($currentUrl, 'admin');
-@endphp
-<!--  -->
-@auth
+  <!--  -->
   @php
-    $controlString = auth()->user()->controlstring;
-    $char19 = strlen($controlString) > 18 ? substr($controlString, 19, 1) : '';
-    $portalUrl = (Auth::user()->isAdmin() ? '/admin/dashboard' : '/portal/dashboard');
+    $currentUrl = url()->current();
+    $isPortalOrAdmin = Str::contains($currentUrl, 'portal') || Str::contains($currentUrl, 'admin');
   @endphp
-@endauth
-<!--  -->
+  <!--  -->
+  @auth
+    @php
+      $controlString = auth()->user()->controlstring;
+      $char19 = strlen($controlString) > 18 ? substr($controlString, 19, 1) : '';
+      $portalUrl = (Auth::user()->isAdmin() ? '/admin/dashboard' : '/portal/dashboard');
+    @endphp
+  @endauth
+  <!--  -->
 
     @if (Route::has('login'))
 
@@ -153,10 +153,11 @@
         @include('notauth.footer')
       @endauth
 
-<div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 @if($isPortalOrAdmin) col-span-2 @endif">
+<footer  class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 @if($isPortalOrAdmin) col-span-2 @endif">
   Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-</div>
+</footer>
 
-  </body>
+
+</body>
 
 </html>

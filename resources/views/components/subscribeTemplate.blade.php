@@ -1,8 +1,9 @@
-
 @auth
     @php
-        $controlString = auth()->user()->controlstring;
-        $controlString = strlen($controlString) > 18 ? substr($controlString, 1, 2) : '';
+
+        $ctrlString = auth()->user()->controlstring;
+        $controlString = strlen($ctrlString) > 18 ? substr($ctrlString, 1, 2) : ''; 
+        $yearlyCheck = substr($ctrlString, 3, 1) === '1' ? True : False; 
 
         $isTopUpPersonal = (($controlString === '00' || $controlString === '10') && ($plan === 'Personal Top-up' || $plan === 'Top-up'));
         $isTopUpBusiness = (($controlString === '00' || $controlString === '10') && ($plan === 'Personal Top-up' || $plan === 'Top-up'));
@@ -16,14 +17,17 @@
         $isBusinessPremium = $controlString === '13' && $plan === 'Business Premium';
 
     @endphp
-    @if($isPersonalStarter || $isPersonalBasic || $isPersonalPremium || $isTopUpPersonal || $isBusinessStarter || $isBusinessBasic || $isBusinessPremium || $isTopUpBusiness)
-    
-    <button class="bg-[--c5] p-2 rounded text-white font-bold" href="/#" disabled="true">Already Subscribed</button>
+    @if(($isPersonalStarter || $isPersonalBasic || $isPersonalPremium || $isTopUpPersonal || $isBusinessStarter || $isBusinessBasic || $isBusinessPremium || $isTopUpBusiness))
+        @if ($yearlyCheck && $yearly === '1' )
+            <a class="bg-[--c3] p-2 rounded text-white font-bold" href="https://billing.stripe.com/p/login/test_aEU4jefPhdAn0rS5kl?prefilled_email={{Auth()->user()->email}}">Cancel Subscription</a>
+        @elseif(!$yearlyCheck && $yearly === '0' )
+            <a class="bg-[--c3] p-2 rounded text-white font-bold" href="https://billing.stripe.com/p/login/test_aEU4jefPhdAn0rS5kl?prefilled_email={{Auth()->user()->email}}">Cancel Subscription</a>
+        @else
+            <a class="bg-[--c2] p-2 rounded text-white font-bold" href="{{ route('plans.show', ['plan' => $slug, 'price' => $price , 'yearly' => $yearly ]) }}">Subscribe</a>
+        @endif
     @else
         <a href="{{ route('plans.show', ['plan' => $slug, 'price' => $price , 'yearly' => $yearly ]) }}" class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</a>
     @endif
 @else
     <button class="bg-[--c2] p-2 rounded text-white font-bold" onclick="window.location.href = '/login'">Subscribe</button>
-    
 @endif
-
