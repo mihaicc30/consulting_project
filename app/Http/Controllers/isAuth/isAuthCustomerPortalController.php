@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class isAuthCustomerPortalController extends Controller
 {
@@ -11,8 +12,10 @@ class isAuthCustomerPortalController extends Controller
     {
         $user = auth()->user();
 
+        $email = $user->email;
+
         $intent = $user->createSetupIntent();
 
-        return view('isauth.customer-portal', ['intent' => $intent]);
+        return view('isauth.customer-portal', ['intent' => $intent, 'email' => $email]);
     }
 }

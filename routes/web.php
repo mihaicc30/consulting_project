@@ -32,6 +32,7 @@ use App\Http\Controllers\notAuth\SubscribeController;
 use App\Http\Controllers\notAuth\DownloadController;
 
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\isAuth\isAuthHomeTodayController;
 use App\Http\Controllers\NewsletterController;
 
 /*
@@ -91,6 +92,7 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('customer-portal', [isAuthCustomerPortalController::class, 'get'])->name('customer-portal');
+    Route::post('/create-customer-portal-session', [isAuthCustomerPortalController::class, 'stripe'])->name('create-customer-portal-session');
 
     Route::delete('/delete-contact/{username}', [isAuthContactController::class, 'delete'])->name('delete.contact');
 

@@ -20,7 +20,7 @@
     
     <button class="bg-[--c5] p-2 rounded text-white font-bold" href="/#" disabled="true">Already Subscribed</button>
     @else
-        <a href="{{ route('plans.show', ['plan' => $slug]) }}" class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</a>
+        <a href="{{ route('plans.show', ['plan' => $slug, 'price' => $price , 'yearly' => $yearly ]) }}" class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</a>
     @endif
 @else
     <button class="bg-[--c2] p-2 rounded text-white font-bold" onclick="window.location.href = '/login'">Subscribe</button>

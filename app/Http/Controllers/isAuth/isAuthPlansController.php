@@ -15,7 +15,8 @@ class isAuthPlansController extends Controller
     {
         // Getting the plans
         $plans = Plans::get();
-        return view("isauth.plans", ['plans' => $plans]);
+        $yearly = '';
+        return view("isauth.plans", ['plans' => $plans, 'yearly' => $yearly]);
     }
 
     public function update($plan)
@@ -67,17 +68,19 @@ class isAuthPlansController extends Controller
     {
         try {
             $intent = auth()->user()->createSetupIntent();
+            $price = $request->price;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return back()->with('error', 'Something went wrong, please try again later.');
         }
 
-        return view('isauth.subscribe', compact('plan', 'intent'));
+        return view('isauth.subscribe', compact('plan', 'intent', 'price',));
     }
 
 
     public function subscription(Request $request)
     {
+
 
         $plan = Plans::find($request->plan);
 
@@ -85,7 +88,7 @@ class isAuthPlansController extends Controller
 
         $this->update($plan);
 
-        $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)->create($request->token);
+        $subscription = $request->user()->newSubscription($request->plan, 'yearly' === '0' ? $plan->stripe_plan : $plan->stripe_yearly_plan)->create($request->token);
 
         return view('isauth.subscription-success', compact('plan_name'));
     }

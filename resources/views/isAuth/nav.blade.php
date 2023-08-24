@@ -297,7 +297,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -2 24 24" stroke-width="1.5" stroke="red" class="w-5 h-5 ml-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
-      <a class="relative navButton font-[600] w-full" href="/portal/customer-portal">
+      <a class="relative navButton font-[600] w-full" href="https://billing.stripe.com/p/login/test_aEU4jefPhdAn0rS5kl?prefilled_email={{Auth()->user()->email}}" target="_blank">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="ml-2 z-20 relative ">Customer Portal</span>
       </a>

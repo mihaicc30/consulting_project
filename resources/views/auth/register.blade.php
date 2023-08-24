@@ -58,16 +58,16 @@
 
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
-            <!-- Phone Number -->
+            <!-- Username -->
             <div>
-                <x-input-label for="username" :value="__('Username *')" />
+                  <x-input-label for="username" :value="__('Username *')" />
 
                 <x-text-input id="username" class="block mt-1 w-full"
                                 type="text"
                                 name="username" required autocomplete="username" />
                 <x-input-error :messages="$errors->get('username')" class="mt-2" />
             </div>
-
+                <x-input-error :messages="$errors->get('username')" class="mt-2" />
             <span></span>
 
             <div class="flex items-center justify-end mt-4 ">

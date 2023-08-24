@@ -32,6 +32,12 @@ class RegisteredUserController extends Controller
     public function store(RegistrationRequest $request): RedirectResponse
     {
 
+        // Check if the username is already used
+        // $existingUser = ezepostUser::where('username', $request->username)->first();
+        // if ($existingUser) {
+        //     return back()->withInput()->->withErrors(['username'->'Username is already taken. Please choose a different username.']);
+        // }
+
         $passwordHash = Hash::make($request->password);
         $ezepost_addr = Str::uuid();
 

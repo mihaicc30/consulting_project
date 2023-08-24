@@ -62,7 +62,6 @@ class CheckboxCounter extends Component
     public function toggleCheckbox($itemId)
     {
 
-
         if (in_array($itemId, $this->selectedCheckboxes)) {
             $this->selectedCheckboxes = array_diff($this->selectedCheckboxes, [$itemId]);
         } else {

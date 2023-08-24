@@ -15,5 +15,8 @@
     </div>
   </div>
   <!-- Hero END -->
+<div class="flex justify-center items-center text-center mt-[10rem]">
+<a href="https://billing.stripe.com/p/login/test_4gw6oJchs69w47e7ss?prefilled_email={{$email}}" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Click here to go to your Customer Portal</a>
+</div>
 
 @endsection

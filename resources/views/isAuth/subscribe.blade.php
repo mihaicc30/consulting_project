@@ -11,7 +11,7 @@
     <div class="overlay relative flex flex-col">
       <!-- Heading - START -->
       <div class="my-8 text-center">
-        <h1 class="font-bold text-3xl">You will be charged ${{number_format($plan->price, 2)}} for {{ $plan->name }} Plan </h1>
+        <h1 class="font-bold text-3xl">You will be charged ${{$price}} for {{ $plan->name }} Plan </h1>
       </div>
       <!-- Heading - END -->
     </div>
@@ -25,7 +25,6 @@
          <h1 class="text-2xl font-semibold mb-6">Billing Information</h1>
         <div id="address-element"></div>
         <hr class="my-4">
-
         <input type="hidden" name="plan" id="plan" value="{{ $plan->id }}">
         <label for="card-holder-name">Card Holder Name</label>
           <input type="text" id="card-holder-name" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
@@ -46,9 +45,6 @@
     const elements = stripe.elements();
     const cardElement = elements.create('card', {
       hidePostalCode: true,
-      style: {
-        // ... your style configuration ...
-      },
     });
     cardElement.mount('#card-element');
 

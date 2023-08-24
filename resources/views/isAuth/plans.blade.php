@@ -42,12 +42,11 @@
       <!-- Error Message - END -->
         <p class="text-3xl font-bold">Designed for <span x-text="isPersonal? 'personal' : 'business'"></span> usage</p>
         <p class="max-w-[500px] text-center text-xs my-4">Choose the plan that suits your needs best</p>
-
         <p>You have the option of montly of yearly billing</p>
         <div class="my-2 flex justify-center items-center">
           <span :class="{ 'bg-[--c2] text-white rounded transition': isMonthly }" class=" p-2 m-2 font-bold">Monthly</span>
           <label class="switch">  
-            <input type="checkbox" @change="isMonthly = !isMonthly">
+            <input type="checkbox" id="monthlyCheckbox" name="checkboxed" @change="isMonthly = !isMonthly">
             <span class="slider"></span>
           </label>
           <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly (- 10% Off)</span>
@@ -56,10 +55,10 @@
       <!-- Pricing Plan Toggle - END -->
 
       <!-- Personal - START -->
-      <div x-show="isPersonal" class="flex flex-col overflow-x-scroll items-center">
+      <div x-show="isPersonal" class="flex flex-col overflow-auto items-center">
           <div class="flex flex-col text-center flex-nowrap">
               <!-- Personal Billing Cards - START -->
-              <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">
+              <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
                   @foreach ($plans as $plan)
                       @if (Str::startsWith($plan->type, 'Personal'))
                           <!-- Plan Card - START-->
@@ -110,8 +109,12 @@
                             @php
                               $slug = $plan['slug'];
                             @endphp
-
-                            @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'] ] )
+                          <template x-if="isMonthly">
+                            @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0' ] )
+                          </template>  
+                          <template x-if="!isMonthly">
+                            @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] * 0.9 * 12 , 'slug' => $plan['slug'], 'yearly' => '1' ] )
+                          </template>  
                           </div>
                           <!-- Plan Card - END-->
                       @endif
@@ -124,10 +127,10 @@
 
 
       <!-- Bussiness - START -->
-      <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll items-center">
+      <div x-show="!isPersonal" class="flex flex-col overflow-auto items-center">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Bussiness Billing Cards - START -->
-          <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">
+          <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
             @foreach ($plans as $plan)
             @if (Str::startsWith($plan->type, 'Business'))
             <!-- Plan Card - START-->
@@ -168,7 +171,12 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] ] )
+            <template x-if="isMonthly">
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0' ] )
+            </template>  
+            <template x-if="!isMonthly">
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] * 0.9 * 12 , 'slug' => $plan['slug'], 'yearly' => '1' ] )
+            </template> 
             </div>
             <!-- Plan Card - END-->
             @endif
