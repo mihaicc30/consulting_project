@@ -84,4 +84,8 @@ class StripeController extends Controller
             return response('Error deleting subscription items', 500);
         }
     }
+
+    public function handleSubscriptionUpdate($request)
+    {
+    }
 }
