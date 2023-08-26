@@ -61,7 +61,7 @@ Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->nam
 Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
 
     Route::get('/', [isAuthDashboardController::class, 'get']);
-    Route::get('/dashboard', [isAuthDashboardController::class, 'get']);
+    Route::get('/dashboard', [isAuthDashboardController::class, 'get'])->name('dashboard');
 
     Route::get('/home-today', [isAuthHomeTodayController::class, 'getAllData'])->name('home-today');
     Route::get('/received', [isAuthFilesController::class, 'getReceived'])->name('received');
@@ -80,6 +80,7 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/plans', [isAuthPlansController::class, 'get']);
     Route::get('/plans/{plan}', [isAuthPlansController::class, 'show'])->name('plans.show');
     Route::post('/plans/subscription', [isAuthPlansController::class, 'subscription'])->name('subscription.create');
+    Route::post('/plans/topup', [isAuthTopupController::class, 'pay'])->name('topup.create');
 
     Route::get('/subscription/cancel', [isAuthPlansController::class, 'cancel'])->name('subscription.cancel');
 
@@ -88,7 +89,7 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::post('/contact/{email}/delete', [isAuthContactController::class, 'delete']);
 
     Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isauth.topup');
-    Route::post('/topup', [isAuthTopupController::class, 'post']);
+    Route::post('/topup', [isAuthTopupController::class, 'topup'])->name('isauth.topup');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

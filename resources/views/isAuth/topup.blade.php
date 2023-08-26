@@ -19,20 +19,6 @@
   </div>
   <!-- Hero END -->
 
-  @if(isset($status))
-  @if($status === "success")
-  <div class="flex justify-between p-4 my-2 bg-[#51ee5170] animate-fadeIN">
-    <p>{{$message}}</p>
-    <button onclick="this.parentElement.remove()">@include('components.closebutton')</button>
-  </div>
-  @elseif($status === "fail")
-  <div class="flex justify-between p-4 my-2 bg-[#ee565170] animate-fadeIN">
-    <p>{{$message}}</p>
-    <button onclick="this.parentElement.remove()">@include('components.closebutton')</button>
-  </div>
-  @endif
-  @endif
-
   @if(substr(Auth::user()->controlstring, 2, 1) !== '0')
   <!-- Top-Up IF USER HAS A PLAN - START -->
   <div class="flex flex-wrap py-6 justify-center items-center">
@@ -61,39 +47,61 @@
   <!-- Top-Up - END -->
   @else
   <!-- Top-Up IF USER HAS **NOT** A PLAN - START -->
-  <div class="flex flex-wrap py-6 justify-evenly items-center gap-4 shadow-xl m-2">
-  
-    <div class="flex flex-col items-center justify-center">
-      @include('components.token')
-      <p class="text-center font-bold">Top-Up</p>
-      <div class="flex justify-evenly flex-col w-[100%] items-center">
-        <p class="text-center">Balance: £<span>{{$balance}}</span></p>
-      </div>
+<div class="flex py-6 justify-center items-center shadow-xl m-2">
+  <div class="flex flex-col items-center justify-center">
+    @include('components.token')
+    <p class="text-center font-bold">Top-Up</p>
+    <div class="flex justify-evenly flex-col w-[100%] items-center">
+      <p class="text-center">Current balance: <span>{{$balance}} tokens</span></p>
     </div>
+  <div x-data="{ amount: '', currency: '' }" >
+    <form method="POST" action="{{ route('isauth.topup')}}" class="flex flex-col items-center mt-4" x-on:submit.prevent>
+      @csrf
 
+      <div class="flex bg-gray-100 p-8 rounded-lg shadow-lg text-center">
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold" for="amount">Select Amount:</label>
+            <input type="radio" id="5" name="amount" value="5" x-on:click="amount = 5">
+            <label for="5">5</label>
+            <input type="radio" id="10" name="amount" value="10" x-on:click="amount = 10">
+            <label for="10">10</label>
+            <input type="radio" id="20" name="amount" value="20" x-on:click="amount = 20">
+            <label for="20">20</label>
+            <input type="radio" id="30" name="amount" value="30" x-on:click="amount = 30">
+            <label for="30">30</label>
+        </div>
+        <div class="border mx-2"></div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold" for="currency">Select currency:</label>
+            <input type="radio" id="gbp" name="currency" value="gbp" x-on:click="currency = 'Pound'">
+            <label for="gbp">Pounds</label>
+            <input type="radio" id="eur" name="currency" value="eur" x-on:click="currency = 'Euro'">
+            <label for="eur">Euros</label>
+            <input type="radio" id="usd" name="currency" value="usd" x-on:click="currency = 'Dollar'">
+            <label for="usd">Dollars</label>
+        </div>
+      </div>
 
-
-        <!-- Top-Up - END -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var amountInput = document.getElementById('amount');
-        var currencySelect = document.getElementById('currency');
-        var stripeButton = document.querySelector('.stripe-button');
-
-        amountInput.addEventListener('input', function() {
-          stripeButton.setAttribute('data-amount', amountInput.value * 100);
-        });
-
-        currencySelect.addEventListener('change', function() {
-          stripeButton.setAttribute('data-currency', currencySelect.value);
-        });
-
-      });
-    </script>
-   {{-- Script to fetch all the countries in the world --}}
-  <script>
-
- 
+        <div class="flex bg-gray-200 p-2 mt-4 rounded-lg items-center">
+          <p class="text-gray-700 flex">You will be charged&nbsp;<span id="selected-amount" class="font-bold" x-text="amount"></span>&nbsp; <span id="selected-currency" x-text="currency"></span></p>
+        </div>
+      <div class="alert"></div>
+      <div class="mt-4">
+        <button type="submit" id="stripe-button" class="w-full bg-[--c2] p-2 rounded text-white font-bold" x-on:click="
+        if (amount && currency) {
+          $el.closest('form').submit();
+        } else {
+          document.getElementsByClassName('alert')[0].innerHTML = '<p class=\'text-red-500 mt-2\'>Please select both amount and currency.</p>';
+          $el.closest('form').preventDefault();
+        }
+      "
+    >Top-Up</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+  
 @endif
   
 @endsection

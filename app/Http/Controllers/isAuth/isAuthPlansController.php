@@ -23,51 +23,56 @@ class isAuthPlansController extends Controller
 
     public function update($plan, $yearly)
     {
-
-        $plans = $plan->name;
-        $type = $plan->type;
-        $yearly = $yearly;
-
-        // Split the string
-        $planData = explode(' ', $plans);
-
-        // Extract the "Plan Name" from the string
-        $planName = $planData[1];
-
-        // Get the authenticated user and ezepost_user
-        $user = auth()->user();
-        $ezepost_user = ezepostUser::where('ezepost_addr', $user->ezepost_addr)->first();
-
-        // Fetch the control string
-        $controlString = $user->controlstring;
-
-        // Update the type of the plan
-        $controlString[1] = $type === 'Business' ? 1 : 0;
-
-        // Update the necessary values in the control string based on the selected plan
-        if ($planName === 'Starter') {
-            $controlString[2] = 1;
-        } elseif ($planName === 'Basic') {
-            $controlString[2] = 2;
-        } elseif ($planName === 'Premium') {
-            $controlString[2] = 3;
+        if ($yearly == '') {
+            $plan_name = $plan->name;
+            return view('isauth.subscription-success', compact('plan_name'));
         } else {
-            $controlString[2] = 0;
+
+            $plans = $plan->name;
+            $type = $plan->type;
+            $yearly = $yearly;
+
+            // Split the string
+            $planData = explode(' ', $plans);
+
+            // Extract the "Plan Name" from the string
+            $planName = $planData[1];
+
+            // Get the authenticated user and ezepost_user
+            $user = auth()->user();
+            $ezepost_user = ezepostUser::where('ezepost_addr', $user->ezepost_addr)->first();
+
+            // Fetch the control string
+            $controlString = $user->controlstring;
+
+            // Update the type of the plan
+            $controlString[1] = $type === 'Business' ? 1 : 0;
+
+            // Update the necessary values in the control string based on the selected plan
+            if ($planName === 'Starter') {
+                $controlString[2] = 1;
+            } elseif ($planName === 'Basic') {
+                $controlString[2] = 2;
+            } elseif ($planName === 'Premium') {
+                $controlString[2] = 3;
+            } else {
+                $controlString[2] = 0;
+            }
+
+            $yearly === '0' ? $controlString[3] = 0 : $controlString[3] = 1;
+
+            // Update the user's controlstring with the updated value
+            $ezepost_user->controlstring = $controlString;
+            $user->controlstring = $controlString;
+
+            $ezepost_user->save();
+            $user->save();
+
+            // Refetch the plans
+            $plans = Plans::get();
+
+            return view("isauth.plans", ['plans' => $plans]);
         }
-
-        $yearly === '0' ? $controlString[3] = 0 : $controlString[3] = 1;
-
-        // Update the user's controlstring with the updated value
-        $ezepost_user->controlstring = $controlString;
-        $user->controlstring = $controlString;
-
-        $ezepost_user->save();
-        $user->save();
-
-        // Refetch the plans
-        $plans = Plans::get();
-
-        return view("isauth.plans", ['plans' => $plans]);
     }
 
     public function show(Plans $plan, Request $request)
@@ -83,7 +88,6 @@ class isAuthPlansController extends Controller
         return view('isauth.subscribe', compact('plan', 'intent', 'price', 'yearly'));
     }
 
-
     public function subscription(Request $request)
     {
 
@@ -92,8 +96,6 @@ class isAuthPlansController extends Controller
         $plan_name = $plan->name;
 
         $this->update($plan, $yearly);
-
-        $subscription = $request->user()->newSubscription($request->plan, 'yearly' === '0' ? $plan->stripe_plan : $plan->stripe_yearly_plan)->create($request->token);
 
         return view('isauth.subscription-success', compact('plan_name'));
     }

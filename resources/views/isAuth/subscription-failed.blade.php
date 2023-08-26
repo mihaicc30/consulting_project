@@ -10,28 +10,19 @@
     <div class="overlay relative flex flex-col">
       <!-- Heading - START -->
       <div class="my-8 text-center">
-        <h1 class="font-bold text-3xl">You are now subscribed to {{$plan_name }} Plan.  </h1>
+        <h1 class="font-bold text-3xl">You are now subscribed to Some Plan.  </h1>
       </div>
       <!-- Heading - END -->
     </div>
   </div>
   <!-- Hero END -->
-@if($plan_name == 'Top-up')
-  <div class="flex justify-center align-center items-center text-center mt-4">
-    <div class="bg-green-500 text-white py-3 px-6 rounded-lg">
-      <p class="font-bold text-xl">Congratulations! </p>
-      <p class="mt-2">You have successfully topped up your account.</p>
-    </div>
-  </div>
-@else 
-  <div class="flex justify-center align-center items-center text-center mt-4">
-    <div class="bg-green-500 text-white py-3 px-6 rounded-lg">
-      <p class="font-bold text-xl">Congratulations! </p>
-      <p class="mt-2">You have successfully subscribed to the {{$plan_name}} Plan.</p>
-    </div>
-  </div>
-@endif
 
+  <div class="flex justify-center align-center items-center text-center mt-4">
+    <div class="bg-green-500 text-white py-3 px-6 rounded-lg">
+      <p class="font-bold text-xl">Ups! </p>
+      <p class="mt-2">Something went wrong with your transactions. Your credit card has not been debited. Please try again.</p>
+    </div>
+  </div>
 
 
 @endsection

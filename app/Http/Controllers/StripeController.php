@@ -31,6 +31,7 @@ class StripeController extends Controller
         $reason = $request->data['object']['cancellation_details']['reason']; // Reason: Update or cancel
         // Log::info($reason);
 
+        $ends_at = $request->data;
 
         $cancelled = $request->data['object']['canceled_at'];
         // Log::info($cancelled);

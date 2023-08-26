@@ -73,41 +73,50 @@
 
         try {
 
-          const { setupIntent, error } = await stripe.confirmCardSetup(
-            cardBtn.dataset.secret, {
-              payment_method: {
-                card: cardElement,
-                billing_details: {
-                  address: {
-                    line1: addressLine,
-                    city: addressCity,
-                    country: addressCountry,
-                    postal_code: addressPostalCode,
+            const { setupIntent, error } = await stripe.confirmCardSetup(
+              cardBtn.dataset.secret, {
+                payment_method: {
+                  card: cardElement,
+                  billing_details: {
+                    address: {
+                      line1: addressLine,
+                      city: addressCity,
+                      country: addressCountry,
+                      postal_code: addressPostalCode,
+                    },
+                    name: cardHolderName.value,
                   },
-                  name: cardHolderName.value,
                 },
-              },
-            }
-          );
+              }
+            );
 
           if (error) {
             console.log(error);
             cardBtn.disabled = false;
           } else {
-                      let stripeIntent = document.createElement('input');
-          stripeIntent.setAttribute('type', 'hidden');
-          stripeIntent.setAttribute('name', 'stripeIntent');
-          stripeIntent.setAttribute('value', JSON.stringify(setupIntent));
-          form.appendChild(stripeIntent);
-          form.submit();
+            console.log(stripe);
+                  const {paymentConfirm, error} = await stripe.confirmPayment(
+                    cardElement
+                  );
+                    if (error) {
+                      console.log(error);
+                      cardBtn.disabled = false;
+                    } else {
+                          let stripeIntent = document.createElement('input');
+                          stripeIntent.setAttribute('type', 'hidden');
+                          stripeIntent.setAttribute('name', 'stripeIntent');
+                          stripeIntent.setAttribute('value', JSON.stringify(setupIntent));
+                          form.appendChild(stripeIntent);
+                          form.submit();
+                  }
           }
-      } catch (error) {
-        console.error(error);
-        cardBtn.disabled = false;
+        } catch (error) {
+          console.error(error);
+          cardBtn.disabled = false;
+        }
       }
-     }
-    })
-  });
+    });
+});
 </script>
 
 @endsection

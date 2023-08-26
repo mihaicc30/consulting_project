@@ -18,7 +18,11 @@ return new class extends Migration
                     'name' => 'Top-up',
                     'code' => 'BMP-00006',
                     'price' => '0.00',
-                    'currency' => '[["EUR","price_1NhuWYKqpzLBt7b11Eg61iRX"],["USD","price_1NhuWYKqpzLBt7b14ACULkpX"],["GBP", "price_1NhuWYKqpzLBt7b14pmIRqaa"]]',
+                    'currency' => json_encode([
+                        ['EUR', 'price_1NhuWYKqpzLBt7b11Eg61iRX'],
+                        ['USD', 'price_1NhuWYKqpzLBt7b14ACULkpX'],
+                        ['GBP', 'price_1NhuWYKqpzLBt7b14pmIRqaa'],
+                    ]),
                     'icon' => '/icon-arcade.svg',
                     'slug' => 'top-up',
                     'stripe_plan' => '',
