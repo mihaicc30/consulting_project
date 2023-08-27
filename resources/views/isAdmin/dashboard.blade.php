@@ -2,9 +2,12 @@
 
 @section('content')
 
-<span :class="{ 'hidden': !isActive }"></span>
-<div :class="{ 'col-span-2': !isActive }">
 
+<span :class="{ 'hidden': !isActive }"></span>
+
+<div class="flex flex-nowrap col-span-2">
+@include('isadmin.nav')
+<div class="grid grid-cols-1 grow">
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
     <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
@@ -29,8 +32,8 @@
         <div class="flex flex-col p-1 items-center justify-center">
           <p class="text-center text-sm font-bold" x-show="isOnline">Online</p>
           <p class="text-center text-sm font-bold" x-show="!isOnline">Offline</p>
-          <p class="text-[3rem] text-center pb-2" x-show="isOnline">🟢</p>
-          <p class="text-[3rem] text-center" x-show="!isOnline">🔴</p>
+          <span class="block rounded-full bg-green-500 h-[50px] w-[50px] shadow-[10px_10px_20px_#bebebe,-10px_-10px_20px_#fffff] p-2" x-show="isOnline"></span>
+          <span class="block rounded-full bg-red-500 h-[50px] w-[50px] shadow-[10px_10px_20px_#bebebe,-10px_-10px_20px_#fffff] p-2" x-show="!isOnline"></span>
         </div>
 
       </div>
@@ -249,6 +252,7 @@
   </div>
   <!-- Dashboard - END -->
 
+  </div>
 
-  <div>
+</div>
     @endsection

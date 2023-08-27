@@ -1,7 +1,11 @@
 @extends ('layout')
 
 @section('content')
-
+<style>
+  span[aria-current="page"] > span{
+    background: #ffa50085;
+  }
+</style>
 <span :class="{ 'hidden': !isActive }"></span>
 
 <div :class="{ 'col-span-2': !isActive }" x-data="{ isModal: false }">
@@ -79,7 +83,7 @@
                 </div class="flex flex-nowrap">
                 <div class="flex flex-nowrap justify-end ">
 
-                  <a  class="w-[40px] h-[50px]" href="{{ route('pdf.view', ['item' => json_encode($receipt)]) }}" target="_blank">
+                  <a title="Generate Receipt" class="w-[40px] h-[50px]" href="{{ route('pdf.view', ['item' => json_encode($receipt)]) }}" target="_blank">
                     @include('components.file-pdf')
                   </a>
                   <button title="Generate QR CODE" class="w-[40px] h-[50px]" @click="isModal = !isModal" onclick="generate(`{{ route('pdf.view', ['item' => json_encode($receipt)]) }}`)">@include('components.file-qr')</button>

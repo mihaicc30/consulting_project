@@ -45,7 +45,7 @@
       <div class="flex max-[330px]:flex-col max-[330px]:gap-4 justify-between items-center top-0 right-0 px-6 py-4">
         @endif
 
-        <svg class="block h-12 w-auto mt-2 max-sm:h-8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
+        <svg class="block h-12 w-auto mt-2 max-sm:h-8 mx-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
           <style type="text/css">
             .st0 {
               fill: #E53323;
@@ -128,7 +128,7 @@
       @auth
         @if ($isPortalOrAdmin)
           @if ($char19 === '1')
-            @include('isadmin.nav')
+          
           @elseif ($char19 === '0')
             @include('isauth.nav')
           @endif
