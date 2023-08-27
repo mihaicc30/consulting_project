@@ -120,6 +120,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/messages/delete', [AdminMessagesController::class, 'deleteMessage'])->name('admin.messages.delete');
 
     Route::get('/users', [AdminUsersController::class, 'get']);
+    Route::post('/users/toggle', [AdminUsersController::class, 'toggleBlock'])->name('admin.users.toggleBlock');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

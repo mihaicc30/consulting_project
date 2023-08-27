@@ -248,7 +248,7 @@
           <path d="M6 3L1 10M6 3H26M6 3L11 10M1 10L16 31M1 10H31M16 31L31 10M16 31L21 10M16 31L11 10M31 10L26 3M26 3L21 10M21 10L16 3L11 10" stroke="#ff8800" stroke-width="0.8320000000000001" stroke-linecap="round" stroke-linejoin="round"></path>
         </g>
       </svg>
-      <h2 class="text-xl font-bold">Reliabile</h2>
+      <h2 class="text-xl font-bold">Reliable</h2>
       <h2 class="text-xl font-bold">Service</h2>
       <p>
         Our services are known for their reliability and dependability. We understand the importance of providing consistent and trustworthy solutions to our clients.

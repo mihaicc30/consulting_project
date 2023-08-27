@@ -66,7 +66,7 @@
 
       modalID.value = data.id
       modalEmail.innerHTML = data.from
-      modalDate.innerHTML = data.created_at
+      modalDate.innerHTML = new Date(data.created_at).toLocaleString()
       modalStatus.innerHTML = data.status
       modalMessage.innerHTML = data.message
       modalId.innerHTML = data.id
