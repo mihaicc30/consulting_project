@@ -105,7 +105,6 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 
     // Route::post('/upload-image', [isAuthFilesController::class, 'uploadImage'])->name('uploadImage');
-    // Route::get('/notifications', [isAuthNotificationsController::class, 'get']);
     // Route::get('/files', [isAuthS3FilesController::class, 'getAllFiles'])->name('files');
 });
 
@@ -114,9 +113,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('/', [AdminDashboardController::class, 'get']);
     Route::get('/dashboard', [AdminDashboardController::class, 'get']);
-    Route::get('/server', [AdminServerController::class, 'get']);
     Route::get('/plans', [AdminPlansController::class, 'get']);
+
     Route::get('/messages', [AdminMessagesController::class, 'get']);
+    Route::post('/messages/toggle', [AdminMessagesController::class, 'toggleStatus'])->name('admin.messages.toggle');
+    Route::post('/messages/delete', [AdminMessagesController::class, 'deleteMessage'])->name('admin.messages.delete');
+
     Route::get('/users', [AdminUsersController::class, 'get']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

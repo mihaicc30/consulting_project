@@ -49,7 +49,7 @@
       <div x-show="isPersonal" class="flex flex-col overflow-x-scroll">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Personal Billing Cards - START -->
-          <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">
+          <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
             @foreach ($plans as $plan)
               @if (Str::startsWith($plan->type, 'Personal'))
             <!-- Plan Card - START-->
@@ -108,7 +108,7 @@
       <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Bussiness Billing Cards - START -->
-          <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">
+          <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
             @foreach ($plans as $plan)
             @if (Str::startsWith($plan->type, 'Business'))
             <!-- Plan Card - START-->

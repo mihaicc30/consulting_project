@@ -2,13 +2,33 @@
 
 namespace App\Http\Controllers\isAdmin;
 use App\Http\Controllers\Controller;
-// use App\Models\Home;
+use App\Models\Message;
 
 use Illuminate\Http\Request;
 
 class AdminMessagesController extends Controller
 {
     public function get() {
-        return view("isadmin.messages");
+        $contactMessages = Message::all();
+        return view("isadmin.messages",['contactMessages' => $contactMessages]);
+    }
+
+    public function toggleStatus(Request $request)
+    {
+        $message = Message::find($request->message_id);
+        if ($message) {
+            $message->status = $message->status === 'unread' ? 'read' : 'unread';
+            $message->save();
+        }
+        return redirect()->back();
+    }
+
+    public function deleteMessage(Request $request)
+    {
+        $message = Message::find($request->message_id);
+        if ($message) {
+            $message->delete();
+        }
+        return redirect()->back();
     }
 }

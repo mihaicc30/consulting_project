@@ -111,7 +111,7 @@
             @unless ($isPortalOrAdmin)
               <!-- show portal button -->
               <a href="{{ url($portalUrl) }}" class="text-sm text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">
-                {{ Auth::user()->isAdmin() ? 'Enter Admin Portal' : 'Enter Customer Portal' }}
+                {{ Auth::user()->isAdmin() ? 'Enter Admin Dashboard' : 'Enter Customer Dashboard' }}
               </a>
             @endunless
           

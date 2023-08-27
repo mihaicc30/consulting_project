@@ -9,7 +9,7 @@
     <div class="flex max-md:flex-col max-md:items-center max-md:text-center gap-2 m-auto justify-center py-[7rem]">
       <div class="flex text-white flex-col justify-center basis-1/2 gap-4">
         <h1 class="font-bold text-5xl tracking-wider">
-          Trusted Web File Transfer For Your Safety.
+          Trusted File Transfer For Your Safety.
         </h1>
         <p>Dedicated resources with full access and easy scaling.</p>
         <div>

@@ -29,10 +29,6 @@
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Dashboard</span>
      </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/server">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Server</span>
-     </a>
 
      <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/files">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
@@ -52,10 +48,6 @@
      <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/users">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Users</span>
-     </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/notifications">
-       <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Notifications</span>
      </a>
      <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/profile">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
