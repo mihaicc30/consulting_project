@@ -25,7 +25,7 @@
   <div class="grid grid-cols-1 h-[80%] py-6 gap-2 overflow-y-scroll">
     <!-- Messages Header - START -->
     @foreach ($contactMessages as $message)
-    <div onclick="setModal('{{ json_encode($message) }}')" @click="isModal = !isModal" class="grid grid-cols-[3fr_10fr_1fr] h-[100px] gap-4 hover:scale-[.97] p-2 m-1 shadow-xl transition">
+    <div onclick="setModal('{{ json_encode($message) }}')" @click="isModal = !isModal" class="grid grid-cols-[3fr_10fr] h-[100px] gap-4 hover:scale-[.97] p-2 m-1 shadow-xl transition">
       <p class="text-start flex flex-col line-clamp-2 {{ $message['status'] === 'unread' ? 'font-bold' : '' }}">
         <span class="text-sm line-clamp-1">
           {{ $message['from'] }}</span>

@@ -36,7 +36,8 @@ class AdminDashboardController extends Controller
         $totalFiles = EzepostTracking::count();
         $fiveMostRecentFiles = EzepostTracking::orderBy('created_at', 'desc')->take(5)->get();
         $contactMessages = Message::all();
+        $fiveMostRecentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view("isadmin.dashboard", ['userCount' => $countAccountType, 'recentUsers' => $mostRecent, 'fiveMostRecentFiles' => $fiveMostRecentFiles, 'totalFiles' => $totalFiles, 'contactMessages' => $contactMessages]);
+        return view("isadmin.dashboard", ['userCount' => $countAccountType, 'recentUsers' => $mostRecent, 'fiveMostRecentFiles' => $fiveMostRecentFiles,'fiveMostRecentMessages' => $fiveMostRecentMessages, 'totalFiles' => $totalFiles, 'contactMessages' => $contactMessages]);
     }
 }

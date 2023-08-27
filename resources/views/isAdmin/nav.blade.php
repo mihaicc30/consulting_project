@@ -30,9 +30,9 @@
        <span class="z-20 relative">Dashboard</span>
      </a>
 
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/files">
+     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/transfers">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
-       <span class="z-20 relative">Files</span>
+       <span class="z-20 relative">Transfers</span>
      </a>
 
      <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/plans">

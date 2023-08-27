@@ -103,7 +103,6 @@
                 </form>
             </div>
         </div>
-
         <div>
             <div class="grid grid-cols-1 lg:grid-cols-5">
                 <div class="flex items-center bg-gray-100">

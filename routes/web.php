@@ -13,6 +13,8 @@ use App\Http\Controllers\isAdmin\AdminServerController;
 use App\Http\Controllers\isAdmin\AdminMessagesController;
 use App\Http\Controllers\isAdmin\AdminPlansController;
 use App\Http\Controllers\isAdmin\AdminUsersController;
+use App\Http\Controllers\isAdmin\AdminFilesController;
+use App\Http\Controllers\isAdmin\isAdminPdfController;
 
 use App\Http\Controllers\isAuth\isAuthDashboardController;
 use App\Http\Controllers\isAuth\isAuthFilesController;
@@ -113,6 +115,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('/', [AdminDashboardController::class, 'get']);
     Route::get('/dashboard', [AdminDashboardController::class, 'get']);
+
+    Route::get('/pdf/view', [isAdminPdfController::class, 'view'])->name('pdf.view');
+    Route::post('/pdf/template', [isAdminPdfController::class, 'template'])->name('pdf.template');
+    Route::post('/pdf/generate', [isAdminPdfController::class, 'generate'])->name('pdf.generate');
+    
+    Route::get('/transfers', [AdminFilesController::class, 'get']);
+
+
     Route::get('/plans', [AdminPlansController::class, 'get']);
     Route::post('/plans/update', [AdminPlansController::class, 'updatePlan'])->name('admin.plans.update');
     

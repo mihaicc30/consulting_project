@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\isAuth;
+namespace App\Http\Controllers\isAdmin;
 
 use App\Http\Controllers\Controller;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 
 
-class isAuthPdfController extends Controller
+class isAdminPdfController extends Controller
 {
     public function view(Request $request)
     {

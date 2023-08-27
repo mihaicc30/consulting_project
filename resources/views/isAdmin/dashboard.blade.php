@@ -188,12 +188,12 @@
       <p class="text-center col-span-2 mx-auto font-bold">{{$totalFiles}} Total Files</p>
       <p class="text-center my-2 col-span-2 border-b-2"></p>
       <!--  -->
-      <div class="grid col-span-2 justify-center">
+      <div class="grid col-span-2 grid-cols-1 justify-center">
         <div class="relative flex flex-col flex-nowrap p-2">
           <!-- loop over files. MAX 5 FILES! -->
           @foreach ($fiveMostRecentFiles as $transfer)
           <div class="flex flex-nowrap items-center flex-col my-2 shadow-md w-[100%]">
-            <div class="flex flex-nowrap justify-between items-center">
+            <div class="grid grid-cols-[1fr_.2fr_1fr] items-center">
               <p>{{$transfer->sender_username}}</p>
               <svg class="animate-infiniteLoop isSending mx-4" style="height:10px; width:10px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -205,7 +205,7 @@
               <p>{{$transfer->receiver_username}}</p>
 
             </div>
-            <p>{{$transfer->file_name}}</p>
+            <p class="w-[100%]">📁 {{$transfer->file_name}}</p>
           </div>
 
           @endforeach
@@ -229,7 +229,7 @@
       <div class="grid  justify-center">
         <div class="relative flex flex-col flex-nowrap p-2 text-xs gap-4">
           <!-- loop over last 3 messages! -->
-          @foreach ($contactMessages as $mess)
+          @foreach ($fiveMostRecentMessages as $mess)
           <div class="grid grid-cols-[1fr_3fr] gap-2 {{ $mess->status === 'unread' ? 'font-bold' : '' }}">
             <div class="flex flex-col border-r-2 pr-2">
               <p title="Email" class="line-clamp-1">{{$mess->from}}</p>
