@@ -114,7 +114,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'get']);
     Route::get('/dashboard', [AdminDashboardController::class, 'get']);
     Route::get('/plans', [AdminPlansController::class, 'get']);
-
+    Route::post('/plans/update', [AdminPlansController::class, 'updatePlan'])->name('admin.plans.update');
+    
     Route::get('/messages', [AdminMessagesController::class, 'get']);
     Route::post('/messages/toggle', [AdminMessagesController::class, 'toggleStatus'])->name('admin.messages.toggle');
     Route::post('/messages/delete', [AdminMessagesController::class, 'deleteMessage'])->name('admin.messages.delete');

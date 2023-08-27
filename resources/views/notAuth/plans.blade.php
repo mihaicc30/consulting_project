@@ -40,8 +40,8 @@
             <input type="checkbox" @change="isMonthly = !isMonthly">
             <span class="slider"></span>
           </label>
-          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly</span>
-        </div>
+          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly (- 10% Off)</span>
+         </div>
       </div>
       <!-- Pricing Plan Toggle - END -->
 
@@ -68,11 +68,11 @@
                @else
                   <span class="text-base">£</span>
                   <template x-if="isMonthly">
-                      <span x-text="parseFloat({{ $plan['price'] }}).toFixed(2)"></span>/month
-                  </template>
-                  <template x-if="!isMonthly">
-                      <span x-text="(parseFloat({{ $plan['price'] }}) * 12).toFixed(2)"></span>/year
-                  </template>
+                                          <span x-text="(parseFloat({{ $plan['price'] }}).toFixed(2)) + ' / month'"></span>
+                                      </template>
+                                      <template x-if="!isMonthly">
+                                          <span x-text="(parseFloat({{ $plan['price'] }} * 0.9 * 12).toFixed(2)) + ' / year'"></span>
+                                      </template>
               @endif
               </p>
               <p class="border-b-2 my-4"></p>
@@ -126,11 +126,11 @@
                 @else
                     <span class="text-base">£</span>
                     <template x-if="isMonthly">
-                        <span x-text="{{ $plan['price'] }}"></span>/month
-                    </template>
-                    <template x-if="!isMonthly">
-                        <span x-text="{{ $plan['price'] }} * 12"></span>/year
-                    </template>
+                                          <span x-text="(parseFloat({{ $plan['price'] }}).toFixed(2)) + ' / month'"></span>
+                                      </template>
+                                      <template x-if="!isMonthly">
+                                          <span x-text="(parseFloat({{ $plan['price'] }} * 0.9 * 12).toFixed(2)) + ' / year'"></span>
+                                      </template>
                 @endif
               </p>
               <p class="border-b-2 my-4"></p>
