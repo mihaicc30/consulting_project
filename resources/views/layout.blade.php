@@ -127,9 +127,9 @@
       <!-- auth nav -->
       @auth
         @if ($isPortalOrAdmin)
-          @if ($char19 === '1')
+         
           
-          @elseif ($char19 === '0')
+          @if ($char19 === '0')
             @include('isauth.nav')
           @endif
         @else
@@ -153,9 +153,6 @@
         @include('notauth.footer')
       @endauth
 
-<footer  class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 @if($isPortalOrAdmin) col-span-2 @endif">
-  Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-</footer>
 
 
 </body>

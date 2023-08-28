@@ -2,8 +2,10 @@
 
 @section('content')
 <span :class="{ 'hidden': !isActive }"></span>
-<div :class="{ 'col-span-2': !isActive }">
 
+<div class="flex flex-nowrap col-span-2">
+  @include('isadmin.nav')
+  <div class="grid grid-cols-1 grow">
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
     <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
@@ -58,7 +60,7 @@
 
     </div>
     <!-- Dashboard - END -->
-
+    </div>
 
   </div>
   @endsection

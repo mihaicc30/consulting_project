@@ -6,8 +6,9 @@
 
 
 <span :class="{ 'hidden': !isActive }"></span>
-<div :class="{ 'col-span-2': !isActive }" x-data="{ isModal: false }">
-
+<div class="flex flex-nowrap col-span-2">
+  @include('isadmin.nav')
+  <div class="grid grid-cols-1 grow">
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
     <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
@@ -22,7 +23,7 @@
   <!-- Hero END -->
 
   <!-- Dashboard - START -->
-  <div class="grid grid-cols-1 h-[80%] py-6 gap-2 overflow-y-scroll">
+  <div class="grid grid-cols-1 h-[80%] py-6 gap-2">
     <!-- Messages Header - START -->
     @foreach ($contactMessages as $message)
     <div onclick="setModal('{{ json_encode($message) }}')" @click="isModal = !isModal" class="grid grid-cols-[3fr_10fr] h-[100px] gap-4 hover:scale-[.97] p-2 m-1 shadow-xl transition">
@@ -45,6 +46,7 @@
     <!-- Messages Header - END -->
   </div>
   <!-- Dashboard - END -->
+  </div>
 
 
   @include('components.admin-messages-modal')

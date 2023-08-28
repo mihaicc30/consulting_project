@@ -121,6 +121,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/pdf/generate', [isAdminPdfController::class, 'generate'])->name('pdf.generate');
     
     Route::get('/transfers', [AdminFilesController::class, 'get']);
+    Route::post('/transfers/toggle', [AdminFilesController::class, 'toggleDelete'])->name('admin.transfers.toggle');
 
 
     Route::get('/plans', [AdminPlansController::class, 'get']);

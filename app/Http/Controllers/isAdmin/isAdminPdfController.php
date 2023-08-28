@@ -5,17 +5,30 @@ namespace App\Http\Controllers\isAdmin;
 use App\Http\Controllers\Controller;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+use App\Models\EzepostTracking;
 
 
 class isAdminPdfController extends Controller
 {
     public function view(Request $request)
     {
-        $itemData = $request->input('item');
-        $item = json_decode($itemData); // Decoding as an object
+        // dd($request);
+        $queryParameters = $request->query();
+        $items = collect();
+    
+        foreach ($queryParameters as $key => $value) {
+            $item = EzepostTracking::where("id", $value)->first();
+            if ($item) {
+                $items->push($item);
+            }
+        }
+
+        // dd(json_decode($items));
+        // $itemData = $request->input('item');
+        // $item = json_decode($itemData); // Decoding as an object
 
         // Pass $item to the blade view for rendering
-        return view('pdf.template')->with('item', $item);
+        return view('pdf.template')->with('items', json_decode($items));
     }
 
     public function template(Request $request)

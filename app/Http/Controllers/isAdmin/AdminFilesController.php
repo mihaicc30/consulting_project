@@ -20,4 +20,18 @@ class AdminFilesController extends Controller
     
         return view("isadmin.transfers",compact('transfers'));
     }
+
+    
+    public function toggleDelete(Request $request) {
+        $transfers = EzepostTracking::find($request->transferid);
+        if ($transfers) {
+            if ($transfers->deleted_at === null) {
+                $transfers->deleted_at = date('Y-m-d H:i:s');
+            } else {
+                $transfers->deleted_at = null;
+            }
+            $transfers->save();
+        }
+        return redirect()->back();
+    }
 }

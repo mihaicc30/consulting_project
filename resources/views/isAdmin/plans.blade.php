@@ -3,8 +3,9 @@
 @section('content')
 
 <span :class="{ 'hidden': !isActive }"></span>
-<div :class="{ 'col-span-2': !isActive }" x-data="{ isModal: false }">
-
+<div class="flex flex-nowrap col-span-2" x-data="{ isModal: false }">
+  @include('isadmin.nav')
+  <div class="grid grid-cols-1 grow">
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
     <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
@@ -46,7 +47,7 @@
       <!-- Pricing Plan Toggle - END -->
 
       <!-- Personal - START -->
-      <div x-show="isPersonal" class="flex flex-col overflow-x-scroll">
+      <div x-show="isPersonal" class="flex flex-col overflow-x-auto">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Personal Billing Cards - START -->
           <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
@@ -107,7 +108,7 @@
       <!-- Personal - END -->
 
       <!-- Bussiness - START -->
-      <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll">
+      <div x-show="!isPersonal" class="flex flex-col overflow-x-auto">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Bussiness Billing Cards - START -->
           <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
@@ -171,7 +172,7 @@
 
   </div>
   <!-- Plans - END -->
-  
+  </div>
   @include('components.admin-plan-update-modal')
 </div>
 

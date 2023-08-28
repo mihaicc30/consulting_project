@@ -1,6 +1,6 @@
  <!-- Navbar START -->
-<div x-bind:class="{'basis-[10%]  min-w-[110px]': isActive, 'basis-[4%]': !isActive}" class="">
- <button class="max-sm:flex bg-[#ffffffc4] p-2 h-[40px] w-[40px] fixed top-[10%] z-50" @click="isActive = !isActive" :class="{ 'active': isActive }">
+<div x-bind:class="{'basis-[10%]  min-w-[110px]': isActive, 'basis-[4%]': !isActive}" class="relative">
+ <button class="max-sm:flex bg-[#ffffffc4] p-2 h-[40px] w-[40px] fixed top-[88px] z-50" @click="isActive = !isActive" :class="{ 'active': isActive }">
    <svg width="30px" height="30px" viewBox="-3.2 -3.2 38.40 38.40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
