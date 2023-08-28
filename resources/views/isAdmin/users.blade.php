@@ -3,7 +3,7 @@
 @section('content')
 <span :class="{ 'hidden': !isActive }"></span>
 
-<div class="flex flex-nowrap col-span-2">
+<div class="flex flex-nowrap col-span-2 grow">
   @include('isadmin.nav')
   <div class="grid grid-cols-1 grow">
   <!-- Hero START -->
@@ -26,9 +26,9 @@
       <div class="relative flex flex-col justify-between navButton font-[600] mb-2">
         <p>Search User</p>
         <div class="flex flex-nowrap overflow-hidden">
-          <input x-model="searchUser" type="email" name="email" class="rounded-l p-2 w-[100%] text-black" placeholder="Email" autocomplete="off" value="">
-        </div>
+        <input x-model="searchUser" type="email" name="email_{{ uniqid() }}" class="rounded-l p-2 w-[100%] text-black" placeholder="Email" autocomplete="off" value="">
       </div>
+    </div>
       <!-- User Search - END -->
 
       <!-- List Of Users - START -->

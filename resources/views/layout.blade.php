@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+<script src="https://unpkg.com/mutationobserver-shim/dist/mutationobserver.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -45,7 +46,7 @@
       <div class="flex max-[330px]:flex-col max-[330px]:gap-4 justify-between items-center top-0 right-0 px-6 py-4">
         @endif
 
-        <svg class="block h-12 w-auto mt-2 max-sm:h-8 mx-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
+        <svg class="block h-12 w-auto max-sm:h-8 mr-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
           <style type="text/css">
             .st0 {
               fill: #E53323;
@@ -155,11 +156,17 @@
       @endauth
 
       </div>
+
+
 <script>
   if (!localStorage.getItem('currency')) {
     localStorage.setItem('currency', 'GBP');
   }
+  console.log("Currency",localStorage.getItem('currency'));
+  console.log("Going to leave this here to remember future possible development.");
 </script>
+
+
 </body>
 
 </html>

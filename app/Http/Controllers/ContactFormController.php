@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
-use App\Models\ContactMessage;
+use App\Models\Message;
 
 class ContactFormController extends Controller
 {
@@ -23,14 +23,12 @@ class ContactFormController extends Controller
         $subject = htmlspecialchars($request->input('subject'));
         $messageContent = htmlspecialchars($request->input('messageContent'));
 
-        // Store the form data in the database
-        $message = new ContactMessage;
-        $message->name = $name;
-        $message->email = $email;
-        $message->phone = $phone;
-        $message->subject = $subject;
-        $message->message = $messageContent;
-        $message->save();
+        Message::insert([
+            'from' => $email,
+            'message' => $messageContent,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
 
         // Check if the message was saved successfully
         if ($request->ajax()) {

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AdminMessagesController extends Controller
 {
     public function get() {
-        $contactMessages = Message::all();
+        $contactMessages = Message::orderBy('created_at', 'desc')->get();
         return view("isadmin.messages",['contactMessages' => $contactMessages]);
     }
 

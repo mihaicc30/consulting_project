@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AdminUsersController extends Controller
 {
     public function get() {
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->get();
         return view("isadmin.users",['users' => $users]);
     }
     public function toggleBlock(Request $request) {
