@@ -14,10 +14,10 @@ class isAuthPlansController extends Controller
     public function get()
     {
         // Getting the plans
-        $plans = Plans::get();
+        $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
         $yearly = '';
 
-        return view("isauth.plans", ['plans' => $plans, 'yearly' => $yearly]);
+        return view("isauth.subscriptions", ['plans' => $plans, 'yearly' => $yearly]);
     }
 
 
@@ -81,11 +81,12 @@ class isAuthPlansController extends Controller
             $intent = auth()->user()->createSetupIntent();
             $price = $request->price;
             $yearly = $request->yearly;
+            $currency = "gbp";
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return back()->with('error', 'Something went wrong, please try again later.');
         }
-        return view('isauth.subscribe', compact('plan', 'intent', 'price', 'yearly'));
+        return view('isauth.subscribe', compact('plan', 'intent', 'price', 'yearly', 'currency'));
     }
 
     public function subscription(Request $request)
@@ -96,6 +97,8 @@ class isAuthPlansController extends Controller
         $plan_name = $plan->name;
 
         $this->update($plan, $yearly);
+        
+        // $subscription = $request->user()->newSubscription($request->plan, 'yearly' === '0' ? $plan->stripe_plan : $plan->stripe_yearly_plan)->create($request->token);
 
         return view('isauth.subscription-success', compact('plan_name'));
     }

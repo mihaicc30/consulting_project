@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\isAuth;
+namespace App\Http\Controllers\isAdmin;
 
 use App\Http\Controllers\Controller;
 use Dompdf\Dompdf;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\EzepostTracking;
 
 
-class isAuthPdfController extends Controller
+class isAdminPdfController extends Controller
 {
     public function view(Request $request)
     {
@@ -23,6 +23,14 @@ class isAuthPdfController extends Controller
         }
 
         return view('pdf.template')->with('items', json_decode($items));
+    }
+
+    public function template(Request $request)
+    {
+        $itemsData = $request->input('items');
+        $items = array_map('json_decode', $itemsData);
+
+        return view('pdf.template')->with('items', $items);
     }
 
     public function generate(Request $request)

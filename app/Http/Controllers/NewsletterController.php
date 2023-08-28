@@ -17,7 +17,6 @@ class NewsletterController extends Controller
             $newsletter = new Newsletter;
             $newsletter->email = $email;
 
-
             // Handle validation errors
             if (!$newsletter->save()) {
                 return redirect()->back()->withErrors(['newsletter_error' => 'Invalid email. Please provide a valid email address.']);

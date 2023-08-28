@@ -16,18 +16,18 @@
         <form method="POST" id="messageModalForm" class="flex justify-start flex-col items-center bg-white  overflow-y-auto">
             @csrf
             <!-- Message Card - START-->
+            <input type="hidden" name="message_id" id="message_id" value="">
             <div class="grid grid-cols-1 gap-2">
                     <p id="ami" name="id" hidden readonly>id</p>
                 <div class="p-4 flex flex-col w-[100%]">
                     <p id="amd" name="date" class="text-end" readonly>date</p>
                     <p id="ams" name="status" class="capitalize text-end" readonly>status</p>
-                    <p id="amn" name="name" title="user_name" class="capitalize line-clamp-1" readonly>name</p>
                     <p id="ame" name="email" title="user_email" class=" line-clamp-1" readonly>email</p>
                 </div>
                 <div class="p-4 flex gap-2 flex-wrap justify-end">
                     <button type="submit" formaction="/admin/messages/delete" class="bg-[--c2] p-2 rounded text-white font-bold" onclick="e.preventDefault();document.getElementById('messageModalForm').action='/admin/messages/delete';">Delete</button>
                     <button type="submit" formaction="/admin/messages/toggle" class="bg-[--c2] p-2 rounded text-white font-bold" onclick="e.preventDefault();document.getElementById('messageModalForm').action='/admin/messages/toggle';">Toggle read/unread</button>
-                    <button class="bg-[--c2] p-2 rounded text-white font-bold" >Reply</button>
+                    <a class="bg-[--c2] p-2 rounded text-white font-bold" title="Send Email" id="ase" href="mailto:UserEmail@email.user?subject=Query&amp;body=Your message...">Reply</a>
                 </div>
                 <div class="mb-4 p-4">
                     <p id="amm" name="message" readonly>message</p>

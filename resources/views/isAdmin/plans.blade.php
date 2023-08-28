@@ -3,8 +3,9 @@
 @section('content')
 
 <span :class="{ 'hidden': !isActive }"></span>
-<div :class="{ 'col-span-2': !isActive }" x-data="{ isModal: false }">
-
+<div class="flex flex-nowrap col-span-2 grow" x-data="{ isModal: false }">
+  @include('isadmin.nav')
+  <div class="grid grid-cols-1 grow">
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
     <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>
@@ -40,16 +41,16 @@
             <input type="checkbox" @change="isMonthly = !isMonthly">
             <span class="slider"></span>
           </label>
-          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly</span>
+          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly (- 10% Off)</span>
         </div>
       </div>
       <!-- Pricing Plan Toggle - END -->
 
       <!-- Personal - START -->
-      <div x-show="isPersonal" class="flex flex-col overflow-x-scroll">
+      <div x-show="isPersonal" class="flex flex-col overflow-x-auto">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Personal Billing Cards - START -->
-          <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">
+          <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
             @foreach ($plans as $plan)
               @if (Str::startsWith($plan->type, 'Personal'))
             <!-- Plan Card - START-->
@@ -67,16 +68,17 @@
                 @else
                 <span class="text-base">£</span>
                 <template x-if="isMonthly">
-                  <span x-text="{{ $plan['price'] }}"></span>/month
-                </template>
-                <template x-if="!isMonthly">
-                  <span x-text="{{ $plan['price'] }} * 12"></span>/year
-                </template>
+                                          <span x-text="(parseFloat({{ $plan['price'] }}).toFixed(2)) + ' / month'"></span>
+                                      </template>
+                                      <template x-if="!isMonthly">
+                                          <span x-text="(parseFloat({{ $plan['price'] }} * 0.9 * 12).toFixed(2)) + ' / year'"></span>
+                                      </template>
                 @endif
               </p>
               <p class="border-b-2 my-4"></p>
               <div class="flex flex-col items-start  text-start grow">
                 @foreach (json_decode($plan['options']) as $option)
+                    @if (strlen($option) > 0 )
                 <p class="grid grid-cols-[24px_1fr]">
                   <svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -87,6 +89,7 @@
                     </g>
                   </svg><span>
                     {{ $option }}</span></p>
+                        @endif
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
@@ -105,10 +108,10 @@
       <!-- Personal - END -->
 
       <!-- Bussiness - START -->
-      <div x-show="!isPersonal" class="flex flex-col overflow-x-scroll">
+      <div x-show="!isPersonal" class="flex flex-col overflow-x-auto">
         <div class="flex flex-col text-center flex-nowrap ">
           <!-- Bussiness Billing Cards - START -->
-          <div class="grid grid-cols-4 gap-8 m-4 min-w-[860px]">
+          <div class="grid grid-cols-3 gap-8 m-4 min-w-[860px]">
             @foreach ($plans as $plan)
             @if (Str::startsWith($plan->type, 'Business'))
             <!-- Plan Card - START-->
@@ -126,16 +129,17 @@
                 @else
                 <span class="text-base">£</span>
                 <template x-if="isMonthly">
-                  <span x-text="{{ $plan['price'] }}"></span>/month
-                </template>
-                <template x-if="!isMonthly">
-                  <span x-text="{{ $plan['price'] }} * 12"></span>/year
-                </template>
+                                          <span x-text="(parseFloat({{ $plan['price'] }}).toFixed(2)) + ' / month'"></span>
+                                      </template>
+                                      <template x-if="!isMonthly">
+                                          <span x-text="(parseFloat({{ $plan['price'] }} * 0.9 * 12).toFixed(2)) + ' / year'"></span>
+                                      </template>
                 @endif
               </p>
               <p class="border-b-2 my-4"></p>
               <div class="flex flex-col items-start  text-start grow">
                 @foreach (json_decode($plan['options']) as $option)
+                @if (strlen($option) > 0 )
                 <p class="grid grid-cols-[24px_1fr]">
                   <svg fill="#000000" width="24px" height="24px" viewBox="-2.16 -2.16 28.32 28.32" id="check-circle" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -144,8 +148,10 @@
                       <circle id="primary" cx="12" cy="12" r="10" style="fill: #ff943d;"></circle>
                       <path id="secondary" d="M11,16a1,1,0,0,1-.71-.29l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42l-5,5A1,1,0,0,1,11,16Z" style="fill: #fff;"></path>
                     </g>
-                  </svg><span>
-                    {{ $option }}</span></p>
+                  </svg>
+                  <span>{{ $option }}</span>
+                </p>
+                  @endif
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
@@ -166,7 +172,7 @@
 
   </div>
   <!-- Plans - END -->
-  
+  </div>
   @include('components.admin-plan-update-modal')
 </div>
 
@@ -174,24 +180,25 @@
   const setModal = (data) => {
     data = data.replace("\"[", "[").replace("]\"", "]")
     data = JSON.parse(data)
+    console.log("🚀 ~ file: plans.blade.php:177 ~ setModal ~ data:", data)
 
+    let modalID = document.getElementById('planid');
     let modalCode = document.getElementById('apc');
     let modalDescription = document.getElementById('apd');
     let modalName = document.getElementById('apn');
     let modalPrice = document.getElementById('app');
     let modalAttributes = document.getElementById('apa');
-    let modalForm = document.getElementById('modalForm')
    
 
+    modalID.value = data.id
     modalCode.value = data.code
     modalDescription.value = data.description
     modalName.value = data.name
-    modalPrice.value = data.price
-    modalForm.action = `/admin/plans/${data.code}`
+    modalPrice.value = parseFloat(data.price)
     data.options.forEach((option, index) => {
       index == 0 
-      ? modalAttributes.innerHTML = `<input name="option" class="w-[100%] text-xs" type="text" value="${option}">`
-      : modalAttributes.innerHTML += `<input name="option" class="w-[100%] text-xs" type="text" value="${option}">`
+      ? modalAttributes.innerHTML = `<input name="option${index}" class="w-[100%] text-xs" type="text" value="${option}">`
+      : modalAttributes.innerHTML += `<input name="option${index}" class="w-[100%] text-xs" type="text" value="${option}">`
       
     });
   }

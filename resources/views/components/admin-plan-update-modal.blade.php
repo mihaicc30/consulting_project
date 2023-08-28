@@ -14,8 +14,11 @@
         </div>
         
         <!-- action is rendered dynamicaly depending on plan code -->
-        <form method="POST" id="modalForm" action="" class="flex justify-start flex-col items-center bg-white  overflow-y-auto">
-            <!-- Plan Card - START-->
+        <form method="POST" id="modalForm" action="/admin/plans/update" class="flex justify-start flex-col items-center bg-white  overflow-y-auto">
+        @csrf
+        <input id="planid" type="hidden" name="planid" readonly value="">
+                
+         <!-- Plan Card - START-->
             <div class="flex flex-col shadow-xl p-4 z-10 relative flex-nowrap">
                 <input id="apc" type="text" class="hidden" name="code" readonly>
                 <p>Plan Name</p>
@@ -25,16 +28,15 @@
                 <input id="apd" name="description" type="text" class="w-[100%] text-xs" />
 
                 <p class="border-b-2 my-4"></p>
-                <p>Plan/Token Price</p>
-                <input id="app" name="price" type="number" class="w-[100%] text-xl font-bold text-center">
+                <p>Monthly Base Price</p>
+                <input id="app" step="0.01" name="price" type="number" class="w-[100%] text-xl font-bold text-center">
 
                 <p class="border-b-2 my-4"></p>
                 <p>Plan Attributes</p>
                 <div id="apa" class="flex flex-col items-start text-start grow w-[100%]"></div>
 
                 <p class="border-b-2 my-4"></p>
-                <button class="bg-[--c2] p-2 rounded text-white font-bold" href="#">Update</button>
-            </div>
+                <button class="bg-[--c2] p-2 rounded text-white font-bold" type="submit">Update</button></div>
             <!-- Plan Card - END-->
         </form>
     </div>

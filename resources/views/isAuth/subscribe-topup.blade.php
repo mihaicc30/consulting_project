@@ -3,7 +3,7 @@
 @section('content')
 
 <span :class="{ 'hidden': !isActive }"></span>
-<div :class="{ 'col-span-2': !isActive }">
+<div class="grow">
 
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">

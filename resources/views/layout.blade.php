@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+<script src="https://unpkg.com/mutationobserver-shim/dist/mutationobserver.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -21,7 +22,7 @@
 </head>
 
 
-<body class="antialiased grid grid-cols-{{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? '[200px,1fr]' : '1' }}  overflow-x-hidden" x-data="{ isActive: true }">
+<body class="antialiased {{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? 'flex flex-col' : 'grid grid-cols-1' }}  overflow-x-hidden" x-data="{ isActive: true }">
   <!--  -->
   @php
     $currentUrl = url()->current();
@@ -45,7 +46,7 @@
       <div class="flex max-[330px]:flex-col max-[330px]:gap-4 justify-between items-center top-0 right-0 px-6 py-4">
         @endif
 
-        <svg class="block h-12 w-auto mt-2 max-sm:h-8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
+        <svg class="block h-12 w-auto max-sm:h-8 mr-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 131.4 80" style="enable-background:new 0 0 131.4 80;" xml:space="preserve">
           <style type="text/css">
             .st0 {
               fill: #E53323;
@@ -111,7 +112,7 @@
             @unless ($isPortalOrAdmin)
               <!-- show portal button -->
               <a href="{{ url($portalUrl) }}" class="text-sm text-white p-2 border-2 border-white whitespace-nowrap rounded bg-[--c2]">
-                {{ Auth::user()->isAdmin() ? 'Enter Admin Portal' : 'Enter Customer Portal' }}
+                {{ Auth::user()->isAdmin() ? 'Enter Admin Dashboard' : 'Enter Customer Dashboard' }}
               </a>
             @endunless
           
@@ -123,16 +124,17 @@
         </div>
       </div>
       @endif
-
       <!-- auth nav -->
       @auth
         @if ($isPortalOrAdmin)
-          @if ($char19 === '1')
-            @include('isadmin.nav')
-          @elseif ($char19 === '0')
-            @include('isauth.nav')
+        
+        <div class="flex flex-nowrap">
+          
+          @if ($char19 === '0')
+          @include('isauth.nav')
           @endif
-        @else
+          @else
+          <div class="grid grid-cols-1">
           @include('notauth.nav')
         @endif
       @else  <!-- else not auth -->
@@ -153,9 +155,16 @@
         @include('notauth.footer')
       @endauth
 
-<footer  class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 @if($isPortalOrAdmin) col-span-2 @endif">
-  Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-</footer>
+      </div>
+
+
+<script>
+  if (!localStorage.getItem('currency')) {
+    localStorage.setItem('currency', 'GBP');
+  }
+  console.log("Currency",localStorage.getItem('currency'));
+  console.log("Going to leave this here to remember future possible development.");
+</script>
 
 
 </body>
