@@ -1,6 +1,6 @@
 <!-- QRCODE Modal - START -->
 <div id="modalOverlay" class="fixed inset-0 bg-[#000000de] z-50 transition" :class="{ 'hidden' : !isModal}" x-show="isModal">
-    <div class="modalContainer animate-fadeIN transition mx-auto flex w-[90svw] h-[96svh] flex-col">
+    <div class="modalContainer animate-fadeIN transition mx-auto flex w-[90svw] h-[96svh] flex-col" :class="{ 'hidden' : !isModal}" x-show="isModal">
 
         <div class="relative flex flex-col h-100 overflow-hidden">
             <video src="../storage/herovideo.mp4" class="video absolute h-100 max-md:h-[100%] w-[100svw] object-cover scale-150 origin-center" loop muted autoplay></video>

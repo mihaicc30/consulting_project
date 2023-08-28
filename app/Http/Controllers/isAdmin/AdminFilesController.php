@@ -11,14 +11,15 @@ class AdminFilesController extends Controller
 {
     public function get(Request $request) {
         $query = $request->input('query');
+        $filterDate = $request->input('filterDate') ?? 'desc';
         $transfers = EzepostTracking::query();
         if ($query) {
             $transfers->where('file_name', 'like', '%' . $query . '%');
         }
     
-        $transfers = $transfers->paginate(12); // You can adjust the number per page (8 in this example)
+        $transfers = $transfers->orderBy('created_at', $filterDate )->paginate(12);
     
-        return view("isadmin.transfers",compact('transfers'));
+        return view("isadmin.transfers",compact('transfers','filterDate','query'));
     }
 
     

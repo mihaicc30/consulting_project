@@ -17,12 +17,11 @@ use App\Http\Controllers\isAdmin\AdminFilesController;
 use App\Http\Controllers\isAdmin\isAdminPdfController;
 
 use App\Http\Controllers\isAuth\isAuthDashboardController;
-use App\Http\Controllers\isAuth\isAuthFilesController;
+use App\Http\Controllers\isAuth\isAuthPackagesController;
 use App\Http\Controllers\isAuth\isAuthPlansController;
 use App\Http\Controllers\isAuth\isAuthContactController;
 use App\Http\Controllers\isAuth\isAuthTopupController;
 use App\Http\Controllers\isAuth\isAuthPdfController;
-use App\Http\Controllers\isAuth\isAuthHomeHistoryController;
 use App\Http\Controllers\isAuth\isAuthCustomerPortalController;
 
 use App\Http\Controllers\notAuth\HomeController;
@@ -60,26 +59,24 @@ Route::post('/', [SubscribeController::class, 'index']);
 Route::post('/process-form', [ContactFormController::class, 'processForm']);
 Route::post('/newsletter-form', [NewsletterController::class, 'subscribe'])->name('newsletter-form');
 
+Route::middleware('auth')->get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::middleware('auth')->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::middleware('auth')->delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
 
     Route::get('/', [isAuthDashboardController::class, 'get']);
     Route::get('/dashboard', [isAuthDashboardController::class, 'get'])->name('dashboard');
 
-    Route::get('/home-today', [isAuthHomeTodayController::class, 'getAllData'])->name('home-today');
-    Route::get('/received', [isAuthFilesController::class, 'getReceived'])->name('received');
-    Route::get('/viewed', [isAuthFilesController::class, 'getViewed'])->name('viewed');
-    Route::get('/sent', [isAuthFilesController::class, 'getSent'])->name('sent');
+    Route::get('/received', [isAuthPackagesController::class, 'getReceived'])->name('received');
+    Route::get('/viewed', [isAuthPackagesController::class, 'getViewed'])->name('viewed');
+    Route::get('/sent', [isAuthPackagesController::class, 'getSent'])->name('sent');
 
-    Route::get('/history-home', [isAuthHomeHistoryController::class, 'getAllData'])->name('history-home');
-    Route::get('/history-received', [isAuthFilesController::class, 'getHistoryReceived'])->name('history-received');
-    Route::get('/history-viewed', [isAuthFilesController::class, 'getHistoryViewed'])->name('history-viewed');
-    Route::get('/history-sent', [isAuthFilesController::class, 'getHistorySent'])->name('history-sent');
+    Route::get('/pdf/view', [isAuthPdfController::class, 'view'])->name('pdff.view');
+    Route::post('/pdf/template', [isAuthPdfController::class, 'template'])->name('pdff.template');
+    Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdff.generate');
 
-    Route::get('/pdf/view', [isAuthPdfController::class, 'view'])->name('pdf.view');
-    Route::post('/pdf/template', [isAuthPdfController::class, 'template'])->name('pdf.template');
-    Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdf.generate');
-
-    Route::get('/plans', [isAuthPlansController::class, 'get']);
+    Route::get('/subscriptions', [isAuthPlansController::class, 'get']);
     Route::get('/plans/{plan}', [isAuthPlansController::class, 'show'])->name('plans.show');
     Route::post('/plans/subscription', [isAuthPlansController::class, 'subscription'])->name('subscription.create');
     Route::post('/plans/topup', [isAuthTopupController::class, 'pay'])->name('topup.create');
@@ -93,9 +90,7 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isauth.topup');
     Route::post('/topup', [isAuthTopupController::class, 'topup'])->name('isauth.topup');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+ 
 
     Route::get('customer-portal', [isAuthCustomerPortalController::class, 'get'])->name('customer-portal');
     Route::post('/create-customer-portal-session', [isAuthCustomerPortalController::class, 'stripe'])->name('create-customer-portal-session');
@@ -106,7 +101,7 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 
-    // Route::post('/upload-image', [isAuthFilesController::class, 'uploadImage'])->name('uploadImage');
+    // Route::post('/upload-image', [isAuthPackagesController::class, 'uploadImage'])->name('uploadImage');
     // Route::get('/files', [isAuthS3FilesController::class, 'getAllFiles'])->name('files');
 });
 
@@ -133,10 +128,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('/users', [AdminUsersController::class, 'get']);
     Route::post('/users/toggle', [AdminUsersController::class, 'toggleBlock'])->name('admin.users.toggleBlock');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });

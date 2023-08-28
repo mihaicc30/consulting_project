@@ -239,6 +239,7 @@
 }
 
 .popular::before{
+    color:white;
     content: "POPULAR";
     font-size: x-small;
     height: auto;

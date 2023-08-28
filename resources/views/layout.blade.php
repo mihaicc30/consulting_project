@@ -21,7 +21,7 @@
 </head>
 
 
-<body class="antialiased grid grid-cols-{{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? '[200px,1fr]' : '1' }}  overflow-x-hidden" x-data="{ isActive: true }">
+<body class="antialiased {{ (Str::contains(url()->current(), 'portal') || Str::contains(url()->current(), 'admin')) ? 'flex flex-col' : 'grid grid-cols-1' }}  overflow-x-hidden" x-data="{ isActive: true }">
   <!--  -->
   @php
     $currentUrl = url()->current();
@@ -123,16 +123,17 @@
         </div>
       </div>
       @endif
-
       <!-- auth nav -->
       @auth
         @if ($isPortalOrAdmin)
-         
+        
+        <div class="flex flex-nowrap">
           
           @if ($char19 === '0')
-            @include('isauth.nav')
+          @include('isauth.nav')
           @endif
-        @else
+          @else
+          <div class="grid grid-cols-1">
           @include('notauth.nav')
         @endif
       @else  <!-- else not auth -->
@@ -153,8 +154,12 @@
         @include('notauth.footer')
       @endauth
 
-
-
+      </div>
+<script>
+  if (!localStorage.getItem('currency')) {
+    localStorage.setItem('currency', 'GBP');
+  }
+</script>
 </body>
 
 </html>

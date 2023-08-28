@@ -84,8 +84,11 @@
                 </p>
             </div>
             <div>
-
+                @if (substr(Auth::user()->controlstring, 19, 1) === "0")
+                <form action="{{ route('pdff.generate') }}" method="POST">
+                @else
                 <form action="{{ route('pdf.generate') }}" method="POST">
+                @endif
                     @csrf
                     @if(isset($items))
                     @foreach ($items as $item)

@@ -12,7 +12,6 @@ class isAdminPdfController extends Controller
 {
     public function view(Request $request)
     {
-        // dd($request);
         $queryParameters = $request->query();
         $items = collect();
     
@@ -23,11 +22,6 @@ class isAdminPdfController extends Controller
             }
         }
 
-        // dd(json_decode($items));
-        // $itemData = $request->input('item');
-        // $item = json_decode($itemData); // Decoding as an object
-
-        // Pass $item to the blade view for rendering
         return view('pdf.template')->with('items', json_decode($items));
     }
 

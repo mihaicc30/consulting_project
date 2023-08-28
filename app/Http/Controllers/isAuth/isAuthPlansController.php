@@ -14,10 +14,10 @@ class isAuthPlansController extends Controller
     public function get()
     {
         // Getting the plans
-        $plans = Plans::get();
+        $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
         $yearly = '';
 
-        return view("isauth.plans", ['plans' => $plans, 'yearly' => $yearly]);
+        return view("isauth.subscriptions", ['plans' => $plans, 'yearly' => $yearly]);
     }
 
 

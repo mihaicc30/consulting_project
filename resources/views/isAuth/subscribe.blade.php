@@ -3,7 +3,7 @@
 @section('content')
 
 <span :class="{ 'hidden': !isActive }"></span>
-<div :class="{ 'col-span-2': !isActive }">
+<div class="grow">
 
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
@@ -34,8 +34,7 @@
             </label>
         <div id="card-element" class="border border-black p-2 rounded h-[2.5rem] w-full mb-4"></div>
 
-
-        <button type="submit" data-secret={{$intent->client_secret}} class="w-full bg-blue-500 text-white py-2 rounded" id="card-button" name="card-button">Pay Now</button>
+        <button type="submit" data-secret="{{$intent->client_secret}}" class="w-full bg-blue-500 text-white py-2 rounded" id="card-button" name="card-button">Pay Now</button>
     </form>
   </div>
 </div>
@@ -46,9 +45,6 @@
     const elements = stripe.elements();
     const cardElement = elements.create('card', {
       hidePostalCode: true,
-      style: {
-        // ... your style configuration ...
-      },
     });
     cardElement.mount('#card-element');
     const form = document.getElementById('payment-form');
@@ -59,7 +55,9 @@
     addressElement.mount('#address-element');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      cardBtn.disabled = true;
+     
+      // cardBtn.disabled = true;
+      try {
       const addressElement = elements.getElement('address');
       const result = await addressElement.getValue();
       if (result.complete) {
@@ -68,7 +66,7 @@
         const addressCity = value.city;
         const addressCountry = value.country;
         const addressPostalCode = value.postal_code;
-        try {
+       
           const { setupIntent, error } = await stripe.confirmCardSetup(
             cardBtn.dataset.secret, {
               payment_method: {
@@ -87,8 +85,9 @@
           );
           if (error) {
             console.log(error);
-            cardBtn.disabled = false;
+            // cardBtn.disabled = false;
           } else {
+            // cardBtn.disabled = false;
             let token = document.createElement('input');
             token.setAttribute('type', 'hidden');
             token.setAttribute('name', 'token');
@@ -96,10 +95,10 @@
             form.appendChild(token);
             form.submit();
           }
-        } catch (error) {
-          console.error(error);
-          cardBtn.disabled = false;
         }
+      } catch (error) {
+        console.error(error);
+        // cardBtn.disabled = false;
       }
     });
   });

@@ -5,25 +5,24 @@ namespace App\Http\Controllers\isAuth;
 use App\Http\Controllers\Controller;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+use App\Models\EzepostTracking;
 
 
 class isAuthPdfController extends Controller
 {
     public function view(Request $request)
     {
-        $itemData = $request->input('item');
-        $item = json_decode($itemData); // Decoding as an object
+        $queryParameters = $request->query();
+        $items = collect();
+    
+        foreach ($queryParameters as $key => $value) {
+            $item = EzepostTracking::where("id", $value)->first();
+            if ($item) {
+                $items->push($item);
+            }
+        }
 
-        // Pass $item to the blade view for rendering
-        return view('pdf.template')->with('item', $item);
-    }
-
-    public function template(Request $request)
-    {
-        $itemsData = $request->input('items');
-        $items = array_map('json_decode', $itemsData);
-
-        return view('pdf.template')->with('items', $items);
+        return view('pdf.template')->with('items', json_decode($items));
     }
 
     public function generate(Request $request)
