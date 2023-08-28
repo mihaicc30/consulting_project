@@ -49,7 +49,7 @@
           <p>Search {{ $totalFiles }} Files</p>
           <form method="GET" action="/portal/viewed?page=' + page" class="flex flex-col w-[100%]">
               <div class="flex flex-nowrap w-[100%]">
-                <input type="text" name="query" class="rounded-l p-2 w-[90%] text-black border-[1px] border-black/30" placeholder="File" value="{{ request('query') }}">
+                <input type="text" name="query" class="rounded-l p-2 w-[100%] text-black border-[1px] border-black/30" placeholder="File" value="{{ request('query') }}">
                 <button type="submit" class="px-4 py-2 border-[1px] rounded-r border-black/30">Search</button>
               </div>
               <div class="grid grid-cols-4">
