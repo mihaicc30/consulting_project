@@ -17,7 +17,6 @@ class EzepostTracking extends Model
     protected $fillable = [
         'sender_ezepost_addr',
         'receiver_ezepost_addr',
-
     ];
 
     public function getInProgressCount($ezepost_addr)

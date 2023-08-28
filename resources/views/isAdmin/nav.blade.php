@@ -46,7 +46,7 @@
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Users</span>
      </a>
-     <a class="p-2 relative navButton font-[600] border-b-2" href="/admin/profile">
+     <a class="p-2 relative navButton font-[600] border-b-2" href="{{route('profile.edit')}}">
        <span class="absolute bg-white inset-0 z-10 rounded"></span>
        <span class="z-20 relative">Profile</span>
      </a>

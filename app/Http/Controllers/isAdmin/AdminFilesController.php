@@ -16,7 +16,7 @@ class AdminFilesController extends Controller
             $transfers->where('file_name', 'like', '%' . $query . '%');
         }
     
-        $transfers = $transfers->paginate(8); // You can adjust the number per page (8 in this example)
+        $transfers = $transfers->paginate(12); // You can adjust the number per page (8 in this example)
     
         return view("isadmin.transfers",compact('transfers'));
     }

@@ -69,29 +69,36 @@
                 <div class="{{ $receipt->deleted_at !== null ? 'grayscale' : '' }} basis-[23%] p-2 flex flex-col max-w-[23%] shadow-xl rounded transition-all duration-500 hover:scale-[.98]">
                   <div class="grid grid-cols-1">
                     <div>
-                      <p>From:</p>
+                      
+                    <p class="font-[600] truncate line-clamp-1" title="{{ $receipt['file_name'] }}">
+                      📁
+                      {{ $receipt['file_name'] }}
+                    </p>
+                    <span class="text-xs" title="{{ $receipt['file_size_original'] }}">
+                      ☁
+                      {{ $receipt['file_size_original'] }}</span>
+                      <p class="text-xs">From:</p>
                       <p class="text-xs line-clamp-1 font-bold" title="{{ $receipt['sender_ezepost_addr'] }}">
                         {{ $receipt['sender_ezepost_addr'] }}
                       </p>
                       <p class="text-xs line-clamp-1" title="{{ $receipt['sender_displayname'] }}">
                         {{ $receipt['sender_displayname'] }}
                       </p>
-                      <p>To:</p>
+                      <p class="text-xs">To:</p>
                       <p class="text-xs line-clamp-1 font-bold" title="{{ $receipt['receiver_ezepost_addr'] }}">
                         {{ $receipt['receiver_ezepost_addr'] }}
                       </p>
                       <p class="text-xs line-clamp-1" title="{{ $receipt['receiver_displayname'] }}">
                         {{ $receipt['receiver_displayname'] }}
                       </p>
-                    </div>
-                    <span class="text-xs" title="{{ $receipt['file_size_original'] }}">
-                      ☁
-                      {{ $receipt['file_size_original'] }}</span>
+                      <p class="text-xs line-clamp-1" title="{{ $receipt['receiver_displayname'] }}">
+                      📅{{ $receipt['created_at'] }}
+                      </p>
+                      
 
-                    <p class="text-xs truncate line-clamp-1" title="{{ $receipt['file_name'] }}">
-                      📁
-                      {{ $receipt['file_name'] }}
-                    </p>
+                    </div>
+                
+
 
 
                   </div class="flex flex-nowrap">
@@ -101,7 +108,7 @@
                       @csrf
                       <input type="hidden" name="transferid" value="{{$receipt['id']}}">
                       <button title="Block/Unblock Receipt">
-                      <svg class="h-[50px] w-[50px]" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .duotone_twee{fill:#555D5E;} .duotone_een{fill:#ff6600;} .st0{fill:none;} </style> <g> <path class="duotone_twee" d="M15,17v10.5c0,0.276,0.224,0.5,0.5,0.5h1c0.276,0,0.5-0.224,0.5-0.5V17H15z"></path> <polygon class="duotone_een" points="18.485,4 22,7.515 22,12.485 18.485,16 13.515,16 10,12.485 10,7.515 13.515,4 "></polygon> </g> </g></svg>
+                      <svg class="h-[50px] w-[50px]" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .duotone_twee{fill:#555D5E;} .duotone_een{fill:#ff6600;} </style> <g> <path class="duotone_twee" d="M15,17v10.5c0,0.276,0.224,0.5,0.5,0.5h1c0.276,0,0.5-0.224,0.5-0.5V17H15z"></path> <polygon class="duotone_een" points="18.485,4 22,7.515 22,12.485 18.485,16 13.515,16 10,12.485 10,7.515 13.515,4 "></polygon> </g> </g></svg>
                       </button>
                     </form>
 
@@ -145,6 +152,8 @@
          <button type="submit" id="receiptGeneratorBtn" title="Generate Receipt" class="px-4 py-2 rounded-lg bg-orange-300" >
           Generate
           </button>
+
+          <p class="max-w-[150px] text-center mx-auto text-xs">Max. 5 receipts can be generated at a time.</p>
         </form>
         <!-- PDF GROUP GENERATOR Modal - END -->
         <script defer>
@@ -176,13 +185,17 @@
           function displayItem() {
             // Retrieve the localStorage data
             var receiptGeneratorBtn = document.getElementById('receiptGeneratorBtn')
+            var receiptGeneratorContainer = document.querySelector('.receiptGeneratorContainer')
             var pdfData = localStorage.getItem('pdf');
             var pdfItems = pdfData ? JSON.parse(pdfData) : [];
             if(pdfItems.length < 1) {
+              receiptGeneratorContainer.style.right="-190px"
               receiptGeneratorBtn.disabled="true"
               document.getElementById('receiptGenerator').innerHTML =`<p class="my-4">Nothing to generate from.</p>`
             }
+            if(pdfItems.length < 1)receiptGeneratorContainer.style.right = "0px";
             pdfItems.forEach((it,index) => {
+
               receiptGeneratorBtn.removeAttribute("disabled")
               if(index < 1) {
                 document.getElementById('receiptGenerator').innerHTML = 
@@ -259,10 +272,13 @@
             let list = getlocalStorageList();
             if (!list.includes(item)) {
               if (list.length >= 5) {
-                list.shift(); // Remove the oldest item if the list is full
+                // list.shift(); // Remove the oldest item if the list is full
+                alert("Max 5 files.")
+              } else {
+                list.push(item);
+                localStorage.setItem('pdf', JSON.stringify(list));
+
               }
-              list.push(item);
-              localStorage.setItem('pdf', JSON.stringify(list));
             }
             displayItem()
           }

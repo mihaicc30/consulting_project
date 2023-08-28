@@ -230,6 +230,7 @@
 
               </div>
               <p class="w-[100%]">📁 {{$transfer->file_name}}</p>
+              <p class="w-[100%] text-[10px]">📅 {{$transfer->created_at}}</p>
             </div>
 
             @endforeach
