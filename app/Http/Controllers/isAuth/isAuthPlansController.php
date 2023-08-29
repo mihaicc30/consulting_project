@@ -79,14 +79,17 @@ class isAuthPlansController extends Controller
     {
         try {
             $intent = auth()->user()->createSetupIntent();
+            $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
+
             $price = $request->price;
             $yearly = $request->yearly;
             $currency = "gbp";
+            return view('isauth.subscribe', compact('plans','plan', 'intent', 'price', 'yearly', 'currency'));
+
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return back()->with('error', 'Something went wrong, please try again later.');
         }
-        return view('isauth.subscribe', compact('plan', 'intent', 'price', 'yearly', 'currency'));
     }
 
     public function subscription(Request $request)
