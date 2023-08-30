@@ -13,16 +13,17 @@ class isAdminPdfController extends Controller
     public function view(Request $request)
     {
         $queryParameters = $request->query();
+      
         $items = collect();
     
-        foreach ($queryParameters as $key => $value) {
-            $item = EzepostTracking::where("id", $value)->first();
-            if ($item) {
-                $items->push($item);
+        foreach ($queryParameters as $key => $itemID) {
+            $itemsList = EzepostTracking::where('mpID', $itemID)->get();
+            foreach ($itemsList as $it) {
+
+                $items->push($it);
             }
         }
-
-        return view('pdf.template')->with('items', json_decode($items));
+        return view('pdf.template')->with('items', $items);
     }
 
     public function template(Request $request)
