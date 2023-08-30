@@ -10,14 +10,23 @@ controll string - 20 digits long -
 7- desktop user - 0 allowed / 1 denied
 8- web user - 0 allowed / 1 denied
 9- tokens 0 to 9
-10- 
-11-
-12-
-13-
-14-
-15-
-16-
-17-
-18-
+10- tokens 0 to 9  --enabing again double digit tokens
+11-                -- reserving space, maybe want three digit token
+12-d--------
+13-d       |    \
+14-m       |-----\  expiry date if user subscribed to a plan, later on to check with char18 is payment is recurring or not
+15-m       |-----/
+16-y       |    /
+17-y--------
+18- 0-no / 1-yes   --- payment recurring
 19-
 20- last number - admin ? - 0 no - 1 yes
+
+
+
+
+if payment not recurring=> check expiry date => if pressent date is past ex.date => change controlstring to a topup plan => remove the expiry date
+
+
+
+******//block only on desktop app --- not web**********

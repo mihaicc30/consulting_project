@@ -79,9 +79,8 @@ Route::middleware(['auth', 'IsBlocked', 'notadmin'])->prefix('portal')->group(fu
     Route::get('/subscriptions', [isAuthPlansController::class, 'get']);
     Route::get('/plans/{plan}', [isAuthPlansController::class, 'show'])->name('plans.show');
     Route::post('/plans/subscription', [isAuthPlansController::class, 'subscription'])->name('subscription.create');
-    Route::post('/plans/topup', [isAuthTopupController::class, 'pay'])->name('topup.create');
 
-    Route::get('/subscription/cancel', [isAuthPlansController::class, 'cancel'])->name('subscription.cancel');
+    Route::post('/subscription/cancel', [isAuthPlansController::class, 'cancel'])->name('subscription.cancel');
 
     Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
     Route::post('/contact', [isAuthContactController::class, 'add']);
