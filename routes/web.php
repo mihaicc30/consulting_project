@@ -63,7 +63,7 @@ Route::middleware('auth')->get('/profile', [ProfileController::class, 'edit'])->
 Route::middleware('auth')->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::middleware('auth')->delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
+Route::middleware(['auth', 'IsBlocked', 'notadmin'])->prefix('portal')->group(function () {
 
     Route::get('/', [isAuthDashboardController::class, 'get']);
     Route::get('/dashboard', [isAuthDashboardController::class, 'get'])->name('dashboard');
@@ -79,9 +79,8 @@ Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
     Route::get('/subscriptions', [isAuthPlansController::class, 'get']);
     Route::get('/plans/{plan}', [isAuthPlansController::class, 'show'])->name('plans.show');
     Route::post('/plans/subscription', [isAuthPlansController::class, 'subscription'])->name('subscription.create');
-    Route::post('/plans/topup', [isAuthTopupController::class, 'pay'])->name('topup.create');
 
-    Route::get('/subscription/cancel', [isAuthPlansController::class, 'cancel'])->name('subscription.cancel');
+    Route::post('/subscription/cancel', [isAuthPlansController::class, 'cancel'])->name('subscription.cancel');
 
     Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
     Route::post('/contact', [isAuthContactController::class, 'add']);

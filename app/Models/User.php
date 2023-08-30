@@ -13,6 +13,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Billable;
 
+    public function IsBlocked()
+    {
+        $IsBlocked = substr($this->controlstring, 0, 1);
+        // return true if not blocked
+        return $IsBlocked === '1';
+    }
     public function isAdmin()
     {
         $isAdmin = substr($this->controlstring, 19, 1);
