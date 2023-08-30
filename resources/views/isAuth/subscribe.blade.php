@@ -210,7 +210,7 @@
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
             <button type="button" class="m-2 p-2 border-2 shadow-md" x-on:click="console.log(opt1,opt2,opt3,opt4,opt5)">**php for dev**Check Data**</button>
    
-              <p>Payment: <span x-text="opt3" class="ml-2 mr-auto"></span>33.33  </p>
+              <p>Payment: <span x-text="opt4" class="ml-2 mr-auto"></span>33.33  </p>
 
               <form action="{{route('subscription.create')}}" method="post" id="payment-form" name="payment-form">
                 @csrf

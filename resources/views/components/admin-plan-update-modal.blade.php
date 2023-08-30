@@ -9,7 +9,7 @@
                 <div class="my-8 text-center">
                     <h1 class="font-bold text-3xl">Update Plan</h1>
                 </div>
-                <button class="absolute top-0 right-0 ml-auto p-2 bg-white" @click="isModal = !isModal">Close</button>
+                <button class="absolute top-0 right-0 ml-auto p-2 bg-white" @click="isModal = false">Close</button>
             </div>
         </div>
         
@@ -20,7 +20,9 @@
                 
          <!-- Plan Card - START-->
             <div class="flex flex-col shadow-xl p-4 z-10 relative flex-nowrap">
-                <input id="apc" type="text" class="hidden" name="code" readonly>
+                <p>Stripe Plan ID</p>
+                <input id="apc" type="text" name="code" class="w-[100%] text-xs font-bold whitespace-nowrap" >
+
                 <p>Plan Name</p>
                 <input id="apn" name="name" class="w-[100%] text-xs font-bold whitespace-nowrap" type="text" />
 

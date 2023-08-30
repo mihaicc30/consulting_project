@@ -27,7 +27,7 @@ class AdminFilesController extends Controller
             });
         }
         $totalFiles = $transfers->count();
-        $transfers = $transfers->orderBy('created_at', $filterDate)->paginate(12);
+        $transfers = $transfers->orderBy('created_at', $filterDate)->orderBy('mpID')->paginate(12);
 
         return view("isadmin.transfers",compact('transfers','filterDate','query','ezeusers','userFilter','totalFiles'));
     }

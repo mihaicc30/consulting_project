@@ -93,7 +93,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              <button class="bg-[--c2] p-2 rounded text-white font-bold" type="submit" @click="isModal = !isModal" onclick="setModal('{{ $plan }}')">Update</button>
+              <button class="bg-[--c2] p-2 rounded text-white font-bold" type="submit" @click="isModal = true" onclick="setModal('{{ $plan }}')">Update</button>
             
             </div>
             <!-- Plan Card - END-->
@@ -155,7 +155,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-              <button class="bg-[--c2] p-2 rounded text-white font-bold" type="submit" @click="isModal = !isModal" onclick="setModal('{{ $plan }}')">Update</button>
+              <button class="bg-[--c2] p-2 rounded text-white font-bold" type="submit" @click="isModal = true" onclick="setModal('{{ $plan }}')">Update</button>
             </div>
             <!-- Plan Card - END-->
             @endif
@@ -180,7 +180,6 @@
   const setModal = (data) => {
     data = data.replace("\"[", "[").replace("]\"", "]")
     data = JSON.parse(data)
-    console.log("🚀 ~ file: plans.blade.php:177 ~ setModal ~ data:", data)
 
     let modalID = document.getElementById('planid');
     let modalCode = document.getElementById('apc');
