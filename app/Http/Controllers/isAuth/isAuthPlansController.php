@@ -23,59 +23,59 @@ class isAuthPlansController extends Controller
     }
 
 
-    public function update($plan, $yearly)
-    {
-        if ($yearly == '') {
-            $plan_name = $plan->name;
-            return view('isauth.subscription-success', compact('plan_name'));
-        } else {
+    // public function update($plan, $yearly)
+    // {
+    //     if ($yearly == '') {
+    //         $plan_name = $plan->name;
+    //         return view('isauth.subscription-success', compact('plan_name'));
+    //     } else {
 
-            $plans = $plan->name;
-            $type = $plan->type;
-            $yearly = $yearly;
+    //         $plans = $plan->name;
+    //         $type = $plan->type;
+    //         $yearly = $yearly;
 
-            // Split the string
-            $planData = explode(' ', $plans);
+    //         // Split the string
+    //         $planData = explode(' ', $plans);
 
-            // Extract the "Plan Name" from the string
-            $planName = $planData[1];
+    //         // Extract the "Plan Name" from the string
+    //         $planName = $planData[1];
 
-            // Get the authenticated user and ezepost_user
-            $user = auth()->user();
-            $ezepost_user = EzepostUser::where('ezepost_addr', $user->ezepost_addr)->first();
+    //         // Get the authenticated user and ezepost_user
+    //         $user = auth()->user();
+    //         $ezepost_user = EzepostUser::where('ezepost_addr', $user->ezepost_addr)->first();
 
-            // Fetch the control string
-            $controlString = $user->controlstring;
+    //         // Fetch the control string
+    //         $controlString = $user->controlstring;
 
-            // Update the type of the plan
-            $controlString[1] = $type === 'Business' ? 1 : 0;
+    //         // Update the type of the plan
+    //         $controlString[1] = $type === 'Business' ? 1 : 0;
 
-            // Update the necessary values in the control string based on the selected plan
-            if ($planName === 'Starter') {
-                $controlString[2] = 1;
-            } elseif ($planName === 'Basic') {
-                $controlString[2] = 2;
-            } elseif ($planName === 'Premium') {
-                $controlString[2] = 3;
-            } else {
-                $controlString[2] = 0;
-            }
+    //         // Update the necessary values in the control string based on the selected plan
+    //         if ($planName === 'Starter') {
+    //             $controlString[2] = 1;
+    //         } elseif ($planName === 'Basic') {
+    //             $controlString[2] = 2;
+    //         } elseif ($planName === 'Premium') {
+    //             $controlString[2] = 3;
+    //         } else {
+    //             $controlString[2] = 0;
+    //         }
 
-            $yearly === '0' ? $controlString[3] = 0 : $controlString[3] = 1;
+    //         $yearly === '0' ? $controlString[3] = 0 : $controlString[3] = 1;
 
-            // Update the user's controlstring with the updated value
-            $ezepost_user->controlstring = $controlString;
-            $user->controlstring = $controlString;
+    //         // Update the user's controlstring with the updated value
+    //         $ezepost_user->controlstring = $controlString;
+    //         $user->controlstring = $controlString;
 
-            $ezepost_user->save();
-            $user->save();
+    //         $ezepost_user->save();
+    //         $user->save();
 
-            // Refetch the plans
-            $plans = Plans::get();
+    //         // Refetch the plans
+    //         $plans = Plans::get();
 
-            return view("isauth.plans", ['plans' => $plans]);
-        }
-    }
+    //         return view("isauth.plans", ['plans' => $plans]);
+    //     }
+    // }
 
     public function show(Plans $plan, Request $request)
     {
@@ -173,19 +173,19 @@ class isAuthPlansController extends Controller
         $plans = Plans::get();
         $tempControlString = auth()->user()->controlstring;
         $planMapping = [
-            'Starter' => '1',
-            'Basic' => '2',
-            'Premium' => '3',
+            'starter' => '1',
+            'basic' => '2',
+            'premium' => '3',
         ];
 
         
-        $tempControlString[1] = $request->planType === "Personal" ? "0" : "1";
+        $tempControlString[1] = $request->planType === "personal" ? "0" : "1";
         $tempControlString[2] = $planMapping[$request->planName] ?? $tempControlString[2];
 
-        $tempControlString[3] = $request->planBasis === "Yearly" ? "1" : "0";
-        $tempControlString[17] = $request->planDuration === "Recurring" ? "1" : "0";
+        $tempControlString[3] = $request->planBasis === "yearly" ? "1" : "0";
+        $tempControlString[17] = $request->planDuration === "recurring" ? "1" : "0";
 
-        if ($request->planBasis === "Yearly") {
+        if ($request->planBasis === "yearly") {
             $tempDate = date('dmy', strtotime('+1 year'));
         } else {
             $tempDate = date('dmy', strtotime('+1 month'));
