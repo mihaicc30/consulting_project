@@ -187,7 +187,6 @@
               <span x-text="opt3" class="ml-2 mr-auto"></span>
             </label>
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-            <button type="button" class="m-2 p-2 border-2 shadow-md" x-on:click="console.log(opt1,opt2)">**php for dev**Check Data**</button>
    
               <p>Payment: <span x-text="opt1" class="ml-2 mr-auto"></span>33.33  </p>
 
@@ -195,12 +194,13 @@
                 @csrf
                 <input type="hidden" name="currency" x-model="opt1">
                 <input type="hidden" name="tokenNumber" x-model="opt2">
+                <input type="hidden" name="paymentMethod" id='paymentMethod'>
                 <h1 class="text-2xl font-semibold mb-6">Billing Information</h1>
                 <div id="address-element"></div>
                 <hr class="my-4">
 
                 <label for="card-holder-name">Card Holder Name</label>
-                  <input type="text" id="card-holder-name" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
+                  <input type="text" value="{{ auth()->user()->name }}" id="card-holder-name" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
                     <label  for="card-element">
                       <p>Card Details</p>
                     </label>
@@ -214,50 +214,6 @@
               </div>
       </div>
     </div>
-      <!-- <div x-data="{ amount: '', currency: '' }"> -->
-        <!-- <form method="POST" action="{{ route('isauth.topup')}}" class="flex flex-col items-center mt-4" x-on:submit.prevent>
-          @csrf
-
-          <div class="flex bg-gray-100 p-8 rounded-lg shadow-lg text-center">
-            <div class="mb-4">
-              <label class="block text-gray-700 font-semibold" for="amount">Select Amount:</label>
-                <input type="radio" id="5" name="amount" value="5" x-on:click="amount = 5">
-                <label for="5">5</label>
-                <input type="radio" id="10" name="amount" value="10" x-on:click="amount = 10">
-                <label for="10">10</label>
-                <input type="radio" id="20" name="amount" value="20" x-on:click="amount = 20">
-                <label for="20">20</label>
-                <input type="radio" id="30" name="amount" value="30" x-on:click="amount = 30">
-                <label for="30">30</label>
-            </div>
-            <div class="border mx-2"></div>
-            <div class="mb-4">
-              <label class="block text-gray-700 font-semibold" for="currency">Select currency:</label>
-                <input type="radio" id="gbp" name="currency" value="gbp" x-on:click="currency = 'Pound'">
-                <label for="gbp">Pounds</label>
-                <input type="radio" id="eur" name="currency" value="eur" x-on:click="currency = 'Euro'">
-                <label for="eur">Euros</label>
-                <input type="radio" id="usd" name="currency" value="usd" x-on:click="currency = 'Dollar'">
-                <label for="usd">Dollars</label>
-            </div>
-          </div>
-
-          <div class="flex bg-gray-200 p-2 mt-4 rounded-lg items-center">
-            <p class="text-gray-700 flex">You will be charged&nbsp;<span id="selected-amount" class="font-bold" x-text="amount"></span>&nbsp; <span id="selected-currency" x-text="currency"></span></p>
-          </div>
-          <div class="alert"></div>
-          <div class="mt-4">
-            <button type="submit" id="stripe-button" class="w-full bg-[--c2] p-2 rounded text-white font-bold" x-on:click="
-        if (amount && currency) {
-          $el.closest('form').submit();
-        } else {
-          document.getElementsByClassName('alert')[0].innerHTML = '<p class=\'text-red-500 mt-2\'>Please select both amount and currency.</p>';
-          $el.closest('form').preventDefault();
-        }
-      ">Top-Up</button>
-          </div>
-        </form> -->
-      <!-- </div> -->
     </div>
   </div>
   <script async>
@@ -317,6 +273,7 @@
             name: cardHolderName.value,
           },
         });
+        document.getElementById('paymentMethod').value= paymentMethod.id
         console.log("paymentMethod:", paymentMethod)
         console.log("step2");
       
