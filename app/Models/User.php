@@ -30,7 +30,14 @@ class User extends Authenticatable
         $isAdmin = substr($this->controlstring, 19, 1);
         return $isAdmin === '0';
     }
+    
 
+    public function checkIfUserHasStripeId()
+    {
+        $hasStripeId = $this->stripe_id;
+        dd("hasStripeId", $hasStripeId);
+        return $hasStripeId !== null;
+    }
     /**
      * The attributes that are mass assignable.
      *
