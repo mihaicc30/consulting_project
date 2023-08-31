@@ -33,6 +33,7 @@ class isAuthTopupController extends Controller
         $oneTokenPriceID = "price_1Nl5JkKqpzLBt7b1T3GbdRE1";
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         
+     
         $stripe->invoiceItems->create([
             'customer' => auth()->user()->stripe_id,
             "price" => $oneTokenPriceID,
@@ -54,6 +55,19 @@ class isAuthTopupController extends Controller
             'currency' => $request->currency,
         ]);
     
+        // $discountCode = $stripe->coupons->create([
+        //     'percent_off' => 10,
+        //     'duration' => 'once',
+        //   ]);
+          
+        // $invoice->discounts = [
+        //     [
+        //         'coupon' => $discountCode->id,
+        //     ],
+        // ];
+        
+        $invoice->save();
+        
         $invoice->pay([
             'payment_method' => $request->paymentMethod,
         ]);

@@ -1,8 +1,6 @@
 @extends ('layout')
 
 @section('content')
-<span :class="{ 'hidden': !isActive }"></span>
-
 <div class="flex flex-nowrap col-span-2 grow">
   @include('isadmin.nav')
   <div class="grid grid-cols-1 grow">

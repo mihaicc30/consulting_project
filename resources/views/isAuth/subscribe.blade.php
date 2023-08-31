@@ -67,7 +67,7 @@
     padding: 1em;
   }
 </style>
-<span :class="{ 'hidden': !isActive }"></span>
+
 <div class="grow flex flex-col">
 
   <!-- Hero START -->

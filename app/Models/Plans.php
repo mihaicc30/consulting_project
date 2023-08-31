@@ -14,10 +14,8 @@ class Plans extends Model
         'name',
         'code',
         'price',
-        'currency',
         'slug',
         'stripe_plan',
-        'stripe_yearly_plan',
         'description',
         'message',
         'options'

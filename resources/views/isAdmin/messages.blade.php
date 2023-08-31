@@ -2,10 +2,6 @@
 
 @section('content')
 
-<!-- to fetch from db later -->
-
-
-<span :class="{ 'hidden': !isActive }"></span>
 <div class="flex flex-nowrap col-span-2 grow" x-data="{ isModal: false }">
   @include('isadmin.nav')
   <div class="grid grid-cols-1 grow">

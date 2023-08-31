@@ -20,7 +20,7 @@
     color: white;
   }
 </style>
-<span :class="{ 'hidden': !isActive }"></span>
+
 <div class="grow" x-data="{ isModal: false }">
 
   <!-- Hero START -->

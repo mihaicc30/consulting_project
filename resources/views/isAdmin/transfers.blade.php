@@ -20,7 +20,6 @@
     color: white;
   }
 </style>
-<span :class="{ 'hidden': !isActive }"></span>
 <div class="flex flex-nowrap col-span-2 grow w-[100%]">
   @include('isadmin.nav')
   <div class="grid grid-cols-1 grow" x-data="{ isModal: false }">
