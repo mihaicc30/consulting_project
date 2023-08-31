@@ -126,9 +126,13 @@
       @endif
       <!-- auth nav -->
       @auth
-        @if ($isPortalOrAdmin)
-        
-        <div class="flex flex-nowrap">
+      @if ($isPortalOrAdmin)
+      
+      @if( $controlString[5] ==="1")
+        <p class="text-center bg-[#ff000080] p-1">❗ Your desktop access has been blocked. Contact support for more info.</p>
+      @endif
+
+      <div class="flex flex-nowrap">
           
           @if ($char19 === '0')
           @include('isauth.nav')

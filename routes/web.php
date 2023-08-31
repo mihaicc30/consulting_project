@@ -63,7 +63,7 @@ Route::middleware('auth')->get('/profile', [ProfileController::class, 'edit'])->
 Route::middleware('auth')->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::middleware('auth')->delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-Route::middleware(['auth', 'IsBlocked', 'notadmin'])->prefix('portal')->group(function () {
+Route::middleware(['auth', 'notadmin'])->prefix('portal')->group(function () {
 
     Route::get('/', [isAuthDashboardController::class, 'get']);
     Route::get('/dashboard', [isAuthDashboardController::class, 'get'])->name('dashboard');

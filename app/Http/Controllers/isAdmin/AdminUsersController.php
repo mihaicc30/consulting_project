@@ -17,13 +17,16 @@ class AdminUsersController extends Controller
         $user = User::find($request->user_id);
         $ezeuser = EzepostUser::find($request->user_id);
         if ($user) {
-            $firstChar = substr($user->controlstring, 0, 1);
-            $user->controlstring = $firstChar === '0' ? '1' . substr($user->controlstring, 1) : '0' . substr($user->controlstring, 1);
+            $tempControlString = $user->controlstring;
+            $tempControlString[5] = $tempControlString[5] === '0' ? '1' : '0';
+            $user->controlstring = $tempControlString;
             $user->save();
         }
+        
         if ($ezeuser) {
-            $firstChar = substr($ezeuser->controlstring, 0, 1);
-            $ezeuser->controlstring = $firstChar === '0' ? '1' . substr($ezeuser->controlstring, 1) : '0' . substr($ezeuser->controlstring, 1);
+            $tempControlString = $ezeuser->controlstring;
+            $tempControlString[5] = $tempControlString[5] === '0' ? '1' : '0';
+            $ezeuser->controlstring = $tempControlString;
             $ezeuser->save();
         }
         return redirect()->back();
