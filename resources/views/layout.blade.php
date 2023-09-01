@@ -161,16 +161,6 @@
 
       </div>
 
-
-<script>
-  if (!localStorage.getItem('currency')) {
-    localStorage.setItem('currency', 'GBP');
-  }
-  console.log("Currency",localStorage.getItem('currency'));
-  console.log("Going to leave this here to remember future possible development.");
-</script>
-
-
 </body>
 
 </html>

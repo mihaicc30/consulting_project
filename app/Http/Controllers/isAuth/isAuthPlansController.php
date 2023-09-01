@@ -27,7 +27,6 @@ class isAuthPlansController extends Controller
         try {
             $intent = auth()->user()->createSetupIntent();
             $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-
             
             $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
 
@@ -40,10 +39,9 @@ class isAuthPlansController extends Controller
                 )->currency_options;
             }
 
-            $price = $request->price;
             $yearly = $request->yearly;
             $currency = "USD";
-            return view('isauth.subscribe', compact('plans','plan', 'intent', 'price', 'yearly', 'currency', 'planPriceIDs'));
+            return view('isauth.subscribe', compact('plans','plan', 'intent', 'yearly', 'currency', 'planPriceIDs'));
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -93,8 +91,6 @@ class isAuthPlansController extends Controller
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
         dd($request);
-        // $customer = $request->user()->createAsStripeCustomer();
-        // dd($request,  $customer);
         // $plan = Plans::find($request->plan);
         // $yearly = $request->yearly;
         // $plan_name = $plan->name;
