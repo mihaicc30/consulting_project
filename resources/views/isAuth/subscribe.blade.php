@@ -342,6 +342,7 @@
                 <input type="hidden" name="planBasis" x-model="opt3">
                 <input type="hidden" name="planCurrency" x-model="opt4">
                 <input type="hidden" name="planDuration" x-model="opt5">
+                <input type="hidden" name="paymentMethod" id='paymentMethod'>
                 <h1 class="text-2xl font-semibold mb-6">Billing Information</h1>
                 <div id="address-element"></div>
                 <hr class="my-4">
@@ -424,6 +425,7 @@
           },
         });
         console.log("paymentMethod:", paymentMethod)
+        document.getElementById('paymentMethod').value = paymentMethod.id
         console.log("step2");
       
     

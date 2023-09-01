@@ -145,6 +145,8 @@
         } else if (this.opt2 === '10') {
           return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 10).toFixed(2);
         }
+      } else {
+        return 'Loading...';
       }
     }}">
     <div class="flex flex-col items-center justify-center gap-4">

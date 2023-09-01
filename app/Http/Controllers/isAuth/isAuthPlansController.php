@@ -51,6 +51,17 @@ class isAuthPlansController extends Controller
     
     public function cancel()
     {
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $stripeTopUpPlanId = Plans::where('slug', 'top-up')->first()->stripe_plan;
+
+
+        $stripeTopUpPlanPrice = $stripe->prices->retrieve(
+            $stripeTopUpPlanId,
+            ['expand' => ['product', 'currency_options']]
+        );
+        
+        $tokenCurrencyOptions = $stripeTopUpPlanPrice->currency_options;
+
         $tempControlString = auth()->user()->controlstring;
 
         $tempControlString[1] = "0";
@@ -79,7 +90,7 @@ class isAuthPlansController extends Controller
         $balance = EzepostUser::where('ezepost_addr', $ezepost_addr)->first()->balance;
         $message = "You have canceled your subscription plan and back to the default Top-Up plan.";
     
-        return view('isauth.topup', compact('balance', 'message', 'intent'));
+        return view('isauth.topup', compact('balance', 'message', 'intent', 'tokenCurrencyOptions'));
     }
     // price id > personal starter monthly recurring > price_1Nkl4HKqpzLBt7b1q4rTSjtf
     // price id > personal starter monthly one-time > price_1Nkl2QKqpzLBt7b1KkmpSzKn
