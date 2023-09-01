@@ -68,7 +68,123 @@
   }
 </style>
 
-<div class="grow flex flex-col">
+<div class="grow flex flex-col" x-data="{opt1:'', opt2:'', opt3:'', opt4:'', opt5:'', opt6:'', calculatePaymentAmount: function() {
+    if (this.opt4 === 'GBP') {
+        if (this.opt3 === 'Monthly') {
+            if (this.opt1 === 'Personal') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->gbp->unit_amount }} / 100 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'Business') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Business Starter']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Business Basic']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Business Premium']->gbp->unit_amount }} / 100 ).toFixed(2);
+                }
+            }
+        } else if (this.opt3 === 'Yearly') {
+            if (this.opt1 === 'Personal') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'Business') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Business Starter']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Business Basic']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Business Premium']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            }
+        }
+    } else  if (this.opt4 === 'USD') {
+        if (this.opt3 === 'Monthly') {
+            if (this.opt1 === 'Personal') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->usd->unit_amount }} / 100 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'Business') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Business Starter']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Business Basic']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Business Premium']->usd->unit_amount }} / 100 ).toFixed(2);
+                }
+            }
+        } else if (this.opt3 === 'Yearly') {
+            if (this.opt1 === 'Personal') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'Business') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Business Starter']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Business Basic']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Business Premium']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            }
+        }
+    } else  if (this.opt4 === 'EUR') {
+        if (this.opt3 === 'Monthly') {
+            if (this.opt1 === 'Personal') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->eur->unit_amount }} / 100 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'Business') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Business Starter']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Business Basic']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Business Premium']->eur->unit_amount }} / 100 ).toFixed(2);
+                }
+            }
+        } else if (this.opt3 === 'Yearly') {
+            if (this.opt1 === 'Personal') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'Business') {
+                if (this.opt2 === 'Starter') {
+                    return ({{ $planPriceIDs['Business Starter']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Basic') {
+                    return ({{ $planPriceIDs['Business Basic']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'Premium') {
+                    return ({{ $planPriceIDs['Business Premium']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            }
+        }
+    }
+} }" x-init="$nextTick(() => { opt3 = new URLSearchParams(window.location.search).get('yearly') === '1' ? 'Yearly' : 'Monthly', opt1 = window.location.pathname.split('/plans/')[1].split('-')[0], opt2 = window.location.pathname.split('/plans/')[1].split('-')[1]} )">
 
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
@@ -86,11 +202,11 @@
     <!--  -->
     <div class="flex flex-col min-w-[200px] max-w-[500px] w-[100%] border-2 rounded-lg p-4 shadow-[9px_9px_18px_#bebebe,-9px_-9px_18px_#ffffff]">
       <div class="col">
-        <div class="tabs font-[600]" x-data="{opt1:'', opt2:'', opt3:'', opt4:'', opt5:'', opt6:''}" x-init="$nextTick(() => { opt3 = new URLSearchParams(window.location.search).get('yearly') === '1' ? 'Yearly' : 'Monthly', opt1 = window.location.pathname.split('/plans/')[1].split('-')[0], opt2 = window.location.pathname.split('/plans/')[1].split('-')[1] } )">
+        <div class="tabs font-[600]" >
         <!-- <div class="tabs font-[600]" x-data="{opt1:'Personal', opt2:'Starter', opt3:'Monthly', opt4:'USD', opt5:'One-Time', opt6:''}"> -->
           <!-- opt1 -->
           <div class="tab">
-            <input type="checkbox" id="rd1" name="rd1" x-bind:checked="!opt1" />
+            <input type="checkbox" id="rd1" name="rd1" x-bind:checked="opt1" />
             <label class="tab-label rounded-t-lg" for="rd1">
               <span class="mr-2">01.</span>
               <span>Plan Type:</span>
@@ -111,7 +227,7 @@
 
           <!-- opt2 -->
           <div class="tab">
-            <input type="checkbox" id="rd2" name="rd2" x-bind:checked="!opt2" />
+            <input type="checkbox" id="rd2" name="rd2" x-bind:checked="opt2" />
             <label class="tab-label" for="rd2">
               <span class="mr-2">02.</span>
               <span>Plan Name:</span>
@@ -134,7 +250,7 @@
           </div>
           <!-- opt3 -->
           <div class="tab">
-            <input type="checkbox" id="rd3" name="rd3" x-bind:checked="!opt3" />
+            <input type="checkbox" id="rd3" name="rd3" x-bind:checked="opt3" />
             <label class="tab-label" for="rd3">
               <span class="mr-2">03.</span>
               <span>Plan Basis:</span>
@@ -154,7 +270,7 @@
           <!--  -->
           <!-- opt4 -->
           <div class="tab">
-            <input type="checkbox" id="rd4" name="rd4" x-bind:checked="!opt4" />
+            <input type="checkbox" id="rd4" name="rd4" x-bind:checked="opt4" />
             <label class="tab-label" for="rd4">
               <span class="mr-2">04.</span>
               <span>Plan Currency:</span>
@@ -210,7 +326,10 @@
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
             <button type="button" class="m-2 p-2 border-2 shadow-md" x-on:click="console.log(opt1,opt2,opt3,opt4,opt5)">**php for dev**Check Data**</button>
    
-              <p>Payment: <span x-text="opt4" class="ml-2 mr-auto"></span>33.33  </p>
+              <p>Payment:
+                <span x-text="opt4" class="ml-2 mr-auto"></span>
+                <span x-text="calculatePaymentAmount()"></span>
+              </p>
 
               <form action="{{route('subscription.create')}}" method="post" id="payment-form" name="payment-form">
                 @csrf

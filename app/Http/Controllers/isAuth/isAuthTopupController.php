@@ -41,6 +41,15 @@ class isAuthTopupController extends Controller
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         $stripeTopUpPlanId = Plans::where('slug', 'top-up')->first()->stripe_plan;
 
+
+        $stripeTopUpPlanPrice = $stripe->prices->retrieve(
+            $stripeTopUpPlanId,
+            ['expand' => ['product', 'currency_options']]
+        );
+        
+        $tokenCurrencyOptions = $stripeTopUpPlanPrice->currency_options;
+
+
         // an example on how to fetch the exact price of the plan in its default currency
         $stripeTopUpPlanPrice = $stripe->prices->retrieve(
             $stripeTopUpPlanId,
@@ -94,7 +103,7 @@ class isAuthTopupController extends Controller
         $ezepostUser->balance = $balance;
         $ezepostUser->save();
         $message="You topped up successfully your account with " . $tokenNumber . "tokens!";
-        return view('isauth.topup', compact('balance', 'message','intent'));
+        return view('isauth.topup', compact('balance', 'message','intent', 'tokenCurrencyOptions'));
     }
 
 }
