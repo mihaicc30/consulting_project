@@ -63,7 +63,7 @@ Route::middleware('auth')->get('/profile', [ProfileController::class, 'edit'])->
 Route::middleware('auth')->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::middleware('auth')->delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-Route::middleware(['auth', 'IsBlocked', 'notadmin'])->prefix('portal')->group(function () {
+Route::middleware(['auth', 'notadmin', 'checkIfUserHasStripeId'])->prefix('portal')->group(function () {
 
     Route::get('/', [isAuthDashboardController::class, 'get']);
     Route::get('/dashboard', [isAuthDashboardController::class, 'get'])->name('dashboard');
@@ -90,16 +90,15 @@ Route::middleware(['auth', 'IsBlocked', 'notadmin'])->prefix('portal')->group(fu
     Route::post('/topup', [isAuthTopupController::class, 'topup'])->name('isauth.topup');
 
  
-
-    Route::get('customer-portal', [isAuthCustomerPortalController::class, 'get'])->name('customer-portal');
     Route::post('/create-customer-portal-session', [isAuthCustomerPortalController::class, 'stripe'])->name('create-customer-portal-session');
 
+    Route::get('customer-portal', [isAuthCustomerPortalController::class, 'get'])->name('customer-portal');
     Route::delete('/delete-contact/{username}', [isAuthContactController::class, 'delete'])->name('delete.contact');
 
-    Route::get('/checkbox-counter', CheckboxCounter::class);
-
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
-
+    
+    
+    // Route::get('/checkbox-counter', CheckboxCounter::class);
     // Route::post('/upload-image', [isAuthPackagesController::class, 'uploadImage'])->name('uploadImage');
     // Route::get('/files', [isAuthS3FilesController::class, 'getAllFiles'])->name('files');
 });

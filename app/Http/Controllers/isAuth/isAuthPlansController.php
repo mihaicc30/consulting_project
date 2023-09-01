@@ -14,7 +14,6 @@ class isAuthPlansController extends Controller
 
     public function get()
     {
-     
         // Getting the plans
         $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
         $yearly = '';
@@ -23,71 +22,26 @@ class isAuthPlansController extends Controller
     }
 
 
-    // public function update($plan, $yearly)
-    // {
-    //     if ($yearly == '') {
-    //         $plan_name = $plan->name;
-    //         return view('isauth.subscription-success', compact('plan_name'));
-    //     } else {
-
-    //         $plans = $plan->name;
-    //         $type = $plan->type;
-    //         $yearly = $yearly;
-
-    //         // Split the string
-    //         $planData = explode(' ', $plans);
-
-    //         // Extract the "Plan Name" from the string
-    //         $planName = $planData[1];
-
-    //         // Get the authenticated user and ezepost_user
-    //         $user = auth()->user();
-    //         $ezepost_user = EzepostUser::where('ezepost_addr', $user->ezepost_addr)->first();
-
-    //         // Fetch the control string
-    //         $controlString = $user->controlstring;
-
-    //         // Update the type of the plan
-    //         $controlString[1] = $type === 'Business' ? 1 : 0;
-
-    //         // Update the necessary values in the control string based on the selected plan
-    //         if ($planName === 'Starter') {
-    //             $controlString[2] = 1;
-    //         } elseif ($planName === 'Basic') {
-    //             $controlString[2] = 2;
-    //         } elseif ($planName === 'Premium') {
-    //             $controlString[2] = 3;
-    //         } else {
-    //             $controlString[2] = 0;
-    //         }
-
-    //         $yearly === '0' ? $controlString[3] = 0 : $controlString[3] = 1;
-
-    //         // Update the user's controlstring with the updated value
-    //         $ezepost_user->controlstring = $controlString;
-    //         $user->controlstring = $controlString;
-
-    //         $ezepost_user->save();
-    //         $user->save();
-
-    //         // Refetch the plans
-    //         $plans = Plans::get();
-
-    //         return view("isauth.plans", ['plans' => $plans]);
-    //     }
-    // }
-
     public function show(Plans $plan, Request $request)
     {
         try {
-           
             $intent = auth()->user()->createSetupIntent();
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+            
             $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
 
-            $price = $request->price;
+            $planPriceIDs = [];
+
+            foreach ($plans as $plan) {
+                $planPriceIDs[$plan->name] = $stripe->prices->retrieve(
+                    $plan->stripe_plan,
+                    ['expand' => ['product', 'currency_options']]
+                )->currency_options;
+            }
+
             $yearly = $request->yearly;
             $currency = "USD";
-            return view('isauth.subscribe', compact('plans','plan', 'intent', 'price', 'yearly', 'currency'));
+            return view('isauth.subscribe', compact('plans','plan', 'intent', 'yearly', 'currency', 'planPriceIDs'));
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -97,6 +51,17 @@ class isAuthPlansController extends Controller
     
     public function cancel()
     {
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $stripeTopUpPlanId = Plans::where('slug', 'top-up')->first()->stripe_plan;
+
+
+        $stripeTopUpPlanPrice = $stripe->prices->retrieve(
+            $stripeTopUpPlanId,
+            ['expand' => ['product', 'currency_options']]
+        );
+        
+        $tokenCurrencyOptions = $stripeTopUpPlanPrice->currency_options;
+
         $tempControlString = auth()->user()->controlstring;
 
         $tempControlString[1] = "0";
@@ -125,25 +90,25 @@ class isAuthPlansController extends Controller
         $balance = EzepostUser::where('ezepost_addr', $ezepost_addr)->first()->balance;
         $message = "You have canceled your subscription plan and back to the default Top-Up plan.";
     
-        return view('isauth.topup', compact('balance', 'message', 'intent'));
+        return view('isauth.topup', compact('balance', 'message', 'intent', 'tokenCurrencyOptions'));
     }
     // price id > personal starter monthly recurring > price_1Nkl4HKqpzLBt7b1q4rTSjtf
     // price id > personal starter monthly one-time > price_1Nkl2QKqpzLBt7b1KkmpSzKn
     
-    // price id > personal starter yearly recurring > price_1Nkl5RKqpzLBt7b1WtSOqDGk
-    // price id > personal starter yearly one-time > price_1Nkl51KqpzLBt7b18S0UCdPU
     
     public function subscription(Request $request)
     {
-        // $customer = $request->user()->createAsStripeCustomer();
-        // dd($request,  $customer);
+        
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+
         // $plan = Plans::find($request->plan);
         // $yearly = $request->yearly;
         // $plan_name = $plan->name;
-        $priceId = 'price_1Nkl2QKqpzLBt7b1KkmpSzKn';
-        $priceId2 = 'price_1Nkl4HKqpzLBt7b1q4rTSjtf';
-        $currency = 'GBP'; // Set the desired currency code
-        $frequency = 'one_time'; // Set the desired currency code
+        // $priceId = 'price_1Nkl2QKqpzLBt7b1KkmpSzKn';
+        // $priceId2 = 'price_1Nkl4HKqpzLBt7b1q4rTSjtf';
+        // $currency = 'GBP'; // Set the desired currency code
+        // $frequency = 'one_time'; // Set the desired currency code
 
         // $stripeCharge = $request->user()->charge(
         //     100, $request->paymentMethodId
@@ -160,9 +125,11 @@ class isAuthPlansController extends Controller
         //         'currency' => $currency,
         //     ]);
         // }
-        $this->updateUser($request);
         // $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)->create($request->token);
 
+        // after all stripe checks gone through
+        $this->updateUser($request);
+        
         $plans = Plans::get();
         return view("isauth.subscriptions", compact('plans'));
     }

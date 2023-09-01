@@ -1,8 +1,6 @@
 @extends ('layout')
 
 @section('content')
-<span :class="{ 'hidden': !isActive }"></span>
-
 <div class="flex flex-nowrap col-span-2 grow">
   @include('isadmin.nav')
   <div class="grid grid-cols-1 grow">
@@ -35,7 +33,7 @@
       <div class="flex flex-wrap py-2 px-2 transition-all">
         @foreach ($users as $user)
         <!-- User Card - START -->
-        <form method="POST" x-show="searchUser === '' || (searchUser !== '' && ({{ json_encode(strtolower($user->email)) }}.includes(searchUser.toLowerCase()) || {{ json_encode(strtolower($user->name)) }}.includes(searchUser.toLowerCase())))" class="{{ $user->controlstring[0] === '0' ? 'grayscale' : '' }}  flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
+        <form method="POST" x-show="searchUser === '' || (searchUser !== '' && ({{ json_encode(strtolower($user->email)) }}.includes(searchUser.toLowerCase()) || {{ json_encode(strtolower($user->name)) }}.includes(searchUser.toLowerCase())))" class="{{ $user->controlstring[5] === '1' ? 'grayscale' : '' }}  flex flex-col max-w-[200px] shadow-xl p-2 m-2 rounded hover:scale-[1.1] transition-all duration-500">
           @csrf
           <input type="hidden" name="user_id" value="{{$user->id}}">
           <span class="mx-auto relative">
@@ -49,8 +47,8 @@
             <a title="Send Email" href="mailto:{{$user->email}}?subject=Query&amp;body=Your message...">@include('components.emailsvg')</a>
             <button formaction="/admin/users/toggle" title="Block/Unblock User">@include('components.deleteusersvg')</button>
           </div>
-          @if ($user->controlstring[0] === '0')
-          <p class="text-xs text-center">-disabled-</p>
+          @if ($user->controlstring[5] === '1')
+          <p class="text-xs text-center">-desktop blocked-</p>
           @endif
         </form>
         <!-- User Card - END -->

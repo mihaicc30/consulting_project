@@ -70,7 +70,7 @@
 
     //model
     var startDatetime = new Date("2023-06-26T18:37:30Z");
-    var endDatetime = new Date("2023-06-28T18:37:00Z");
+    var endDatetime = new Date("2023-10-28T18:37:00Z");
 
     var countdownInterval;
     

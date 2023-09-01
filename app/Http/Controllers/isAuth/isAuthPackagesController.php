@@ -18,7 +18,7 @@ class isAuthPackagesController extends Controller
             $files
                 ->where("receiver_ezepost_addr", $userEzepostAddr)
                 ->where("file_name", "like", "%" . $query . "%")
-                ->orderBy("created_at", $filterDate);
+                ->orderBy("created_at", $filterDate)->orderBy('mpID');
         }
 
         $totalFiles = $files->count();

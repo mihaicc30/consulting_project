@@ -20,7 +20,6 @@
     color: white;
   }
 </style>
-<span :class="{ 'hidden': !isActive }"></span>
 <div class="flex flex-nowrap col-span-2 grow w-[100%]">
   @include('isadmin.nav')
   <div class="grid grid-cols-1 grow" x-data="{ isModal: false }">
@@ -127,12 +126,7 @@
                         📅
                         {{ $receipt['created_at'] }}
                       </p>
-
-
                     </div>
-
-
-
 
                   </div class="flex flex-nowrap">
                   <div class="flex flex-nowrap justify-end ">
@@ -166,7 +160,7 @@
                     <a title="Generate Receipt" class="w-[40px] h-[50px]" href="{{ route('pdf.view', ['item' => json_encode((int)$receipt['mpID'])]) }}" target="_blank">
                       @include('components.file-pdf')
                     </a>
-                    <button title="Generate QR CODE" class="w-[40px] h-[50px]" @click="isModal = true" onclick="generate('item={{ $receipt['id'] }}')">@include('components.file-qr')</button>
+                    <button title="Generate QR CODE" class="w-[40px] h-[50px]" @click="isModal = true" onclick="generate(`item={{ $receipt['mpID'] }}`)">@include('components.file-qr')</button>
 
                 
 

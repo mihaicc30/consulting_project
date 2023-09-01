@@ -47,7 +47,7 @@
             <input type="checkbox" id="monthlyCheckbox" name="checkboxed" @change="isMonthly = !isMonthly">
             <span class="slider"></span>
           </label>
-          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly (- 10% Off)</span>
+          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly</span>
         </div>
       </div>
       <!-- Pricing Plan Toggle - END -->
@@ -77,7 +77,7 @@
                   <span x-text="(parseFloat({{ $plan['price'] }}).toFixed(2)) + ' / month'"></span>
                 </template>
                 <template x-if="!isMonthly">
-                  <span x-text="(parseFloat({{ $plan['price'] }} * 0.9 * 12).toFixed(2)) + ' / year'"></span>
+                  <span x-text="(parseFloat({{ $plan['price'] }} * 12).toFixed(2)) + ' / year'"></span>
                 </template>
                 @endif
               </p>
@@ -108,7 +108,7 @@
                 @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0' ] )
               </template>
               <template x-if="!isMonthly">
-                @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] * 0.9 * 12 , 'slug' => $plan['slug'], 'yearly' => '1' ] )
+                @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] * 12 , 'slug' => $plan['slug'], 'yearly' => '1' ] )
               </template>
             </div>
             <!-- Plan Card - END-->

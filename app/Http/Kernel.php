@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'notadmin' => \App\Http\Middleware\NotAdmin::class,
         'IsBlocked' => \App\Http\Middleware\IsBlocked::class,
+        'checkIfUserHasStripeId' => \App\Http\Middleware\checkIfUserHasStripeId::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

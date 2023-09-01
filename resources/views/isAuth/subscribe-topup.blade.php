@@ -2,7 +2,7 @@
 
 @section('content')
 
-<span :class="{ 'hidden': !isActive }"></span>
+
 <div class="grow">
 
   <!-- Hero START -->

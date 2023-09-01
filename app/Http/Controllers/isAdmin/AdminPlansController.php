@@ -18,6 +18,7 @@ class AdminPlansController extends Controller
         // dd($request->code, $plan, $plans);
         if ($plan) {
             // Update the plan attributes based on the form inputs
+            $plan->code = $request->code;
             $plan->name = $request->name;
             $plan->description = $request->description;
             $plan->price = $request->price;

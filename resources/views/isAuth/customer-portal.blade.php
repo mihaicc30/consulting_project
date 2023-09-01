@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section('content')
-<span :class="{ 'hidden': !isActive }"></span>
+
 <div class="grow">
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">

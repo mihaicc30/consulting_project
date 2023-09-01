@@ -20,7 +20,7 @@
     color: white;
   }
 </style>
-<span :class="{ 'hidden': !isActive }"></span>
+
 <div class="grow" x-data="{ isModal: false }">
 
   <!-- Hero START -->
@@ -110,7 +110,7 @@
                 <a title="Generate Receipt" class="w-[40px] h-[50px]" href="{{ route('pdff.view', ['item' => json_encode((int)$receipt['mpID'])]) }}" target="_blank">
                   @include('components.file-pdf')
                 </a>
-                <button title="Generate QR CODE" class="w-[40px] h-[50px]" @click="isModal = !isModal" onclick="generate('item={{ $receipt['id'] }}')">@include('components.file-qr')</button>
+                <button title="Generate QR CODE" class="w-[40px] h-[50px]" @click="isModal = true" onclick="generate(`item={{ $receipt['mpID'] }}`)">@include('components.file-qr')</button>
 
               </div>
               @if ($receipt->deleted_at !== null)

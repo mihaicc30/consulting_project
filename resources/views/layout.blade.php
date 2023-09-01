@@ -126,9 +126,13 @@
       @endif
       <!-- auth nav -->
       @auth
-        @if ($isPortalOrAdmin)
-        
-        <div class="flex flex-nowrap">
+      @if ($isPortalOrAdmin)
+      
+      @if( $controlString[5] ==="1")
+        <p class="text-center bg-[#ff000080] p-1">❗ Your desktop access has been blocked. Contact support for more info.</p>
+      @endif
+
+      <div class="flex flex-nowrap">
           
           @if ($char19 === '0')
           @include('isauth.nav')
@@ -156,16 +160,6 @@
       @endauth
 
       </div>
-
-
-<script>
-  if (!localStorage.getItem('currency')) {
-    localStorage.setItem('currency', 'GBP');
-  }
-  console.log("Currency",localStorage.getItem('currency'));
-  console.log("Going to leave this here to remember future possible development.");
-</script>
-
 
 </body>
 

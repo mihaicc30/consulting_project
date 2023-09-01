@@ -67,8 +67,129 @@
     padding: 1em;
   }
 </style>
-<span :class="{ 'hidden': !isActive }"></span>
-<div class="grow flex flex-col">
+
+<div class="grow flex flex-col" x-data="{opt1:window.location.pathname.split('/plans/')[1].split('-')[0], opt2: window.location.pathname.split('/plans/')[1].split('-')[1], opt3: new URLSearchParams(window.location.search).get('yearly') === '1' ? 'yearly' : 'monthly', opt4:'', opt5:'', opt6:'', 
+  calculatePaymentAmount: function() {
+    if (this.opt4 === 'gbp') {
+        if (this.opt3 === 'monthly') {
+            if (this.opt1 === 'personal') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->gbp->unit_amount }} / 100 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'business') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Business Starter']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Business Basic']->gbp->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Business Premium']->gbp->unit_amount }} / 100 ).toFixed(2);
+                }
+            }
+        } else if (this.opt3 === 'yearly') {
+            if (this.opt1 === 'personal') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'business') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Business Starter']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Business Basic']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Business Premium']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            }
+        }
+    } else  if (this.opt4 === 'usd') {
+        if (this.opt3 === 'monthly') {
+            if (this.opt1 === 'personal') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->usd->unit_amount }} / 100 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'business') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Business Starter']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Business Basic']->usd->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Business Premium']->usd->unit_amount }} / 100 ).toFixed(2);
+                }
+            }
+        } else if (this.opt3 === 'yearly') {
+            if (this.opt1 === 'personal') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'business') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Business Starter']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Business Basic']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Business Premium']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            }
+        }
+    } else  if (this.opt4 === 'eur') {
+        if (this.opt3 === 'monthly') {
+            if (this.opt1 === 'personal') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->eur->unit_amount }} / 100 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'business') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Business Starter']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Business Basic']->eur->unit_amount }} / 100 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Business Premium']->eur->unit_amount }} / 100 ).toFixed(2);
+                }
+            }
+        } else if (this.opt3 === 'yearly') {
+            if (this.opt1 === 'personal') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Personal Starter']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Personal Basic']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Personal Premium']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            } else if (this.opt1 === 'business') {
+                if (this.opt2 === 'starter') {
+                    return ({{ $planPriceIDs['Business Starter']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'basic') {
+                    return ({{ $planPriceIDs['Business Basic']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                } else if(this.opt2 === 'premium') {
+                    return ({{ $planPriceIDs['Business Premium']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
+                }
+            }
+        }
+    } else {
+      return 'Loading...';
+    }
+  } 
+}"
+ >
 
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
@@ -86,7 +207,7 @@
     <!--  -->
     <div class="flex flex-col min-w-[200px] max-w-[500px] w-[100%] border-2 rounded-lg p-4 shadow-[9px_9px_18px_#bebebe,-9px_-9px_18px_#ffffff]">
       <div class="col">
-        <div class="tabs font-[600]" x-data="{opt1:'', opt2:'', opt3:'', opt4:'', opt5:'', opt6:''}" x-init="$nextTick(() => { opt3 = new URLSearchParams(window.location.search).get('yearly') === '1' ? 'Yearly' : 'Monthly', opt1 = window.location.pathname.split('/plans/')[1].split('-')[0], opt2 = window.location.pathname.split('/plans/')[1].split('-')[1] } )">
+        <div class="tabs font-[600]" >
         <!-- <div class="tabs font-[600]" x-data="{opt1:'Personal', opt2:'Starter', opt3:'Monthly', opt4:'USD', opt5:'One-Time', opt6:''}"> -->
           <!-- opt1 -->
           <div class="tab">
@@ -97,12 +218,12 @@
               <span x-text="opt1" class="ml-2 mr-auto capitalize"></span>
             </label>
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'Personal' }">
-                <input type="radio" name="opt1" id="label1" x-on:click="opt1 = 'Personal'" value="Personal" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'personal' }">
+                <input type="radio" name="opt1" id="label1" x-on:click="opt1 = 'personal'" value="personal" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label1" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Personal</label>
               </div>
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'Business' }">
-                <input type="radio" name="opt1" id="label2" x-on:click="opt1 = 'Business'" value="Business" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'business' }">
+                <input type="radio" name="opt1" id="label2" x-on:click="opt1 = 'business'" value="business" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label2" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Business</label>
               </div>
             </div>
@@ -118,16 +239,16 @@
               <span x-text="opt2" class="ml-2 mr-auto capitalize"></span>
             </label>
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === 'Starter' }">
-                <input type="radio" name="opt2" id="label8" x-on:click="opt2 = 'Starter'" value="Starter" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === 'starter' }">
+                <input type="radio" name="opt2" id="label8" x-on:click="opt2 = 'starter'" value="Starter" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label8" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Starter</label>
               </div>
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === 'Basic' }">
-                <input type="radio" name="opt2" id="label9" x-on:click="opt2 = 'Basic'" value="Basic" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === 'basic' }">
+                <input type="radio" name="opt2" id="label9" x-on:click="opt2 = 'basic'" value="Basic" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label9" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Basic</label>
               </div>
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === 'Premium' }">
-                <input type="radio" name="opt2" id="label10" x-on:click="opt2 = 'Premium'" value="Premium" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === 'premium' }">
+                <input type="radio" name="opt2" id="label10" x-on:click="opt2 = 'premium'" value="Premium" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label10" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Premium</label>
               </div>
             </div>
@@ -138,15 +259,15 @@
             <label class="tab-label" for="rd3">
               <span class="mr-2">03.</span>
               <span>Plan Basis:</span>
-              <span x-text="opt3" class="ml-2 mr-auto"></span>
+              <span x-text="opt3" class="ml-2 mr-auto capitalize"></span>
             </label>
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt3 === 'Monthly' }">
-                <input type="radio" name="opt3" id="label3" x-on:click="opt3 = 'Monthly'" value="Monthly" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt3 === 'monthly' }">
+                <input type="radio" name="opt3" id="label3" x-on:click="opt3 = 'monthly'" value="monthly" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label3" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Monthly</label>
               </div>
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt3 === 'Yearly' }">
-                <input type="radio" name="opt3" id="label4" x-on:click="opt3 = 'Yearly'" value="Yearly" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt3 === 'yearly' }">
+                <input type="radio" name="opt3" id="label4" x-on:click="opt3 = 'yearly'" value="yearly" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label4" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Yearly</label>
               </div>
             </div>
@@ -158,19 +279,19 @@
             <label class="tab-label" for="rd4">
               <span class="mr-2">04.</span>
               <span>Plan Currency:</span>
-              <span x-text="opt4" class="ml-2 mr-auto"></span>
+              <span x-text="opt4" class="ml-2 mr-auto uppercase"></span>
             </label>
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt4 === 'GBP' }">
-                <input type="radio" name="opt4" id="label5" x-on:click="opt4 = 'GBP'" value="GBP" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt4 === 'gbp' }">
+                <input type="radio" name="opt4" id="label5" x-on:click="opt4 = 'gbp'" value="gbp" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label5" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">£ BRITISH POUND</label>
               </div>
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt4 === 'USD' }">
-                <input type="radio" name="opt4" id="label6" x-on:click="opt4 = 'USD'" value="USD" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt4 === 'usd' }">
+                <input type="radio" name="opt4" id="label6" x-on:click="opt4 = 'usd'" value="usd" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label6" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">$ DOLLAR</label>
               </div>
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt4 === 'EUR' }">
-                <input type="radio" name="opt4" id="label7" x-on:click="opt4 = 'EUR'" value="EUR" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt4 === 'eur' }">
+                <input type="radio" name="opt4" id="label7" x-on:click="opt4 = 'eur'" value="eur" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label7" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">€ EURO</label>
               </div>
             </div>
@@ -183,15 +304,15 @@
             <label class="tab-label" for="rd5">
               <span class="mr-2">05.</span>
               <span>Plan Duration:</span>
-              <span x-text="opt5" class="ml-2 mr-auto"></span>
+              <span x-text="opt5" class="ml-2 mr-auto capitalize"></span>
             </label>
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt5 === 'One-Time' }">
-                <input type="radio" name="opt5" id="label11" x-on:click="opt5 = 'One-Time'" value="One-Time" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt5 === 'one-time' }">
+                <input type="radio" name="opt5" id="label11" x-on:click="opt5 = 'one-time'" value="one-time" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label11" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">One-Time</label>
               </div>
-              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt5 === 'Recurring' }">
-                <input type="radio" name="opt5" id="label12" x-on:click="opt5 = 'Recurring'" value="Recurring" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+              <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt5 === 'recurring' }">
+                <input type="radio" name="opt5" id="label12" x-on:click="opt5 = 'recurring'" value="recurring" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                 <label for="label12" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">Recurring</label>
               </div>
 
@@ -208,9 +329,11 @@
               <span x-text="opt6" class="ml-2 mr-auto"></span>
             </label>
             <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-            <button type="button" class="m-2 p-2 border-2 shadow-md" x-on:click="console.log(opt1,opt2,opt3,opt4,opt5)">**php for dev**Check Data**</button>
    
-              <p>Payment: <span x-text="opt3" class="ml-2 mr-auto"></span>33.33  </p>
+              <p>Payment:
+                <span x-text="opt4" class="ml-2 mr-auto uppercase"></span>
+                <span x-text="calculatePaymentAmount()"></span>
+              </p>
 
               <form action="{{route('subscription.create')}}" method="post" id="payment-form" name="payment-form">
                 @csrf
@@ -219,19 +342,20 @@
                 <input type="hidden" name="planBasis" x-model="opt3">
                 <input type="hidden" name="planCurrency" x-model="opt4">
                 <input type="hidden" name="planDuration" x-model="opt5">
+                <input type="hidden" name="paymentMethod" id='paymentMethod'>
                 <h1 class="text-2xl font-semibold mb-6">Billing Information</h1>
                 <div id="address-element"></div>
                 <hr class="my-4">
 
                 <input type="hidden" name="plan" id="plan" value="{{ $plan->id }}">
                 <label for="card-holder-name">Card Holder Name</label>
-                  <input type="text" id="card-holder-name" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
+                  <input type="text" id="card-holder-name" value="{{ auth()->user()->name }}" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
                     <label  for="card-element">
                       <p>Card Details</p>
                     </label>
                 <div id="card-element" class="border border-black p-2 rounded h-[2.5rem] w-full mb-4"></div>
               
-                <button type="submit" data-secret="{{$intent['client_secret']}}" class="w-full bg-blue-500 text-white py-2 rounded" id="card-button" name="card-button">Pay Now</button>
+                <button :disabled="!opt1 || !opt2 || !opt3 || !opt4 || !opt5" type="submit" data-secret="{{$intent['client_secret']}}" class="w-full bg-blue-500 text-white py-2 rounded disabled:bg-gray-200" id="card-button" name="card-button">Pay Now</button>
             </form>
             </div>
           </div>
@@ -239,28 +363,6 @@
               </div>
       </div>
     </div>
-
-    <!--  -->
-
-
-    <!-- <div class="items-center bg-white w-full md:w-1/3 p-8 rounded-lg shadow-md">
-    <form action="{{route('subscription.create')}}" method="post" id="payment-form" name="payment-form">
-        @csrf
-         <h1 class="text-2xl font-semibold mb-6">Billing Information</h1>
-        <div id="address-element"></div>
-        <hr class="my-4">
-
-        <input type="hidden" name="plan" id="plan" value="{{ $plan->id }}">
-        <label for="card-holder-name">Card Holder Name</label>
-          <input type="text" id="card-holder-name" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
-            <label  for="card-element">
-              <p>Card Details</p>
-            </label>
-        <div id="card-element" class="border border-black p-2 rounded h-[2.5rem] w-full mb-4"></div>
-
-        <button type="submit" data-secret="{{$intent->client_secret}}" class="w-full bg-blue-500 text-white py-2 rounded" id="card-button" name="card-button">Pay Now</button>
-    </form>
-  </div> -->
   </div>
 
   
@@ -323,6 +425,7 @@
           },
         });
         console.log("paymentMethod:", paymentMethod)
+        document.getElementById('paymentMethod').value = paymentMethod.id
         console.log("step2");
       
     
