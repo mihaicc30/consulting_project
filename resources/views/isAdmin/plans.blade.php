@@ -88,6 +88,7 @@
     data = JSON.parse(data)
 
     let modalID = document.getElementById('planid');
+    let modalstripe_plan =  document.getElementById('amsp');
     let modalCode = document.getElementById('apc');
     let modalDescription = document.getElementById('apd');
     let modalName = document.getElementById('apn');
@@ -96,10 +97,11 @@
 
 
     modalID.value = data.id
+    modalstripe_plan.value = data.stripe_plan
     modalCode.value = data.code
     modalDescription.value = data.description
     modalName.value = data.name
-    modalPrice.value = parseFloat(data.price)
+    modalPrice.value = parseFloat(data.price).toFixed
     data.options.forEach((option, index) => {
       index == 0 ?
         modalAttributes.innerHTML = `<input name="option${index}" class="w-[100%] text-xs" type="text" value="${option}">` :

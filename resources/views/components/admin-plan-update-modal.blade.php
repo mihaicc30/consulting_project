@@ -20,8 +20,11 @@
                 
          <!-- Plan Card - START-->
             <div class="flex flex-col shadow-xl p-4 z-10 relative flex-nowrap">
-                <p>Stripe Plan ID</p>
+                <p>Plan Code</p>
                 <input id="apc" type="text" name="code" class="w-[100%] text-xs font-bold whitespace-nowrap" >
+
+                <p>Stripe Plan ID</p>
+                <input id="amsp" name="name" class="w-[100%] text-xs font-bold whitespace-nowrap" type="text" />
 
                 <p>Plan Name</p>
                 <input id="apn" name="name" class="w-[100%] text-xs font-bold whitespace-nowrap" type="text" />

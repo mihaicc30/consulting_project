@@ -130,20 +130,19 @@ class isAuthPlansController extends Controller
     // price id > personal starter monthly recurring > price_1Nkl4HKqpzLBt7b1q4rTSjtf
     // price id > personal starter monthly one-time > price_1Nkl2QKqpzLBt7b1KkmpSzKn
     
-    // price id > personal starter yearly recurring > price_1Nkl5RKqpzLBt7b1WtSOqDGk
-    // price id > personal starter yearly one-time > price_1Nkl51KqpzLBt7b18S0UCdPU
     
     public function subscription(Request $request)
     {
+        dd($request);
         // $customer = $request->user()->createAsStripeCustomer();
         // dd($request,  $customer);
         // $plan = Plans::find($request->plan);
         // $yearly = $request->yearly;
         // $plan_name = $plan->name;
-        $priceId = 'price_1Nkl2QKqpzLBt7b1KkmpSzKn';
-        $priceId2 = 'price_1Nkl4HKqpzLBt7b1q4rTSjtf';
-        $currency = 'GBP'; // Set the desired currency code
-        $frequency = 'one_time'; // Set the desired currency code
+        // $priceId = 'price_1Nkl2QKqpzLBt7b1KkmpSzKn';
+        // $priceId2 = 'price_1Nkl4HKqpzLBt7b1q4rTSjtf';
+        // $currency = 'GBP'; // Set the desired currency code
+        // $frequency = 'one_time'; // Set the desired currency code
 
         // $stripeCharge = $request->user()->charge(
         //     100, $request->paymentMethodId
@@ -160,9 +159,11 @@ class isAuthPlansController extends Controller
         //         'currency' => $currency,
         //     ]);
         // }
-        $this->updateUser($request);
         // $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)->create($request->token);
 
+        // after all stripe checks gone through
+        $this->updateUser($request);
+        
         $plans = Plans::get();
         return view("isauth.subscriptions", compact('plans'));
     }

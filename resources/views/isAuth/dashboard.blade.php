@@ -125,17 +125,17 @@
     @else
     <!-- Widget Start current plan / if tokens also show 2nd widget with how many tokens-->
     <div class="widget col-span-1 max-[500px]:col-span-2 flex flex-col border-2 border-[#e6e6e6] rounded-lg" x-data="{ isReceiving: false, isSending: true}">
-      <p class="text-lg font-[600] text-center py-2 my-1 border-b-2">Subscription</p>
+      <p class="text-lg font-[600] text-center py-2 my-1 border-b-2">Current Plan</p>
       <!-- if token  -->
 
       <!-- if "proper" plan -->
       <div class="flex flex-col items-center justify-center my-auto">
-        @include('components.rank', ['cs' => substr(Auth::user()->controlstring, 1, 2)])
-        <p class="text-center font-bold">@include('components.rankname')</p>
+        <span class="scale-[1.4]">
+          @include('components.rank', ['cs' => substr(Auth::user()->controlstring, 1, 2)])
+        </span>
+        <p class="text-center font-bold whitespace-nowrap my-2">@include('components.rankname')</p>
         <div class="flex justify-evenly flex-col w-[100%] items-center">
-          <p class="text-center">to check if subscription expires or is auto renewal</p>
-          <p class="text-center">Expiry: <span>25/06/2023</span></p>
-          <p class="text-center">Renewal: <span>25/07/23</span></p>
+          <p class="text-center">{{substr(Auth::user()->controlstring, 17, 1) == 0 ? 'Expiry': 'Auto Renewal'}}: <span>{{substr(Auth::user()->controlstring, 11, 2)}}/{{substr(Auth::user()->controlstring, 13, 2)}}/{{substr(Auth::user()->controlstring, 15, 2)}}</span></p>
         </div>
       </div>
     </div>

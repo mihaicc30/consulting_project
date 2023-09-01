@@ -225,13 +225,13 @@
 
                 <input type="hidden" name="plan" id="plan" value="{{ $plan->id }}">
                 <label for="card-holder-name">Card Holder Name</label>
-                  <input type="text" id="card-holder-name" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
+                  <input type="text" id="card-holder-name" value="{{ auth()->user()->name }}" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
                     <label  for="card-element">
                       <p>Card Details</p>
                     </label>
                 <div id="card-element" class="border border-black p-2 rounded h-[2.5rem] w-full mb-4"></div>
               
-                <button type="submit" data-secret="{{$intent['client_secret']}}" class="w-full bg-blue-500 text-white py-2 rounded" id="card-button" name="card-button">Pay Now</button>
+                <button :disabled="!opt1 || !opt2 || !opt3 || !opt4 || !opt5" type="submit" data-secret="{{$intent['client_secret']}}" class="w-full bg-blue-500 text-white py-2 rounded disabled:bg-gray-200" id="card-button" name="card-button">Pay Now</button>
             </form>
             </div>
           </div>

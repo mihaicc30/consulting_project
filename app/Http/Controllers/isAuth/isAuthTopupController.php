@@ -13,6 +13,15 @@ class isAuthTopupController extends Controller
 {
     public function get()
     {
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $stripeTopUpPlanId = Plans::where('slug', 'top-up')->first()->stripe_plan;
+        $stripeTopUpPlanPrice = $stripe->prices->retrieve(
+            $stripeTopUpPlanId,
+            ['expand' => ['product', 'currency_options']]
+        );
+        
+        $tokenCurrencyOptions = $stripeTopUpPlanPrice->currency_options;
+      
         // In case user refreshes the page after successfull topup
         $balance = session('balance');
         $message = session('message');
@@ -24,19 +33,23 @@ class isAuthTopupController extends Controller
 
         $balance = $user ? $user->balance : null;
         $intent = auth()->user()->createSetupIntent();
-
-        return view('isauth.topup', compact('balance', 'message','intent'));
+        return view('isauth.topup', compact('balance', 'message','intent', 'tokenCurrencyOptions'));
     }
 
     public function topup(Request $request)
     {
-        $oneTokenPriceID = "price_1Nl5JkKqpzLBt7b1T3GbdRE1";
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-        
+        $stripeTopUpPlanId = Plans::where('slug', 'top-up')->first()->stripe_plan;
+
+        // an example on how to fetch the exact price of the plan in its default currency
+        $stripeTopUpPlanPrice = $stripe->prices->retrieve(
+            $stripeTopUpPlanId,
+            []
+          )->unit_amount;
      
         $stripe->invoiceItems->create([
             'customer' => auth()->user()->stripe_id,
-            "price" => $oneTokenPriceID,
+            "price" => $stripeTopUpPlanId,
             'currency' => $request->currency,
             'quantity'=> $request->tokenNumber,
             ]);
@@ -55,6 +68,7 @@ class isAuthTopupController extends Controller
             'currency' => $request->currency,
         ]);
     
+        // if need to add discount in the future, maybe based on over certain quantity
         // $discountCode = $stripe->coupons->create([
         //     'percent_off' => 10,
         //     'duration' => 'once',
