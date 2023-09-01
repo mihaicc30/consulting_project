@@ -128,6 +128,8 @@
           return ({{ $tokenCurrencyOptions->gbp->unit_amount }} / 100 * 5).toFixed(2);
         } else if (this.opt2 === '10') {
           return ({{ $tokenCurrencyOptions->gbp->unit_amount }} / 100 * 10).toFixed(2);
+        } else {
+          return 'Loading...';
         }
       } else if (this.opt1 === 'USD') {
         if (this.opt2 === '2') {
@@ -136,6 +138,8 @@
           return ({{ $tokenCurrencyOptions->usd->unit_amount }} / 100 * 5).toFixed(2);
         } else if (this.opt2 === '10') {
           return ({{ $tokenCurrencyOptions->usd->unit_amount }} / 100 * 10).toFixed(2);
+        } else {
+          return 'Loading...';
         }
       } else if (this.opt1 === 'EUR') {
         if (this.opt2 === '2') {
@@ -144,8 +148,10 @@
           return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 5).toFixed(2);
         } else if (this.opt2 === '10') {
           return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 10).toFixed(2);
+        } else {
+          return 'Loading...';
         }
-      } else {
+      } else if( this.opt1 === '' || this.opt2 === '') {
         return 'Loading...';
       }
     }}">
@@ -220,7 +226,7 @@
               <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
 
                 <p>Payment:
-                  <span x-text="opt1" class="ml-2 mr-auto"></span>
+                  <span x-show="opt1 !== '' && opt2 !== ''" x-text="opt1" class="ml-2 mr-auto"></span>
                   <span x-text="calculatePaymentAmount()"></span>
                 </p>
 
