@@ -90,7 +90,7 @@ class isAuthPlansController extends Controller
         
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
-        dd($request);
+
         // $plan = Plans::find($request->plan);
         // $yearly = $request->yearly;
         // $plan_name = $plan->name;
