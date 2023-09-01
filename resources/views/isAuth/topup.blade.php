@@ -268,7 +268,6 @@
       addressElement.mount('#address-element');
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // cardBtn.disabled = true;
         try {
           const addressElement = elements.getElement('address');
           const result = await addressElement.getValue();
@@ -302,7 +301,6 @@
             console.log("setupIntent:", setupIntent)
             console.log("step1");
 
-
             const {
               paymentMethod,
               error2
@@ -317,26 +315,10 @@
             console.log("paymentMethod:", paymentMethod)
             console.log("step2");
 
-
-
-
-            // if (error) {
-            //   console.log(error);
-            //   // cardBtn.disabled = false;
-            // } else {
-            //   // cardBtn.disabled = false;
-            //   let token = document.createElement('input');
-            //   token.setAttribute('type', 'hidden');
-            //   token.setAttribute('name', 'token');
-            //   token.setAttribute('value', setupIntent.payment_method);
-            //   console.log(setupIntent);
-            //   form.appendChild(token);
             form.submit();
-            // }
           }
         } catch (error) {
           console.error(error);
-          // cardBtn.disabled = false;
         }
       });
     });
