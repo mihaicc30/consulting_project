@@ -121,33 +121,39 @@
 
   <div class="flex py-6 justify-center items-center shadow-xl m-2" x-data="{opt1:'', opt2:'', opt3:'', 
     calculatePaymentAmount: function() {
-      if (this.opt1 === 'GBP') {
-        if (this.opt2 === '2') {
-          return ({{ $tokenCurrencyOptions->gbp->unit_amount }} / 100 * 2).toFixed(2);
-        } else if (this.opt2 === '5') {
+      if (this.opt1 === 'gbp') {
+        if (this.opt2 === '5') {
           return ({{ $tokenCurrencyOptions->gbp->unit_amount }} / 100 * 5).toFixed(2);
         } else if (this.opt2 === '10') {
           return ({{ $tokenCurrencyOptions->gbp->unit_amount }} / 100 * 10).toFixed(2);
+        } else if (this.opt2 === '20') {
+          return ({{ $tokenCurrencyOptions->gbp->unit_amount }} / 100 * 20).toFixed(2);
+        } else if (this.opt2 === '30') {
+          return ({{ $tokenCurrencyOptions->gbp->unit_amount }} / 100 * 30).toFixed(2);
         } else {
           return 'Loading...';
         }
-      } else if (this.opt1 === 'USD') {
-        if (this.opt2 === '2') {
-          return ({{ $tokenCurrencyOptions->usd->unit_amount }} / 100 * 2).toFixed(2);
-        } else if (this.opt2 === '5') {
+      } else if (this.opt1 === 'usd') {
+        if (this.opt2 === '5') {
           return ({{ $tokenCurrencyOptions->usd->unit_amount }} / 100 * 5).toFixed(2);
         } else if (this.opt2 === '10') {
           return ({{ $tokenCurrencyOptions->usd->unit_amount }} / 100 * 10).toFixed(2);
+        } else if (this.opt2 === '20') {
+          return ({{ $tokenCurrencyOptions->usd->unit_amount }} / 100 * 20).toFixed(2);
+        } else if (this.opt2 === '30') {
+          return ({{ $tokenCurrencyOptions->usd->unit_amount }} / 100 * 30).toFixed(2);
         } else {
           return 'Loading...';
         }
-      } else if (this.opt1 === 'EUR') {
-        if (this.opt2 === '2') {
-          return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 2).toFixed(2);
-        } else if (this.opt2 === '5') {
+      } else if (this.opt1 === 'eur') {
+        if (this.opt2 === '5') {
           return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 5).toFixed(2);
         } else if (this.opt2 === '10') {
           return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 10).toFixed(2);
+        } else if (this.opt2 === '20') {
+          return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 20).toFixed(2);
+        } else if (this.opt2 === '30') {
+          return ({{ $tokenCurrencyOptions->eur->unit_amount }} / 100 * 30).toFixed(2);
         } else {
           return 'Loading...';
         }
@@ -173,19 +179,19 @@
               <label class="tab-label rounded-t-lg" for="rd1">
                 <span class="mr-2">01.</span>
                 <span>Paying Currency:</span>
-                <span x-text="opt1" class="ml-2 mr-auto"></span>
+                <span x-text="opt1" class="ml-2 mr-auto uppercase"></span>
               </label>
               <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'GBP' }">
-                  <input type="radio" name="opt1" id="label5" x-on:click="$opt1 = 'GBP';opt1 = 'GBP'" value="GBP" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'gbp' }">
+                  <input type="radio" name="opt1" id="label5" x-on:click="$opt1 = 'gbp';opt1 = 'gbp'" value="gbp" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                   <label for="label5" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">£ BRITISH POUND</label>
                 </div>
-                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'USD' }">
-                  <input type="radio" name="opt1" id="label6" x-on:click="$opt1 = 'USD';opt1 = 'USD'" value="USD" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'usd' }">
+                  <input type="radio" name="opt1" id="label6" x-on:click="$opt1 = 'usd';opt1 = 'usd'" value="usd" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                   <label for="label6" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">$ DOLLAR</label>
                 </div>
-                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'EUR' }">
-                  <input type="radio" name="opt1" id="label7" x-on:click="$opt1 = 'EUR';opt1 = 'EUR'" value="EUR" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt1 === 'eur' }">
+                  <input type="radio" name="opt1" id="label7" x-on:click="$opt1 = 'eur';opt1 = 'eur'" value="eur" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
                   <label for="label7" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">€ EURO</label>
                 </div>
               </div>
@@ -201,17 +207,21 @@
                 <span x-text="opt2" class="ml-2 mr-auto"></span>
               </label>
               <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
-                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === '2' }">
-                  <input type="radio" name="opt2" id="label8" x-on:click="opt2 = '2'" value="2" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
-                  <label for="label8" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">2</label>
-                </div>
                 <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === '5' }">
-                  <input type="radio" name="opt2" id="label9" x-on:click="opt2 = '5'" value="5" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
-                  <label for="label9" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">5</label>
+                  <input type="radio" name="opt2" id="label8" x-on:click="opt2 = '5'" value="5" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+                  <label for="label8" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">5</label>
                 </div>
                 <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === '10' }">
-                  <input type="radio" name="opt2" id="label10" x-on:click="opt2 = '10'" value="10" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
-                  <label for="label10" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">10</label>
+                  <input type="radio" name="opt2" id="label9" x-on:click="opt2 = '10'" value="10" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+                  <label for="label9" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">10</label>
+                </div>
+                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === '20' }">
+                  <input type="radio" name="opt2" id="label10" x-on:click="opt2 = '20'" value="20" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+                  <label for="label10" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">20</label>
+                </div>
+                <div class="relative w-[100%] py-4 px-2 border-2 rounded-lg hover:bg-[#f08409c9] hover:text-white text-center" x-bind:class="{ 'text-white bg-[#f08409c9] shadow-[inset_0px_2px_2px_2px_black]': opt2 === '30' }">
+                  <input type="radio" name="opt2" id="label100" x-on:click="opt2 = '30'" value="30" onclick="this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked=!this.parentElement.parentElement.previousElementSibling.previousElementSibling.checked">
+                  <label for="label100" class="absolute top-0 left-0 h-[100%] w-[100%] flex justify-center items-center">30</label>
                 </div>
               </div>
             </div>
@@ -226,7 +236,7 @@
               <div class="tab-content flex flex-col gap-2 shadow-[inset_0px_0px_10px_4px_#6f6f6f4a]">
 
                 <p>Payment:
-                  <span x-show="opt1 !== '' && opt2 !== ''" x-text="opt1" class="ml-2 mr-auto"></span>
+                  <span x-show="opt1 !== '' && opt2 !== ''" x-text="opt1" class="ml-2 mr-auto uppercase"></span>
                   <span x-text="calculatePaymentAmount()"></span>
                 </p>
 

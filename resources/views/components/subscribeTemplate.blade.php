@@ -32,10 +32,11 @@
                  <button class="bg-[--c3] p-2 rounded text-white font-bold w-[100%]" >Cancel Subscription</button>
             </form>
         @else
-            <a class="bg-[--c2] p-2 rounded text-white font-bold" href="{{ route('plans.show', ['plan' => $slug, 'yearly' => $yearly ]) }}">Subscribe</a>
+            <a class="bg-[--c2] p-2 rounded text-white font-bold" href="{{ route('plans.show', ['plan' => $slug, 'price' => $price , 'yearly' => $yearly ]) }}">Subscribe</a>
         @endif
     @else
-        <a href="{{ route('plans.show', ['plan' => $slug, 'yearly' => $yearly ]) }}" class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</a>
+    
+        <a href="/portal/plans/personal-starter?yearly=0" class="bg-[--c2] p-2 rounded text-white font-bold">Subscribe</a>
     @endif
 @else
     <button class="bg-[--c2] p-2 rounded text-white font-bold" onclick="window.location.href = '/login'">Subscribe</button>

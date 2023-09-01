@@ -98,13 +98,11 @@ class isAuthPlansController extends Controller
     
     public function subscription(Request $request)
     {
-        dd($request);
+        
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-        $planFromDBstripeID = Plans::where('slug', $request->planType . '-' . $request->planName)->first()->stripe_plan;
-
         $customerStripeID = auth()->user()->stripe_id;
         $customer = $stripe->customers->retrieve($customerStripeID);
-
+        
         $isExistingSub = $stripe->subscriptions->all(['customer' => $customerStripeID]);
         if (empty($isExistingSub->data)) {
             // User is not already subscribed, continue with the rest of the code
@@ -113,40 +111,56 @@ class isAuthPlansController extends Controller
             $subscriptionId = $isExistingSub->data[0]->id;
             $stripe->subscriptions->cancel($subscriptionId);
         }
+
         
-        $stripeSubPlanPrice = $stripe->prices->retrieve(
-            $planFromDBstripeID,
-            ['expand' => ['product', 'currency_options']]
-        );
-        $stripeSubPlanPrice->recurring->interval = $request->planBasis === 'yearly' ? 'year' : 'month';
-        $stripeSubPlanPrice->recurring->interval_count = $request->planBasis === 'yearly' ? 12 : 1;
-        $stripeSubPlanPrice->currency_options->{$request->planCurrency}->unit_amount;
-
-
         $paymentMethod = $stripe->paymentMethods->retrieve(
             $request->paymentMethod,
             []
         );
+
         $hasCustomerPaymentMethod = $stripe->paymentMethods->all([
             'customer' => $customerStripeID,
             'type' => 'card',
           ]);
 
-        if (empty($hasCustomerPaymentMethod->data)) {
+    //   dd(empty($hasCustomerPaymentMethod->data), $hasCustomerPaymentMethod);
+
+          if (empty($hasCustomerPaymentMethod->data)) {
             $paymentMethod->attach([
                 'customer' => $customerStripeID,
             ]);
             $tempCustomer = $stripe->customers->retrieve($customerStripeID);
-            $tempCustomer->invoice_settings->default_payment_method = $request->paymentMethod;
+            $tempCustomer->invoice_settings->default_payment_method = $paymentMethod->id;
             $tempCustomer->save();
         }
+
+        $planFromDBstripeID = Plans::where('slug', $request->planType . '-' . $request->planName)->first()->stripe_plan;
+
+        $stripeSubPlanPrice = $stripe->prices->retrieve(
+            $planFromDBstripeID,
+            ['expand' => ['product', 'currency_options']]
+        );
+     
+        $stripeSubPlanPrice->recurring->interval = $request->planBasis === 'yearly' ? 'year' : 'month';
+        $stripeSubPlanPrice->recurring->interval_count = $request->planBasis === 'yearly' ? 12 : 1;
+        $tokenCurrencyOptions = $stripeSubPlanPrice->currency_options;
+        $currencyUserWantsToPayIn =  $tokenCurrencyOptions->{$request->planCurrency}->unit_amount;
+
+
+        
+
+        //temp disabled lol
+        // $paymentMethod->attach([
+        //     'customer' => auth()->user()->stripe_id,
+        // ]);
+
 
         $ttt = $stripe->subscriptions->create([
             'customer' => $customerStripeID,
             'items' => [
                 [
-                    'plan' => $stripeSubPlanPrice,
-                    // 'quantity' => $request->planBasis === 'monthly' ? 1 : 12,
+                    'price' => $stripeSubPlanPrice,
+                    'quantity' => $request->planBasis === 'monthly' ? 1 : 12,
                 ],
             ],
             // "trial_end" => strtotime('+11 months 30 days'),
@@ -154,17 +168,14 @@ class isAuthPlansController extends Controller
             'currency' => $request->planCurrency,
             'cancel_at_period_end' => $request->planDuration === 'one-time' ? true : false,
         ]);
-        
+        if ($request->planBasis === 'monthly') {
+            $stripe->subscriptions->update($subscriptionId, [
+                'cancel_at_period_end' => true,
+            ]);
+        }
 
         dd($ttt );
 
-
-
-        // -------------------------------------
-
-        // -------------------------------------
-
-        // -------------------------------------
 
 
 

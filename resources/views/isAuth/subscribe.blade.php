@@ -347,7 +347,6 @@
                 <div id="address-element"></div>
                 <hr class="my-4">
 
-                <input type="hidden" name="plan" id="plan" value="{{ $plan->id }}">
                 <label for="card-holder-name">Card Holder Name</label>
                   <input type="text" id="card-holder-name" value="{{ auth()->user()->name }}" name="card-holder-name" class="block w-full mt-1 p-2 border rounded" placeholder="" required>
                     <label  for="card-element">

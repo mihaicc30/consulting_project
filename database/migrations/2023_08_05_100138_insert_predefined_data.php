@@ -43,7 +43,7 @@ return new class extends Migration
                     'icon' => '/icon-arcade.svg',
                     'slug' => 'personal-starter',
                     'stripe_plan' => 'price_1Nhs1KKqpzLBt7b1cmUykTXn',
-                    'stripe_yearly_plan' => 'price_1NhuHeKqpzLBt7b1O3een2sF',
+
                     'description' => 'Best option for personal use & for your next project.',
                     'message' => 'Best option for personal use & for your next project.',
                     'options' => '["Max Size 50MB", "Single File Send", "Normal Delivery", "Register Delivery(extra charge)", "Special Delivery(extra charge)"]', 'created_at' => new DateTime(),
