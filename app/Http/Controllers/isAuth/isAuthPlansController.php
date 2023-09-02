@@ -98,7 +98,10 @@ class isAuthPlansController extends Controller
     
     
     public function subscription(Request $request)
+    
     {
+        try {
+       
         // use later
         // auth()->user()->subscription('default')->swapAndInvoice('price_yearly')
 
@@ -149,14 +152,14 @@ class isAuthPlansController extends Controller
 
 
         // -------- if customer has subscription, cancel it
-        $isExistingSub = $stripe->subscriptions->all(['customer' => $customerStripeID]);
-        if (empty($isExistingSub->data)) {
-            // User is not already subscribed, continue with the rest of the code
-        } else {
-            // User is already subscribed, cancel the subscription and continue with the rest of the code
-            $subscriptionId = $isExistingSub->data[0]->id;
-            $stripe->subscriptions->cancel($subscriptionId);
-        }
+        // $isExistingSub = $stripe->subscriptions->all(['customer' => $customerStripeID]);
+        // if (empty($isExistingSub->data)) {
+        //     // User is not already subscribed, continue with the rest of the code
+        // } else {
+        //     // User is already subscribed, cancel the subscription and continue with the rest of the code
+        //     $subscriptionId = $isExistingSub->data[0]->id;
+        //     $stripe->subscriptions->cancel($subscriptionId);
+        // }
         // --------
 
         
@@ -247,7 +250,6 @@ class isAuthPlansController extends Controller
                 ]
             );
         }
-        dd($query, $request );
 
 
 
@@ -286,8 +288,14 @@ class isAuthPlansController extends Controller
         // after all stripe checks gone through
         $this->updateUser($request);
         
-        $plans = Plans::get();
-        return view("isAuth.subscriptions", compact('plans'));
+        
+        // return view("isAuth.subscriptions", compact('plans'));
+        } catch (\Throwable $th) {
+            $plans = Plans::get();
+            $error = "xxxxxxxxxxxxx";
+            return redirect()->back()->with(compact('plans', 'error'));
+        }
+        
     }
 
     

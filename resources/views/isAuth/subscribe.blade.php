@@ -68,118 +68,118 @@
   }
 </style>
 
-<div class="grow flex flex-col" x-data="{opt1:window.location.pathname.split('/plans/')[1].split('-')[0], opt2: window.location.pathname.split('/plans/')[1].split('-')[1], opt3: new URLSearchParams(window.location.search).get('yearly') === '1' ? 'yearly' : 'monthly', opt4:'', opt5:'', opt6:'', 
+<div class="grow flex flex-col" x-data="{opt1:window.location.pathname.split('/plans/')[1].split('-')[0].toLowerCase(), opt2: window.location.pathname.split('/plans/')[1].split('-')[1].toLowerCase(), opt3: new URLSearchParams(window.location.search).get('yearly') === '1' ? 'yearly' : 'monthly', opt4:'', opt5:'', opt6:'', 
   calculatePaymentAmount: function() {
-    if (this.opt4 === 'gbp') {
-        if (this.opt3 === 'monthly') {
-            if (this.opt1 === 'personal') {
-                if (this.opt2 === 'starter') {
+    if (this.opt4.toLowerCase() === 'gbp') {
+        if (this.opt3.toLowerCase() === 'monthly') {
+            if (this.opt1.toLowerCase() === 'personal') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Personal Starter']->gbp->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Personal Basic']->gbp->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Personal Premium']->gbp->unit_amount }} / 100 ).toFixed(2);
                 }
-            } else if (this.opt1 === 'business') {
-                if (this.opt2 === 'starter') {
+            } else if (this.opt1.toLowerCase() === 'business') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Business Starter']->gbp->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Business Basic']->gbp->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Business Premium']->gbp->unit_amount }} / 100 ).toFixed(2);
                 }
             }
-        } else if (this.opt3 === 'yearly') {
-            if (this.opt1 === 'personal') {
-                if (this.opt2 === 'starter') {
+        } else if (this.opt3.toLowerCase() === 'yearly') {
+            if (this.opt1.toLowerCase() === 'personal') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Personal Starter']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Personal Basic']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Personal Premium']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
                 }
-            } else if (this.opt1 === 'business') {
-                if (this.opt2 === 'starter') {
+            } else if (this.opt1.toLowerCase() === 'business') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Business Starter']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Business Basic']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Business Premium']->gbp->unit_amount }} / 100 * 12 ).toFixed(2);
                 }
             }
         }
-    } else  if (this.opt4 === 'usd') {
-        if (this.opt3 === 'monthly') {
-            if (this.opt1 === 'personal') {
-                if (this.opt2 === 'starter') {
+    } else  if (this.opt4.toLowerCase() === 'usd') {
+        if (this.opt3.toLowerCase() === 'monthly') {
+            if (this.opt1.toLowerCase() === 'personal') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Personal Starter']->usd->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Personal Basic']->usd->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Personal Premium']->usd->unit_amount }} / 100 ).toFixed(2);
                 }
-            } else if (this.opt1 === 'business') {
-                if (this.opt2 === 'starter') {
+            } else if (this.opt1.toLowerCase() === 'business') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Business Starter']->usd->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Business Basic']->usd->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Business Premium']->usd->unit_amount }} / 100 ).toFixed(2);
                 }
             }
-        } else if (this.opt3 === 'yearly') {
-            if (this.opt1 === 'personal') {
-                if (this.opt2 === 'starter') {
+        } else if (this.opt3.toLowerCase() === 'yearly') {
+            if (this.opt1.toLowerCase() === 'personal') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Personal Starter']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Personal Basic']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Personal Premium']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
                 }
-            } else if (this.opt1 === 'business') {
-                if (this.opt2 === 'starter') {
+            } else if (this.opt1.toLowerCase() === 'business') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Business Starter']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Business Basic']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Business Premium']->usd->unit_amount }} / 100 * 12 ).toFixed(2);
                 }
             }
         }
-    } else  if (this.opt4 === 'eur') {
-        if (this.opt3 === 'monthly') {
-            if (this.opt1 === 'personal') {
-                if (this.opt2 === 'starter') {
+    } else  if (this.opt4.toLowerCase() === 'eur') {
+        if (this.opt3.toLowerCase() === 'monthly') {
+            if (this.opt1.toLowerCase() === 'personal') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Personal Starter']->eur->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Personal Basic']->eur->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Personal Premium']->eur->unit_amount }} / 100 ).toFixed(2);
                 }
-            } else if (this.opt1 === 'business') {
-                if (this.opt2 === 'starter') {
+            } else if (this.opt1.toLowerCase() === 'business') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Business Starter']->eur->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Business Basic']->eur->unit_amount }} / 100 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Business Premium']->eur->unit_amount }} / 100 ).toFixed(2);
                 }
             }
-        } else if (this.opt3 === 'yearly') {
-            if (this.opt1 === 'personal') {
-                if (this.opt2 === 'starter') {
+        } else if (this.opt3.toLowerCase() === 'yearly') {
+            if (this.opt1.toLowerCase() === 'personal') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Personal Starter']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Personal Basic']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Personal Premium']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
                 }
-            } else if (this.opt1 === 'business') {
-                if (this.opt2 === 'starter') {
+            } else if (this.opt1.toLowerCase() === 'business') {
+                if (this.opt2.toLowerCase() === 'starter') {
                     return ({{ $planPriceIDs['Business Starter']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'basic') {
+                } else if(this.opt2.toLowerCase() === 'basic') {
                     return ({{ $planPriceIDs['Business Basic']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
-                } else if(this.opt2 === 'premium') {
+                } else if(this.opt2.toLowerCase() === 'premium') {
                     return ({{ $planPriceIDs['Business Premium']->eur->unit_amount }} / 100 * 12 ).toFixed(2);
                 }
             }
@@ -206,6 +206,11 @@
   <div class="flex items-center justify-center mt-10 grow">
     <!--  -->
     <div class="flex flex-col min-w-[200px] max-w-[500px] w-[100%] border-2 rounded-lg p-4 shadow-[9px_9px_18px_#bebebe,-9px_-9px_18px_#ffffff]">
+    @if(isset($error))
+      <p>{{$error}}</p>
+    @endif
+
+
       <div class="col">
         <div class="tabs font-[600]" >
         <!-- <div class="tabs font-[600]" x-data="{opt1:'Personal', opt2:'Starter', opt3:'Monthly', opt4:'USD', opt5:'One-Time', opt6:''}"> -->

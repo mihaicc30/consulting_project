@@ -86,7 +86,7 @@ Route::middleware(['auth', 'notadmin', 'checkIfUserHasStripeId'])->prefix('porta
     Route::post('/contact', [isAuthContactController::class, 'add']);
     Route::post('/contact/{email}/delete', [isAuthContactController::class, 'delete']);
 
-    Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isAuth.topup');
+    Route::get('/topup', [isAuthTopupController::class, 'get'])->name('topup');
     Route::post('/topup', [isAuthTopupController::class, 'topup'])->name('isAuth.topup');
 
  
