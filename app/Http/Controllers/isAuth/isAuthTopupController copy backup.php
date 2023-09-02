@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
-use App\Models\ezepostUser;
+use App\Models\EzepostUser;
 use App\Models\Plans;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -29,11 +29,11 @@ class isAuthTopupController extends Controller
         // Retrieve the email of the authenticated user
         $ezepost_addr = Auth::user()->ezepost_addr;
         // Retrieve the user's balance
-        $user = ezepostUser::where('ezepost_addr', $ezepost_addr)->first();
+        $user = EzepostUser::where('ezepost_addr', $ezepost_addr)->first();
 
         $balance = $user ? $user->balance : null;
         $intent = auth()->user()->createSetupIntent();
-        return view('isauth.topup', compact('balance', 'message','intent', 'tokenCurrencyOptions'));
+        return view('isAuth.topup', compact('balance', 'message','intent', 'tokenCurrencyOptions'));
     }
 
     public function topup(Request $request)
@@ -110,14 +110,14 @@ class isAuthTopupController extends Controller
 
         $tokenCurrencyOptions = $stripeTopUpPlanPrice->currency_options;
         $intent = auth()->user()->createSetupIntent();
-        $ezepostUser = EzepostUser::where('ezepost_addr', auth()->user()->ezepost_addr)->first();
-        $balance = $ezepostUser->balance;
+        $EzepostUser = EzepostUser::where('ezepost_addr', auth()->user()->ezepost_addr)->first();
+        $balance = $EzepostUser->balance;
         $tokenNumber = $request->tokenNumber;
         $balance += $tokenNumber;
-        $ezepostUser->balance = $balance;
-        $ezepostUser->save();
+        $EzepostUser->balance = $balance;
+        $EzepostUser->save();
         $message="You topped up successfully your account with " . $tokenNumber . "tokens!";
-        return view('isauth.topup', compact('balance', 'message','intent', 'tokenCurrencyOptions'));
+        return view('isAuth.topup', compact('balance', 'message','intent', 'tokenCurrencyOptions'));
     }
 
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
-use App\Models\ezepostUser;
+use App\Models\EzepostUser;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
     {
 
         // Check if the username is already used
-        // $existingUser = ezepostUser::where('username', $request->username)->first();
+        // $existingUser = EzepostUser::where('username', $request->username)->first();
         // if ($existingUser) {
         //     return back()->withInput()->->withErrors(['username'->'Username is already taken. Please choose a different username.']);
         // }
@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
             'ezepost_addr' => $ezepost_addr,
         ]);
 
-        $ezepost_user = ezepostUser::create([
+        $ezepost_user = EzepostUser::create([
             'displayname' => $request->name,
             'ezepost_addr' => $ezepost_addr,
             'password' => $passwordHash,

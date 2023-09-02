@@ -18,7 +18,7 @@ class isAuthPlansController extends Controller
         $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
         $yearly = '';
 
-        return view("isauth.subscriptions", compact('plans','yearly'));
+        return view("isAuth.subscriptions", compact('plans','yearly'));
     }
 
 
@@ -41,7 +41,7 @@ class isAuthPlansController extends Controller
 
             $yearly = $request->yearly;
             $currency = "USD";
-            return view('isauth.subscribe', compact('plans','plan', 'intent', 'yearly', 'currency', 'planPriceIDs'));
+            return view('isAuth.subscribe', compact('plans','plan', 'intent', 'yearly', 'currency', 'planPriceIDs'));
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -90,7 +90,7 @@ class isAuthPlansController extends Controller
         $balance = EzepostUser::where('ezepost_addr', $ezepost_addr)->first()->balance;
         $message = "You have canceled your subscription plan and back to the default Top-Up plan.";
     
-        return view('isauth.topup', compact('balance', 'message', 'intent', 'tokenCurrencyOptions'));
+        return view('isAuth.topup', compact('balance', 'message', 'intent', 'tokenCurrencyOptions'));
     }
     // price id > personal starter monthly recurring > price_1Nkl4HKqpzLBt7b1q4rTSjtf
     // price id > personal starter monthly one-time > price_1Nkl2QKqpzLBt7b1KkmpSzKn
@@ -207,7 +207,7 @@ class isAuthPlansController extends Controller
         $this->updateUser($request);
         
         $plans = Plans::get();
-        return view("isauth.subscriptions", compact('plans'));
+        return view("isAuth.subscriptions", compact('plans'));
     }
 
     
@@ -249,6 +249,6 @@ class isAuthPlansController extends Controller
         
 
 
-        return view("isauth.subscriptions", compact('plans'));
+        return view("isAuth.subscriptions", compact('plans'));
     }
 }

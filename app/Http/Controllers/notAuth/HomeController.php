@@ -10,6 +10,6 @@ class HomeController extends Controller
 {
     public function index() {
         $home = [];
-        return view("notauth.home", ['home' => $home]);
+        return view("notAuth.home", ['home' => $home]);
     }
 }

@@ -38,6 +38,6 @@ class AdminDashboardController extends Controller
         $contactMessages = Message::all();
         $fiveMostRecentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view("isadmin.dashboard", ['userCount' => $countAccountType, 'recentUsers' => $mostRecent, 'fiveMostRecentFiles' => $fiveMostRecentFiles,'fiveMostRecentMessages' => $fiveMostRecentMessages, 'totalFiles' => $totalFiles, 'contactMessages' => $contactMessages]);
+        return view("isAdmin.dashboard", ['userCount' => $countAccountType, 'recentUsers' => $mostRecent, 'fiveMostRecentFiles' => $fiveMostRecentFiles,'fiveMostRecentMessages' => $fiveMostRecentMessages, 'totalFiles' => $totalFiles, 'contactMessages' => $contactMessages]);
     }
 }

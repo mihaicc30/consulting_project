@@ -16,13 +16,13 @@ class isAuthContactController extends Controller
         $target_user = User::where('email', $target_email)->first();
 
         if (!$target_user) {
-            return redirect()->route('isauth.contact')->with(['status' => 'fail', 'message' => 'User does not exist.']);
+            return redirect()->route('isAuth.contact')->with(['status' => 'fail', 'message' => 'User does not exist.']);
         }
 
         $contacts = json_decode($user->contacts, true) ?? [];
 
         if (in_array($target_email, array_column($contacts, 'email'))) {
-            return redirect()->route('isauth.contact')->with(['status' => 'fail', 'message' => 'Contact already exists.']);
+            return redirect()->route('isAuth.contact')->with(['status' => 'fail', 'message' => 'Contact already exists.']);
         }
 
         $email =  $target_user->email;
@@ -33,7 +33,7 @@ class isAuthContactController extends Controller
         $user->contacts = $newContact;
         $user->save();
 
-        return redirect()->route('isauth.contact')->with(['success' => 'Contact added successfully.']);
+        return redirect()->route('isAuth.contact')->with(['success' => 'Contact added successfully.']);
     }
 
     public function get()
@@ -42,7 +42,7 @@ class isAuthContactController extends Controller
 
         $contacts = $user->contacts ?? [];
 
-        return view("isauth.contact", compact('contacts'));
+        return view("isAuth.contact", compact('contacts'));
     }
 
 

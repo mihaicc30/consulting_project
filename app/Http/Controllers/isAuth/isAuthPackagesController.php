@@ -25,7 +25,7 @@ class isAuthPackagesController extends Controller
         $files = $files->paginate(12); 
 
         return view(
-            "isauth.received",
+            "isAuth.received",
             compact("files", "totalFiles", "filterDate")
         );
     }
@@ -45,7 +45,7 @@ class isAuthPackagesController extends Controller
         $totalFiles = $files->count();
         $files = $files->paginate(12); 
 
-        return view("isauth.sent", compact("files", "totalFiles", "filterDate"));
+        return view("isAuth.sent", compact("files", "totalFiles", "filterDate"));
     }
 
     public function getViewed(Request $request)
@@ -64,6 +64,6 @@ class isAuthPackagesController extends Controller
         $totalFiles = $files->count();
         $files = $files->paginate(12); 
 
-        return view("isauth.viewed", compact("files", "totalFiles", "filterDate"));
+        return view("isAuth.viewed", compact("files", "totalFiles", "filterDate"));
     }
 }

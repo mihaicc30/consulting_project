@@ -10,7 +10,7 @@ class AdminPlansController extends Controller
 {
     public function get() {
         $plans = Plans::get();
-        return view("isadmin.plans", ['plans' => $plans]);
+        return view("isAdmin.plans", ['plans' => $plans]);
     }
 
     public function updatePlan(Request $request) {

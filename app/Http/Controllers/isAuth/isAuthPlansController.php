@@ -8,6 +8,7 @@ use App\Models\EzepostUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Laravel\Cashier\Cashier;
 
 class isAuthPlansController extends Controller
 {
@@ -18,7 +19,7 @@ class isAuthPlansController extends Controller
         $plans = Plans::where('name', 'not like', '%Top-up%')->orderBy('price')->get();
         $yearly = '';
 
-        return view("isauth.subscriptions", compact('plans','yearly'));
+        return view("isAuth.subscriptions", compact('plans','yearly'));
     }
 
 
@@ -41,7 +42,7 @@ class isAuthPlansController extends Controller
 
             $yearly = $request->yearly;
             $currency = "USD";
-            return view('isauth.subscribe', compact('plans','plan', 'intent', 'yearly', 'currency', 'planPriceIDs'));
+            return view('isAuth.subscribe', compact('plans','plan', 'intent', 'yearly', 'currency', 'planPriceIDs'));
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -90,7 +91,7 @@ class isAuthPlansController extends Controller
         $balance = EzepostUser::where('ezepost_addr', $ezepost_addr)->first()->balance;
         $message = "You have canceled your subscription plan and back to the default Top-Up plan.";
     
-        return view('isauth.topup', compact('balance', 'message', 'intent', 'tokenCurrencyOptions'));
+        return view('isAuth.topup', compact('balance', 'message', 'intent', 'tokenCurrencyOptions'));
     }
     // price id > personal starter monthly recurring > price_1Nkl4HKqpzLBt7b1q4rTSjtf
     // price id > personal starter monthly one-time > price_1Nkl2QKqpzLBt7b1KkmpSzKn
@@ -98,13 +99,56 @@ class isAuthPlansController extends Controller
     
     public function subscription(Request $request)
     {
-        dd($request);
+        // use later
+        // auth()->user()->subscription('default')->swapAndInvoice('price_yearly')
+
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         $planFromDBstripeID = Plans::where('slug', $request->planType . '-' . $request->planName)->first()->stripe_plan;
-
         $customerStripeID = auth()->user()->stripe_id;
         $customer = $stripe->customers->retrieve($customerStripeID);
+        
+        
 
+
+
+
+        // $subID = $stripe->subscriptions->all(['customer' => $customerStripeID])->data[0]->id;
+        // $subID = $stripe->subscriptions->all(['customer' => $customerStripeID])->data[0];
+        // $subID = $stripe->invoices->all(['customer' => $customerStripeID]);
+        
+        // $query = $stripe->invoices->update(
+        //     $subID, // Replace with the actual subscription ID
+        //     [
+        //         'period_end' => strtotime('+1 year'),
+        //     ]
+        // );
+        // dd($query);
+
+        // $query = $stripe->subscriptions->update(
+        //     $subID, // Replace with the actual subscription ID
+        //     [
+        //         'plan' => ['interval' => 'month'] ,
+        //     ]
+        // );
+        // dd($query);
+
+        // dd($subID, $request );
+
+// backup
+
+//this is to change the cancel_at time and it works..yey
+        // $subID = $stripe->subscriptions->all(['customer' => $customerStripeID])->data[0]->id;
+        // $query = $stripe->subscriptions->update(
+        //     $subID, // Replace with the actual subscription ID
+        //     [
+        //         'cancel_at' => strtotime('+1 year'),
+        //     ]
+        // );
+
+
+
+
+        // -------- if customer has subscription, cancel it
         $isExistingSub = $stripe->subscriptions->all(['customer' => $customerStripeID]);
         if (empty($isExistingSub->data)) {
             // User is not already subscribed, continue with the rest of the code
@@ -113,40 +157,73 @@ class isAuthPlansController extends Controller
             $subscriptionId = $isExistingSub->data[0]->id;
             $stripe->subscriptions->cancel($subscriptionId);
         }
+        // --------
+
         
+        // -------- retrieve sub. plan from Stripe
         $stripeSubPlanPrice = $stripe->prices->retrieve(
             $planFromDBstripeID,
             ['expand' => ['product', 'currency_options']]
         );
+
+        // yearly billable plan - template
+        $yearlyBillablePlanTemplate = $stripe->prices->retrieve(
+            'price_1Nlf6KKqpzLBt7b1fk4Ns8WS',
+            ['expand' => ['product', 'currency_options']]
+        );
+ // --------
+ $currencyOptions = $stripeSubPlanPrice->currency_options;
+ $tempPrice = $request->planCurrency === "gbp" 
+     ? $currencyOptions->gbp->unit_amount 
+     : ($request->planCurrency === "usd" 
+     ? $currencyOptions->usd->unit_amount 
+     : $currencyOptions->eur->unit_amount);
+     // $request->planBasis === 'monthly' ? 1 : 12
+     // working on changing it to be yearly or something.. 
+ $yearlyBillablePlanTemplate->type =  $request->planDuration === 'one-time' ? 'one-time' : 'recurring';
+ $yearlyBillablePlanTemplate->currency = $request->planCurrency;
+ $yearlyBillablePlanTemplate->amount = $request->planBasis === 'monthly' ? $tempPrice : $tempPrice * 12;
+ $yearlyBillablePlanTemplate->nickname = ucwords('EZE ' . $request->planType . ' ' . $request->planName . ' ' . ($request->planBasis === 'yearly' ? 'Yearly' : 'Monthly'));
+ $yearlyBillablePlanTemplate->recurring->interval = $request->planBasis === 'yearly' ? 'year' : 'month';
+ $yearlyBillablePlanTemplate->recurring->interval_count = $request->planBasis === 'yearly' ? 12 : 1;
+ $yearlyBillablePlanTemplate->currency_options->{$request->planCurrency}->unit_amount =  $request->planBasis === 'monthly' ? $tempPrice : $tempPrice * 12;
+ // working on changing it to be yearly or something.. 
+
+
+        // // --------
+        $currencyOptions = $stripeSubPlanPrice->currency_options;
+        $tempPrice = $request->planCurrency === "gbp" 
+            ? $currencyOptions->gbp->unit_amount 
+            : ($request->planCurrency === "usd" 
+            ? $currencyOptions->usd->unit_amount 
+            : $currencyOptions->eur->unit_amount);
+            // $request->planBasis === 'monthly' ? 1 : 12
+            // working on changing it to be yearly or something.. 
+        $stripeSubPlanPrice->type =  $request->planDuration === 'one-time' ? 'one-time' : 'recurring';
+        $stripeSubPlanPrice->currency = $request->planCurrency;
+        $stripeSubPlanPrice->amount = $request->planBasis === 'monthly' ? $tempPrice : $tempPrice * 12;
+        $stripeSubPlanPrice->nickname = ucwords('EZE ' . $request->planType . ' ' . $request->planName . ' ' . ($request->planBasis === 'yearly' ? 'Yearly' : 'Monthly'));
         $stripeSubPlanPrice->recurring->interval = $request->planBasis === 'yearly' ? 'year' : 'month';
         $stripeSubPlanPrice->recurring->interval_count = $request->planBasis === 'yearly' ? 12 : 1;
-        $stripeSubPlanPrice->currency_options->{$request->planCurrency}->unit_amount;
+        $stripeSubPlanPrice->currency_options->{$request->planCurrency}->unit_amount =  $request->planBasis === 'monthly' ? $tempPrice : $tempPrice * 12;
+        // // working on changing it to be yearly or something.. 
 
 
-        $paymentMethod = $stripe->paymentMethods->retrieve(
-            $request->paymentMethod,
-            []
-        );
-        $hasCustomerPaymentMethod = $stripe->paymentMethods->all([
-            'customer' => $customerStripeID,
-            'type' => 'card',
-          ]);
+        // /???../?.
+        // $paymentIntent = $stripe->paymentIntents->create([
+        //     'amount' => $request->planBasis === 'yearly' ? $tempPrice * 12 : $tempPrice,
+        //     'currency' => $request->planCurrency,
+        //     'customer' => $customerStripeID,
+        //     'payment_method_types' => ['card'],
+        //   ]);
+        // /???../?.
 
-        if (empty($hasCustomerPaymentMethod->data)) {
-            $paymentMethod->attach([
-                'customer' => $customerStripeID,
-            ]);
-            $tempCustomer = $stripe->customers->retrieve($customerStripeID);
-            $tempCustomer->invoice_settings->default_payment_method = $request->paymentMethod;
-            $tempCustomer->save();
-        }
-
-        $ttt = $stripe->subscriptions->create([
+        $query = $stripe->subscriptions->create([
             'customer' => $customerStripeID,
             'items' => [
                 [
-                    'plan' => $stripeSubPlanPrice,
-                    // 'quantity' => $request->planBasis === 'monthly' ? 1 : 12,
+                    'plan' => $request->planBasis === 'monthly' ? $stripeSubPlanPrice : $yearlyBillablePlanTemplate,
+                    'quantity' => $request->planBasis === 'yearly' ? round($tempPrice / 100 * 12) : 1,
                 ],
             ],
             // "trial_end" => strtotime('+11 months 30 days'),
@@ -154,9 +231,23 @@ class isAuthPlansController extends Controller
             'currency' => $request->planCurrency,
             'cancel_at_period_end' => $request->planDuration === 'one-time' ? true : false,
         ]);
-        
 
-        dd($ttt );
+        //asa, imi ia planulID default din stripe
+        // $subName = 'EZE - ' . $request->planType . ' ' . $request->planName . ' - Monthly';
+        // $query = $request->user()->newSubscription(
+        //             $subName, $stripeSubPlanPrice->id
+        //         )->create($request->paymentMethod);
+        
+        if($request->planDuration === 'one-time' && $request->planBasis === 'yearly'){
+            $subID = $stripe->subscriptions->all(['customer' => $customerStripeID])->data[0]->id;
+            $query = $stripe->subscriptions->update(
+                $subID, // Replace with the actual subscription ID
+                [
+                    'cancel_at' => strtotime('+1 year'),
+                ]
+            );
+        }
+        dd($query, $request );
 
 
 
@@ -196,7 +287,7 @@ class isAuthPlansController extends Controller
         $this->updateUser($request);
         
         $plans = Plans::get();
-        return view("isauth.subscriptions", compact('plans'));
+        return view("isAuth.subscriptions", compact('plans'));
     }
 
     
@@ -238,6 +329,6 @@ class isAuthPlansController extends Controller
         
 
 
-        return view("isauth.subscriptions", compact('plans'));
+        return view("isAuth.subscriptions", compact('plans'));
     }
 }

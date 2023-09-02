@@ -10,6 +10,6 @@ class ContactController extends Controller
 {
     public function index() {
         $contact = [];
-        return view("notauth.contact", ['contact' => $contact]);
+        return view("notAuth.contact", ['contact' => $contact]);
     }
 }

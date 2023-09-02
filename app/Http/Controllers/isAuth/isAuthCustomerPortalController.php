@@ -16,6 +16,6 @@ class isAuthCustomerPortalController extends Controller
 
         $intent = $user->createSetupIntent();
 
-        return view('isauth.customer-portal', ['intent' => $intent, 'email' => $email]);
+        return view('isAuth.customer-portal', ['intent' => $intent, 'email' => $email]);
     }
 }

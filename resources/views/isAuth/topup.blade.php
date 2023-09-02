@@ -240,7 +240,7 @@
                   <span x-text="calculatePaymentAmount()"></span>
                 </p>
 
-                <form method="POST" action="{{ route('isauth.topup')}}" id="payment-form" name="payment-form">
+                <form method="POST" action="{{ route('isAuth.topup')}}" id="payment-form" name="payment-form">
                   @csrf
                   <input type="hidden" name="currency" x-model="opt1">
                   <input type="hidden" name="tokenNumber" x-model="opt2">

@@ -10,6 +10,6 @@ class SubscribeController extends Controller
 {
     public function index() {
         $services = [];
-        return view("notauth.home", ['services' => $services]);
+        return view("notAuth.home", ['services' => $services]);
     }
 }

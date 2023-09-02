@@ -93,9 +93,9 @@
   @endphp
   <!--  -->
   @if ($char19 === '1')
-    @include('isadmin.nav')
+    @include('isAdmin.nav')
   @elseif ($char19 === '0')
-    @include('isauth.nav')
+    @include('isAuth.nav')
   @endif
   <!-- content to be inserted -->
 

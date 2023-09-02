@@ -7,7 +7,7 @@ use App\Models\ezepostTracking;
 use Aws\S3\S3Client;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\ezepostUser;
+use App\Models\EzepostUser;
 use DateTime;
 use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
@@ -22,18 +22,18 @@ class isAuthFilesController extends Controller
 
         // to get and send to web page all data related to user and transfers
         $transfers = ["x", "y"]; // fake data
-        return view("isauth.files", ['transfers' => $transfers]);
+        return view("isAuth.files", ['transfers' => $transfers]);
     }
 
     public function getAllFiles()
     {
-        $user = auth()->user()->load('ezepostUser');
-        $ezepostUser = $user->ezepostUser;
-        $getAllReceived = ezepostTracking::where('receiver_ezepost_addr', $ezepostUser->ezepost_addr)->get();
-        $getAllSent = ezepostTracking::where('sender_ezepost_addr', $ezepostUser->ezepost_addr)->get();
+        $user = auth()->user()->load('EzepostUser');
+        $EzepostUser = $user->EzepostUser;
+        $getAllReceived = ezepostTracking::where('receiver_ezepost_addr', $EzepostUser->ezepost_addr)->get();
+        $getAllSent = ezepostTracking::where('sender_ezepost_addr', $EzepostUser->ezepost_addr)->get();
 
 
-        return view('isauth.files', [
+        return view('isAuth.files', [
             'getAllSent' => $getAllSent,
             'getAllReceived' => $getAllReceived
         ]);
@@ -46,7 +46,7 @@ class isAuthFilesController extends Controller
 
             // Get the receiver email from the request
             $receiverEmail = $request->input('useremail');
-            $receiverUser = $this->getezepostUserByEmail($receiverEmail);
+            $receiverUser = $this->getEzepostUserByEmail($receiverEmail);
             $receiverDisplayName = $request->input('userdisplayname');
 
             // Check if the receiver email exists in the database
@@ -129,7 +129,7 @@ class isAuthFilesController extends Controller
 
             // Retrieve the username of the sender
             /** @var User $user */
-            $user = auth()->user()->load('ezepostUser');
+            $user = auth()->user()->load('EzepostUser');
 
             // Get user OS and OS version
             $ezepost = $this->getUserOS($request);
@@ -137,9 +137,9 @@ class isAuthFilesController extends Controller
             // Create a new ezepostTracking instance and fill in the data
             $ezepostTracking = new ezepostTracking();
             $ezepostTracking->mpID = $uniqId;
-            $ezepostTracking->sender_username = $user->ezepostUser->username;
-            $ezepostTracking->sender_ezepost_addr = $user->ezepostUser->ezepost_addr;
-            $ezepostTracking->sender_displayname = $user->ezepostUser->displayname;
+            $ezepostTracking->sender_username = $user->EzepostUser->username;
+            $ezepostTracking->sender_ezepost_addr = $user->EzepostUser->ezepost_addr;
+            $ezepostTracking->sender_displayname = $user->EzepostUser->displayname;
             $ezepostTracking->sender_OS = $ezepost['os'];
             $ezepostTracking->sender_OS_version = $ezepost['osVersion'];
             $ezepostTracking->sender_device_name = $ezepost['deviceName'];
@@ -183,14 +183,14 @@ class isAuthFilesController extends Controller
         ];
     }
 
-    private function getezepostUserByEmail($email)
+    private function getEzepostUserByEmail($email)
     {
         // Assuming you have a "ezepost_users" table to store ezepost_user information
-        $ezepostUser = ezepostUser::where('ezepost_addr', $email)->first();
+        $EzepostUser = EzepostUser::where('ezepost_addr', $email)->first();
 
         // If the ezepost_user exists, return it
-        if ($ezepostUser) {
-            return $ezepostUser;
+        if ($EzepostUser) {
+            return $EzepostUser;
         }
 
         // If the ezepost_user does not exist, return null

@@ -10,7 +10,7 @@ class AdminMessagesController extends Controller
 {
     public function get() {
         $contactMessages = Message::orderBy('created_at', 'desc')->get();
-        return view("isadmin.messages",['contactMessages' => $contactMessages]);
+        return view("isAdmin.messages",['contactMessages' => $contactMessages]);
     }
 
     public function toggleStatus(Request $request)

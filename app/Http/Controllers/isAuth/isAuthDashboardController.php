@@ -43,7 +43,7 @@ class isAuthDashboardController extends Controller
         // dd($recentTrans);
 
 
-        return view("isauth.dashboard", [
+        return view("isAuth.dashboard", [
             "packages" => $packages,
             "recentTrans" => $recentTrans,
             "balance" => $balance,

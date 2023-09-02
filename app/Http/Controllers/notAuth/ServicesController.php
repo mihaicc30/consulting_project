@@ -10,6 +10,6 @@ class ServicesController extends Controller
 {
     public function index() {
         $services = [];
-        return view("notauth.services", ['services' => $services]);
+        return view("notAuth.services", ['services' => $services]);
     }
 }

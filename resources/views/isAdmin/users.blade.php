@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="flex flex-nowrap col-span-2 grow">
-  @include('isadmin.nav')
+  @include('isAdmin.nav')
   <div class="grid grid-cols-1 grow">
   <!-- Hero START -->
   <div class="relative flex flex-col h-100 overflow-hidden">
