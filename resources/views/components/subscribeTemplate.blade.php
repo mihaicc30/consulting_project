@@ -13,7 +13,7 @@
         $isBusinessPremium = $controlString === '13' && $plan === 'Business Premium';
 
         $cancelSubscriptionUrl = route('subscription.cancel');
-        $subscribeUrl = route('plans.show', ['plan' => $slug, 'yearly' => $yearly]);
+        $subscribeUrl = route('plans.show', ['plan' => str_replace(' ', '-', $plan),'yearly' => $yearly]);
     @endphp
 
     @if ($isPersonalStarter || $isPersonalBasic || $isPersonalPremium || $isBusinessStarter || $isBusinessBasic || $isBusinessPremium)
