@@ -101,14 +101,11 @@
               </div>
               <p class="border-b-2 my-4"></p>
 
-              @php
-              $slug = $plan['slug'];
-              @endphp
               <template x-if="isMonthly">
-                @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0' ] )
+              @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'],  'slug' => $plan['slug'], 'yearly' => '0' ] )
               </template>
               <template x-if="!isMonthly">
-                @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'] * 12 , 'slug' => $plan['slug'], 'yearly' => '1' ] )
+                @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'slug' => $plan['slug'], 'yearly' => '1' ] )
               </template>
             </div>
             <!-- Plan Card - END-->
@@ -169,6 +166,7 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
+     
               <template x-if="isMonthly">
                 @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0'] )
               </template>

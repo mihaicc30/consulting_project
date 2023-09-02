@@ -73,8 +73,8 @@ class User extends Authenticatable
         'contacts' => 'array',
     ];
 
-    public function ezepostUser()
+    public function EzepostUser()
     {
-        return $this->hasOne(ezepostUser::class, 'id', 'id');
+        return $this->hasOne(EzepostUser::class, 'id', 'id');
     }
 }

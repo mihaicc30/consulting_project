@@ -135,16 +135,16 @@
       <div class="flex flex-nowrap">
           
           @if ($char19 === '0')
-          @include('isauth.nav')
+          @include('isAuth.nav')
           @endif
           @else
           <div class="grid grid-cols-1">
-          @include('notauth.nav')
+          @include('notAuth.nav')
         @endif
       @else  <!-- else not auth -->
         @unless ($isPortalOrAdmin)
           <!-- unauthauth nav -->
-          @include('notauth.nav')
+          @include('notAuth.nav')
         @endunless
       @endauth
 
@@ -153,10 +153,10 @@
 
       @if (Auth::check())
         @unless ($isPortalOrAdmin)
-          @include('notauth.footer')
+          @include('notAuth.footer')
         @endunless
       @else
-        @include('notauth.footer')
+        @include('notAuth.footer')
       @endauth
 
       </div>

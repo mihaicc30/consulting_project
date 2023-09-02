@@ -10,6 +10,6 @@ class AboutController extends Controller
 {
     public function index() {
         $about = [];
-        return view("notauth.about", ['about' => $about]);
+        return view("notAuth.about", ['about' => $about]);
     }
 }

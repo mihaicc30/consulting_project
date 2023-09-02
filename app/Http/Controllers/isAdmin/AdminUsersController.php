@@ -10,7 +10,7 @@ class AdminUsersController extends Controller
 {
     public function get() {
         $users = User::orderBy('created_at', 'desc')->get();
-        return view("isadmin.users",['users' => $users]);
+        return view("isAdmin.users",['users' => $users]);
     }
     public function toggleBlock(Request $request) {
         

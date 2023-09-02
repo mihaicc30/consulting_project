@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\isAuth\ezepostUserController;
+use App\Http\Controllers\isAuth\EzepostUserController;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\EzepostUser;
 use App\Models\User;
@@ -76,7 +76,7 @@ class ProfileController extends Controller
             ]);
             
         } else {
-            // If the ezepostUser doesn't exist, create a new one
+            // If the EzepostUser doesn't exist, create a new one
             EzepostUser::create([
                 "username" => $data["username"],
                 "ezepost_addr" => $user["email"],

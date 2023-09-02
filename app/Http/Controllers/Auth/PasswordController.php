@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\ezepostUser;
+use App\Models\EzepostUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,9 +27,9 @@ class PasswordController extends Controller
             'password' => $passwordHash,
         ]);
 
-        $ezepost_user = ezepostUser::where('ezepost_addr', $request->user()->email)->first();
+        $ezepost_user = EzepostUser::where('ezepost_addr', $request->user()->email)->first();
 
-        // Update password for the related ezepostUser record
+        // Update password for the related EzepostUser record
         if ($ezepost_user) {
             $ezepost_user->update([
                 'password' => $passwordHash,

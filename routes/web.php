@@ -82,12 +82,12 @@ Route::middleware(['auth', 'notadmin', 'checkIfUserHasStripeId'])->prefix('porta
 
     Route::post('/subscription/cancel', [isAuthPlansController::class, 'cancel'])->name('subscription.cancel');
 
-    Route::get('/contact', [isAuthContactController::class, 'get'])->name('isauth.contact');
+    Route::get('/contact', [isAuthContactController::class, 'get'])->name('isAuth.contact');
     Route::post('/contact', [isAuthContactController::class, 'add']);
     Route::post('/contact/{email}/delete', [isAuthContactController::class, 'delete']);
 
-    Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isauth.topup');
-    Route::post('/topup', [isAuthTopupController::class, 'topup'])->name('isauth.topup');
+    Route::get('/topup', [isAuthTopupController::class, 'get'])->name('isAuth.topup');
+    Route::post('/topup', [isAuthTopupController::class, 'topup'])->name('isAuth.topup');
 
  
     Route::post('/create-customer-portal-session', [isAuthCustomerPortalController::class, 'stripe'])->name('create-customer-portal-session');

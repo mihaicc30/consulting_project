@@ -49,34 +49,65 @@ class isAuthTopupController extends Controller
             ['expand' => ['product', 'currency_options']]
         );
         
-        $paymentIntent = $stripe->paymentIntents->create([
-            'amount' => $stripeTopUpPlanPrice->currency_options->{$request->currency}->unit_amount * $request->tokenNumber,
-            'currency' => $request->currency,
-            'customer' => $customerStripeID,
-            'payment_method_types' => ['card'],
-          ]);
 
+        $paymentMethod = $stripe->paymentMethods->retrieve(
+            $request->paymentMethod,
+            []
+        );
+        // $hasCustomerPaymentMethod = $stripe->paymentMethods->all([
+        //     'customer' => $customerStripeID,
+        //     'type' => 'card',
+        // ]);
+
+        $paymentMethod->attach([
+            'customer' => $customerStripeID,
+        ]);
+        $tempCustomer = $stripe->customers->retrieve($customerStripeID);
+        $tempCustomer->invoice_settings->default_payment_method = $request->paymentMethod;
+        $tempCustomer->save();
+
+
+        // an example on how to fetch the exact price of the plan in its default currency
+        // $stripeTopUpPlanPrice = $stripe->prices->retrieve(
+        //     $stripeTopUpPlanId,
+        //     []
+        //   )->unit_amount;
+     
         $stripe->invoiceItems->create([
-            'customer' =>  $customerStripeID,
+            'customer' => auth()->user()->stripe_id,
             "price" => $stripeTopUpPlanId,
             'currency' => $request->currency,
             'quantity'=> $request->tokenNumber,
             ]);
                 
+        
+    
 
         $invoice = $stripe->invoices->create([
             'pending_invoice_items_behavior' => 'include',
-            'customer' =>  $customerStripeID,
+            'customer' => auth()->user()->stripe_id,
             'auto_advance' => true,
-            'collection_method' => 'charge_automatically',
             'currency' => $request->currency,
         ]);
-      
-
-        $query = $paymentIntent->confirm([
+    
+        // if need to add discount in the future, maybe based on over certain quantity
+        // $discountCode = $stripe->coupons->create([
+        //     'percent_off' => 10,
+        //     'duration' => 'once',
+        //   ]);
+          
+        // $invoice->discounts = [
+        //     [
+        //         'coupon' => $discountCode->id,
+        //     ],
+        // ];
+        
+        $invoice->save();
+        
+        $invoice->pay([
             'payment_method' => $request->paymentMethod,
         ]);
-        
+
         $tokenCurrencyOptions = $stripeTopUpPlanPrice->currency_options;
         $intent = auth()->user()->createSetupIntent();
         $EzepostUser = EzepostUser::where('ezepost_addr', auth()->user()->ezepost_addr)->first();
