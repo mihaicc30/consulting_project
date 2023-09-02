@@ -40,13 +40,9 @@ class isAuthDashboardController extends Controller
                 $query->where('sender_ezepost_addr', $userEzepostAddr)
                     ->orWhere('receiver_ezepost_addr', $userEzepostAddr);
             })->orderBy('created_at', 'desc')->take(3)->get();
-        // dd($recentTrans);
+        $recentTransCount = $recentTrans->count();
 
 
-        return view("isAuth.dashboard", [
-            "packages" => $packages,
-            "recentTrans" => $recentTrans,
-            "balance" => $balance,
-        ]);
+        return view("isAuth.dashboard", compact('recentTransCount','packages','recentTrans','balance') );
     }
 }
