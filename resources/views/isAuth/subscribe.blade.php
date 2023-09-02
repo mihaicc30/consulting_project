@@ -206,8 +206,8 @@
   <div class="flex items-center justify-center mt-10 grow">
     <!--  -->
     <div class="flex flex-col min-w-[200px] max-w-[500px] w-[100%] border-2 rounded-lg p-4 shadow-[9px_9px_18px_#bebebe,-9px_-9px_18px_#ffffff]">
-    @if(isset($error))
-      <p>{{$error}}</p>
+    @if(isset($errors))
+      <p>err:{{$errors}}</p>
     @endif
 
 

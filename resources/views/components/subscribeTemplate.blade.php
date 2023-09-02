@@ -1,6 +1,8 @@
 @auth
     @php
         $ctrlString = auth()->user()->controlstring;
+      
+        
         $controlString = strlen($ctrlString) > 18 ? substr($ctrlString, 1, 2) : '';
         $yearlyCheck = substr($ctrlString, 3, 1) === '1';
 

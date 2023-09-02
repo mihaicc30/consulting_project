@@ -100,7 +100,6 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-
               <template x-if="isMonthly">
               @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'],  'slug' => $plan['slug'], 'yearly' => '0' ] )
               </template>
@@ -166,7 +165,6 @@
                 @endforeach
               </div>
               <p class="border-b-2 my-4"></p>
-     
               <template x-if="isMonthly">
                 @include('components.subscribeTemplate', ['plan' => $plan['name'], 'type' => $plan['type'], 'price' => $plan['price'], 'slug' => $plan['slug'], 'yearly' => '0'] )
               </template>

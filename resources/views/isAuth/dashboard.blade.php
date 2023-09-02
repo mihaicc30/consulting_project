@@ -73,30 +73,30 @@
       <div class="flex flex-nowrap justify-evenly text-xs">
         <!-- Last 3 Transmisions - START -->
         <div class="w-[100%] px-2">
-          @if (!empty($recentTrans))
-          @foreach ($recentTrans as $entry)
-          <!-- Transmisions -->
-          <div class="accordion-item flex text-start justify-between w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2">
-            <div class="flex flex-items-center flex-col flex-nowrap justify-evenly w-[100%] ">
-              <span class="text-center">📁{{ $entry->file_name }}</span>
-              <div class="flex flex-nowrap w-[100%] justify-center items-center">
-                <span>{{ $entry->sender_displayname }}</span>
-                @if ($entry->receiver_ezepost_addr !== Auth::user()->ezepost_addr)
-                <span class="text-xl px-4">&#x003E;&#x003E;</span>
-                @else
-                <div class="flex rotate-180">
+          @if ($recentTransCount > 0 )
+            @foreach ($recentTrans as $entry)
+            <!-- Transmisions -->
+            <div class="accordion-item flex text-start justify-between w-[90%] max-w-[800px] min-w-[240px] transition mx-auto my-1 py-2">
+              <div class="flex flex-items-center flex-col flex-nowrap justify-evenly w-[100%] ">
+                <span class="text-center">📁{{ $entry->file_name }}</span>
+                <div class="flex flex-nowrap w-[100%] justify-center items-center">
+                  <span>{{ $entry->sender_displayname }}</span>
+                  @if ($entry->receiver_ezepost_addr !== Auth::user()->ezepost_addr)
                   <span class="text-xl px-4">&#x003E;&#x003E;</span>
+                  @else
+                  <div class="flex rotate-180">
+                    <span class="text-xl px-4">&#x003E;&#x003E;</span>
+                  </div>
+                  @endif
+                  <span class="flex flex-col">{{ $entry->receiver_displayname  }}</span>
                 </div>
-                @endif
-                <span class="flex flex-col">{{ $entry->receiver_displayname  }}</span>
+                <span class="text-center text-[10px]">📅{{ $entry->created_at }}</span>
               </div>
-              <span class="text-center text-[10px]">📅{{ $entry->created_at }}</span>
-            </div>
 
-          </div>
-          @endforeach
+            </div>
+            @endforeach
           @else
-          <p class="text-center text-lg">No files found.</p>
+          <p class="text-center text-lg">No transfers found.</p>
           @endif
         </div>
         <!-- Last Transmisions - END -->
