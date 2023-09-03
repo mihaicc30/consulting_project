@@ -76,7 +76,7 @@ Route::middleware(['auth', 'notadmin', 'checkIfUserHasStripeId'])->prefix('porta
     Route::post('/pdf/template', [isAuthPdfController::class, 'template'])->name('pdff.template');
     Route::post('/pdf/generate', [isAuthPdfController::class, 'generate'])->name('pdff.generate');
 
-    Route::get('/subscriptions', [isAuthPlansController::class, 'get']);
+    Route::get('/subscriptions', [isAuthPlansController::class, 'get'])->name('subscriptions.get');
     Route::get('/plans/{plan}', [isAuthPlansController::class, 'show'])->name('plans.show');
     Route::post('/plans/subscription', [isAuthPlansController::class, 'subscription'])->name('subscription.create');
 
