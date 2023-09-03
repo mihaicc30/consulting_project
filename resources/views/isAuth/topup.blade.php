@@ -112,9 +112,15 @@
   <!-- Top-Up - END -->
   @else
   <!-- Top-Up IF USER HAS **NOT** A PLAN - START -->
-  @if(isset($message))
+  @if(isset($message) && $message !== '')
   <div class="w-[100%] p-4 bg-green-300 flex flex-nowrap justify-between">
     <p>{{$message}}</p>
+    <button x-on:click="$el.parentElement.remove()">✖</button>
+  </div>
+  @endif
+  @if(isset($err))
+  <div class="w-[100%] p-4 bg-red-300 flex flex-nowrap justify-between">
+    <p>{{$err}}</p>
     <button x-on:click="$el.parentElement.remove()">✖</button>
   </div>
   @endif

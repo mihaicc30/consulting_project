@@ -206,12 +206,20 @@
   <div class="flex items-center justify-center mt-10 grow">
     <!--  -->
     <div class="flex flex-col min-w-[200px] max-w-[500px] w-[100%] border-2 rounded-lg p-4 shadow-[9px_9px_18px_#bebebe,-9px_-9px_18px_#ffffff]">
-    @if(isset($errors))
-      <p>err:{{$errors}}</p>
-    @endif
-
-
       <div class="col">
+      @if(isset($message) && $message !== '')
+      <div class="w-[100%] p-4 bg-green-300 flex flex-nowrap justify-between">
+        <p>{{$message}}</p>
+        <button x-on:click="$el.parentElement.remove()">✖</button>
+      </div>
+      @endif
+      @if(isset($err) && $err !== '')
+      <div class="w-[100%] p-4 bg-red-300 flex flex-nowrap justify-between">
+        <p>{{$err}}</p>
+        <button x-on:click="$el.parentElement.remove()">✖</button>
+      </div>
+      @endif
+      
         <div class="tabs font-[600]" >
         <!-- <div class="tabs font-[600]" x-data="{opt1:'Personal', opt2:'Starter', opt3:'Monthly', opt4:'USD', opt5:'One-Time', opt6:''}"> -->
           <!-- opt1 -->
@@ -400,7 +408,18 @@
         const addressCountry = value.country;
         const addressPostalCode = value.postal_code;
 
-        let amount = 111
+        const { paymentMethod, error2 } = await stripe.createPaymentMethod({
+          type: 'card',
+          card: cardElement,
+          billing_details: {
+            name: cardHolderName.value,
+          },
+        });
+        console.log("paymentMethod:", paymentMethod)
+        document.getElementById('paymentMethod').value = paymentMethod.id
+        console.log("step1");
+
+
         const { setupIntent, error } = await stripe.confirmCardSetup(
           cardBtn.dataset.secret, {
             payment_method: {
@@ -418,19 +437,8 @@
           }
         );
         console.log("setupIntent:", setupIntent)
-        console.log("step1");
-
-
-        const { paymentMethod, error2 } = await stripe.createPaymentMethod({
-          type: 'card',
-          card: cardElement,
-          billing_details: {
-            name: cardHolderName.value,
-          },
-        });
-        console.log("paymentMethod:", paymentMethod)
-        document.getElementById('paymentMethod').value = paymentMethod.id
         console.log("step2");
+
       
     
         

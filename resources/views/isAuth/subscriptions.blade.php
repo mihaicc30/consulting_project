@@ -18,7 +18,19 @@
 
   <!-- Plans - START -->
   <div class="flex flex-col py-6">
-
+      <!-- Error Message - START -->
+        @if(isset($message) && $message !== '')
+        <div class="w-[100%] p-4 bg-green-300 flex flex-nowrap justify-between">
+          <p>{{$message}}</p>
+          <button x-on:click="$el.parentElement.remove()">✖</button>
+        </div>
+        @endif
+        @if(isset($err) && $err !== '')
+        <div class="w-[100%] p-4 bg-red-300 flex flex-nowrap justify-between">
+          <p>{{$err}}</p>
+          <button x-on:click="$el.parentElement.remove()">✖</button>
+        </div>
+        @endif
 
     <!-- Plans START -->
     <div x-data="{ isPersonal: true, isMonthly: true }">
@@ -27,15 +39,9 @@
         <button @click="isPersonal = !isPersonal" :class="{ 'border-b-2 border-b-[--c2]': !isPersonal }" class="p-2 m-2 font-bold">Business</button>
       </div>
 
-
       <!-- Pricing Plan Toggle - START -->
       <div class="flex flex-col items-center justify-center">
-        <!-- Error Message - START -->
-        @if(session('error'))
-        <div class="error-message font-bold text-3xl text-red-600 p-6">
-          {{ session('error') }}
-        </div>
-        @endif
+        
 
         <!-- Error Message - END -->
         <p class="text-3xl font-bold">Designed for <span x-text="isPersonal? 'personal' : 'business'"></span> usage</p>
