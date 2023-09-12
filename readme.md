@@ -16,9 +16,13 @@
 ### Prerequisites for running locally:
 -  **You have installed :**
 -- PHP minimum v8.2.7
+   
 -- Composer
+
 -- Laravel 10
+
 -- WAMP/XAMPP (that will include the Apache and MySQL Server)
+
 
 - **Grab the project files** 
 -- Create a new folder, open a terminal, run  `git clone https://github.com/FloreaCT/consulting_project.git` or just copy the folder from Solent
