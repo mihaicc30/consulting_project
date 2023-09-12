@@ -16,11 +16,8 @@
 ### Prerequisites for running locally:
 -  **You have installed :**
 -- PHP minimum v8.2.7
-   
 -- Composer
-
 -- Laravel 10
-
 -- WAMP/XAMPP (that will include the Apache and MySQL Server)
 
 
