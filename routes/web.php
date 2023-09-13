@@ -22,7 +22,6 @@ use App\Http\Controllers\isAuth\isAuthPlansController;
 use App\Http\Controllers\isAuth\isAuthContactController;
 use App\Http\Controllers\isAuth\isAuthTopupController;
 use App\Http\Controllers\isAuth\isAuthPdfController;
-use App\Http\Controllers\isAuth\isAuthCustomerPortalController;
 
 use App\Http\Controllers\notAuth\HomeController;
 use App\Http\Controllers\notAuth\ServicesController;
@@ -31,6 +30,7 @@ use App\Http\Controllers\notAuth\ContactController;
 use App\Http\Controllers\notAuth\AboutController;
 use App\Http\Controllers\notAuth\SubscribeController;
 use App\Http\Controllers\notAuth\DownloadController;
+use App\Http\Controllers\StripeController;
 
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\isAuth\isAuthHomeTodayController;
@@ -89,10 +89,6 @@ Route::middleware(['auth', 'notadmin', 'checkIfUserHasStripeId'])->prefix('porta
     Route::get('/topup', [isAuthTopupController::class, 'get'])->name('topup');
     Route::post('/topup', [isAuthTopupController::class, 'topup'])->name('isAuth.topup');
 
- 
-    Route::post('/create-customer-portal-session', [isAuthCustomerPortalController::class, 'stripe'])->name('create-customer-portal-session');
-
-    Route::get('customer-portal', [isAuthCustomerPortalController::class, 'get'])->name('customer-portal');
     Route::delete('/delete-contact/{username}', [isAuthContactController::class, 'delete'])->name('delete.contact');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);

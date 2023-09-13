@@ -14,79 +14,65 @@ class StripeController extends Controller
 {
     public function listen(Request $request)
     {
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         $type = $request->type;
-
         switch ($type) {
             case 'customer.subscription.deleted':
                 $this->handleSubscriptionDeleted($request);
                 break;
-            case 'customer.subscription.update':
-                $this->handleSubscriptionUpdate($request);
-                break;
         }
 
-        $customer = $request->data['object']['customer']; // Find customer in the database for update
-        // Log::info($customer);
-
-        $reason = $request->data['object']['cancellation_details']['reason']; // Reason: Update or cancel
-        // Log::info($reason);
-
-        $ends_at = $request->data;
-
-        $cancelled = $request->data['object']['canceled_at'];
-        // Log::info($cancelled);
-
-        // Log::info($request);
-
-        return response('Webhook event received', 200); // Respond to the webhook
     }
 
     public function handleSubscriptionDeleted(Request $request)
     {
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         try {
+            $customerStripeID = $request->data['object']['customer'];
+            echo 'looking for : ' . $customerStripeID;
 
-            $subscription_id = $request->data['object']['id'];
-            $subscription_item_ids = $request->data['object']['items']['data'];
+            $customer = User::where('stripe_id', $request->data['object']['customer'])->first();
 
-            Log::info("Trying to delete subscription item with ID: $subscription_id");
-            $deleteSubscription = Subscription::where('stripe_id', $subscription_id)->delete();
-            Log::info("Deleted $deleteSubscription rows for subscription item with ID: $subscription_id");
+            echo $customer->controlstring;
 
-            foreach ($subscription_item_ids as $item) {
-                $subscriptionItemId = $item['id'];
-                Log::info("Trying to delete subscription item with ID: $subscriptionItemId");
-                $deletedItems = SubscriptionItem::where('stripe_id', $subscriptionItemId)->delete();
-                Log::info("Deleted $deletedItems rows for subscription item with ID: $subscriptionItemId");
+
+            // -------- if customer has subscription, cancel it
+            $isExistingSub = $stripe->subscriptions->all(['customer' => $customerStripeID]);
+            if (empty($isExistingSub->data)) {
+                // User is not already subscribed, continue with the rest of the code
+            } else {
+                // User is already subscribed, cancel the subscription and continue with the rest of the code
+                $subscriptionId = $isExistingSub->data[0]->id;
+                $stripe->subscriptions->cancel($subscriptionId);
             }
+            // --------
 
-            $customer = $request->data['object']['customer'];
+            // Update user and EzepostUser control strings
+            $tempControlString = $customer->controlstring;
 
-            $user = User::where('stripe_id', $customer)->first();
-            $ezepost_user = EzepostUser::where('ezepost_addr', $user->ezepost_addr)->first();
+            $tempControlString[1] = "0";
+            $tempControlString[2] = "0";
 
-            Log::info("Trying to delete customer item with ID: $customer");
-            $updateUser = User::where('stripe_id', $customer)->update(['stripe_id' => null]);
-            Log::info("Deleted $updateUser rows for customer item with ID: $customer");
+            $tempControlString[3] = "0";
+            $tempControlString[11] = "0";
+            $tempControlString[12] = "0";
+            $tempControlString[13] = "0";
+            $tempControlString[14] = "0";
+            $tempControlString[15] = "0";
+            $tempControlString[16] = "0";
+            $tempControlString[17] = "0";
 
-            $ctrlString = $user->controlstring;
-            $ctrlString[1] = 0;
-            $ctrlString[2] = 0;
-            $ctrlString[3] = 0;
 
-            $ezepost_user->controlstring = $ctrlString;
-            $user->controlstring = $ctrlString;
-
-            $ezepost_user->save();
-            $user->save();
-
-            return response('Subscription items deleted', 200);
+            $customer->controlstring = $tempControlString;
+            $customer->save();
+            $ezeUser = EzepostUser::where('ezepost_addr', $customer->ezepost_addr)->first();
+            $ezeUser->controlstring = $tempControlString;
+            $ezeUser->save();
+            return response('Webhook event received', 200); // Respond to the webhook
         } catch (\Exception $e) {
             Log::error("Error deleting subscription items: " . $e->getMessage());
             return response('Error deleting subscription items', 500);
         }
     }
 
-    public function handleSubscriptionUpdate($request)
-    {
-    }
 }
