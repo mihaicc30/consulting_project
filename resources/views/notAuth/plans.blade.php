@@ -40,7 +40,7 @@
             <input type="checkbox" @change="isMonthly = !isMonthly">
             <span class="slider"></span>
           </label>
-          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly (- 10% Off)</span>
+          <span :class="{ 'bg-[--c2] text-white rounded transition': !isMonthly }" class=" p-2 m-2 font-bold">Yearly</span>
          </div>
       </div>
       <!-- Pricing Plan Toggle - END -->

@@ -166,10 +166,6 @@
             </div>
           </div>
         </div>
-
-
-
-
       </div>
       <!-- Widget Start stats about users - END-->
 
