@@ -49,44 +49,12 @@ class isAuthTopupController extends Controller
                 $stripeTopUpPlanId,
                 ['expand' => ['product', 'currency_options']]
             );
-
-            $stripe->paymentMethods->attach($request->paymentMethod, [
-                'customer' => $customerStripeID,
-            ]);
-
-            $stripe->customers->update($customerStripeID, [
-                'invoice_settings' => [
-                    'default_payment_method' => $request->paymentMethod,
-                ],
-            ]);
             
-            $paymentIntent = $stripe->paymentIntents->create([
-                'amount' => $stripeTopUpPlanPrice->currency_options->{$request->currency}->unit_amount * $request->tokenNumber,
-                'currency' => $request->currency,
-                'customer' => $customerStripeID,
-                'payment_method_types' => ['card'],
-            ]);
-
-            $stripe->invoiceItems->create([
-                'customer' =>  $customerStripeID,
-                "price" => $stripeTopUpPlanId,
-                'currency' => $request->currency,
-                'quantity'=> $request->tokenNumber,
-                ]);
-                    
-
-            $invoice = $stripe->invoices->create([
-                'pending_invoice_items_behavior' => 'include',
-                'customer' =>  $customerStripeID,
-                'auto_advance' => true,
-                'collection_method' => 'charge_automatically',
-                'currency' => $request->currency,
-            ]);
-        
-
-            $query = $paymentIntent->confirm([
-                'payment_method' => $request->paymentMethod,
-            ]);
+            $user = Auth::user();
+            $paymentMethod = $request->paymentMethod;
+            $user->createOrGetStripeCustomer();
+            $user->addPaymentMethod($paymentMethod);
+            $qu = $user->charge($stripeTopUpPlanPrice->currency_options->{$request->currency}->unit_amount * $request->tokenNumber, $request->paymentMethod);
 
             
             $tokenCurrencyOptions = $stripeTopUpPlanPrice->currency_options;

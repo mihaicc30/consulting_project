@@ -82,11 +82,11 @@
   @include('components.admin-plan-update-modal')
 </div>
 
-<script defer type="application/javascript">
+<script defer >
   const setModal = (data) => {
     data = data.replace("\"[", "[").replace("]\"", "]")
     data = JSON.parse(data)
-
+    console.log(data);
     let modalID = document.getElementById('planid');
     let modalstripe_plan =  document.getElementById('amsp');
     let modalCode = document.getElementById('apc');
@@ -101,7 +101,7 @@
     modalCode.value = data.code
     modalDescription.value = data.description
     modalName.value = data.name
-    modalPrice.value = parseFloat(data.price).toFixed
+    modalPrice.value = parseFloat(data.price)
     data.options.forEach((option, index) => {
       index == 0 ?
         modalAttributes.innerHTML = `<input name="option${index}" class="w-[100%] text-xs" type="text" value="${option}">` :

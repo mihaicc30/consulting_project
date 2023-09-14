@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\isAuth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoices;
 use App\Models\Plans;
 use App\Models\EzepostUser;
 use App\Models\User;
@@ -52,6 +53,9 @@ class isAuthPlansController extends Controller
 
     public function cancel()
     {
+
+
+        
         $user = auth()->user();
 
         // Check if the user has a subscription
