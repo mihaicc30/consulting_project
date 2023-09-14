@@ -33,10 +33,10 @@ class RegisteredUserController extends Controller
     {
 
         // Check if the username is already used
-        // $existingUser = EzepostUser::where('username', $request->username)->first();
-        // if ($existingUser) {
-        //     return back()->withInput()->->withErrors(['username'->'Username is already taken. Please choose a different username.']);
-        // }
+        $existingUser = EzepostUser::where('username', $request->username)->first();
+        if ($existingUser) {
+            return redirect()->back()->withErrors(['username' => 'Username is already taken']);
+        }
 
         $passwordHash = Hash::make($request->password);
         $ezepost_addr = Str::uuid();
