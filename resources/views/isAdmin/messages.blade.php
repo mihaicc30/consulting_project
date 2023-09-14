@@ -48,9 +48,8 @@
   @include('components.admin-messages-modal')
   <script defer type="application/javascript">
     const setModal = (data) => {
-      data = data.replace("\"[", "[").replace("]\"", "]")
+      data = data.replace(/\n/g, "").replace(/\s+/g, " ");
       data = JSON.parse(data)
-      console.log("🚀 ~ file: messages.blade.php:53 ~ setModal ~ data:", data)
 
       let modalID = document.getElementById('message_id');
       let modalSendEmail = document.getElementById('ase');

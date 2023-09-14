@@ -86,7 +86,6 @@
   const setModal = (data) => {
     data = data.replace("\"[", "[").replace("]\"", "]")
     data = JSON.parse(data)
-    console.log(data);
     let modalID = document.getElementById('planid');
     let modalstripe_plan =  document.getElementById('amsp');
     let modalCode = document.getElementById('apc');
