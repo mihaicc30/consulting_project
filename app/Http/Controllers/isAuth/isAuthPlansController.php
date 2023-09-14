@@ -8,7 +8,7 @@ use App\Models\EzepostUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use Stripe\StripeClient;
 
 class isAuthPlansController extends Controller
 {
@@ -52,19 +52,26 @@ class isAuthPlansController extends Controller
 
     public function cancel()
     {
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-        $customerStripeID = auth()->user()->stripe_id;
-        $customer = $stripe->customers->retrieve($customerStripeID);
-        // -------- if customer has subscription, cancel it
-        $isExistingSub = $stripe->subscriptions->all(['customer' => $customerStripeID]);
-        if (empty($isExistingSub->data)) {
-            // User is not already subscribed, continue with the rest of the code
+        $user = auth()->user();
+
+        // Check if the user has a subscription
+        if ($user->subscriptions) {
+            // Cancel the subscription
+            foreach ($user->subscriptions as $subscription) {
+                if ($subscription->ends_at !== null && $subscription->ends_at > now()) {
+                    // Proceed
+                    Log::info('Proceeding');
+                } else {
+                    $subscription->cancel();
+                    Log::info('Subscription canceled: ' . $subscription->stripe_id);
+                }
+            }
+            Log::info('All active subscriptions canceled');
         } else {
-            // User is already subscribed, cancel the subscription and continue with the rest of the code
-            $subscriptionId = $isExistingSub->data[0]->id;
-            $stripe->subscriptions->cancel($subscriptionId);
+            Log::info('User is not subscribed');
         }
-        // --------
+
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
 
         $stripeTopUpPlanId = Plans::where('slug', 'top-up')->first()->stripe_plan;
@@ -112,36 +119,24 @@ class isAuthPlansController extends Controller
 
 
     public function subscription(Request $request)
-
     {
         $plans = Plans::get();
+
         try {
-            $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-            $planFromDBstripeID = Plans::where('slug', $request->planType . '-' . $request->planName)->first()->stripe_plan;
-            $customerStripeID = auth()->user()->stripe_id;
+            $stripe = new StripeClient(env('STRIPE_SECRET'));
+            $user = auth()->user();
+
+            // Gather all relevant IDs and info
+            $planFromDB = Plans::where('slug', $request->planType . '-' . $request->planName)->first();
+            $planFromDBstripeID = $planFromDB->stripe_plan;
+            $customerStripeID = $user->stripe_id;
+
+            // Get customer and existing subscriptions
             $customer = $stripe->customers->retrieve($customerStripeID);
+            $existingSubscriptions = $stripe->subscriptions->all(['customer' => $customerStripeID]);
 
-            //this is to change the cancel_at time and it works..yey
-            // $subID = $stripe->subscriptions->all(['customer' => $customerStripeID])->data[0]->id;
-            // $query = $stripe->subscriptions->update(
-            //     $subID, // Replace with the actual subscription ID
-            //     [
-            //         'cancel_at' => strtotime('+1 year'),
-            //     ]
-            // );
-
-
-            // -------- if customer has subscription, cancel it
-            $isExistingSub = $stripe->subscriptions->all(['customer' => $customerStripeID]);
-            if (empty($isExistingSub->data)) {
-                // User is not already subscribed, continue with the rest of the code
-            } else {
-                // User is already subscribed, cancel the subscription and continue with the rest of the code
-                $subscriptionId = $isExistingSub->data[0]->id;
-                $stripe->subscriptions->cancel($subscriptionId);
-            }
-            // --------
-
+            // Cancel existing subscriptions if any
+            $this->cancel();
 
             // -------- retrieve sub. plan from Stripe
             $stripeSubPlanPrice = $stripe->prices->retrieve(
@@ -247,19 +242,6 @@ class isAuthPlansController extends Controller
                 'cancel_at_period_end' => $request->planDuration === 'one-time' ? true : false,
             ];
 
-
-            $user = auth()->user();
-            $subscriptions = $user->subscriptions;
-
-            // Step 1: Check if the user has any subscriptions
-            if ($subscriptions->isNotEmpty()) {
-                // Step 2: If the user has subscriptions, identify the active one(s) and cancel them
-                foreach ($subscriptions as $subscription) {
-                    if ($subscription->active()) {
-                        $subscription->delete();
-                    }
-                }
-            }
 
             $newSubscriptionName = $request->planType . ' ' . $request->planName;
 

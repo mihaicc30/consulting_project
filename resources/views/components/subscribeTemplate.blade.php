@@ -19,10 +19,19 @@
     @endphp
 
     @if ($isPersonalStarter || $isPersonalBasic || $isPersonalPremium || $isBusinessStarter || $isBusinessBasic || $isBusinessPremium)
-        <form method="post" action="{{ $cancelSubscriptionUrl }}">
-            @csrf
-            <button class="bg-[--c3] p-2 rounded text-white font-bold w-[100%]">Cancel Subscription</button>
-        </form>
+        @if ($yearlyCheck && $yearly === '1' )
+            <form method="post" action="{{ $cancelSubscriptionUrl }}">
+                @csrf
+                <button class="bg-[--c3] p-2 rounded text-white font-bold w-[100%]">Cancel Subscription</button>
+            </form>
+        @elseif(!$yearlyCheck && $yearly === '0' )
+            <form method="post" action="{{ $cancelSubscriptionUrl }}">
+                @csrf
+                <button class="bg-[--c3] p-2 rounded text-white font-bold w-[100%]">Cancel Subscription</button>
+            </form>
+        @else
+            <a class="bg-[--c2] p-2 rounded text-white font-bold" href="{{ $subscribeUrl }}">Subscribe</a>
+        @endif
     @else
         <a class="bg-[--c2] p-2 rounded text-white font-bold" href="{{ $subscribeUrl }}">Subscribe</a>
     @endif
