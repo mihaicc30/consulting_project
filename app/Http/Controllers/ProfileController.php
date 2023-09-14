@@ -52,7 +52,10 @@ class ProfileController extends Controller
         )->first();
 
         $data = $request->validated();
-
+        $existingUser = EzepostUser::where('username', $request->username)->first();
+        if ($existingUser) {
+            return redirect()->back()->withErrors(['username' => 'Username is already taken']);
+        }
         if ($ezeuser) {
             $ezeuser->update([
                 "displayname" => $data["name"],
