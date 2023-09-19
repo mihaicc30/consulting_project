@@ -144,7 +144,7 @@
           </g>
         </g>
       </svg>
-      <p class="font-bold">Span Protection</p>
+      <p class="font-bold">Spam Protection</p>
       <p class="text-xs">Ensures users and infrastructure that are protected against threats.</p>
     </div>
   </div>
