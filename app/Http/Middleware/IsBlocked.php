@@ -19,7 +19,7 @@ class IsBlocked
         }
         if (auth()->check() && !auth()->user()->IsBlocked()) {
             auth()->logout();
-            abort(423, 'Unauthorized action.');
+            abort(423, 'Your account has been blocked. Please contact our support team for more details.');
         }
        
     }

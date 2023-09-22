@@ -66,6 +66,58 @@
     max-height: 100vh;
     padding: 1em;
   }
+
+  .button {
+  position: relative;
+  padding: 0.5rem 0.5rem;
+  background: #2563eb;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:active {
+  background: #2563eb;
+}
+
+.button__text {
+  font: bold 20px "Quicksand", san-serif;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+
+.button--loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
 </style>
 
 <script src="https://js.stripe.com/v3/" async></script>
@@ -261,9 +313,8 @@
                     <p>Card Details</p>
                   </label>
                   <div id="card-element" class="border border-black p-2 rounded h-[2.5rem] w-full mb-4"></div>
-
-                  <button :disabled="!opt1 || !opt2 " type="submit" data-secret="{{$intent['client_secret']}}" class="w-full bg-blue-500 text-white py-2 rounded disabled:bg-gray-200" id="card-button" name="card-button">Pay Now</button>
-                </form>
+                <button :disabled="!opt1 || !opt2" type="submit" data-secret="{{$intent['client_secret']}}" class='button disabled:bg-gray-200' id="card-button" name="card-button" onclick="this.classList.toggle('button--loading')">  <span class="button__text">Pay Now</span></button>
+               </form>
               </div>
             </div>
             <!--  -->
@@ -292,6 +343,11 @@
       addressElement.mount('#address-element');
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+      cardBtn.disabled = true;
+      const btn = document.getElementById("card-button");
+      btn.classList.add("button--loading");
+
         try {
           const addressElement = elements.getElement('address');
           const result = await addressElement.getValue();
@@ -322,8 +378,12 @@
                 },
               }
             );
-            console.log("setupIntent:", setupIntent)
-            console.log("step1");
+
+            if(setupIntent === undefined){
+              cardBtn.disabled = false;  
+              btn.classList.remove("button--loading");
+              return false;
+            }
 
             const {
               paymentMethod,
@@ -335,12 +395,16 @@
                 name: cardHolderName.value,
               },
             });
+
             document.getElementById('paymentMethod').value = paymentMethod.id
-            console.log("paymentMethod:", paymentMethod)
-            console.log("step2");
 
             form.submit();
-          }
+         } else {
+
+        cardBtn.disabled = false;  
+        btn.classList.remove("button--loading");
+
+      }
         } catch (error) {
           console.error(error);
         }

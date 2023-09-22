@@ -66,6 +66,58 @@
     max-height: 100vh;
     padding: 1em;
   }
+
+.button {
+  position: relative;
+  padding: 0.5rem 0.5rem;
+  background: #2563eb;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:active {
+  background: #2563eb;
+}
+
+.button__text {
+  font: bold 20px "Quicksand", san-serif;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+
+.button--loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
 </style>
 
 <div class="grow flex flex-col" x-data="{opt1:window.location.pathname.split('/plans/')[1].split('-')[0].toLowerCase(), opt2: window.location.pathname.split('/plans/')[1].split('-')[1].toLowerCase(), opt3: new URLSearchParams(window.location.search).get('yearly') === '1' ? 'yearly' : 'monthly', opt4:'', opt5:'', opt6:'', 
@@ -367,7 +419,7 @@
                     </label>
                 <div id="card-element" class="border border-black p-2 rounded h-[2.5rem] w-full mb-4"></div>
               
-                <button :disabled="!opt1 || !opt2 || !opt3 || !opt4 || !opt5" type="submit" data-secret="{{$intent['client_secret']}}" class="w-full bg-blue-500 text-white py-2 rounded disabled:bg-gray-200" id="card-button" name="card-button">Pay Now</button>
+                <button :disabled="!opt1 || !opt2 || !opt3 || !opt4 || !opt5" type="submit" data-secret="{{$intent['client_secret']}}" class='button disabled:bg-gray-200' id="card-button" name="card-button" onclick="this.classList.toggle('button--loading')">  <span class="button__text">Pay Now</span></button>
             </form>
             </div>
           </div>
@@ -397,7 +449,11 @@
     addressElement.mount('#address-element');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // cardBtn.disabled = true;
+      cardBtn.disabled = true;
+
+      const btn = document.getElementById("card-button");
+      btn.classList.add("button--loading");
+
       try {
       const addressElement = elements.getElement('address');
       const result = await addressElement.getValue();
@@ -415,10 +471,13 @@
             name: cardHolderName.value,
           },
         });
-        console.log("paymentMethod:", paymentMethod)
-        document.getElementById('paymentMethod').value = paymentMethod.id
-        console.log("step1");
+        
+        if(paymentMethod === undefined){
+        cardBtn.disabled = false;  
+        btn.classList.remove("button--loading");
+        }
 
+        document.getElementById('paymentMethod').value = paymentMethod.id
 
         const { setupIntent, error } = await stripe.confirmCardSetup(
           cardBtn.dataset.secret, {
@@ -436,30 +495,15 @@
             },
           }
         );
-        console.log("setupIntent:", setupIntent)
-        console.log("step2");
 
-      
-    
-        
-        
-        // if (error) {
-        //   console.log(error);
-        //   // cardBtn.disabled = false;
-        // } else {
-        //   // cardBtn.disabled = false;
-        //   let token = document.createElement('input');
-        //   token.setAttribute('type', 'hidden');
-        //   token.setAttribute('name', 'token');
-        //   token.setAttribute('value', setupIntent.payment_method);
-        //   console.log(setupIntent);
-        //   form.appendChild(token);
-          form.submit();
+        form.submit();
         // }
+      } else {
+        cardBtn.disabled = false;  
+        btn.classList.remove("button--loading");
       }
     } catch (error) {
       console.error(error);
-      // cardBtn.disabled = false;
     }
     });
   });
